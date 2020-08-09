@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&family=Open+Sans:wght@300;400&display=swap');
+
+// color palette
+$charcoal: #373f51;
+$blue: #008dd5;
+$cream: #f4fff8;
+$tart: #fb4b4e;
+$off-white: #f8f8ff;
+$ivory: #F6F7EB;
+$checked-color: #98CE00;
+$gray: darken($color: lightgray, $amount: 10);
+
+
+// color settings
+$bg-color: white;
+$sidebar-bg: $charcoal;
+$highlight-color: $blue;
+
+// fonts
+$body-font: 'Montserrat';
+$header-font: 'Ubuntu';
