@@ -1,13 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
-import App from './App';
+
 import * as serviceWorker from './serviceWorker';
 
+import 'normalize.css/normalize.css'
+import './styles/styles.scss'
+
+import { Provider } from 'react-redux';
+
+import configureStore from './store/configureStore';
+import { addItem } from './actions/listItems';
+import App from './App';
+
+const store = configureStore();
+store.dispatch(addItem({taskName: 'do taxes', flag: 'important', dueAt: '' }))
+store.dispatch(addItem({taskName: 'walk dogs', flag: 'home', dueAt: '' }))
+store.dispatch(addItem({taskName: 'do dishes', flag: 'home', dueAt: '' }))
+store.dispatch(addItem({taskName: 'call jeff', flag: 'work', dueAt: '' }))
+store.dispatch(addItem({taskName: 'build gravelbike', flag: 'bikes', dueAt: '' }))
+
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
