@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 const Sidebar = (props) => {
-    console.log(props);
+
     return (
         <div className='sidebar'>
             <h2 className='sidebar__appTitle'>tido</h2>
@@ -12,7 +12,6 @@ const Sidebar = (props) => {
                     // get listName from list data
                     const listName = list.listName;
                     const listID = list.id;
-                    console.log(listName);
                     return (
                         <NavLink to={`/list/${listID}/`} key={listName} activeClassName='sidebar__navItem--active' className='sidebar__navItem'>{listName}</NavLink>
                     )

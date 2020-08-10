@@ -10,15 +10,15 @@ export default class List extends React.Component {
                 <ListTitle
                     title={this.props.title}
                 />
-                {this.props.items.map((item) => {
+                {this.props.tasks.map((task) => {
                     //get all necessary data from item's object
                     /* let checked = this.props.items[item].completed; */
-                    let checked = item.completed;
-                    let isPriority = item.priority;
+                    let checked = task.completed;
+                    let isPriority = task.priority;
                     return (
                         <ListItem
-                            key={item.taskName}
-                            title={item.taskName}
+                            key={task.name}
+                            title={task.name}
                             checked={checked}
                             priority={isPriority}
                             onClickHandler={this.props.itemClickHandler}

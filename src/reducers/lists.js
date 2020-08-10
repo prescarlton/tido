@@ -9,7 +9,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             ];
         case 'DELETE_LIST':
             return [...state].filter((list) => {
-                return list.listName != action.listName
+                return list.listName !== action.listName
             })
         case 'EDIT_LIST':
             return state.map((item) => {
