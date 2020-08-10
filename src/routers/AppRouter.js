@@ -4,6 +4,7 @@ import Sidebar from '../components/organisms/Sidebar';
 import TodoList from '../components/pages/TodoList';
 
 import HomePage from '../components/pages/HomePage';
+import ListPage from '../components/pages/ListPage';
 
 const AppRouter = () => (
     <BrowserRouter>
@@ -11,7 +12,7 @@ const AppRouter = () => (
             <Sidebar />
             <Switch>
                 <Route path='/' component={HomePage} exact />
-                <Route path='/todo' component={TodoList} />
+                <Route path='/list/:listID' component={ListPage}/>
             </Switch>
 
     </BrowserRouter>
