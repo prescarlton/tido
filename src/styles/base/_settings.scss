@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&family=Open+Sans:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Ubuntu&family=Open+Sans:wght@300;400&display=swap');
 
 // color palette
 $charcoal: #373f51;
@@ -9,10 +9,10 @@ $off-white: #f8f8ff;
 $ivory: #F6F7EB;
 $checked-color: #98CE00;
 $gray: darken($color: lightgray, $amount: 10);
-
+$dark-gray: darken($color: $gray, $amount: 10);
 
 // color settings
-$bg-color: white;
+$bg-color: $off-white;
 $sidebar-bg: $charcoal;
 $highlight-color: $blue;
 

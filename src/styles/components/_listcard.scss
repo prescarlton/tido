@@ -1,0 +1,26 @@
+.listCard {
+    background-color: white;
+    width:10em;
+    height:10em;
+    border-radius:3px;
+    margin:1em;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+}
+
+.listCard__listName {
+    margin: .5em;
+    font-family: $header-font;
+    font-weight: normal;
+}
+
+.listCard__taskCount {
+    color: $dark-gray;
+    margin: .5em;
+}
+
+.listCard__titleGroup {
+    position: absolute;
+    bottom:.5em;
+}

@@ -7,6 +7,9 @@ const ListPage = (props) => {
 
     // grab the data for the list matching the given ID
     console.log(props.list)
+    // if the list with given ID cannot be found,
+    // show ListNotFound rather than List component
+
     return ( props.list ?
         (<List
             title={props.list.listName}
