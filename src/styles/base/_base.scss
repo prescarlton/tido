@@ -1,0 +1,19 @@
+body {
+    background-color: $bg-color;
+    font-family: $body-font;
+}
+
+#root {
+    display: flex;
+    height:100%;
+}
+
+a {
+    text-decoration: unset;
+    color: unset;
+}
+
+.page {
+    width:80%;
+    margin-left:3em;
+}

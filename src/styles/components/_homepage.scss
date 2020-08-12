@@ -1,0 +1,22 @@
+.homepage__newListLink {
+    background-color: $blue;
+    border-radius: 50%;
+    bottom:1em;
+    box-shadow: 0 3px 8px 1px $gray;
+    color: $off-white;
+    font-size: 2.5em;
+    font-weight: lighter;
+    font-family: 'Montserrat';
+    height:1.5em;
+    text-align: center;
+    line-height: 1.5em;
+    position: absolute;
+    right:1em;
+    transition: .4s all;
+    width:1.5em;
+
+}
+
+.homepage__newListLink:hover {
+    color: $tart;
+}
