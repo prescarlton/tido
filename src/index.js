@@ -11,19 +11,19 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { addItem } from './actions/listItems';
 import App from './App';
-import { addItemToList, newList, deleteList } from './actions/lists';
+import { addTaskToList, newList, deleteList } from './actions/lists';
 
 const store = configureStore();
 
 
 store.dispatch(newList({ listName: 'General To-do' }))
 
-store.dispatch(addItemToList({ listName: 'General To-do', taskName: 'Make tido better' }))
-store.dispatch(addItemToList({ listName: 'General To-do', taskName: 'go to dads house' }))
-store.dispatch(addItemToList({ listName: 'General To-do', taskName: 'put clothes away' }))
+store.dispatch(addTaskToList({ listName: 'General To-do', taskName: 'Make tido better' }))
+store.dispatch(addTaskToList({ listName: 'General To-do', taskName: 'go to dads house' }))
+store.dispatch(addTaskToList({ listName: 'General To-do', taskName: 'put clothes away' }))
 
 store.dispatch(newList({ listName: 'Bike stuff' }))
-store.dispatch(addItemToList({ listName: 'Bike stuff', taskName: 'fix cannondale' }))
+store.dispatch(addTaskToList({ listName: 'Bike stuff', taskName: 'fix cannondale' }))
 
 
 ReactDOM.render(

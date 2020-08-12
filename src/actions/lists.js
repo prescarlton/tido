@@ -23,13 +23,21 @@ export const deleteList = ({listName}) => ({
     listName
 })
 
-// ADD_ITEM
-export const addItemToList = ({listName, taskName = '', dueAt = '', flag = ''}) => ({
-    type: 'ADD_ITEM_TO_LIST',
+// ADD_TASK
+export const addTaskToList = ({listName, taskName = '', dueAt = '', flag = ''}) => ({
+    type: 'ADD_TASK_TO_LIST',
     listName,
     task: {
+        id: uuidv4(),
         name: taskName,
         due: dueAt,
         flag
     }
+})
+
+// COMPLETE_TASK
+export const completeTask = ({listID, taskID}) => ({
+    type: 'COMPLETE_TASK',
+    listID,
+    taskID
 })

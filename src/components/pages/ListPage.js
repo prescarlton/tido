@@ -2,24 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
+import { completeTask } from '../../actions/lists';
 
-const ListPage = (props) => {
+class ListPage extends React.Component {
 
-    // grab the data for the list matching the given ID
-    console.log(props.list)
-    // if the list with given ID cannot be found,
-    // show ListNotFound rather than List component
+    taskClickHandler = (taskID) => {
+        // find the list that the item is in
+        this.props.dispatch(completeTask({ listID: this.props.listID, taskID }));
+    }
 
-    return ( props.list ?
-        (<List
-            title={props.list.listName}
-            tasks={props.list.tasks}
-        />) : (
-            // temporary
-            <ListNotFoundPage/>
+    render() {
+        // grab the data for the list matching the given ID
+        console.log(this.props.list)
+        // if the list with given ID cannot be found,
+        // show ListNotFound rather than List component
+
+        return (this.props.list ?
+            (<List
+                title={this.props.list.listName}
+                tasks={this.props.list.tasks}
+                taskClickHandler={this.taskClickHandler}
+            />) : (
+                // temporary
+                <ListNotFoundPage />
+            )
+
         )
-        
-    )
+    }
 };
 
 const mapStateToProps = (state, props) => {
