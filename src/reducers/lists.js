@@ -38,7 +38,6 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             return state.map((list) => {
                 if (list.listID === action.listID) {
                     // create new tasks list with the correct task completed
-                    // const newTasks = 
 
                     return {
                         ...list,
@@ -55,6 +54,16 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                     }
                 } else {
                     return list
+                }
+            })
+
+        case 'DELETE_TASK':
+            return state.map((list) => {
+                if (list.listID === action.listID) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.filter(task => task.id !== action.taskID)
+                    }
                 }
             })
         default:

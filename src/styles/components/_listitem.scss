@@ -1,9 +1,63 @@
 .listItem__container {
+    background-color: $off-white;
+    width: 75%;
+    padding: .5em;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
 }
-.listItem__container > * {
-    margin: .5em .2em;
+
+.listItem__container:hover {
+    background-color: darken($color: $off-white, $amount: 5);
+}
+
+.listItem__checkbox {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid darken($color: gray, $amount: 10);
+    background: none;
+    outline: none;
+    transition: .2s all;
+}
+
+.listItem__checkbox--checked {
+    background-color: $checked-color;
+    border: none;
+}
+.listItem__checkbox:hover {
+    background-color: darken($color: $gray, $amount: 10)
+}
+
+.listItem__title {
+    user-select: none;
+    font-weight: normal;
+}
+
+.listItem__title--checked {
+    text-decoration: line-through;
+    color: $gray;
+}
+
+.listItem__titleContainer>* {
+    display: inline-block;
     vertical-align: middle;
+    margin:.2em;
 }
+
+
+.listItem__container:hover .listItem__buttonGroup>* {
+    visibility: visible;
+}
+
+.listItem__buttonGroup>* {
+    color: $gray;
+    font-size: 1.4em;
+    margin: .2em;
+    transition: .2s color;
+    visibility: hidden;
+}
+
+.listItem__buttonGroup>*:hover {
+    color: black;
+}
+

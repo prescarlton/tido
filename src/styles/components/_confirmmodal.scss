@@ -1,0 +1,50 @@
+.ReactModalPortal .ReactModal__Overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.ReactModalPortal>div {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.confirmModal {
+    width: 25vw;
+    height: 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $off-white;
+    outline: none;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 1px 8px 10px -10px $gray;
+}
+
+.confirmModal__title {
+    font-size: 1.25em;
+    font-family: $header-font;
+}
+
+.confirmmodal__closeBtn {
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    color: darken($color: $gray, $amount: 10);
+    font-size: larger;
+}
+
+.confirmModal__buttonGroup {
+    margin:.5em;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.confirmModal__buttonGroup>button {
+    margin:.5em;
+    width: 135px;
+}

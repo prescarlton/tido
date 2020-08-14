@@ -2,13 +2,45 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { completeTask } from '../../actions/lists';
+import { completeTask, deleteTask } from '../../actions/lists';
+import ConfirmModal from '../atoms/ConfirmModal';
 
 class ListPage extends React.Component {
+
+    state = {
+        showConfirmModal: false,
+        toBeDeleted: ''
+    }
 
     taskClickHandler = (taskID) => {
         // find the list that the item is in
         this.props.dispatch(completeTask({ listID: this.props.listID, taskID }));
+    }
+    // handler to confirm taskDeletion
+    trashClickHandler = (taskID) => {
+        this.setState(() => ({
+            showConfirmModal: true
+        }))
+        this.setState(()=>({
+            toBeDeleted:taskID
+        }))
+    }
+
+    handleModalClose = () => {
+        this.setState(() => ({
+            showConfirmModal: false
+        }));
+    }
+
+    handleConfirmDelete = () => {
+
+        this.props.dispatch(deleteTask({listID:this.props.id,taskID:this.state.toBeDeleted}))
+
+        // reset state to empty obj
+        this.setState(() => ({
+            toBeDeleted:'',
+            showConfirmModal:false
+        }))
     }
 
     render() {
@@ -18,11 +50,21 @@ class ListPage extends React.Component {
         // show ListNotFound rather than List component
 
         return (this.props.list ?
-            (<List
-                title={this.props.list.listName}
-                tasks={this.props.list.tasks}
-                taskClickHandler={this.taskClickHandler}
-            />) : (
+            (<div className='listPage'>
+                <List
+                    title={this.props.list.listName}
+                    tasks={this.props.list.tasks}
+                    taskClickHandler={this.taskClickHandler}
+                    trashClickHandler={(e)=>{this.trashClickHandler(e)}}
+                />
+                <ConfirmModal
+                    isOpen={this.state.showConfirmModal}
+                    onModalClose={this.handleModalClose}
+                    modalTitle='Are you sure?'
+                    handleConfirm={this.handleConfirmDelete}
+
+                />
+            </div>) : (
                 // temporary
                 <ListNotFoundPage />
             )

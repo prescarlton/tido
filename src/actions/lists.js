@@ -41,3 +41,10 @@ export const completeTask = ({listID, taskID}) => ({
     listID,
     taskID
 })
+
+// DELETE_TASK
+export const deleteTask = ({listID, taskID}) => ({
+    type: 'DELETE_TASK',
+    listID,
+    taskID
+})

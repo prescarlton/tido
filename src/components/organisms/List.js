@@ -22,6 +22,8 @@ const List = (props) => {
                         priority={isPriority}
                         id={task.id}
                         onClickHandler={props.taskClickHandler}
+                        trashClickHandler={props.trashClickHandler}
+
                     />
                 )
             })}

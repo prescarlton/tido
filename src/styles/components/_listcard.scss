@@ -2,11 +2,12 @@
     background-color: white;
     width:10em;
     height:10em;
-    border-radius:3px;
+    border-radius:10px;
     margin:1em;
     display: inline-block;
     vertical-align: middle;
     position: relative;
+    box-shadow: 1px 3px 10px -6px $gray;
 }
 
 .listCard__listName {
