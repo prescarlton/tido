@@ -4,6 +4,7 @@ import ListCard from '../molecules/ListCard';
 import { Link } from 'react-router-dom';
 import NewListModal from '../atoms/NewListModal';
 import { newList } from '../../actions/lists';
+import PageTitle from '../atoms/PageTitle';
 
 const HomePage = (props) => {
     console.log(props.lists);
@@ -24,8 +25,8 @@ const HomePage = (props) => {
     }
 
     return (
-        <div className='homePage page'>
-            <h1 className='homepage__pageHead'>welcome to tido.</h1>
+        <div className='page'>
+            <PageTitle>dashboard</PageTitle>
 
             {/* lists section */}
             <h2 className='homepage__sectionHead'>Lists</h2>

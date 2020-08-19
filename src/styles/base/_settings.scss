@@ -2,19 +2,19 @@
 
 // color palette
 $charcoal: #373f51;
-$blue: #008dd5;
+$light-blue: #008dd5;
+$blue:#1D84EE;
 $cream: #f4fff8;
 $tart: #fb4b4e;
-$off-white: #f8f8ff;
-$ivory: #F6F7EB;
+$off-white: #F0F5F8;
 $checked-color: #98CE00;
 $gray: darken($color: lightgray, $amount: 10);
 $dark-gray: darken($color: $gray, $amount: 10);
 
 // color settings
 $bg-color: $off-white;
-$sidebar-bg: $charcoal;
-$highlight-color: $blue;
+$sidebar-bg: $blue;
+$highlight-color: $off-white;
 
 // fonts
 $body-font: 'Open Sans';

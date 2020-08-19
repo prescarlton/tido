@@ -32,6 +32,7 @@ const NewTaskForm = (props) => {
     return (
         <form
             onSubmit={submitHandler}
+            onReset={props.onCancelHandler}
             className='listItem__container newTaskForm'>
             <input
                 name='taskName'
@@ -39,9 +40,11 @@ const NewTaskForm = (props) => {
                 className='newTaskForm__Input'
                 value={taskNameVal}
                 onChange={handleTaskNameChange}
+                required
+                autoFocus
             />
             <div className='newTaskForm__buttonGroup'>
-                <button className='button button--secondary'>Cancel</button>
+                <button type='reset' className='button button--secondary'>Cancel</button>
                 <button type='submit' className='button button--danger'>
                     Add Item
                 </button>

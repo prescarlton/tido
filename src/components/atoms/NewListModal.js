@@ -42,6 +42,7 @@ const NewListModal = (props) => {
                     onChange={onListNameChange}
                     type='text'
                     className='newListForm__listNameField'
+                    autoFocus
                 />
 
                 <div className='buttonGroup'>

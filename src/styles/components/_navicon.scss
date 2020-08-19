@@ -1,0 +1,11 @@
+.navIcon {
+    height:100%;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.navIcon * {
+    margin:0.2em;
+}

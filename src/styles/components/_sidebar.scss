@@ -1,30 +1,54 @@
 .sidebar {
-    width:20%;
     background-color: $sidebar-bg;
-    height:100vh;
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
+    margin:.5em;
+    user-select: none;
 }
 .sidebar__appTitle {
     font-family: $header-font;
-    font-size:3em;
-    margin:.3em;
-    color:$highlight-color;
+    font-size:2.5em;
+    color:whitesmoke;
+    opacity: .8;
+    width: 100%;
+    margin:0;
+    text-align: center;
+    border-radius: 15px;
+    line-height: 1.5em;
 }
 
 .sidebar__navMenu {
     width:100%;
+    height:100%;
     padding:0;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+}
+.sidebar__bottomBar {
+    width:100%;
+    display: flex;
+    padding:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar__navItem {
-    font-size: 1.25em;
+    font-size: 1em;
     padding:.5em;
-    margin-left:1em;
     font-weight: bold;
+    color:$off-white;
+    opacity: .5;
+    transition: .2s all;
+    border-radius:15px;
+    height:4em;
 }
 .sidebar__navItem--active {
-    background-color: lighten($color: $sidebar-bg, $amount: 10);
+    
+    opacity:1;
+}
+.sidebar__navItem:hover {
+    opacity: 1;
 }
