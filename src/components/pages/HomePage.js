@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ListCard from '../molecules/ListCard';
 import { Link } from 'react-router-dom';
+import NewListModal from '../atoms/NewListModal';
+import { newList } from '../../actions/lists';
 
 const HomePage = (props) => {
     console.log(props.lists);
+
+    const [newListModalShown, setNewListModalShown] = useState(false);
+
+    const showNewListModal = () => {
+        setNewListModalShown(true)
+    }
+
+    const hideNewListModal = () => {
+        setNewListModalShown(false)
+    }
+
+    const handleNewListCreation = (listName) => {
+        props.dispatch(newList({listName}))
+        setNewListModalShown(false)
+    }
+
     return (
         <div className='homePage page'>
             <h1 className='homepage__pageHead'>welcome to tido.</h1>
@@ -26,7 +44,12 @@ const HomePage = (props) => {
 
             {/* stats section */}
             <h2 className='homepage__sectionHead'>Stats - Coming Soon</h2>
-            <Link to='/create/'><div className='homepage__newListLink' >+</div></Link>
+            <div className='homepage__newListLink' onClick={showNewListModal}>+</div>
+        <NewListModal
+            isOpen={newListModalShown}
+            handleClose={hideNewListModal}
+            handleSubmit={handleNewListCreation}
+        />
         </div>
     )
 }
