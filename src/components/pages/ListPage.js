@@ -44,15 +44,13 @@ class ListPage extends React.Component {
     }
 
     newTaskHandler = (taskName) => {
-        this.props.dispatch(addTaskToList({listID:this.props.id,taskName}))
+        this.props.dispatch(addTaskToList({listID:this.props.list.id,taskName}))
     }
 
     render() {
         // grab the data for the list matching the given ID
-        console.log(this.props.list)
         // if the list with given ID cannot be found,
         // show ListNotFound rather than List component
-
         return (this.props.list ?
             (<div className='listPage'>
                 <List

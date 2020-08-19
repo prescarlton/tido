@@ -24,7 +24,8 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             })
         case 'ADD_TASK_TO_LIST':
             return state.map((list) => {
-                if (list.listID === action.listID) {
+                console.log(list.id,'=',action.listID)
+                if (list.id === action.listID) {
                     return {
                         ...list,
                         tasks: [...list.tasks, action.task]
@@ -36,7 +37,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             })
         case 'COMPLETE_TASK':
             return state.map((list) => {
-                if (list.listID === action.listID) {
+                if (list.id === action.listID) {
                     // create new tasks list with the correct task completed
 
                     return {
