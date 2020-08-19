@@ -15,7 +15,6 @@ const ListItem = (props) => {
                 <h3 className={`listItem__title ${props.checked && 'listItem__title--checked'}`}>{props.title}</h3>
             </div>
             <div className='listItem__buttonGroup'>
-                <MdEdit />
                 <FaRegTrashAlt onClick={()=>{props.trashClickHandler(props.id)}}/>
             </div>
         </div>

@@ -10,8 +10,20 @@
     width:80%;
 }
 
+.listContainer {
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    background-color: $off-white;
+    border-radius: 10px;
+    // padding:.5rem;
+}
+
 .listTitle {
-    font-size:2em;
-    // margin: .5em 0 1em 0
-    margin: .5em auto;
+    text-align: left;
+    font-size:2.5em;
+    margin: .5em;
+    width:75%;
 }

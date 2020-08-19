@@ -1,13 +1,28 @@
 .listItem__container {
     background-color: $off-white;
-    width: 75%;
     padding: .5em;
     display: flex;
     justify-content: space-between;
+    transition: background-color .2s;
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+.listItem__container:first-of-type {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-top: .5rem;
+}
+
+.listItem__container:last-of-type {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: .5rem;
 }
 
 .listItem__container:hover {
-    background-color: darken($color: $off-white, $amount: 5);
+    color: $blue;
+    cursor: pointer;
 }
 
 .listItem__checkbox {
@@ -24,13 +39,14 @@
     background-color: $checked-color;
     border: none;
 }
+
 .listItem__checkbox:hover {
-    background-color: darken($color: $gray, $amount: 10)
+    background-color: lighten($color: $gray, $amount: 10)
 }
 
 .listItem__title {
     user-select: none;
-    font-weight: normal;
+    font-weight: lighter;
 }
 
 .listItem__title--checked {
@@ -41,7 +57,7 @@
 .listItem__titleContainer>* {
     display: inline-block;
     vertical-align: middle;
-    margin:.2em;
+    margin: .2em;
 }
 
 
@@ -61,3 +77,35 @@
     color: black;
 }
 
+.listItem__addIcon {
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    transition: .2s all;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.listItem__container:hover .listItem__addIcon {
+    background-color: $tart;
+    color: whitesmoke;
+    border-radius: 100%;
+}
+
+.newTaskForm {
+    flex-direction: column;
+}
+
+.newTaskForm__Input {
+    border: none;
+    background: none;
+    margin:.5rem;
+    outline: none;
+    margin-bottom:1rem;
+}
+
+.newTaskForm__buttonGroup >*{
+    margin:.25rem;
+}

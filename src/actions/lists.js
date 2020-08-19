@@ -24,9 +24,9 @@ export const deleteList = ({listName}) => ({
 })
 
 // ADD_TASK
-export const addTaskToList = ({listName, taskName = '', dueAt = '', flag = ''}) => ({
+export const addTaskToList = ({listID, taskName = '', dueAt = '', flag = ''}) => ({
     type: 'ADD_TASK_TO_LIST',
-    listName,
+    listID,
     task: {
         id: uuidv4(),
         name: taskName,

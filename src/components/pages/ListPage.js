@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { completeTask, deleteTask } from '../../actions/lists';
+import { completeTask, deleteTask, addTaskToList } from '../../actions/lists';
 import ConfirmModal from '../atoms/ConfirmModal';
 
 class ListPage extends React.Component {
@@ -43,6 +43,10 @@ class ListPage extends React.Component {
         }))
     }
 
+    newTaskHandler = (taskName) => {
+        this.props.dispatch(addTaskToList({listID:this.props.id,taskName}))
+    }
+
     render() {
         // grab the data for the list matching the given ID
         console.log(this.props.list)
@@ -56,6 +60,8 @@ class ListPage extends React.Component {
                     tasks={this.props.list.tasks}
                     taskClickHandler={this.taskClickHandler}
                     trashClickHandler={(e)=>{this.trashClickHandler(e)}}
+                    newTaskHandler={this.newTaskHandler}
+
                 />
                 <ConfirmModal
                     isOpen={this.state.showConfirmModal}

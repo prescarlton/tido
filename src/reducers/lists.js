@@ -24,7 +24,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             })
         case 'ADD_TASK_TO_LIST':
             return state.map((list) => {
-                if (list.listName === action.listName) {
+                if (list.listID === action.listID) {
                     return {
                         ...list,
                         tasks: [...list.tasks, action.task]

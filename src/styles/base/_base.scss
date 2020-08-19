@@ -15,6 +15,16 @@ a {
     color: unset;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $header-font;
+    font-weight: normal;
+}
+
 .page {
     width: 80%;
     margin-left: 3em;
@@ -27,13 +37,15 @@ a {
     background-color: none;
     padding: .5em 1.25em;
     transition: .3s all;
+    box-shadow: 1px 5px 10px -6px $gray;
 }
 
 .button--danger {
     background-color: $tart;
     border-color: lighten($color: $tart, $amount: 10);
     color: $off-white;
-    box-shadow: 1px 8px 10px -6px $tart;
+    box-shadow: 1px 5px 10px -6px $tart;
+
 }
 
 .button--danger:active {
@@ -42,13 +54,13 @@ a {
 }
 
 .button--danger:hover {
-    box-shadow: 1px 8px 10px -4px $tart;
+    box-shadow: 1px 6px 10px -4px $tart;
 }
 
 .button--secondary {
     background-color: darken($color: $gray, $amount: 5);
     color: $off-white;
-    box-shadow: 1px 8px 10px -6px $gray;
+    box-shadow: 1px 5px 10px -6px $gray;
 }
 
 .button--secondary:active {
@@ -57,9 +69,13 @@ a {
 }
 
 .button--secondary:hover {
-    box-shadow: 1px 8px 10px -4px $gray;
+    box-shadow: 1px 6px 10px -4px $gray;
 }
 
 .button:hover {
     opacity: .9;
+}
+
+.red {
+    color: $tart;
 }
