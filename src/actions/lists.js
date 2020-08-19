@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
+import { makeSlug } from '../utils/slugs';
 
 // CREATE_LIST
 export const newList = ({listName}) => ({
     type: 'CREATE_LIST',
     list: {
-        id: uuidv4(),
+        id: makeSlug(5),
         listName,
         tasks: []
     }
@@ -28,7 +29,7 @@ export const addTaskToList = ({listID, taskName = '', dueAt = '', flag = ''}) =>
     type: 'ADD_TASK_TO_LIST',
     listID,
     task: {
-        id: uuidv4(),
+        id: makeSlug(5),
         name: taskName,
         due: dueAt,
         flag

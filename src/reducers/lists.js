@@ -24,7 +24,6 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             })
         case 'ADD_TASK_TO_LIST':
             return state.map((list) => {
-                console.log(list.id,'=',action.listID)
                 if (list.id === action.listID) {
                     return {
                         ...list,
