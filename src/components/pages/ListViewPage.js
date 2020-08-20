@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import ListPreview from '../molecules/ListPreview';
 
 const ListViewPage = (props) => {
+
+
     return (
         <div className='page'>
             <PageTitle>lists</PageTitle>

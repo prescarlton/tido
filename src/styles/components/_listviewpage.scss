@@ -33,3 +33,28 @@
 .listPreview__title__dots:active {
     color: darken($color: $gray, $amount: 20);
 }
+
+.listPreviewNewTask {
+    width:100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:$blue;
+    opacity:.7;
+    font-family: 'Poppins';
+    transition: opacity .2s;
+}
+
+.listPreviewNewTask:hover {
+    opacity: 1;
+}
+
+.listPreviewNewTask * {
+    margin:.25em;
+}
+.listPreviewNewTask__plusBtn {
+    border: 1px dashed $blue;
+    vertical-align: middle;
+    border-radius:5px;
+}

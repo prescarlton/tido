@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskOverview from '../atoms/TaskOverview';
 import { makeSlug } from '../../utils/slugs';
 import { BsThreeDots } from 'react-icons/bs';
+import ListPreviewNewTask from '../atoms/ListPreviewNewTask';
+import NewTaskForm from '../atoms/NewTaskForm';
+
+//temporary dummy data
+let tasks = []
+
+for (let i = 0; i < Math.floor(Math.random() * 5); i++) {
+    tasks.push({
+        name: `Task ${i}`
+    })
+}
+
 const ListPreview = (props) => {
 
-    //temporary dummy data
-    let tasks = []
+    const [showTaskForm, setShowTaskForm] = useState(false);
 
-    for (let i = 0; i < Math.floor(Math.random() * 5); i++) {
-        tasks.push({
-            name: `Task ${i}`
-        })
+    const newTaskHandler = () => {
+        setShowTaskForm(true);
     }
 
+    const newTaskSubmitHandler = (taskName) => {
+        // props.newTaskHandler(taskName);
+        setShowTaskForm(false);
+    }
+
+    const newTaskCancelHandler = () => {
+        setShowTaskForm(false);
+    }
 
     return (
         <div className='listPreview'>
-            <h2 className='listPreview__title'>{props.listName} <BsThreeDots className='listPreview__title__dots'/></h2>
+            <h2 className='listPreview__title'>{props.listName} <BsThreeDots className='listPreview__title__dots' /></h2>
             <div className='listPreview__taskContainer'>
                 {tasks.map((task) => (
                     <TaskOverview
@@ -24,6 +41,20 @@ const ListPreview = (props) => {
                         task={task}
                     />
                 ))}
+
+                {/* check if addTaskButton or newTaskForm should be shown */}
+                {showTaskForm ? (
+                    <NewTaskForm
+                        onSubmitHandler={newTaskSubmitHandler}
+                        onCancelHandler={newTaskCancelHandler}
+                    />
+                ) : (
+                        <ListPreviewNewTask
+                            newTaskHandler={newTaskHandler}
+                        />
+                    )}
+
+
             </div>
         </div>
     )
