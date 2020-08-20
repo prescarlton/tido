@@ -1,0 +1,35 @@
+.listPreview {
+    background-color: white;
+    border-radius: 15px;
+    margin:1em;
+    padding:.5em;
+    width:17em;
+    box-shadow: $shadow;
+    user-select: none;
+}
+
+.listPreview:hover .listPreview__title {
+    color: $blue;
+}
+
+.listViewPage__listGroup {
+    display: flex;
+    align-items: flex-start;
+}
+.listPreview__title {
+    color: $gray;
+    margin:.5em;
+    display: flex;
+    justify-content: space-between;
+    transition: .2s color;
+}
+.listPreview__title__dots {
+    vertical-align: middle;
+    cursor:pointer;
+}
+.listPreview__title__dots:hover {
+    color: darken($color: $gray, $amount: 10);
+}
+.listPreview__title__dots:active {
+    color: darken($color: $gray, $amount: 20);
+}
