@@ -5,15 +5,6 @@ import { BsThreeDots } from 'react-icons/bs';
 import ListPreviewNewTask from '../atoms/ListPreviewNewTask';
 import NewTaskForm from '../atoms/NewTaskForm';
 
-//temporary dummy data
-let tasks = []
-
-for (let i = 0; i < Math.floor(Math.random() * 5); i++) {
-    tasks.push({
-        name: `Task ${i}`
-    })
-}
-
 const ListPreview = (props) => {
 
     const [showTaskForm, setShowTaskForm] = useState(false);
@@ -23,7 +14,7 @@ const ListPreview = (props) => {
     }
 
     const newTaskSubmitHandler = (taskName) => {
-        // props.newTaskHandler(taskName);
+        props.newTaskHandler(props.id, taskName);
         setShowTaskForm(false);
     }
 
@@ -35,7 +26,7 @@ const ListPreview = (props) => {
         <div className='listPreview'>
             <h2 className='listPreview__title'>{props.listName} <BsThreeDots className='listPreview__title__dots' /></h2>
             <div className='listPreview__taskContainer'>
-                {tasks.map((task) => (
+                {props.tasks.map((task) => (
                     <TaskOverview
                         key={task.name}
                         task={task}
