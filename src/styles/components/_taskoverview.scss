@@ -6,6 +6,7 @@
     position: relative;
     height: 6em;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .taskOverview__priority {
@@ -27,9 +28,15 @@
 
 
 .taskOverview__title {
+    display: inline-block;
     position: absolute;
     top: .5em;
     left: .5em;
+    word-wrap:hidden;
+    word-break: break-all;
+
+    height:45%;
+    overflow:hidden;
 }
 
 .taskOverview__dueDate {

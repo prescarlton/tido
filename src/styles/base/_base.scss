@@ -7,7 +7,7 @@ body {
 
 #root {
     display: flex;
-    height: 100vh;
+    // height: 100vh;
 }
 
 a {
@@ -26,12 +26,15 @@ h6 {
 }
 
 .page {
-    width: 80%;
-    margin-left: 3em;
+    margin-left: 8em;
+    width: calc(100% - 8em);
+    display: flex;
+    flex-direction: column;
 }
+
 .pageTitle {
     color: $blue;
-    font-size:4em;
+    font-size: 4em;
     font-weight: lighter;
 }
 
@@ -43,6 +46,10 @@ h6 {
     padding: .5em 1.25em;
     transition: .3s all;
     box-shadow: 1px 5px 5px -6px $gray;
+}
+
+.button--slim {
+    padding: .25em .75em;
 }
 
 .button--danger {
@@ -85,6 +92,7 @@ h6 {
 .button--action:active {
     background-color: darken($color: $blue, $amount: 15);
 }
+
 .button--action:hover {
     box-shadow: 1px 5px 6px -5px $blue;
 }
@@ -96,14 +104,34 @@ h6 {
 .red {
     color: $tart;
 }
+
 .buttonGroup {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    align-items: center;
 }
+
 .buttonGroup * {
     margin: 0 .5em;
 }
+
 .buttonGroup :last-child {
-    margin-right:0;
+    margin-right: 0;
+}
+
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: none;
+    border-radius: 15px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $blue;
+    border-radius: 15px;
+    background-clip: padding-box;
 }

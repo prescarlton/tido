@@ -15,15 +15,6 @@ import { addTaskToList, newList, deleteList } from './actions/lists';
 
 const store = configureStore();
 
-
-store.dispatch(newList({ listName: 'General To-do' }))
-
-store.dispatch(newList({listName: 'Office'}))
-
-store.dispatch(newList({ listName: 'Bike stuff' }))
-
-
-
 ReactDOM.render(
   <Provider store={store}>
     <App />
