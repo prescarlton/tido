@@ -3,7 +3,7 @@ import PageTitle from '../atoms/PageTitle';
 import ListCard from '../molecules/ListCard';
 import { connect } from 'react-redux';
 import ListPreview from '../molecules/ListPreview';
-import { addTaskToList, newList, getLists, findLists, createNewList } from '../../actions/lists';
+import { addTaskToList, newList, getLists, findLists, createDBList, deleteDBList, createDBTask } from '../../actions/lists';
 import ListViewCreateList from '../atoms/ListViewCreateList';
 import { API, graphqlOperation } from 'aws-amplify';
 import { ListLists } from '../../wrappedGraphql/queries';
@@ -13,9 +13,10 @@ const ListViewPage = (props) => {
     const [showNewListForm, setShowNewListForm] = useState(false);
     const [lists, setLists] = useState([]);
 
-    const newTaskHandler = (listID, taskName) => {
-        console.log('listID:', listID)
-        console.log('taskName:', taskName)
+    const newTaskHandler = (name, taskListID) => {
+        console.log('listID:', taskListID)
+        console.log('taskName:', name)
+        props.createTask(name, taskListID)
         // props.dispatch(addTaskToList({ listID, taskName }))
         console.log('add task click');
     }
@@ -42,23 +43,25 @@ const ListViewPage = (props) => {
         setShowNewListForm(false);
     }
 
+    const handleListDeleteClick = (listID) => {
+        props.deleteList(listID)
+    }
+
 
     return (
         <div className='page'>
             <PageTitle>lists</PageTitle>
             <div className='listViewPage__listGroup'>
                 {props.lists.map(list => {
-                    console.log(list)
                     return (
                         <ListPreview
                             key={list.name}
                             newTaskHandler={newTaskHandler}
+                            deleteListHandler={handleListDeleteClick}
                             {...list} />
                     )
                 }
                 )}
-
-
 
                 <ListViewCreateList
                     handleNewListClick={handleNewListClick}
@@ -84,7 +87,13 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(getLists())
         },
         createList: (listName) => {
-            dispatch(createNewList(listName))
+            dispatch(createDBList(listName))
+        },
+        deleteList: (listID) => {
+            dispatch(deleteDBList(listID))
+        },
+        createTask: (name, taskListID) => {
+            dispatch(createDBTask(name,taskListID))
         }
     }
 }

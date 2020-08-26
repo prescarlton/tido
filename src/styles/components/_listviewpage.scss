@@ -1,6 +1,7 @@
-.listPreview:hover .listPreview__title {
-    color: $blue;
+.listPreview:hover .listPreview__title--text {
+    color: $gray;
 }
+
 
 .page {
     position: absolute;
@@ -25,17 +26,22 @@
     user-select: none;
     min-height: 5em;
     max-height: 90%;
-    overflow-y: auto;
+    // overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;
 }
 
 .listPreview__title {
-    color: $gray;
+    color: lighten($color: $gray, $amount: 10);
     margin: .5em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
+}
+.listPreview__title--text {
+    margin:0;
     transition: .2s color;
 }
 
@@ -47,14 +53,19 @@
 .listPreview__title__dots {
     vertical-align: middle;
     cursor: pointer;
+    transition: .2s all;
+    border-radius: 5px;
+    width:1.3em;
+    height:1.3em;
 }
 
 .listPreview__title__dots:hover {
-    color: darken($color: $gray, $amount: 10);
+    color: $blue;
+    background-color: lighten($color: $gray, $amount: 20);
 }
 
 .listPreview__title__dots:active {
-    color: darken($color: $gray, $amount: 20);
+    color: darken($color: $blue, $amount: 10);
 }
 
 .listPreviewNewTask {
@@ -155,4 +166,44 @@
 
 .cancelButton:hover {
     color: darken($color: $gray, $amount: 10);
+}
+
+.listPreview__menuContainer {
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    right:-5.5em;
+    top:3em;
+    z-index:10;
+    box-shadow: $shadow;
+    padding:.5em 0;
+}
+.listPreview__menuContainer p {
+    margin:0;
+    // border-bottom: 1px solid $gray;
+    // padding-bottom:.3em;
+    color: darken($color: $gray, $amount: 10);
+    text-align: center;
+}
+.listPreview__menuList {
+    margin:0;
+    list-style: none;
+    padding-left: 0;
+    padding-bottom:0;
+}
+.listPreview__menuList > li {
+    padding:.3em .2em;
+    font-weight: lighter;
+}
+
+.listPreview__menuDivider {
+    width: 80%;
+    margin: .2em auto;
+    border:none;
+    border-top:1px solid lighten($color: $gray, $amount: 10);
+}
+
+.listPreview__menuList li:hover {
+    cursor: pointer;
+    background-color: lighten($color: $gray, $amount: 25);
 }

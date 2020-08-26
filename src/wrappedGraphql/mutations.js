@@ -22,9 +22,9 @@ export const updateList = gql`
     }
 `;
 
-export const deleteList = gql`
+export const DeleteList = gql`
     mutation deleteList(
-        $input: deleteListInput!
+        $input: DeleteListInput!
     ) {
         deleteList(input: $input) {
             id
@@ -33,15 +33,14 @@ export const deleteList = gql`
     }
 `;
 
-export const createTask = gql`
+export const CreateTask = gql`
     mutation createTask(
-        $input: createTaskInput!
+        $input: CreateTaskInput!
     ) {
         createTask(input: $input) {
             id
             name
-            taskListId
-            priority
+
         }
     }
 `;

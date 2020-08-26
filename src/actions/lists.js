@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { makeSlug } from '../utils/slugs';
 import { API, graphqlOperation, input } from 'aws-amplify';
-import { CreateList } from '../wrappedGraphql/mutations';
+import { CreateList, DeleteList, CreateTask } from '../wrappedGraphql/mutations';
 import { ListLists, FetchLists } from '../wrappedGraphql/queries';
 
 // CREATE_LIST
@@ -18,19 +18,18 @@ export const editList = (listName, updates) => ({
 })
 
 // DELETE_LIST
-export const deleteList = ({ listName }) => ({
+export const deleteList = ({ listID }) => ({
     type: 'DELETE_LIST',
-    listName
+    listID
 })
 
 // ADD_TASK
-export const addTaskToList = ({ listID, taskName = '', dueAt = '', flag = '' }) => ({
+export const addTaskToList = ({ taskListId, name = '', flag = '' }) => ({
     type: 'ADD_TASK_TO_LIST',
-    listID,
+    taskListId,
     task: {
         id: makeSlug(5),
-        name: taskName,
-        due: dueAt,
+        name,
         flag
     }
 })
@@ -60,12 +59,17 @@ const receiveLists = (data) => ({
 
 const failureLists = () => ({
     type: 'LISTS_FAILURE'
+});
+
+const listDeleteErr = (errMsg) => ({
+    type: 'LIST_DELETE_FAILURE',
+    payload: errMsg
 })
 
-export const createNewList = ({ listName }) => {
+export const createDBList = ({ listName }) => {
     console.log('trying', listName)
     return async (dispatch) => {
-        let listOnDb = null;
+        let dbList = null;
 
         try {
             const inputs = {
@@ -75,11 +79,58 @@ export const createNewList = ({ listName }) => {
             let makeList = await API.graphql(
                 graphqlOperation(CreateList, { input: inputs })
             );
-            listOnDb = makeList.data.createList;
-            console.log('listsondb', listOnDb);
-            dispatch(newList(listOnDb))
+            dbList = makeList.data.createList;
+            console.log('listsondb', dbList);
+            dispatch(newList(dbList))
         } catch (err) {
             console.log(err);
+        }
+    }
+}
+
+export const createDBTask = (name, taskListId) => {
+    return async (dispatch) => {
+        let dbTask = null;
+
+        try {
+            const inputs = {
+                id: makeSlug(5),
+                taskListId,
+                name,
+                priority:0
+            }
+            console.log('inputs:',inputs)
+            let makeTask = await API.graphql(
+                graphqlOperation(CreateTask, {input: inputs})
+            );
+            dbTask = makeTask.data.createTask;
+            console.log('taskondb',dbTask);
+            dispatch(addTaskToList(inputs))
+        } catch (err) {
+            console.log(err);
+        }
+
+    }
+}
+
+export const deleteDBList = (listID) => {
+    return async (dispatch) => {
+        let resp = null;
+
+        try {
+            dispatch(deleteList({ listID }))
+            const inputs = {
+                id: listID
+            };
+            let removeList = await API.graphql(
+                graphqlOperation(DeleteList, { input: inputs })
+            );
+            console.log(removeList);
+            resp = removeList.data;
+
+        } catch (err) {
+            console.log(err);
+            dispatch(listDeleteErr(err));
         }
     }
 }

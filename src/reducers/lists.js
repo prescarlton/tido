@@ -14,7 +14,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             ];
         case 'DELETE_LIST':
             return [...state].filter((list) => {
-                return list.listName !== action.listName
+                return list.id !== action.listID
             })
         case 'EDIT_LIST':
             return state.map((item) => {
@@ -29,7 +29,9 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
             })
         case 'ADD_TASK_TO_LIST':
             return state.map((list) => {
-                if (list.id === action.listID) {
+                console.log('list.id:',list.id);
+                console.log('action.taskListId',action.taskListId)
+                if (list.id === action.taskListId) {
                     return {
                         ...list,
                         tasks: [...list.tasks, action.task]
