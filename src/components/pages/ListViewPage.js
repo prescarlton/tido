@@ -1,27 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PageTitle from '../atoms/PageTitle';
 import ListCard from '../molecules/ListCard';
 import { connect } from 'react-redux';
 import ListPreview from '../molecules/ListPreview';
-import { addTaskToList, newList } from '../../actions/lists';
+import { addTaskToList, newList, getLists, findLists, createNewList } from '../../actions/lists';
 import ListViewCreateList from '../atoms/ListViewCreateList';
+import { API, graphqlOperation } from 'aws-amplify';
+import { ListLists } from '../../wrappedGraphql/queries';
 
 const ListViewPage = (props) => {
 
     const [showNewListForm, setShowNewListForm] = useState(false);
+    const [lists, setLists] = useState([]);
 
     const newTaskHandler = (listID, taskName) => {
         console.log('listID:', listID)
         console.log('taskName:', taskName)
-        props.dispatch(addTaskToList({ listID, taskName }))
+        // props.dispatch(addTaskToList({ listID, taskName }))
+        console.log('add task click');
     }
 
+    useEffect(() => {
+        async function fetchData() {
+            props.loadLists();
+        }
+        fetchData();
+    }, [])
+
     const handleNewListClick = () => {
+        
         setShowNewListForm(true);
     }
 
     const newListHandler = (listName) => {
-        props.dispatch(newList({listName}))
+        props.createList({listName});
+        console.log('new list click')
         closeListFormHandler();
     }
 
@@ -34,12 +47,17 @@ const ListViewPage = (props) => {
         <div className='page'>
             <PageTitle>lists</PageTitle>
             <div className='listViewPage__listGroup'>
-                {props.lists.map((list) => (
-                    <ListPreview
-                        key={list.listName}
-                        newTaskHandler={newTaskHandler}
-                        {...list} />
-                ))}
+                {props.lists.map(list => {
+                    console.log(list)
+                    return (
+                        <ListPreview
+                            key={list.name}
+                            newTaskHandler={newTaskHandler}
+                            {...list} />
+                    )
+                }
+                )}
+
 
 
                 <ListViewCreateList
@@ -60,4 +78,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(ListViewPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadLists: () => {
+            dispatch(getLists())
+        },
+        createList: (listName) => {
+            dispatch(createNewList(listName))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListViewPage);

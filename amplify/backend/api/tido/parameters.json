@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "tido",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authtido320a2bb3",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

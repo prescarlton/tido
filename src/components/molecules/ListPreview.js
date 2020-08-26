@@ -24,7 +24,7 @@ const ListPreview = (props) => {
 
     return (
         <div className='listPreview'>
-            <h2 className='listPreview__title'>{props.listName} <BsThreeDots className='listPreview__title__dots' /></h2>
+            <h2 className='listPreview__title'>{props.name} <BsThreeDots className='listPreview__title__dots' /></h2>
             <div className='listPreview__taskContainer'>
                 {props.tasks.map((task) => (
                     <TaskOverview

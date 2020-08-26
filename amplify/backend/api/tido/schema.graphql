@@ -1,0 +1,23 @@
+type List @model @auth(rules: [
+  {allow: owner}
+]){
+  id: ID!
+  name: String!
+  tasks: [Task] @connection(name: "ListTasks", sortField: "priority")
+}
+
+type Task @model {
+  id: ID!
+  name: String!
+  priority: Int!
+  list: List @connection(name: "ListTasks", sortField: "priority")
+}
+
+type Event @model @key(name: "queryName", fields: [
+  "queryName", "priority"
+], queryField: "itemsByPriority") {
+  id: ID!
+  name: String!
+  priority: Int!
+  queryName: String!
+}

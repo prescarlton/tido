@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-tido-dev-191707-authRole",
+            "UnauthRoleArn": "arn:aws:iam::803884026516:role/amplify-tido-dev-191707-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::803884026516:role/amplify-tido-dev-191707-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-tido-dev-191707-deployment",
+            "UnauthRoleName": "amplify-tido-dev-191707-unauthRole",
+            "StackName": "amplify-tido-dev-191707",
+            "StackId": "arn:aws:cloudformation:us-east-1:803884026516:stack/amplify-tido-dev-191707/c573fef0-e596-11ea-b66f-0a78092beb51",
+            "AmplifyAppId": "d3j9y1afpc4mvn"
+        },
+        "categories": {
+            "auth": {
+                "tido320a2bb3": {}
+            }
+        }
+    }
+}

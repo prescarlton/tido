@@ -1,3 +1,5 @@
+import { routerActions } from "react-router-redux";
+
 // Lists reducer
 const listsReducerDefaultState = [];
 const listsReducer = (state = listsReducerDefaultState, action) => {
@@ -5,7 +7,10 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
         case 'CREATE_LIST':
             return [
                 ...state,
-                action.list
+                {
+                    ...action.list,
+                    tasks: []
+                }
             ];
         case 'DELETE_LIST':
             return [...state].filter((list) => {
@@ -66,6 +71,18 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                     }
                 }
             })
+
+        case 'RECEIVE_LISTS':
+            let fetched_lists = action.data.items.map(list => {
+                return {
+                    ...list,
+                    tasks: [...list.tasks.items]
+                }
+            })
+            return [
+                ...fetched_lists
+            ]
+
         default:
             return state
     }

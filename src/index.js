@@ -9,9 +9,32 @@ import './styles/styles.scss'
 import { Provider } from 'react-redux';
 
 import configureStore from './store/configureStore';
-import { addItem } from './actions/listItems';
 import App from './App';
-import { addTaskToList, newList, deleteList } from './actions/lists';
+
+// amplify
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import { withAuthenticator } from 'aws-amplify-react';
+import config from './aws-exports';
+import gql from 'graphql-tag';
+Amplify.configure(config);
+
+
+const readLists = gql`
+  query listLists{
+  listLists{
+    items{
+      id
+      name
+      tasks {
+        items {
+          name
+          priority
+        }
+      }
+    }
+  }
+}`;
+
 
 const store = configureStore();
 

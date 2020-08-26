@@ -40,12 +40,13 @@ h6 {
 
 .button {
     border-radius: 10px;
-    border: 1px solid $gray;
+    border:none;
     outline: none;
     background-color: none;
     padding: .5em 1.25em;
     transition: .3s all;
     box-shadow: 1px 5px 5px -6px $gray;
+    font-weight: lighter;
 }
 
 .button--slim {
