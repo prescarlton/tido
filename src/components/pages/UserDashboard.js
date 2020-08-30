@@ -6,7 +6,7 @@ import NewListModal from '../atoms/NewListModal';
 import { newList } from '../../actions/lists';
 import PageTitle from '../atoms/PageTitle';
 
-const HomePage = (props) => {
+const UserDashboard = (props) => {
     console.log(props.lists);
 
     const [newListModalShown, setNewListModalShown] = useState(false);
@@ -61,4 +61,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(UserDashboard);

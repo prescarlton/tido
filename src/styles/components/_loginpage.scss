@@ -1,0 +1,106 @@
+.loginPage {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    justify-content: stretch;
+    align-items: stretch;
+}
+
+.loginPage__right {
+    background-color: $blue;
+    height: 100%;
+    width: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: white;
+    flex-direction: column;
+    text-align: right;
+}
+
+.loginPage__right h1 {
+    // align-self: flex-start;
+    font-size:4em;
+    margin:0;
+    margin-right: 3rem;
+}
+.loginPage__right h3 {
+    font-size:1.8em;
+    font-weight: lighter;
+    margin:0;
+    margin-right: 3rem;
+    width:50%;
+}
+
+
+.loginPage__SignupLink {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2em;
+}
+
+.loginPage__left {
+    display: flex;
+    height: 100%;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginPage__form {
+    width:50%;
+    box-shadow: $shadow;
+    padding:1em;
+    border-radius: 10px;
+    transition: .2s all;
+}
+.loginPage__form--loading {
+    border-top: 2px solid $blue;
+}
+.loginPage__amplifyErrorMsg {
+    margin:1rem;
+    color: $tart;
+    transition: .2s all;
+}
+
+.loginPage__input {
+    border: none;
+    background: lighten($color: $gray, $amount: 20);
+    border-radius: 5px;
+    padding: .4em;
+    outline: none;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.loginPage__inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    font-family: 'Montserrat';
+    font-weight: bold;
+}
+
+.loginPage__inputGroup label {
+    font-weight: bold;
+}
+
+.loginPage__form--row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.loginPage__form button {
+    margin: 1rem;
+}
+
+.loginPage__form--title {
+    margin: 1rem;
+}
+
+.loginPage__form--row .loginPage__inputGroup {
+    width: 100%;
+}

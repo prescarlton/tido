@@ -3,6 +3,7 @@ import listItemsReducer from '../reducers/listItems';
 import filterReducer from '../reducers/filters';
 import listsReducer from '../reducers/lists';
 import thunk from 'redux-thunk';
+import authReducer from '../reducers/auth';
 
 export default () => {
     // create the store
@@ -10,7 +11,8 @@ export default () => {
         combineReducers({
             items: listItemsReducer,
             filters: filterReducer,
-            lists: listsReducer
+            lists: listsReducer,
+            auth: authReducer
         }),applyMiddleware(thunk)
     )
     return store;

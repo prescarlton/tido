@@ -1,0 +1,68 @@
+.landingPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    // justify-content: center;
+}
+
+.landingPage__topBar {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    justify-content: space-between;
+}
+
+.landingPage__topBar__left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.landingPage__topBar__left>*,
+.landingPage__topBar__right>* {
+    margin: 0 .5em;
+}
+
+.landingPage__topBar__brand {
+    font-family: 'Poppins';
+    color: $blue;
+    font-size: 2em;
+    margin: 0.25em;
+}
+
+.landingPage__topBar__nav {
+    list-style: none;
+    padding: 0;
+}
+
+.landingPage__topBar__navLink {
+    display: inline-block;
+    margin: 0 .5em;
+    color: $charcoal;
+    font-weight: lighter;
+    transition: .2s all;
+    border-bottom: 2px solid white;
+    padding: .3em;
+}
+.landingPage__topBar__navLink:hover {
+    border-bottom: 2px solid $blue;
+}
+
+.landingPage__topBar__navLink--special {
+    color: $blue;
+}
+
+.landingPage__content {
+    margin-top:5em;
+    width:45%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.landingPage__content h1 {
+    font-size:4em;
+    text-align: center;
+    font-weight: bold;
+}
