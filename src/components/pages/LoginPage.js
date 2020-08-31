@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { Auth } from 'aws-amplify';
-import { setCognitoUser } from '../../actions/auth';
+import { setCognitoUser, setUserLoggedIn } from '../../actions/auth';
+import { connect } from 'react-redux';
 
 const LoginPage = (props) => {
 
@@ -11,6 +12,8 @@ const LoginPage = (props) => {
     const [usernameError, setUsernameErrorValue] = useState(false);
     const [passwordError, setPasswordErrorValue] = useState(false);
     const [loadingLogin, setLoadingLoginValue] = useState(false);
+    const history = useHistory();
+
 
     const handleUsernameChange = (e) => {
         setUsernameValue(e.target.value);
@@ -33,6 +36,9 @@ const LoginPage = (props) => {
                     console.log(userData)
                     setCognitoUser(userData);
                     setLoadingLoginValue(false);
+                    // setUserLoggedIn(true);
+                    props.logUserIn()
+                    history.push('/app')
                 })
                 .catch((err) => {
                     console.log(err)
@@ -104,7 +110,7 @@ const LoginPage = (props) => {
 
                     <div className='loginPage__form--row'>
                         <div className='loginPage__inputGroup'>
-                            <label for='username'>Username</label>
+                            <label htmlFor='username'>Username</label>
                             <input
                                 name='username'
                                 className='signupPage__input'
@@ -114,7 +120,7 @@ const LoginPage = (props) => {
                     </div>
                     <div className='loginPage__form--row'>
                         <div className='loginPage__inputGroup'>
-                            <label for='password'>Password</label>
+                            <label htmlFor='password'>Password</label>
                             <input
                                 name='password'
                                 className='signupPage__input'
@@ -140,7 +146,22 @@ const LoginPage = (props) => {
                 <h3>You've never been productive like this before.</h3>
             </div>
         </div>
+
     )
 }
 
-export default LoginPage;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: () => {
+            dispatch(setUserLoggedIn(true))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

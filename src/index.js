@@ -18,24 +18,6 @@ import config from './aws-exports';
 import gql from 'graphql-tag';
 Amplify.configure(config);
 
-
-const readLists = gql`
-  query listLists{
-  listLists{
-    items{
-      id
-      name
-      tasks {
-        items {
-          name
-          priority
-        }
-      }
-    }
-  }
-}`;
-
-
 const store = configureStore();
 
 ReactDOM.render(

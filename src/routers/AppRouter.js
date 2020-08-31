@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Sidebar from '../components/organisms/Sidebar';
 
 
@@ -12,33 +12,50 @@ import { connect } from 'react-redux';
 import LandingPage from '../components/pages/LandingPage';
 import LoginPage from '../components/pages/LoginPage';
 import SignupPage from '../components/pages/SignupPage';
+import UserExperienceRouter from './UserExperienceRouter';
+import { Auth } from 'aws-amplify';
+import { setUserLoggedIn } from '../actions/auth';
 
-const AppRouter = (props) => (
-    <BrowserRouter>
+function PrivateRoute({ component: Component, authed, ...rest }) {
+    return (
+        <Route
+            {...rest}
+            render={(props) => authed === true
+                ? <Component {...props} />
+                : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />}
+        />
+    )
+}
 
-        {props.auth.userLoggedIn ? (
-            <>
-                <Sidebar />
-                <Switch>
-                    <Route path='/' component={UserDashboard} exact />
-                    <Route path='/list/:listID' component={ListPage} />
-                    <Route path='/lists' component={ListViewPage} />
-                    <Route path='/schedule' component={SchedulePage} />
-                    <Route path='/stats' component={StatsPage} />
-                </Switch>
-            </>
-        ) : (
-                <Switch>
-                    <Route path='/' component={LandingPage} exact />
-                    <Route path='/login' component={LoginPage} />
-                    <Route path='/signup' component={SignupPage} />
-                    <Route component={LandingPage} />
-                </Switch>
-            )}
+const AppRouter = (props) => {
 
-
-    </BrowserRouter>
-)
+    const checkUserLoggedIn = async () => {
+        try {
+            const authedUser = await Auth.currentAuthenticatedUser();
+            console.log('user is logged in!')
+            props.logUserIn()
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    // useEffect(() => {
+    //     checkUserLoggedIn();
+    // }, [])
+    return (
+        <BrowserRouter>
+            <Switch>
+                <Route path='/' component={LandingPage} exact />
+                <Route path='/login' component={LoginPage} />
+                <Route path='/signup' component={SignupPage} />
+                {/* <PrivateRoute authed={props.auth.userLoggedIn} path='/app' component={UserExperienceRouter} /> */}
+                <Route path='/app' component={UserExperienceRouter} />
+                <Route>
+                    <Redirect to='/' />
+                </Route>
+            </Switch>
+        </BrowserRouter>
+    )
+}
 
 const mapStateToProps = (state) => {
     return {
@@ -46,4 +63,12 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(AppRouter);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logUserIn: () => {
+            dispatch(setUserLoggedIn(true))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);
