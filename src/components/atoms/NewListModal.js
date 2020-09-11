@@ -30,7 +30,7 @@ const NewListModal = (props) => {
             className='newListModal'
             onRequestClose={handleOnClose}
         >
-            <h2 className='newListModal__title'>Create a new list</h2>
+            {/* <h2 className='newListModal__title'>Create a new list</h2> */}
             <form
                 className='newListForm'
                 onSubmit={handleOnSubmit}

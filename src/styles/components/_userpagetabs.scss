@@ -1,0 +1,81 @@
+.userPageTabs {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    justify-content: space-between;
+}
+
+.userPageTabs__navItem {
+    margin: 1.5em;
+}
+
+.userPageTabs__navItem--active {
+    color: $blue;
+}
+
+.userPageTabs__right .createBtn {
+    margin: 1em;
+}
+
+.userPageTabs__right {
+    margin: 0;
+}
+
+.plusBtn {
+    transition: .5s transform;
+    font-size: 1.4em;
+}
+
+.plusBtn--rotated {
+    transform: rotate(135deg);
+}
+
+.createBtn {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    transition: .2s all;
+    user-select: none;
+    position: relative;
+}
+
+.createBtn--title {
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 5px 5px -6px $blue;
+    background-color: $blue;
+    color: $off-white;
+    border-radius: 5px;
+    padding: .5em 1.25em;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.createBtn--menu {
+    list-style-type: none;
+    padding-left: 0;
+    background-color: white;
+    margin: 2em 1.25em;
+    border-radius: 5px;
+    width: 100%;
+    position: absolute;
+    transition: .2s all;
+    z-index:1;
+}
+
+.createBtn--menu li {
+    margin: .75em;
+    transition: .2s all;
+    cursor: pointer;
+}
+.createBtn--menu li:hover{
+    color: $blue;
+}
+
+.createBtn.menuOpen .createBtn--menu {
+    display: inline;
+}
+
+.createBtn--menu {
+    display: none;
+}

@@ -1,0 +1,30 @@
+.userPageSidebar {
+    flex:0 0 16em;
+    display: flex;
+    height:100vh;
+    align-items: flex-start;
+    box-shadow: $border-shadow;
+}
+
+.userPageSidebar__actions {
+    list-style-type: none;
+    display: flex;
+    padding:0;
+    margin:0;
+    align-items: center;
+}
+.userPageSidebar__actions li {
+    // border:1px solid $gray;
+    box-shadow: $border-shadow;
+    border-right:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width:4em;
+    height:4em;
+}
+.userPageSidebar__actions li .icon {
+    font-size: 1.2em;
+    color:$gray;
+}

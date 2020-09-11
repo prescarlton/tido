@@ -2,18 +2,14 @@
     color: $gray;
 }
 
-
-.page {
-    position: absolute;
-    // bottom:0;
-    height:calc(100% - 5em);
-}
-
 .listViewPage__listGroup {
     display: flex;
     align-items: flex-start;
     overflow-x: auto;
-    height: 100%;
+
+}
+.listPage {
+    margin:.5em 2em 0 2em;
 }
 
 .listPreview {
