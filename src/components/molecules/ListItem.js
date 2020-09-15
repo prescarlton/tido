@@ -9,7 +9,8 @@ const ListItem = (props) => {
             <div className='listItem__titleContainer'>
                 <button
                     className={`listItem__checkbox ${props.checked && 'listItem__checkbox--checked'}`}
-                    onClick={() => { props.onClickHandler(props.id) }}
+                    onClick={() => { 
+                        props.onClickHandler(props.id) }}
 
                 />
                 <h3 className={`listItem__title ${props.checked && 'listItem__title--checked'}`}>{props.title}</h3>

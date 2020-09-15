@@ -26,7 +26,9 @@ export const FetchLists = gql`
                 name
                 tasks {
                     items{
+                        id
                         name
+                        completed
                         priority
                     }
                     

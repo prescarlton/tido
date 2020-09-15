@@ -33,7 +33,7 @@ const List = (props) => {
                     //get all necessary data from item's object
                     let isCompleted = task.completed;
                     let isPriority = task.priority;
-
+                    console.log(task)
                     return (
                         <ListItem
                             key={task.name}
@@ -41,7 +41,8 @@ const List = (props) => {
                             checked={isCompleted}
                             priority={isPriority}
                             id={task.id}
-                            onClickHandler={props.taskClickHandler}
+                            // onClickHandler={props.taskClickHandler}
+                            onClickHandler={props.completeTaskHandler}
                             trashClickHandler={props.trashClickHandler}
 
                         />

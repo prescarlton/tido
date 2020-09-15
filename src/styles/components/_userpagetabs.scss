@@ -10,7 +10,7 @@
 }
 
 .userPageTabs__navItem--active {
-    color: $blue;
+    color: $highlight;
 }
 
 .userPageTabs__right .createBtn {
@@ -42,8 +42,8 @@
 .createBtn--title {
     display: flex;
     align-items: center;
-    box-shadow: 1px 5px 5px -6px $blue;
-    background-color: $blue;
+    box-shadow: 1px 5px 5px -6px $highlight;
+    background-color: $highlight;
     color: $off-white;
     border-radius: 5px;
     padding: .5em 1.25em;
@@ -69,7 +69,7 @@
     cursor: pointer;
 }
 .createBtn--menu li:hover{
-    color: $blue;
+    color: $highlight;
 }
 
 .createBtn.menuOpen .createBtn--menu {

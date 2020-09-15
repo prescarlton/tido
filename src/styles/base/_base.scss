@@ -27,16 +27,17 @@ h6 {
 }
 
 .link {
-    color: $blue;
+    color: $highlight;
     transition: color .2s;
+    cursor: pointer;
 }
 
 .link:hover {
-    color: lighten($color: $blue, $amount: 10);
+    color: lighten($color: $highlight, $amount: 10);
 }
 
 .link:active {
-    color: darken($color: $blue, $amount: 10);
+    color: darken($color: $highlight, $amount: 10);
 }
 
 .page {
@@ -45,7 +46,7 @@ h6 {
 }
 
 .pageTitle {
-    color: $blue;
+    color: $highlight;
     font-size: 4em;
     font-weight: lighter;
 }
@@ -97,17 +98,17 @@ h6 {
 }
 
 .button--action {
-    box-shadow: 1px 5px 5px -6px $blue;
-    background-color: $blue;
+    box-shadow: 1px 5px 5px -6px $highlight;
+    background-color: $highlight;
     color: $off-white;
 }
 
 .button--action:active {
-    background-color: darken($color: $blue, $amount: 15);
+    background-color: darken($color: $highlight, $amount: 15);
 }
 
 .button--action:hover {
-    box-shadow: 1px 5px 6px -5px $blue;
+    box-shadow: 1px 5px 6px -5px $highlight;
 }
 
 .button--wide {
@@ -149,17 +150,22 @@ h6 {
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: $blue;
+    background-color: $highlight;
     border-radius: 15px;
     background-clip: padding-box;
 }
 
 .contentWrapper {
+    height: 100vh;
+    overflow: auto;
     display: flex;
 }
 .contentInner {
     background: $lightgray;
     flex: 1;
+    // display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .widgetRow {
@@ -168,5 +174,5 @@ h6 {
     justify-content: space-between;
 }
 .widgetTitle {
-    color: $blue;
+    color: $highlight;
 }

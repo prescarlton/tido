@@ -9,6 +9,9 @@ const ListCard = (props) => {
     const handleShowMenu = () => {
         setShowMenu(!showMenu);
     }
+    const handleDeleteList = () => {
+        props.handleDeleteList(props.id);
+    }
 
     return (
         <div className='listCard'>
@@ -19,7 +22,7 @@ const ListCard = (props) => {
             <div className='listCard__bottom'>
                 <p className='listCard__taskCount'>{props.tasks.length} tasks</p>
                 <div className='listCard__menu'>
-                    <p className={`listCard__menu__deleteList ${showMenu && 'deleteList--visible'}`}>Delete List</p>
+                    <p className={`listCard__menu__deleteList ${showMenu && 'deleteList--visible'} link`} onClick={handleDeleteList}>Delete List</p>
                     <BsThreeDotsVertical className='listCard__threeDots' onClick={handleShowMenu}/>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { completeTask, deleteTask, addTaskToList } from '../../actions/lists';
+import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask } from '../../actions/lists';
 import ConfirmModal from '../atoms/ConfirmModal';
 
 class ListPage extends React.Component {
@@ -14,15 +14,18 @@ class ListPage extends React.Component {
 
     taskClickHandler = (taskID) => {
         // find the list that the item is in
-        this.props.dispatch(completeTask({ listID: this.props.listID, taskID }));
+        // this.props.dispatch(completeTask({ listID: this.props.listID, taskID }));
+        console.log('completing task w/ id ',taskID)
+        this.props.completeTask(taskID, true);
+
     }
     // handler to confirm taskDeletion
     trashClickHandler = (taskID) => {
         this.setState(() => ({
             showConfirmModal: true
         }))
-        this.setState(()=>({
-            toBeDeleted:taskID
+        this.setState(() => ({
+            toBeDeleted: taskID
         }))
     }
 
@@ -34,17 +37,17 @@ class ListPage extends React.Component {
 
     handleConfirmDelete = () => {
 
-        this.props.dispatch(deleteTask({listID:this.props.id,taskID:this.state.toBeDeleted}))
+        this.props.dispatch(deleteTask({ listID: this.props.id, taskID: this.state.toBeDeleted }))
 
         // reset state to empty obj
         this.setState(() => ({
-            toBeDeleted:'',
-            showConfirmModal:false
+            toBeDeleted: '',
+            showConfirmModal: false
         }))
     }
 
-    newTaskHandler = (taskName) => {
-        this.props.dispatch(addTaskToList({listID:this.props.list.id,taskName}))
+    newTaskHandler = (name) => {
+        this.props.createTask(name, this.props.list.id);
     }
 
     render() {
@@ -53,11 +56,12 @@ class ListPage extends React.Component {
         // show ListNotFound rather than List component
         return (this.props.list ?
             (<div className='listPage'>
+                {/* <h1>All Lists</h1> */}
                 <List
-                    title={this.props.list.listName}
+                    title={this.props.list.name}
                     tasks={this.props.list.tasks}
-                    taskClickHandler={this.taskClickHandler}
-                    trashClickHandler={(e)=>{this.trashClickHandler(e)}}
+                    completeTaskHandler={this.taskClickHandler}
+                    trashClickHandler={(e) => { this.trashClickHandler(e) }}
                     newTaskHandler={this.newTaskHandler}
 
                 />
@@ -69,7 +73,6 @@ class ListPage extends React.Component {
 
                 />
             </div>) : (
-                // temporary
                 <ListNotFoundPage />
             )
 
@@ -85,4 +88,18 @@ const mapStateToProps = (state, props) => {
 
 };
 
-export default connect(mapStateToProps)(ListPage);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteList: (listID) => {
+            dispatch(deleteDBList(listID))
+        },
+        createTask: (name, taskListID) => {
+            dispatch(createDBTask(name, taskListID))
+        },
+        completeTask: (taskID, completed) => {
+            dispatch(updateDBTask(taskID, completed))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListPage);

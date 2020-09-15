@@ -1,4 +1,5 @@
 .userPageTopBar {
+    // position: absolute;
     display:flex;
     align-items: stretch;
     background: white;
@@ -9,21 +10,23 @@
     // box-shadow: 0px 2px 3px rgba(105, 105, 105, 0.5);
     // box-shadow: $border-shadow;
     overflow: hidden;
-    z-index: 2;
+    z-index: 5;
+    // width:100%;
+    // max-width:100%;
 }
-.userPageTopBar:before {
-    content: "";
-    position: absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    z-index: -1;
-    // box-shadow: 1px 2px 3px rgba(65, 65, 65, 0.5);
-}
+// .userPageTopBar:before {
+//     content: "";
+//     position: absolute;
+//     top:0;
+//     bottom:0;
+//     left:0;
+//     right:0;
+//     z-index: -5;
+//     // box-shadow: 1px 2px 3px rgba(65, 65, 65, 0.5);
+// }
 
 .userPageTopBar__brand {
-    color: $blue;
+    color: $highlight;
     margin:.25em 0;
     align-self: center;
 }

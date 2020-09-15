@@ -1,3 +1,7 @@
+.listViewPage {
+    margin: 0 1.5em;
+}
+
 .listPreview:hover .listPreview__title--text {
     color: $gray;
 }
@@ -7,9 +11,6 @@
     align-items: flex-start;
     overflow-x: auto;
 
-}
-.listPage {
-    margin:.5em 2em 0 2em;
 }
 
 .listPreview {
@@ -56,12 +57,12 @@
 }
 
 .listPreview__title__dots:hover {
-    color: $blue;
+    color: $highlight;
     background-color: lighten($color: $gray, $amount: 20);
 }
 
 .listPreview__title__dots:active {
-    color: darken($color: $blue, $amount: 10);
+    color: darken($color: $highlight, $amount: 10);
 }
 
 .listPreviewNewTask {
@@ -70,7 +71,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $blue;
+    color: $highlight;
     opacity: .7;
     font-family: 'Poppins';
     transition: opacity .2s;
@@ -85,7 +86,7 @@
 }
 
 .listPreviewNewTask__plusBtn {
-    border: 1px dashed $blue;
+    border: 1px dashed $highlight;
     vertical-align: middle;
     border-radius: 5px;
 }
@@ -97,7 +98,7 @@
     min-width: 16em;
     box-shadow: $shadow;
     user-select: none;
-    border: 1px dashed $blue;
+    border: 1px dashed $highlight;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -105,7 +106,7 @@
 }
 
 .listView__createList {
-    color: $blue;
+    color: $highlight;
     opacity: .7;
     font-family: 'Poppins';
     transition: opacity .2s;
@@ -202,4 +203,16 @@
 .listPreview__menuList li:hover {
     cursor: pointer;
     background-color: lighten($color: $gray, $amount: 25);
+}
+
+// displayed if there are no lists
+.listPage__noLists {
+    display:flex;
+    margin-top:4em;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.listPage__noLists h2 {
+    width:50%;
 }

@@ -8,7 +8,7 @@
 }
 
 .loginPage__right {
-    background-color: $blue;
+    background-color: $highlight;
     height: 100%;
     width: 35%;
     display: flex;
@@ -57,7 +57,7 @@
     transition: .2s all;
 }
 .loginPage__form--loading {
-    border-top: 2px solid $blue;
+    border-top: 2px solid $highlight;
 }
 .loginPage__amplifyErrorMsg {
     margin:1rem;

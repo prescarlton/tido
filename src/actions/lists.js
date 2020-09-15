@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
 import { makeSlug } from '../utils/slugs';
 import { API, graphqlOperation, input } from 'aws-amplify';
-import { CreateList, DeleteList, CreateTask } from '../wrappedGraphql/mutations';
-import { ListLists, FetchLists } from '../wrappedGraphql/queries';
+import { CreateList, DeleteList, CreateTask, UpdateTask } from '../wrappedGraphql/mutations';
+import { FetchLists } from '../wrappedGraphql/queries';
 
 // CREATE_LIST
 export const newList = (list) => ({
@@ -88,6 +88,28 @@ export const createDBList = ({ listName }) => {
     }
 }
 
+export const updateDBTask = (taskID, completed) => {
+    return async (dispatch) => {
+        let dbTask = null;
+
+        try {
+            const inputs = {
+                id: taskID,
+                completed
+            }
+            let completeTask = await API.graphql(
+                graphqlOperation(UpdateTask, {input: inputs})
+            );
+
+            console.log(completeTask.data);
+            dbTask = completeTask.data.completeTask;
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+}
+
 export const createDBTask = (name, taskListId) => {
     return async (dispatch) => {
         let dbTask = null;
@@ -99,13 +121,13 @@ export const createDBTask = (name, taskListId) => {
                 name,
                 priority:0
             }
+            dispatch(addTaskToList(inputs))
             console.log('inputs:',inputs)
             let makeTask = await API.graphql(
                 graphqlOperation(CreateTask, {input: inputs})
             );
             dbTask = makeTask.data.createTask;
             console.log('taskondb',dbTask);
-            dispatch(addTaskToList(inputs))
         } catch (err) {
             console.log(err);
         }
@@ -143,7 +165,6 @@ export const getLists = () => {
         try {
             dispatch(requestLists())
             let getLists = await API.graphql(graphqlOperation(FetchLists))
-            console.log('getLists', getLists)
             dbLists = getLists.data.listLists
             // return dbLists;
             dispatch(receiveLists(dbLists))

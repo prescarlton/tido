@@ -11,13 +11,14 @@ export const CreateList = gql`
     }
 `;
 
-export const updateList = gql`
+export const UpdateList = gql`
     mutation updateList(
-        $input: updateListInput!
+        $input: UpdateListInput!
     ) {
         updateList(input: $input) {
             id
             name
+            completed
         }
     }
 `;
@@ -45,13 +46,14 @@ export const CreateTask = gql`
     }
 `;
 
-export const updateTask = gql`
+export const UpdateTask = gql`
     mutation updateTask(
-        $input: updateTaskInput!
+        $input: UpdateTaskInput!
     ) {
         updateTask(input: $input) {
             id
             name
+            completed
         }
     }
 `;

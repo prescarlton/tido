@@ -10,6 +10,7 @@ type Task @model {
   id: ID!
   name: String!
   priority: Int!
+  completed: Boolean!
   list: List @connection(name: "ListTasks", sortField: "priority")
 }
 

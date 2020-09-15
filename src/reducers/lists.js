@@ -87,6 +87,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
 
         default:
             return state
+
     }
 }
 

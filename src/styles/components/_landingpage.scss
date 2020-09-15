@@ -27,7 +27,7 @@
 
 .landingPage__topBar__brand {
     font-family: 'Poppins';
-    color: $blue;
+    color: $highlight;
     font-size: 2em;
     margin: 0.25em;
 }
@@ -47,11 +47,11 @@
     padding: .3em;
 }
 .landingPage__topBar__navLink:hover {
-    border-bottom: 2px solid $blue;
+    border-bottom: 2px solid $highlight;
 }
 
 .landingPage__topBar__navLink--special {
-    color: $blue;
+    color: $highlight;
 }
 
 .landingPage__content {

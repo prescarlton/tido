@@ -6,7 +6,6 @@ import ListPreview from '../molecules/ListPreview';
 import { addTaskToList, newList, getLists, findLists, createDBList, deleteDBList, createDBTask } from '../../actions/lists';
 import ListViewCreateList from '../atoms/ListViewCreateList';
 import { API, graphqlOperation } from 'aws-amplify';
-import { ListLists } from '../../wrappedGraphql/queries';
 
 const ListViewPage = (props) => {
 
