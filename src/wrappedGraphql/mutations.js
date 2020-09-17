@@ -18,7 +18,6 @@ export const UpdateList = gql`
         updateList(input: $input) {
             id
             name
-            completed
         }
     }
 `;

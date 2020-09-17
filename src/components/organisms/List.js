@@ -5,10 +5,12 @@ import AddItemButton from '../atoms/AddTaskButton';
 import NewTaskForm from '../atoms/NewTaskForm';
 import AddTaskButton from '../atoms/AddTaskButton';
 import { addTaskToList } from '../../actions/lists';
+import EditList from '../modals/EditList';
 
 const List = (props) => {
 
     const [showTaskForm, setShowTaskForm] = useState(false);
+    const [showEditListMenu, setShowEditListMenu] = useState(false);
 
     const handleAddTaskClick = () => {
         setShowTaskForm(true);
@@ -23,10 +25,23 @@ const List = (props) => {
         setShowTaskForm(false);
     }
 
+    const handleEditListClick = () => {
+        setShowEditListMenu(true);
+    }
+
+    const handleHideEditListModal = () => {
+        setShowEditListMenu(false);
+    }
+    const handleEditListSubmit = (newListName) => {
+        props.editListHandler(props.id, newListName)
+        setShowEditListMenu(false);
+    }
+
     return (
         <div className='list'>
             <ListTitle
                 title={props.title}
+                handleMenuClick={handleEditListClick}
             />
             <div className='listContainer'>
                 {props.tasks.map((task) => {
@@ -60,7 +75,12 @@ const List = (props) => {
                         />
                     )}
             </div>
-
+                    <EditList
+                        isOpen={showEditListMenu}
+                        handleClose={handleHideEditListModal}
+                        listTitle={props.title}
+                        handleFormSubmit={handleEditListSubmit}
+                    />
         </div>
     )
 

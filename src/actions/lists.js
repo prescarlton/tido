@@ -1,7 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
 import { makeSlug } from '../utils/slugs';
 import { API, graphqlOperation, input } from 'aws-amplify';
-import { CreateList, DeleteList, CreateTask, UpdateTask } from '../wrappedGraphql/mutations';
+import { CreateList, DeleteList, CreateTask, UpdateTask, UpdateList } from '../wrappedGraphql/mutations';
 import { FetchLists } from '../wrappedGraphql/queries';
 
 // CREATE_LIST
@@ -84,6 +83,26 @@ export const createDBList = ({ listName }) => {
             dispatch(newList(dbList))
         } catch (err) {
             console.log(err);
+        }
+    }
+}
+
+export const updateDBList = (listID, newListName) => {
+    console.log(`trying to update list with id ${listID} to use new name ${newListName}`);
+    return async (dispatch) => {
+        let dbList = null;
+
+        try {
+            const inputs = {
+                id: listID,
+                name: newListName
+            };
+            let updateList = await API.graphql(graphqlOperation(UpdateList, {input: inputs})
+            );
+            dbList = updateList.data.updateList;
+            // dispatch(editList(dbList))
+        } catch (err) {
+            console.log('failed to update list: ',err)
         }
     }
 }

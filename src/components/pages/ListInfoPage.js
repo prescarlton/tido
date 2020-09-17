@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask } from '../../actions/lists';
+import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask, updateDBList } from '../../actions/lists';
 import ConfirmModal from '../atoms/ConfirmModal';
 
-class ListPage extends React.Component {
+class ListInfoPage extends React.Component {
 
     state = {
         showConfirmModal: false,
@@ -49,6 +49,9 @@ class ListPage extends React.Component {
     newTaskHandler = (name) => {
         this.props.createTask(name, this.props.list.id);
     }
+    editListHandler = (listID, newListName) => {
+        this.props.updateList(listID, newListName);
+    }
 
     render() {
         // grab the data for the list matching the given ID
@@ -60,9 +63,11 @@ class ListPage extends React.Component {
                 <List
                     title={this.props.list.name}
                     tasks={this.props.list.tasks}
+                    id={this.props.list.id}
                     completeTaskHandler={this.taskClickHandler}
                     trashClickHandler={(e) => { this.trashClickHandler(e) }}
                     newTaskHandler={this.newTaskHandler}
+                    editListHandler={this.editListHandler}
 
                 />
                 <ConfirmModal
@@ -98,8 +103,11 @@ const mapDispatchToProps = (dispatch) => {
         },
         completeTask: (taskID, completed) => {
             dispatch(updateDBTask(taskID, completed))
+        },
+        updateList: (listID, newListName) => {
+            dispatch(updateDBList(listID, newListName))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ListInfoPage);

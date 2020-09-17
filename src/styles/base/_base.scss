@@ -53,7 +53,7 @@ h6 {
 
 .button {
     border-radius: 5px;
-    border:none;
+    border: none;
     outline: none;
     background-color: none;
     padding: .5em 1.25em;
@@ -112,7 +112,7 @@ h6 {
 }
 
 .button--wide {
-    width:8em;
+    width: 8em;
 }
 
 .button:hover {
@@ -154,12 +154,23 @@ h6 {
     border-radius: 15px;
     background-clip: padding-box;
 }
+input {
+    background:none;
+    outline:none;
+    border:1px solid $gray;
+    border-radius:5px;
+    transition: .2s all;
+}
+input:focus {
+    border: 1px solid $charcoal;
+}
 
 .contentWrapper {
     height: 100vh;
     overflow: auto;
     display: flex;
 }
+
 .contentInner {
     background: $lightgray;
     flex: 1;
@@ -173,6 +184,33 @@ h6 {
     margin: .5em 2em;
     justify-content: space-between;
 }
+
 .widgetTitle {
     color: $highlight;
+}
+
+.form__inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0;
+    width:100%;
+}
+
+.form__inputGroup * {
+    margin: 0;
+}
+
+.form__buttonGroup {
+    display:flex;
+    align-items: flex-end;
+    justify-content: stretch;
+}
+
+.form__buttonGroup * {
+    flex-grow: 1;
+    margin:.25em;
+}
+
+.fullWidth {
+    width:100%;
 }

@@ -19,6 +19,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
         case 'EDIT_LIST':
             return state.map((item) => {
                 if (item.id === action.id) {
+                    console.log('FOUND LIST')
                     return {
                         ...item,
                         ...action.updates
