@@ -45,22 +45,24 @@ const List = (props) => {
                 title={listTitle}
                 handleMenuClick={handleEditListClick}
             />
+            <h3>Uncompleted Tasks</h3>
             <div className='listContainer'>
                 {props.tasks.map((task) => {
                     //get all necessary data from item's object
-                    return (
-                        <ListItem
-                            key={task.name}
-                            title={task.name}
-                            completed={task.completed}
-                            priority={task.priority}
-                            id={task.id}
-                            // onClickHandler={props.taskClickHandler}
-                            onClickHandler={props.completeTaskHandler}
-                            trashClickHandler={props.trashClickHandler}
+                    if (!task.completed)
+                        return (
+                            <ListItem
+                                key={task.name}
+                                title={task.name}
+                                completed={task.completed}
+                                priority={task.priority}
+                                id={task.id}
+                                // onClickHandler={props.taskClickHandler}
+                                onClickHandler={props.completeTaskHandler}
+                                trashClickHandler={props.trashClickHandler}
 
-                        />
-                    )
+                            />
+                        )
                 })}
                 {/* check if addTaskButton or newTaskForm should be shown */}
                 {showTaskForm ? (
@@ -73,6 +75,26 @@ const List = (props) => {
                             onClickHandler={handleAddTaskClick}
                         />
                     )}
+            </div>
+            <h3>Completed Tasks</h3>
+            <div className='listContainer'>
+                {props.tasks.map((task) => {
+                    //get all necessary data from item's object
+                    if (task.completed)
+                        return (
+                            <ListItem
+                                key={task.name}
+                                title={task.name}
+                                completed={task.completed}
+                                priority={task.priority}
+                                id={task.id}
+                                // onClickHandler={props.taskClickHandler}
+                                onClickHandler={props.completeTaskHandler}
+                                trashClickHandler={props.trashClickHandler}
+
+                            />
+                        )
+                })}
             </div>
             <EditList
                 isOpen={showEditListMenu}
