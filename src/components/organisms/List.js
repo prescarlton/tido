@@ -11,6 +11,7 @@ const List = (props) => {
 
     const [showTaskForm, setShowTaskForm] = useState(false);
     const [showEditListMenu, setShowEditListMenu] = useState(false);
+    const [listTitle, setListTitle] = useState(props.title);
 
     const handleAddTaskClick = () => {
         setShowTaskForm(true);
@@ -20,7 +21,7 @@ const List = (props) => {
         props.newTaskHandler(taskName);
         setShowTaskForm(false);
     }
-    
+
     const newTaskCancelHandler = () => {
         setShowTaskForm(false);
     }
@@ -34,13 +35,14 @@ const List = (props) => {
     }
     const handleEditListSubmit = (newListName) => {
         props.editListHandler(props.id, newListName)
+        setListTitle(newListName);
         setShowEditListMenu(false);
     }
 
     return (
         <div className='list'>
             <ListTitle
-                title={props.title}
+                title={listTitle}
                 handleMenuClick={handleEditListClick}
             />
             <div className='listContainer'>
@@ -71,16 +73,16 @@ const List = (props) => {
                     />
                 ) : (
                         <AddTaskButton
-                            onClickHandler = {handleAddTaskClick}
+                            onClickHandler={handleAddTaskClick}
                         />
                     )}
             </div>
-                    <EditList
-                        isOpen={showEditListMenu}
-                        handleClose={handleHideEditListModal}
-                        listTitle={props.title}
-                        handleFormSubmit={handleEditListSubmit}
-                    />
+            <EditList
+                isOpen={showEditListMenu}
+                handleClose={handleHideEditListModal}
+                listTitle={props.title}
+                handleFormSubmit={handleEditListSubmit}
+            />
         </div>
     )
 

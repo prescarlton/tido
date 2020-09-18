@@ -58,9 +58,13 @@
 .listCard__menu__deleteList {
     opacity:0;
     transition: .2s all;
+    visibility:hidden;
+    margin:0;
 }
 .deleteList--visible {
     opacity:1;
+    // display: inline;
+    visibility: visible;
 }
 .listCard__threeDots {
     cursor: pointer;

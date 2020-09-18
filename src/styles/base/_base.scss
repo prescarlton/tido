@@ -160,6 +160,7 @@ input {
     border:1px solid $gray;
     border-radius:5px;
     transition: .2s all;
+    font-size:1.25rem;
 }
 input:focus {
     border: 1px solid $charcoal;
@@ -197,7 +198,7 @@ input:focus {
 }
 
 .form__inputGroup * {
-    margin: 0;
+    margin: .1em;
 }
 
 .form__buttonGroup {

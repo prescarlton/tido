@@ -67,7 +67,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
 
         case 'DELETE_TASK':
             return state.map((list) => {
-                if (list.listID === action.listID) {
+                if (list.id === action.listID) {
                     return {
                         ...list,
                         tasks: list.tasks.filter(task => task.id !== action.taskID)

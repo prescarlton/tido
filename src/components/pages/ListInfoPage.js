@@ -1,88 +1,77 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask, updateDBList } from '../../actions/lists';
+import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask, updateDBList, deleteDBTask } from '../../actions/lists';
 import ConfirmModal from '../atoms/ConfirmModal';
 
-class ListInfoPage extends React.Component {
+// class ListInfoPage extends React.Component {
+const ListInfoPage = (props) => {
 
-    state = {
-        showConfirmModal: false,
-        toBeDeleted: ''
-    }
+    const [toBeDeleted, setToBeDeleted] = useState('');
+    const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-    taskClickHandler = (taskID) => {
+    const taskClickHandler = (taskID) => {
         // find the list that the item is in
-        // this.props.dispatch(completeTask({ listID: this.props.listID, taskID }));
-        console.log('completing task w/ id ',taskID)
-        this.props.completeTask(taskID, true);
+        console.log('completing task w/ id ', taskID)
+        props.completeTask(taskID, true);
 
     }
     // handler to confirm taskDeletion
-    trashClickHandler = (taskID) => {
-        this.setState(() => ({
-            showConfirmModal: true
-        }))
-        this.setState(() => ({
-            toBeDeleted: taskID
-        }))
+    const trashClickHandler = (taskID) => {
+        setShowConfirmModal(true);
+        setToBeDeleted(taskID);
     }
 
-    handleModalClose = () => {
-        this.setState(() => ({
-            showConfirmModal: false
-        }));
+    const handleModalClose = () => {
+        setShowConfirmModal(false);
     }
 
-    handleConfirmDelete = () => {
-
-        this.props.dispatch(deleteTask({ listID: this.props.id, taskID: this.state.toBeDeleted }))
-
-        // reset state to empty obj
-        this.setState(() => ({
-            toBeDeleted: '',
-            showConfirmModal: false
-        }))
+    const handleConfirmDelete = () => {
+        console.log('listID:',props.list.id);
+        console.log('toBeDeleted:',toBeDeleted);
+        props.deleteTask(props.list.id, toBeDeleted);
+        setToBeDeleted('');
+        setShowConfirmModal(false);
     }
 
-    newTaskHandler = (name) => {
-        this.props.createTask(name, this.props.list.id);
+    const newTaskHandler = (name) => {
+        props.createTask(name, props.list.id);
     }
-    editListHandler = (listID, newListName) => {
-        this.props.updateList(listID, newListName);
+    const editListHandler = (listID, newListName) => {
+        props.updateList(listID, newListName);
     }
 
-    render() {
-        // grab the data for the list matching the given ID
-        // if the list with given ID cannot be found,
-        // show ListNotFound rather than List component
-        return (this.props.list ?
-            (<div className='listPage'>
-                {/* <h1>All Lists</h1> */}
-                <List
-                    title={this.props.list.name}
-                    tasks={this.props.list.tasks}
-                    id={this.props.list.id}
-                    completeTaskHandler={this.taskClickHandler}
-                    trashClickHandler={(e) => { this.trashClickHandler(e) }}
-                    newTaskHandler={this.newTaskHandler}
-                    editListHandler={this.editListHandler}
+    // grab the data for the list matching the given ID
+    // if the list with given ID cannot be found,
+    // show ListNotFound rather than List component
+    return (props.list ?
+        (<div className='listPage'>
+            {/* <h1>All Lists</h1> */}
+            <List
+                title={props.list.name}
+                tasks={props.list.tasks}
+                id={props.list.id}
+                completeTaskHandler={taskClickHandler}
+                trashClickHandler={trashClickHandler}
+                newTaskHandler={newTaskHandler}
+                editListHandler={editListHandler}
+                handleConfirmDelete={handleConfirmDelete}
 
-                />
-                <ConfirmModal
-                    isOpen={this.state.showConfirmModal}
-                    onModalClose={this.handleModalClose}
-                    modalTitle='Are you sure?'
-                    handleConfirm={this.handleConfirmDelete}
+            />
+            <ConfirmModal
+                isOpen={showConfirmModal}
+                onModalClose={handleModalClose}
+                modalTitle='Are you sure?'
+                handleConfirm={handleConfirmDelete}
 
-                />
-            </div>) : (
-                <ListNotFoundPage />
-            )
-
+            />
+        </div>) : (
+            <ListNotFoundPage />
         )
-    }
+
+    )
+
 };
 
 const mapStateToProps = (state, props) => {
@@ -106,6 +95,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateList: (listID, newListName) => {
             dispatch(updateDBList(listID, newListName))
+        },
+        deleteTask: (listID, taskID) => {
+            dispatch(deleteDBTask(listID, taskID))
         }
     }
 }
