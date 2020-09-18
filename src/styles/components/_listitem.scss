@@ -106,7 +106,7 @@
 
 .newTaskForm__innerGroup {
     border-radius: 5px;
-    border: 1px solid $gray;
+    // border: 1px solid $gray;
     height: 5em;
     position: relative;
     // padding:.5em;
@@ -141,6 +141,8 @@
     margin-bottom: 1rem;
     height: 1.2em;
     width: 100%;
+    font-weight:lighter;
+    // font-family: 'Poppins';
 }
 
 .newTaskForm__buttonGroup {
