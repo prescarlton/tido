@@ -8,15 +8,15 @@ const ListItem = (props) => {
 
             <div className='listItem__titleContainer'>
                 <button
-                    className={`listItem__checkbox ${props.checked && 'listItem__checkbox--checked'}`}
+                    className={`listItem__checkbox ${props.completed && 'listItem__checkbox--checked'}`}
                     onClick={() => { 
-                        props.onClickHandler(props.id) }}
+                        props.onClickHandler(props.id,!props.completed) }}
 
                 />
-                <h3 className={`listItem__title ${props.checked && 'listItem__title--checked'}`}>{props.title}</h3>
+                <h3 className={`listItem__title ${props.completed && 'listItem__title--checked'}`}>{props.title}</h3>
             </div>
             <div className='listItem__buttonGroup'>
-                <FaRegTrashAlt onClick={()=>{props.trashClickHandler(props.id)}}/>
+                <FaRegTrashAlt onClick={()=>{props.trashClickHandler(props.id)}} className='icon'/>
             </div>
         </div>
     )

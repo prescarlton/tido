@@ -1,5 +1,4 @@
 .listItem__container {
-
     padding: .5em;
     display: flex;
     justify-content: space-between;
@@ -20,7 +19,7 @@
     margin-bottom: .5rem;
 }
 
-.listItem__container:hover {
+.listItem__title:hover {
     color: $highlight;
     cursor: pointer;
 }
@@ -33,6 +32,7 @@
     background: none;
     outline: none;
     transition: .2s all;
+    opacity:.7;
 }
 
 .listItem__checkbox--checked {
@@ -41,7 +41,9 @@
 }
 
 .listItem__checkbox:hover {
-    background-color: lighten($color: $gray, $amount: 10)
+    // background-color: lighten($color: $gray, $amount: 10);
+    opacity:1;
+    cursor: pointer;
 }
 
 .listItem__title {
@@ -54,8 +56,11 @@
     color: $gray;
 }
 
+.listItem__titleContainer {
+    display: flex;
+}
+
 .listItem__titleContainer>* {
-    display: inline-block;
     vertical-align: middle;
     margin: .2em;
 }
@@ -96,17 +101,55 @@
 
 .newTaskForm {
     flex-direction: column;
+    // border:1px solid $gray;
+}
+
+.newTaskForm__innerGroup {
+    border-radius: 5px;
+    border: 1px solid $gray;
+    height: 5em;
+    position: relative;
+    // padding:.5em;
+    display: flex;
+}
+
+.newTaskForm__iconGroup {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.newTaskForm__icon {
+    margin: .25em;
+    font-size: 1.5em;
+    color: $charcoal;
+    transition: opacity .2s;
+    opacity: .7;
+}
+
+.newTaskForm__icon:hover {
+    opacity: 1;
 }
 
 .newTaskForm__Input {
     border: none !important;
     background: none;
-    margin:.5rem;
+    margin: .5rem;
     outline: none;
-    margin-bottom:1rem;
-    height:1.2em;
+    margin-bottom: 1rem;
+    height: 1.2em;
+    width: 100%;
 }
 
-.newTaskForm__buttonGroup >*{
-    margin:.25rem;
+.newTaskForm__buttonGroup {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.newTaskForm__buttonGroup>* {
+    margin: .25rem;
+    margin-left: 0;
 }

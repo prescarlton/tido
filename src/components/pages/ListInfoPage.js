@@ -11,10 +11,10 @@ const ListInfoPage = (props) => {
     const [toBeDeleted, setToBeDeleted] = useState('');
     const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-    const taskClickHandler = (taskID) => {
+    const taskClickHandler = (taskID, completed) => {
         // find the list that the item is in
         console.log('completing task w/ id ', taskID)
-        props.completeTask(taskID, true);
+        props.completeTask(props.list.id, taskID, completed);
 
     }
     // handler to confirm taskDeletion
@@ -28,8 +28,8 @@ const ListInfoPage = (props) => {
     }
 
     const handleConfirmDelete = () => {
-        console.log('listID:',props.list.id);
-        console.log('toBeDeleted:',toBeDeleted);
+        console.log('listID:', props.list.id);
+        console.log('toBeDeleted:', toBeDeleted);
         props.deleteTask(props.list.id, toBeDeleted);
         setToBeDeleted('');
         setShowConfirmModal(false);
@@ -90,8 +90,8 @@ const mapDispatchToProps = (dispatch) => {
         createTask: (name, taskListID) => {
             dispatch(createDBTask(name, taskListID))
         },
-        completeTask: (taskID, completed) => {
-            dispatch(updateDBTask(taskID, completed))
+        completeTask: (listID, taskID, completed) => {
+            dispatch(updateDBTask(listID, taskID, completed))
         },
         updateList: (listID, newListName) => {
             dispatch(updateDBList(listID, newListName))

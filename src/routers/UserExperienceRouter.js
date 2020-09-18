@@ -37,7 +37,7 @@ const UserExperienceRouter = (props) => {
                     ) : (
                             <div className='contentWrapper'>
                                 <div className='contentInner'>
-                                    <UserPageTopBar />
+                                    {/* <UserPageTopBar /> */}
                                     <UserPageTabs />
                                     <Switch>
                                         <Route exact path={path} component={UserDashboard} />

@@ -42,6 +42,28 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                 }
 
             })
+        case 'UPDATE_TASK':
+
+            return state.map((list) => {
+                if (list.id === action.listID) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.map((task) => {
+                            if (task.id === action.taskID) {
+                                return {
+                                    ...task,
+                                    completed: action.completed
+                                }
+                            } else {
+                                return task
+                            }
+                        })
+                    }
+                } else {
+                    return list
+                }
+            })
+
         case 'COMPLETE_TASK':
             return state.map((list) => {
                 if (list.id === action.listID) {

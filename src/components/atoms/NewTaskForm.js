@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { BsAlarm, BsFlag } from 'react-icons/bs';
+import { FaFlag, FaRegFlag } from 'react-icons/fa';
+import { GrFlag } from 'react-icons/gr';
+import { FiFlag } from 'react-icons/fi';
 
 const NewTaskForm = (props) => {
 
@@ -11,6 +15,7 @@ const NewTaskForm = (props) => {
     }
 
     const [taskNameVal, setTaskNameVal] = useState('');
+    const [taskPriorityVal, setTaskPriorityVal] = useState(0);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -20,6 +25,9 @@ const NewTaskForm = (props) => {
         setTaskNameVal(e.target.value);
     }
 
+    const handleTaskPriorityChange = (e) => {
+        setTaskPriorityVal(e.target.value);
+    }
     useEffect(() => {
         document.addEventListener("keydown", escKeyHandler, false);
 
@@ -34,17 +42,25 @@ const NewTaskForm = (props) => {
             onSubmit={submitHandler}
             onReset={props.onCancelHandler}
             className='listItem__container newTaskForm'>
-            <input
-                name='taskName'
-                placeholder='e.g. Take the trash out'
-                className='newTaskForm__Input'
-                value={taskNameVal}
-                onChange={handleTaskNameChange}
-                required
-                autoFocus
-            />
+            <div className='newTaskForm__innerGroup'>
+                <input
+                    name='taskName'
+                    placeholder='e.g. Take the trash out'
+                    className='newTaskForm__Input'
+                    value={taskNameVal}
+                    onChange={handleTaskNameChange}
+                    required
+                    autoFocus
+                />
+                {/* <div className='newTaskForm__iconGroup'>
+                    <FiFlag className='newTaskForm__icon newTaskForm__icon--priorityFlag' />
+                    <BsAlarm className='newTaskForm__icon newTaskForm__icon--alarm' />
+                </div> */}
+
+
+            </div>
             <div className='newTaskForm__buttonGroup'>
-                <button type='reset' className='button button--secondary'>Cancel</button>
+                <button type='reset' className='button button--noBox'>Cancel</button>
                 <button type='submit' className='button button--danger'>
                     Add Item
                 </button>

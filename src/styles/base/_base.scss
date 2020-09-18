@@ -88,6 +88,15 @@ h6 {
     color: $off-white;
     box-shadow: 1px 5px 5px -6px $gray;
 }
+.button--noBox {
+    background:none;
+    color: $charcoal;
+    box-shadow:none;
+    transition:.2s all;
+}
+.button--noBox:hover {
+    text-decoration: underline;
+}
 
 .button--secondary:active {
     background-color: darken($color: $gray, $amount: 15);
@@ -138,6 +147,9 @@ h6 {
 .buttonGroup :last-child {
     margin-right: 0;
 }
+.icon {
+    cursor: pointer;
+}
 
 *::-webkit-scrollbar {
     width: 6px;
@@ -175,7 +187,7 @@ input:focus {
 .contentInner {
     background: $lightgray;
     flex: 1;
-    // display: flex;
+    display: flex;
     flex-direction: column;
     overflow-y: auto;
 }

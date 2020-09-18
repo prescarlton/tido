@@ -48,15 +48,12 @@ const List = (props) => {
             <div className='listContainer'>
                 {props.tasks.map((task) => {
                     //get all necessary data from item's object
-                    let isCompleted = task.completed;
-                    let isPriority = task.priority;
-                    console.log(task)
                     return (
                         <ListItem
                             key={task.name}
                             title={task.name}
-                            checked={isCompleted}
-                            priority={isPriority}
+                            completed={task.completed}
+                            priority={task.priority}
                             id={task.id}
                             // onClickHandler={props.taskClickHandler}
                             onClickHandler={props.completeTaskHandler}

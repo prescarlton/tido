@@ -40,6 +40,13 @@ export const completeTask = ({ listID, taskID }) => ({
     taskID
 })
 
+const updateTask = ({ listID, taskID, completed }) => ({
+    type: 'UPDATE_TASK',
+    listID,
+    taskID,
+    completed
+})
+
 // DELETE_TASK
 export const deleteTask = ({ listID, taskID }) => ({
     type: 'DELETE_TASK',
@@ -107,11 +114,12 @@ export const updateDBList = (listID, newListName) => {
     }
 }
 
-export const updateDBTask = (taskID, completed) => {
+export const updateDBTask = (listID, taskID, completed) => {
     return async (dispatch) => {
         let dbTask = null;
 
         try {
+            dispatch(updateTask({ listID, taskID, completed }))
             const inputs = {
                 id: taskID,
                 completed
@@ -122,8 +130,9 @@ export const updateDBTask = (taskID, completed) => {
 
             console.log(completeTask.data);
             dbTask = completeTask.data.completeTask;
+            console.log('updating task')
         } catch (err) {
-            console.log(err)
+            console.log('err', err)
         }
 
     }
