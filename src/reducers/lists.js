@@ -50,9 +50,10 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                         ...list,
                         tasks: list.tasks.map((task) => {
                             if (task.id === action.taskID) {
+                                console.log(`UPDATING TASK W/ ID ${task.id} WITH UPDATES:`,action.updates)
                                 return {
                                     ...task,
-                                    completed: action.completed
+                                    ...action.updates
                                 }
                             } else {
                                 return task

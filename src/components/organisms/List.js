@@ -57,10 +57,11 @@ const List = (props) => {
                                 completed={task.completed}
                                 priority={task.priority}
                                 id={task.id}
-                                // onClickHandler={props.taskClickHandler}
+                                listName={listTitle}
+                                description={task.description}
                                 onClickHandler={props.completeTaskHandler}
                                 trashClickHandler={props.trashClickHandler}
-
+                                handleDescriptionSubmit={props.handleTaskDescriptionSubmit}
                             />
                         )
                 })}
@@ -91,7 +92,8 @@ const List = (props) => {
                                 // onClickHandler={props.taskClickHandler}
                                 onClickHandler={props.completeTaskHandler}
                                 trashClickHandler={props.trashClickHandler}
-
+                                handleDescriptionSubmit={props.handleTaskDescriptionSubmit}
+                                description={task.description}
                             />
                         )
                 })}

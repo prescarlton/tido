@@ -12,6 +12,7 @@ export const getList = /* GraphQL */ `
           name
           priority
           completed
+          description
           createdAt
           updatedAt
         }
@@ -51,6 +52,7 @@ export const getTask = /* GraphQL */ `
       name
       priority
       completed
+      description
       list {
         id
         name
@@ -78,6 +80,7 @@ export const listTasks = /* GraphQL */ `
         name
         priority
         completed
+        description
         list {
           id
           name

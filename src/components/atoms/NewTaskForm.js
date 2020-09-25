@@ -52,10 +52,6 @@ const NewTaskForm = (props) => {
                     required
                     autoFocus
                 />
-                {/* <div className='newTaskForm__iconGroup'>
-                    <FiFlag className='newTaskForm__icon newTaskForm__icon--priorityFlag' />
-                    <BsAlarm className='newTaskForm__icon newTaskForm__icon--alarm' />
-                </div> */}
 
 
             </div>

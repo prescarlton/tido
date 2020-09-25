@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import List from '../organisms/List';
 import ListNotFoundPage from './ListNotFoundPage';
-import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask, updateDBList, deleteDBTask } from '../../actions/lists';
+import { deleteTask, addTaskToList, deleteDBList, updateDBTask, createDBTask, updateDBList, deleteDBTask, completeDBTask } from '../../actions/lists';
 import ConfirmModal from '../atoms/ConfirmModal';
 
 // class ListInfoPage extends React.Component {
@@ -42,6 +42,13 @@ const ListInfoPage = (props) => {
         props.updateList(listID, newListName);
     }
 
+    const handleTaskDescriptionSubmit = (taskID, description) => {
+        console.log('listID:',props.list.id);
+        console.log('taskID:',taskID);
+        console.log('description:',description);
+        props.updateTaskDescription(props.list.id, taskID, description);
+    }
+
     // grab the data for the list matching the given ID
     // if the list with given ID cannot be found,
     // show ListNotFound rather than List component
@@ -57,7 +64,7 @@ const ListInfoPage = (props) => {
                 newTaskHandler={newTaskHandler}
                 editListHandler={editListHandler}
                 handleConfirmDelete={handleConfirmDelete}
-
+                handleTaskDescriptionSubmit={handleTaskDescriptionSubmit}
             />
             <ConfirmModal
                 isOpen={showConfirmModal}
@@ -91,7 +98,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(createDBTask(name, taskListID))
         },
         completeTask: (listID, taskID, completed) => {
-            dispatch(updateDBTask(listID, taskID, completed))
+            dispatch(completeDBTask(listID, taskID, completed))
+        },
+        updateTaskDescription: (listID, taskID, description) => {
+            dispatch(updateDBTask(listID, taskID, description))
         },
         updateList: (listID, newListName) => {
             dispatch(updateDBList(listID, newListName))

@@ -34,17 +34,21 @@ export const addTaskToList = ({ taskListId, id, name = '', flag = '' }) => ({
 })
 
 // COMPLETE_TASK
-export const completeTask = ({ listID, taskID }) => ({
+export const completeTask = ({ listID, taskID, completed }) => ({
     type: 'COMPLETE_TASK',
-    listID,
-    taskID
-})
-
-const updateTask = ({ listID, taskID, completed }) => ({
-    type: 'UPDATE_TASK',
     listID,
     taskID,
     completed
+})
+
+//UPDATE_TASK
+const updateTask = ({ listID, taskID, updates }) => ({
+    type: 'UPDATE_TASK',
+    listID,
+    taskID,
+    updates: {
+        updates
+    }
 })
 
 // DELETE_TASK
@@ -114,29 +118,53 @@ export const updateDBList = (listID, newListName) => {
     }
 }
 
-export const updateDBTask = (listID, taskID, completed) => {
+export const completeDBTask = (listID, taskID, completed) => {
     return async (dispatch) => {
         let dbTask = null;
 
         try {
-            dispatch(updateTask({ listID, taskID, completed }))
+            dispatch(completeTask({ listID, taskID, completed }))
             const inputs = {
                 id: taskID,
                 completed
             }
-            let completeTask = await API.graphql(
+            let completeTaskRequest = await API.graphql(
                 graphqlOperation(UpdateTask, { input: inputs })
             );
 
-            console.log(completeTask.data);
-            dbTask = completeTask.data.completeTask;
+            console.log(completeTaskRequest.data);
+            dbTask = completeTaskRequest.data.completeTask;
             console.log('updating task')
         } catch (err) {
             console.log('err', err)
         }
 
     }
-}
+};
+
+export const updateDBTask = (listID, taskID, description) => {
+    return async (dispatch) => {
+        let dbTask = null;
+
+        try {
+            dispatch(updateTask({ listID, taskID, updates:{description} }))
+            const inputs = {
+                id: taskID,
+                description
+            }
+            let updateTaskRequest = await API.graphql(
+                graphqlOperation(UpdateTask, { input: inputs })
+            );
+
+            console.log(updateTaskRequest.data);
+            dbTask = updateTaskRequest.data.updateTask;
+            console.log('updating task')
+        } catch (err) {
+            console.log('err', err)
+        }
+
+    }
+};
 
 export const createDBTask = (name, taskListId) => {
     return async (dispatch) => {

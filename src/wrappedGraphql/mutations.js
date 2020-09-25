@@ -52,10 +52,23 @@ export const UpdateTask = gql`
         updateTask(input: $input) {
             id
             name
+            description
+        }
+    }
+`;
+
+export const CompleteTask = gql`
+    mutation updateTask(
+        $input: UpdateTaskInput!
+    ) {
+        updateTask(input: $input) {
+            id
+            name
             completed
         }
     }
 `;
+
 
 export const DeleteTask = gql`
     mutation deleteTask(
