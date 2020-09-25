@@ -1,5 +1,3 @@
-import { routerActions } from "react-router-redux";
-
 // Lists reducer
 const listsReducerDefaultState = [];
 const listsReducer = (state = listsReducerDefaultState, action) => {
@@ -95,6 +93,8 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                         ...list,
                         tasks: list.tasks.filter(task => task.id !== action.taskID)
                     }
+                } else {
+                    return list
                 }
             })
 

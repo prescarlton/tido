@@ -43,9 +43,9 @@ const ListInfoPage = (props) => {
     }
 
     const handleTaskDescriptionSubmit = (taskID, description) => {
-        console.log('listID:',props.list.id);
-        console.log('taskID:',taskID);
-        console.log('description:',description);
+        console.log('listID:', props.list.id);
+        console.log('taskID:', taskID);
+        console.log('description:', description);
         props.updateTaskDescription(props.list.id, taskID, description);
     }
 
@@ -63,7 +63,6 @@ const ListInfoPage = (props) => {
                 trashClickHandler={trashClickHandler}
                 newTaskHandler={newTaskHandler}
                 editListHandler={editListHandler}
-                handleConfirmDelete={handleConfirmDelete}
                 handleTaskDescriptionSubmit={handleTaskDescriptionSubmit}
             />
             <ConfirmModal
@@ -84,7 +83,9 @@ const ListInfoPage = (props) => {
 const mapStateToProps = (state, props) => {
 
     return {
-        list: state.lists.find((list) => list.id === props.match.params.listID)
+        list: state.lists.find(l => {
+            return props.match.params.listID == l.id
+        })
     }
 
 };

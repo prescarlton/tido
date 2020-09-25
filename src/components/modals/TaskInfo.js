@@ -48,7 +48,6 @@ const TaskInfo = (props) => {
                             onClick={() => {
                                 props.onClickHandler(props.id, !props.completed)
                             }}
-
                         />
                         {props.title}
                     </h2>
@@ -72,13 +71,13 @@ const TaskInfo = (props) => {
                             value={taskDescription}
                             rows={4}
                             autoFocus
-                            />
+                        />
                         <button
                             className='button button--action taskInfo__descriptionEditSave'
                             onClick={handleDescriptionSubmit}
-                            >
+                        >
                             Save
-                    </button>
+                        </button>
                     </span>
                 ) : (
                         <p className='taskInfo__description'>{!!taskDescription ? taskDescription : 'No description.'}</p>

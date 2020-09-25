@@ -52,7 +52,7 @@ const updateTask = ({ listID, taskID, updates }) => ({
 })
 
 // DELETE_TASK
-export const deleteTask = ({ listID, taskID }) => ({
+const deleteTask = (listID, taskID) => ({
     type: 'DELETE_TASK',
     listID,
     taskID
@@ -147,7 +147,7 @@ export const updateDBTask = (listID, taskID, description) => {
         let dbTask = null;
 
         try {
-            dispatch(updateTask({ listID, taskID, updates:{description} }))
+            dispatch(updateTask({ listID, taskID, updates: { description } }))
             const inputs = {
                 id: taskID,
                 description
@@ -197,7 +197,7 @@ export const deleteDBTask = (listID, taskID) => {
         let resp = null;
 
         try {
-            dispatch(deleteTask({ listID, taskID }))
+            dispatch(deleteTask(listID, taskID))
             const inputs = {
                 id: taskID
             };
