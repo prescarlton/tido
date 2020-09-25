@@ -41,6 +41,7 @@ const ListItem = (props) => {
                 listName={props.listName}
                 handleDescriptionSubmit={props.handleDescriptionSubmit}
                 id={props.id}
+                onClickHandler={props.onClickHandler}
             />
         </div>
     )
