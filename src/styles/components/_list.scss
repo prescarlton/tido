@@ -1,17 +1,20 @@
+.listPage {
+    margin: 1.5em;
+    max-height:100%;
+    overflow-y: auto;
+    display:flex;
+}
+
 .list {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-}
-
-.listPage {
-    margin: 0 1.5em;
+    position:relative;
+    width:75%;
 }
 
 .listContainer {
-    margin: 0 auto;
-    width: 75%;
+    margin: 1em;
     display: flex;
     align-items: stretch;
     flex-direction: column;
@@ -24,13 +27,13 @@
     text-align: left;
     font-size: 2.5em;
     margin: .5em;
-    width: 75%;
 }
 
 .listTitle__wrapper {
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .backArrow {
@@ -39,5 +42,14 @@
 }
 
 .backArrow:hover {
-    color:$highlight;
+    color: $highlight;
+}
+
+.listTitle__group {
+    align-items: center;
+    display: flex;
+}
+
+.listTitle__icon {
+    font-size:1.5em;
 }

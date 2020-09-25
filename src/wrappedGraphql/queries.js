@@ -29,6 +29,7 @@ export const FetchLists = gql`
                         id
                         name
                         completed
+                        description
                         priority
                     }
                     

@@ -2,12 +2,6 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Sidebar from '../components/organisms/Sidebar';
 
-
-import ListPage from '../components/pages/ListPage';
-import ListViewPage from '../components/pages/ListViewPage';
-import SchedulePage from '../components/pages/SchedulePage';
-import StatsPage from '../components/pages/StatsPage';
-import UserDashboard from '../components/pages/UserDashboard';
 import { connect } from 'react-redux';
 import LandingPage from '../components/pages/LandingPage';
 import LoginPage from '../components/pages/LoginPage';

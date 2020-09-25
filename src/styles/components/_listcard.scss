@@ -6,7 +6,7 @@
     margin: 0 1em 1em 0;
     display: inline-flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     vertical-align: middle;
     position: relative;
     box-shadow: 1px 3px 10px -6px $gray;
@@ -29,7 +29,7 @@
     margin: 1em;
     flex: 1;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     flex-direction: column;
 }
 
@@ -58,10 +58,31 @@
 .listCard__menu__deleteList {
     opacity:0;
     transition: .2s all;
+    visibility:hidden;
+    margin:0;
 }
 .deleteList--visible {
     opacity:1;
+    // display: inline;
+    visibility: visible;
 }
 .listCard__threeDots {
     cursor: pointer;
+}
+
+.listCard__taskTags {
+    display:flex;
+}
+
+.listCard__taskTag {
+    border-radius:3px;
+    padding:.25em .5em;
+    color: white;
+    margin-right: .5em;
+}
+.listCard__taskTag--blue {
+    background: $blue;
+}
+.listCard__taskTag--red {
+    background: $tart;
 }

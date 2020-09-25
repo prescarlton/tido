@@ -15,6 +15,7 @@ export const createList = /* GraphQL */ `
           name
           priority
           completed
+          description
           createdAt
           updatedAt
         }
@@ -40,6 +41,7 @@ export const updateList = /* GraphQL */ `
           name
           priority
           completed
+          description
           createdAt
           updatedAt
         }
@@ -65,6 +67,7 @@ export const deleteList = /* GraphQL */ `
           name
           priority
           completed
+          description
           createdAt
           updatedAt
         }
@@ -86,6 +89,7 @@ export const createTask = /* GraphQL */ `
       name
       priority
       completed
+      description
       list {
         id
         name
@@ -111,6 +115,7 @@ export const updateTask = /* GraphQL */ `
       name
       priority
       completed
+      description
       list {
         id
         name
@@ -136,6 +141,7 @@ export const deleteTask = /* GraphQL */ `
       name
       priority
       completed
+      description
       list {
         id
         name

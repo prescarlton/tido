@@ -3,7 +3,7 @@ type List @model @auth(rules: [
 ]){
   id: ID!
   name: String!
-  tasks: [Task] @connection(name: "ListTasks", sortField: "priority")
+  tasks: [Task] @connection(name: "ListTasks", sortField: "name")
 }
 
 type Task @model {
@@ -11,6 +11,7 @@ type Task @model {
   name: String!
   priority: Int!
   completed: Boolean!
+  description: String
   list: List @connection(name: "ListTasks", sortField: "priority")
 }
 

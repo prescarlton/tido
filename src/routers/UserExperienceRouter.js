@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../components/organisms/Sidebar';
 import { useRouteMatch, Switch, Route, Redirect } from 'react-router-dom';
 import UserDashboard from '../components/pages/UserDashboard';
-import ListPage from '../components/pages/ListPage';
+import ListInfoPage from '../components/pages/ListInfoPage';
 import ListViewPage from '../components/pages/ListViewPage';
 import SchedulePage from '../components/pages/SchedulePage';
 import StatsPage from '../components/pages/StatsPage';
@@ -37,11 +37,11 @@ const UserExperienceRouter = (props) => {
                     ) : (
                             <div className='contentWrapper'>
                                 <div className='contentInner'>
-                                    <UserPageTopBar />
+                                    {/* <UserPageTopBar /> */}
                                     <UserPageTabs />
                                     <Switch>
                                         <Route exact path={path} component={UserDashboard} />
-                                        <Route path={`${path}/list/:listID`} component={ListPage} />
+                                        <Route path={`${path}/list/:listID`} component={ListInfoPage} />
                                         <Route path={`${path}/lists`} component={ListViewPage} />
                                         <Route path={`${path}/schedule`} component={SchedulePage} />
                                         <Route path={`${path}/stats`} component={StatsPage} />

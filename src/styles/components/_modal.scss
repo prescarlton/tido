@@ -1,0 +1,95 @@
+.modal {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // justify-content: flex-end;
+    background-color: $off-white;
+    outline: none;
+    border-radius: 7px;
+    box-shadow: 1px 8px 10px -10px #000;
+    padding: 1.5em;
+    position: relative;
+    z-index: 5;
+    user-select: none;
+}
+.modal--wide {
+    width:50vw;
+}
+
+.modal__topBar {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.modal__Close {
+    // margin: 10px;
+    font-size: 1.2em;
+}
+
+.modal__Title .listItem__checkbox {
+    margin-right: .2em;
+}
+
+.modal__iconGroup {
+    display: flex;
+    align-items: center;
+}
+
+.modal__headerGroup {
+    // margin: 10px;
+}
+
+.modal__iconGroup .icon {
+    margin: 10px;
+}
+
+.modal__headerGroup * {
+    margin: 0;
+}
+
+.modal__subtitle {
+    font-weight: lighter;
+}
+.taskInfo__group {
+    margin:2.5em 0;
+    display: flex;
+    align-items: flex-start;
+    max-height:15rem;
+    overflow-y: hidden;
+}
+.taskInfo__group * {
+    margin: .25em 0;
+}
+
+.taskInfo__group h3 {
+    transition: .2s all;
+    margin:0 0 1em 0;
+}
+
+.taskInfo__group h3:hover {
+    cursor: pointer;
+    color: $highlight;
+}
+
+.taskInfo__descriptionEdit {
+    box-sizing: border-box;
+    border: 1px solid $gray;
+    border-radius:5px;
+    resize:none;
+    padding:.5em;
+    height:6rem;
+    overflow-y: auto;
+}
+
+.taskInfo__description {
+    display: flex;
+    // padding:.5em;
+    height: 8rem;
+    flex-direction: column;
+    align-items: flex-start;
+    white-space: pre-line;
+}

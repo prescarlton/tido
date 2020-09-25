@@ -18,7 +18,6 @@ export const UpdateList = gql`
         updateList(input: $input) {
             id
             name
-            completed
         }
     }
 `;
@@ -53,18 +52,30 @@ export const UpdateTask = gql`
         updateTask(input: $input) {
             id
             name
+            description
+        }
+    }
+`;
+
+export const CompleteTask = gql`
+    mutation updateTask(
+        $input: UpdateTaskInput!
+    ) {
+        updateTask(input: $input) {
+            id
+            name
             completed
         }
     }
 `;
 
-export const deleteTask = gql`
+
+export const DeleteTask = gql`
     mutation deleteTask(
-        $input: deleteTaskInput!
+        $input: DeleteTaskInput!
     ) {
         deleteTask(input: $input) {
             id
-            name
         }
     }
 `;

@@ -1,5 +1,3 @@
-import { routerActions } from "react-router-redux";
-
 // Lists reducer
 const listsReducerDefaultState = [];
 const listsReducer = (state = listsReducerDefaultState, action) => {
@@ -19,6 +17,7 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
         case 'EDIT_LIST':
             return state.map((item) => {
                 if (item.id === action.id) {
+                    console.log('FOUND LIST')
                     return {
                         ...item,
                         ...action.updates
@@ -41,6 +40,29 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
                 }
 
             })
+        case 'UPDATE_TASK':
+
+            return state.map((list) => {
+                if (list.id === action.listID) {
+                    return {
+                        ...list,
+                        tasks: list.tasks.map((task) => {
+                            if (task.id === action.taskID) {
+                                console.log(`UPDATING TASK W/ ID ${task.id} WITH UPDATES:`,action.updates)
+                                return {
+                                    ...task,
+                                    ...action.updates
+                                }
+                            } else {
+                                return task
+                            }
+                        })
+                    }
+                } else {
+                    return list
+                }
+            })
+
         case 'COMPLETE_TASK':
             return state.map((list) => {
                 if (list.id === action.listID) {
@@ -66,11 +88,13 @@ const listsReducer = (state = listsReducerDefaultState, action) => {
 
         case 'DELETE_TASK':
             return state.map((list) => {
-                if (list.listID === action.listID) {
+                if (list.id === action.listID) {
                     return {
                         ...list,
                         tasks: list.tasks.filter(task => task.id !== action.taskID)
                     }
+                } else {
+                    return list
                 }
             })
 
