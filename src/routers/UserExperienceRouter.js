@@ -11,6 +11,7 @@ import UserPageTabs from '../components/organisms/UserPageTabs';
 import UserPageTopBar from '../components/molecules/UserPageTopBar';
 import UserPagesidebar from '../components/molecules/UserPageSidebar';
 import { createDBList, deleteDBList, getLists } from '../actions/lists';
+import CalendarPage from '../components/pages/CalendarPage';
 
 const UserExperienceRouter = (props) => {
     let { path, url } = useRouteMatch();
@@ -43,7 +44,7 @@ const UserExperienceRouter = (props) => {
                                         <Route exact path={path} component={UserDashboard} />
                                         <Route path={`${path}/list/:listID`} component={ListInfoPage} />
                                         <Route path={`${path}/lists`} component={ListViewPage} />
-                                        <Route path={`${path}/schedule`} component={SchedulePage} />
+                                        {/* <Route path={`${path}/calendar`} component={CalendarPage} /> */}
                                         <Route path={`${path}/stats`} component={StatsPage} />
                                     </Switch>
                                 </div>

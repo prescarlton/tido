@@ -49,6 +49,7 @@ const ListViewPage = (props) => {
 
     return (
         <div className='page listViewPage'>
+        <PageTitle>Lists</PageTitle>
             { !!props.lists.length ? (props.lists.map(list => {
                 console.log(props.lists)
                 return (

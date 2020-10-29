@@ -1,0 +1,59 @@
+.calendar {
+    width: 80%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border: 1px solid $gray;
+}
+
+.calendarDay {
+    border: 1px solid $gray;
+    text-align: center;
+    width: 14.28%;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.calendar__monthHeader {
+    margin-top: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.calendarDay:after {
+    content: ' ';
+    display: block;
+    margin-top: 90%;
+}
+
+.calendarDay__content {
+    position: absolute;
+    margin: .2em;
+    top: 0;
+    right: 0;
+    font-family: 'Poppins';
+    font-size:.8em;
+}
+.calendarDay--today {
+    border-left: 2px solid $highlight;
+    font-size:2em;
+    color: $highlight;
+}
+
+.weekDays__container {
+    width: 100%;
+    margin:.5em 0;
+}
+
+.weekDay {
+    // margin: 0 2em;
+    width: 3rem;
+    border: none;
+    // font-weight: lighter;
+    font-family: 'Poppins';
+    text-transform: uppercase;
+    font-size:.8em;
+    margin: .5em;
+}
+.weekDay__inner {
+    margin: .5em 0;
+}
