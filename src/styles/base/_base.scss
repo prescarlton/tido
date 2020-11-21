@@ -182,7 +182,8 @@ h6 {
 input {
     // background:none;
     outline:none;
-    border:1px solid $gray;
+    // border:1px solid $gray;
+    border:none;
     border-radius:5px;
     transition: .2s all;
     font-size:1rem;
