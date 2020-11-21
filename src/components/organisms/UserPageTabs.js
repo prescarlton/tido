@@ -34,8 +34,8 @@ const UserPageTabs = (props) => {
         <div className='userPageTabs'>
             <div className='userPageTabs__left'>
                 <NavLink to='/app' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem' exact>Home</NavLink>
-                <NavLink to={`/app/lists`} activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Lists</NavLink>
-                <NavLink to='/app/calendar' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Calendar</NavLink>
+                <NavLink to='/app/lists' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Lists</NavLink>
+                {/* <NavLink to='/app/calendar' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Calendar</NavLink> */}
                 <NavLink to='/app/kanban' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Kanban</NavLink>
                 {/* <NavLink to='/app/stats' activeClassName='userPageTabs__navItem--active' className='userPageTabs__navItem'>Stats</NavLink> */}
             </div>
