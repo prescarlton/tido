@@ -1,0 +1,45 @@
+.colorDot {
+    width:2rem;
+    height:2rem;
+    border-radius: 100%;
+    opacity: .8;
+    transition: .2s all;
+    &--selected {
+        box-shadow: $shadow;
+        opacity:1;
+    }
+    &:hover {
+        opacity:1;
+        box-shadow: $shadow;
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+}
+
+.dotContainer{
+    display: flex;
+    justify-content: space-between;
+    width:35%;
+}
+
+.charcoal {
+    background-color: $charcoal;
+}
+.light-blue {
+    background-color: $light-blue;
+}
+.tart {
+    background-color: $tart;
+}
+.sienna {
+    background-color: $sienna;
+}
+.green {
+    background-color: $green;
+}
+.acid {
+    background-color: $acid;
+}
+.blue {
+    background-color: $blue;
+}

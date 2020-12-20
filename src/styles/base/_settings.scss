@@ -14,11 +14,11 @@ $lightgray: #DDDFE6;
 $checked-color: $green;
 $gray: darken($color: lightgray, $amount: 10);
 $dark-gray: darken($color: $gray, $amount: 10);
-$highlight: $sienna;
+$highlight: $blue;
 
 $shadow: 0px 0px 10px -6px $charcoal;
 $border-shadow: 0px 0px 2px 0px rgba(105, 105, 105, 0.5);
-$border-shadow-no-right: 0px 0px 2px 0px rgba(105,105,105,0.5);
+$border-shadow-no-right: 0px 0px 2px 0px rgba(105, 105, 105, 0.5);
 
 // color settings
 $bg-color: $off-white;
