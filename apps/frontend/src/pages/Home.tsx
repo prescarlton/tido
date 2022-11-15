@@ -1,10 +1,11 @@
-import { Box, Typography } from '@mui/material'
+import PageWrapper from '@/layouts/PageLayout'
+import { Typography } from '@mui/material'
 
 const HomePage = () => {
   return (
-    <Box>
+    <PageWrapper>
       <Typography variant="h1">Home</Typography>
-    </Box>
+    </PageWrapper>
   )
 }
 export default HomePage

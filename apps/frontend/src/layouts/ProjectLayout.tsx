@@ -1,18 +1,16 @@
-import Page from '@/components/common/Page'
-import ProjectList from '@/components/common/ProjectList'
-import UserComponent from '@/components/common/UserComponent'
+import Sidebar from '@/components/common/Sidebar'
 import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 
-const AppLayout = () => {
+const ProjectLayout = () => {
   return (
     <Box
       sx={{
         display: 'flex',
-        height: '100%',
+        flex: 1,
       }}
     >
-      <ProjectList />
+      <Sidebar />
       <Box
         sx={{
           display: 'flex',
@@ -22,12 +20,10 @@ const AppLayout = () => {
           position: 'relative',
         }}
       >
-        <Page>
-          <Outlet />
-          <UserComponent />
-        </Page>
+        <Outlet />
       </Box>
     </Box>
   )
 }
-export default AppLayout
+
+export default ProjectLayout

@@ -7,7 +7,7 @@ import {
 import { MouseEvent, ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-const NavItem = ({
+const SideNavItem = ({
   open,
   icon,
   label,
@@ -19,10 +19,10 @@ const NavItem = ({
   to: string
 }) => {
   const location = useLocation()
-  const active = location.pathname === to
+  const active = location.pathname.endsWith(to)
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation()
+    if (!open) e.stopPropagation()
   }
 
   return (
@@ -71,4 +71,4 @@ const NavItem = ({
     </Link>
   )
 }
-export default NavItem
+export default SideNavItem
