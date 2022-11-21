@@ -54,12 +54,15 @@ const UserComponent = () => {
               width: 36,
             }}
           >
-            PC
+            {user?.firstName[0]}
+            {user?.lastName[0]}
           </Avatar>
           <Stack spacing={-0.25} sx={{ textAlign: 'left' }}>
-            <Typography variant="body2">Preston Carlton</Typography>
+            <Typography variant="body2">
+              {user?.firstName} {user?.lastName}
+            </Typography>
             <Typography variant="caption" color="text.secondary">
-              @preston
+              @{user?.username}
             </Typography>
           </Stack>
         </Box>
@@ -76,7 +79,7 @@ const UserComponent = () => {
         >
           <Stack spacing={1}>
             <Typography variant="body1" sx={{ p: 1 }}>
-              Preston Carlton
+              {user?.firstName} {user?.lastName}
             </Typography>
             <MenuList>
               <ListItem button>

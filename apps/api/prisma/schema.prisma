@@ -3,14 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int    @id @default(autoincrement())
+  id    String    @id @default(cuid())
+  username String @unique
   email String @unique
-  name  String?
+  firstName String @default("")
+  lastName String @default("")
   password String @default("")
   refreshToken String? @default("")
 
@@ -22,10 +24,10 @@ model User {
 
 
 model Project {
-  id        Int      @id @default(autoincrement())
+  id        String      @id @default(cuid())
   name      String
   owner      User     @relation(fields: [ownerId], references: [id])
-  ownerId    Int
+  ownerId   String
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

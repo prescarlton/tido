@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
 import prisma from './db'
 
-export const generateToken = async (userId: number) => {
+export const generateToken = async (userId: string) => {
   const token = jwt.sign(
     {
       userId,
@@ -15,7 +15,7 @@ export const generateToken = async (userId: number) => {
   return token
 }
 
-export const generateRefreshToken = async (userId: number) => {
+export const generateRefreshToken = async (userId: string) => {
   const refreshToken = jwt.sign(
     {
       userId,

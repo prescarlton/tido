@@ -1,7 +1,7 @@
 import { Response } from 'express'
 import { generateRefreshToken, generateToken } from './jwt'
 
-const generateTokens = async (userId: number, res: Response) => {
+const generateTokens = async (userId: string, res: Response) => {
   const accessToken = await generateToken(userId)
   const refreshToken = await generateRefreshToken(userId)
 

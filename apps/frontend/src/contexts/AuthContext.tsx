@@ -25,7 +25,7 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [auth, setAuth, removeAuth] = useLocalStorage('auth', false)
-  const [user, setUser] = useState(null)
+  const [user, setUser, removeUser] = useLocalStorage('user', {})
 
   const navigate = useNavigate()
 
@@ -36,15 +36,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const loginMutation = useMutation(LOGIN_QUERY_KEY, login, {
-    onSuccess: (data) => {
-      console.log(data)
-      onAuth(data)
+    onSuccess: (res) => {
+      onAuth(res.data)
     },
   })
 
   const logout = () => {
     removeAuth()
-    setUser(null)
+    removeUser()
   }
 
   return (

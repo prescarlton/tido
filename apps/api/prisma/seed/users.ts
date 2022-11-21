@@ -8,7 +8,9 @@ const hash = bcrypt.hashSync('Password123!', salt)
 
 const userData: Prisma.UserCreateInput[] = [
   {
-    name: 'Preston Carlton',
+    firstName: 'Preston',
+    lastName: 'Carlton',
+    username: 'preston',
     email: 'prescarlton@gmail.com',
     password: hash,
   },

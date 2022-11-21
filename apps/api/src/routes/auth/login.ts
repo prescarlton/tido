@@ -36,7 +36,9 @@ const login = async (req: Request, res: Response) => {
     select: {
       id: true,
       email: true,
-      name: true,
+      firstName: true,
+      lastName: true,
+      username: true,
     },
   })
 

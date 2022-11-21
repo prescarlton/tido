@@ -3,11 +3,13 @@ import bcrypt from 'bcrypt'
 import { Request, Response } from 'express'
 
 const createUser = async (req: Request, res: Response) => {
-  const { name, email, password } = req.body
+  const { firstName, lastName, email, password, username } = req.body
   const user = await prisma.user.create({
     data: {
-      name,
       email,
+      firstName,
+      lastName,
+      username,
       password: bcrypt.hashSync(password, 10),
     },
   })
