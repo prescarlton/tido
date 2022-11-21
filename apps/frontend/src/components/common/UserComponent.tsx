@@ -1,10 +1,9 @@
-import { ArrowDropDown, Logout, Settings } from '@mui/icons-material'
+import useAuthContext from '@/contexts/AuthContext'
+import { Logout, Settings } from '@mui/icons-material'
 import {
   Avatar,
   Box,
-  ButtonBase,
   ClickAwayListener,
-  IconButton,
   ListItem,
   ListItemIcon,
   ListItemText,
@@ -18,12 +17,18 @@ import { MouseEvent, useState } from 'react'
 const UserComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
+  const { auth, user, logout } = useAuthContext()
+
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
 
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleLogoutClick = () => {
+    logout()
   }
 
   return (
@@ -80,7 +85,7 @@ const UserComponent = () => {
                 </ListItemIcon>
                 <ListItemText>Settings</ListItemText>
               </ListItem>
-              <ListItem button>
+              <ListItem button onClick={handleLogoutClick}>
                 <ListItemIcon>
                   <Logout />
                 </ListItemIcon>

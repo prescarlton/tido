@@ -12,7 +12,6 @@ const ProjectContext = createContext<ProjectContextType>({
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const { projectId } = useParams()
-  console.log(projectId)
 
   const project = {
     id: projectId || '',
@@ -32,7 +31,11 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 }
 
 const useProjectContext = () => {
-  return useContext(ProjectContext)
+  const context = useContext(ProjectContext)
+  if (context === undefined) {
+    throw new Error('useProjectContext must be used within a ProjectProvider')
+  }
+  return context
 }
 
 export default useProjectContext
