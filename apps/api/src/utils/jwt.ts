@@ -9,7 +9,7 @@ export const generateToken = async (userId: string) => {
     },
     process.env.JWT_SECRET || 'secret',
     {
-      expiresIn: '1m',
+      expiresIn: '5m',
     }
   )
   return token
@@ -22,7 +22,7 @@ export const generateRefreshToken = async (userId: string) => {
     },
     process.env.JWT_REFRESH_SECRET || 'secret',
     {
-      expiresIn: '15m',
+      expiresIn: '7d',
     }
   )
 
