@@ -4,16 +4,16 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Visibility } from '@mui/icons-material'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
 import { AxiosError } from 'axios'
-import { MouseEvent, useState } from 'react'
+import { MouseEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import ControlledTextField from '../fields/ControlledTextField'
 
 const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
   const [showPassword, setShowPassword] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const { loginMutation } = useAuthContext()
-  const { openSnackbar } = useSnackbarContext()
 
   const toggleShowPassword = (e: MouseEvent) => {
     e.preventDefault()
@@ -21,25 +21,24 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
   }
 
   const defaultValues = {
-    email: '',
+    username: '',
     password: '',
   }
   const schema = yup.object({
-    email: yup.string().required('Username is required'),
+    username: yup.string().required('Username is required'),
     password: yup.string().required('Password is required'),
   })
-  const { control, handleSubmit, reset } = useForm({
+  const { control, handleSubmit, reset, formState } = useForm({
     defaultValues,
     resolver: yupResolver(schema),
   })
 
   const onSubmit = async (data: any) => {
-    await loginMutation.mutateAsync(data).catch((err: AxiosError) => {
-      openSnackbar({
-        message: err.response?.data.message || 'Something went wrong',
-        type: 'error',
+    await loginMutation
+      .mutateAsync(data)
+      .catch((err: AxiosError<{ message: string }>) => {
+        setErrorMessage(err.response?.data.message ?? 'Login failed')
       })
-    })
   }
 
   const handleSwitchForm = () => {
@@ -47,11 +46,23 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
     switchForm()
   }
 
+  useEffect(() => {
+    if (loginMutation.error)
+      setErrorMessage(
+        loginMutation.error.response?.data.message ?? 'Login failed'
+      )
+  }, [loginMutation.error])
+
+  useEffect(() => {
+    if (formState.errors && formState.isSubmitted)
+      setErrorMessage('Username and password are required')
+  }, [formState.errors, formState.isSubmitted])
+
   return (
     <Box
       sx={{
         width: '50%',
-        p: 16,
+        p: 24,
         display: 'flex',
         flexDirection: 'column',
         gap: 4,
@@ -59,15 +70,23 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Typography variant="h1">Log In</Typography>
-      <Stack spacing={2} sx={{ alignItems: 'center' }}>
+      <Box sx={{}}>
+        <Typography variant="h1">Log In</Typography>
+        {errorMessage && (
+          <Typography variant="body1" color="error.main">
+            {errorMessage}
+          </Typography>
+        )}
+      </Box>
+      <Stack spacing={2} sx={{}}>
         <ControlledTextField
           control={control}
-          name="email"
-          label="Email"
+          name="username"
+          label="Username"
           TextFieldProps={{
             fullWidth: true,
           }}
+          disableError
         />
         <ControlledTextField
           control={control}
@@ -84,8 +103,9 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
               ),
             },
           }}
+          disableError
         />
-        <Button type="submit" variant="contained" sx={{ width: '40%' }}>
+        <Button type="submit" variant="contained">
           Login
         </Button>
       </Stack>

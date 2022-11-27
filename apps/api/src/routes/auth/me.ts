@@ -8,7 +8,6 @@ const getMe = async (req: Request, res: Response) => {
     },
     select: {
       id: true,
-      email: true,
       firstName: true,
       lastName: true,
       username: true,

@@ -1,38 +1,24 @@
+import useCreateProject from '@/hooks/api/projects/useCreateProject'
+import useListProjects from '@/hooks/api/projects/useListProjects'
 import { avatarInitials } from '@/util/avatarInitials'
 import { Apps } from '@mui/icons-material'
 import { Box, Divider, Stack } from '@mui/material'
-import { useMemo } from 'react'
+import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
+import CreateProjectDialog from './CreateProjectDialog'
 import ProjectListItemButton from './ProjectListItemButton'
 
 const ProjectList = () => {
+  const [showCreateDialog, setShowCreateDialog] = useState(false)
+  const openCreateDialog = () => setShowCreateDialog(true)
+  const closeCreateDialog = () => setShowCreateDialog(false)
+
   const navigate = useNavigate()
   const location = useLocation()
-  const projects = useMemo(() => {
-    return [
-      {
-        id: uuid(),
-        name: 'Project 1',
-      },
-      {
-        id: uuid(),
-        name: 'Project 2',
-      },
-      {
-        id: uuid(),
-        name: 'Project 3',
-      },
-      {
-        id: uuid(),
-        name: 'Project 4',
-      },
-      {
-        id: uuid(),
-        name: 'Project 5',
-      },
-    ]
-  }, [])
+  const { data: projects } = useListProjects()
+
+  const onCreateClick = () => openCreateDialog()
+
   return (
     <Box
       sx={{
@@ -62,7 +48,7 @@ const ProjectList = () => {
           </Box>
         </Link>
         <Divider flexItem />
-        {projects.map((project) => (
+        {projects?.map((project) => (
           <ProjectListItemButton
             key={project.id}
             text={avatarInitials(project.name)}
@@ -71,7 +57,16 @@ const ProjectList = () => {
             active={location.pathname.includes(project.id)}
           />
         ))}
+        <ProjectListItemButton
+          text="+"
+          tooltip="Create Project"
+          onClick={onCreateClick}
+        />
       </Stack>
+      <CreateProjectDialog
+        open={showCreateDialog}
+        onClose={closeCreateDialog}
+      />
     </Box>
   )
 }

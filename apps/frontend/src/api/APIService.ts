@@ -43,7 +43,9 @@ function refreshAccessToken() {
 // We can handle generic app errors depending on the status code
 function handleError(error: AxiosError) {
   const { config, response } = error
-  const originalRequest = config
+  const originalConfig = config
+  // fix for newer axios versions
+  originalConfig!.headers = { ...originalConfig!.headers }
 
   switch (response?.status) {
     case 500: {
@@ -63,14 +65,16 @@ function handleError(error: AxiosError) {
           onRefreshed()
         })
       }
-
-      const retryOrigReq = new Promise((resolve) => {
-        subscribeTokenRefresh(() => {
-          resolve(axios(originalRequest as AxiosRequestConfig))
+      if (originalConfig) {
+        const retryOrigReq = new Promise((resolve) => {
+          subscribeTokenRefresh(() => {
+            resolve(axios(originalConfig))
+          })
         })
-      })
-      return retryOrigReq
+        return retryOrigReq
+      }
     }
+
     case 429: {
       // Handle TooManyRequests
       break

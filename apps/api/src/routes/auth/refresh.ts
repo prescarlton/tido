@@ -9,10 +9,9 @@ const refreshToken = async (req: Request, res: Response) => {
   try {
     // Get refresh token from headers
     const token = req.cookies.refreshToken
-    console.log(token)
 
     if (!token) {
-      return res.status(400).json({ message: 'No JWT provided' })
+      return res.status(401).json({ message: 'No JWT provided' })
     }
 
     const jwtSecret: string | undefined = process.env.JWT_REFRESH_SECRET

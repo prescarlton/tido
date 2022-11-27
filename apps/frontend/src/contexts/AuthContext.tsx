@@ -5,8 +5,8 @@ import {
   LOGIN_QUERY_KEY,
 } from '@/api/AuthService/requests/login'
 import { useMutation, UseMutationResult } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { AxiosError, AxiosResponse } from 'axios'
+import { createContext, ReactNode, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocalStorage } from 'react-use'
 
@@ -15,7 +15,7 @@ type AuthContextType = {
   user: any
   loginMutation: UseMutationResult<
     AxiosResponse<LoginResponse>,
-    unknown,
+    AxiosError<{ message: string }>,
     LoginRequest
   >
   logout: () => void
@@ -24,7 +24,9 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [auth, setAuth, removeAuth] = useLocalStorage('auth', false)
+  const [auth, setAuth, removeAuth] = useLocalStorage('auth', false, {
+    raw: true,
+  })
   const [user, setUser, removeUser] = useLocalStorage('user', {})
 
   const navigate = useNavigate()
@@ -35,7 +37,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate('/')
   }
 
-  const loginMutation = useMutation(LOGIN_QUERY_KEY, login, {
+  const loginMutation = useMutation<
+    AxiosResponse<LoginResponse>,
+    AxiosError<{ message: string }>,
+    LoginRequest
+  >(LOGIN_QUERY_KEY, login, {
     onSuccess: (res) => {
       onAuth(res.data)
     },

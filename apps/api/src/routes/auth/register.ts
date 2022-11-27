@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt'
 import { Request, Response } from 'express'
 
 const register = async (req: Request, res: Response) => {
-  const { email, password, firstName, lastName, username } = req.body as {
-    email: string
+  const { password, firstName, lastName, username } = req.body as {
     password: string
     firstName: string
     lastName: string
@@ -13,14 +12,7 @@ const register = async (req: Request, res: Response) => {
   }
   const user = await prisma.user.findMany({
     where: {
-      OR: [
-        {
-          email,
-        },
-        {
-          username,
-        },
-      ],
+      username,
     },
   })
   if (user) {
@@ -31,7 +23,6 @@ const register = async (req: Request, res: Response) => {
 
   const newUser = await prisma.user.create({
     data: {
-      email,
       firstName,
       lastName,
       username,
@@ -39,7 +30,7 @@ const register = async (req: Request, res: Response) => {
     },
     select: {
       id: true,
-      email: true,
+      username: true,
     },
   })
   await generateTokens(newUser.id, res)

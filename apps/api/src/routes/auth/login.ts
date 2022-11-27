@@ -5,11 +5,14 @@ import { Request, Response } from 'express'
 import generateTokens from '@/utils/generateTokens'
 
 const login = async (req: Request, res: Response) => {
-  const { email, password } = req.body as { email: string; password: string }
+  const { username, password } = req.body as {
+    username: string
+    password: string
+  }
 
   const user = await prisma.user.findUnique({
     where: {
-      email,
+      username,
     },
     select: {
       id: true,
@@ -17,7 +20,7 @@ const login = async (req: Request, res: Response) => {
     },
   })
   if (!user) {
-    return res.status(400).json({ message: 'User not found' })
+    return res.status(400).json({ message: 'Invalid credentials' })
   }
 
   const validPassword = await bcrypt.compare(password, user?.password)

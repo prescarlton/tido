@@ -1,25 +1,27 @@
 import prisma from '@/utils/db'
+import errorHandler from '@/utils/errorHandler'
 import { Request, Response } from 'express'
 
 const createProject = async (req: Request, res: Response) => {
-  const { name, description, userId } = req.body as {
+  const { name } = req.body as {
     name: string
-    description: string
-    userId: string
   }
+  try {
+    const project = await prisma.project.create({
+      data: {
+        name,
+        owner: {
+          connect: {
+            id: res.locals.user.id,
+          },
+        },
+      },
+    })
 
-  if (res.locals.user.id !== userId) {
-    return res.status(403).json({ message: 'Unauthorized' })
+    return res.status(200).json({ message: 'Project created', data: project })
+  } catch (error) {
+    return errorHandler(res, error, 'Error creating project')
   }
-
-  const project = await prisma.project.create({
-    data: {
-      name,
-      ownerId: userId,
-    },
-  })
-
-  return res.status(200).json({ message: 'Project created', data: project })
 }
 
 export default createProject

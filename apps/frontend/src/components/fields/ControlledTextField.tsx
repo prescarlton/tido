@@ -8,6 +8,7 @@ export interface ControlledTextFieldProps<FieldValueProps extends FieldValues>
   extends UseControllerProps<FieldValueProps> {
   label?: string | ReactElement
   TextFieldProps?: TextFieldProps
+  disableError?: boolean
 }
 
 function ControlledTextField<FieldValueProps extends FieldValues>({
@@ -15,6 +16,7 @@ function ControlledTextField<FieldValueProps extends FieldValues>({
   name,
   label,
   TextFieldProps = {},
+  disableError = false,
 }: ControlledTextFieldProps<FieldValueProps>) {
   return (
     <Controller
@@ -32,7 +34,7 @@ function ControlledTextField<FieldValueProps extends FieldValues>({
           onBlur={onBlur}
           ref={ref}
           value={value}
-          helperText={error?.message ?? ''}
+          helperText={(!disableError && error?.message) ?? ''}
           {...TextFieldProps}
         />
       )}

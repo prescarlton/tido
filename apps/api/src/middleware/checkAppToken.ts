@@ -13,7 +13,7 @@ const checkAppToken = async (
     let decodedToken: any
 
     if (!token) {
-      return res.status(400).json({ message: 'No JWT Found' })
+      return res.status(401).json({ message: 'No JWT Found' })
     }
     try {
       // if this fails, the token is invalid and we should return an error
@@ -30,7 +30,7 @@ const checkAppToken = async (
       return res.status(401).json({ message: 'Error validating JWT' })
     }
 
-    const userData = prisma.user.findUnique({
+    const userData = await prisma.user.findUnique({
       select: {
         id: true,
       },

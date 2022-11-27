@@ -16,6 +16,40 @@ const theme: ThemeOptions = {
       fontWeight: 700,
     },
   },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+        },
+      },
+    },
+    MuiTextField: {
+      defaultProps: {
+        InputLabelProps: {
+          shrink: false,
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          gap: '.25rem',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          position: 'relative',
+          transform: 'none',
+          fontWeight: 500,
+          color: '#898989',
+          fontSize: '.75rem',
+        },
+      },
+    },
+  },
 }
 
 export default createTheme(theme)
