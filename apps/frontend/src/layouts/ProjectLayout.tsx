@@ -1,4 +1,4 @@
-import Sidebar from '@/components/common/Sidebar'
+import ProjectList from '@/components/common/ProjectList'
 import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 
@@ -10,7 +10,7 @@ const ProjectLayout = () => {
         flex: 1,
       }}
     >
-      <Sidebar />
+      <ProjectList />
       <Box
         sx={{
           display: 'flex',

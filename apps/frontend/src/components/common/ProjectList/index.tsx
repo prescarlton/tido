@@ -1,72 +1,90 @@
-import useCreateProject from '@/hooks/api/projects/useCreateProject'
 import useListProjects from '@/hooks/api/projects/useListProjects'
-import { avatarInitials } from '@/util/avatarInitials'
-import { Apps } from '@mui/icons-material'
-import { Box, Divider, Stack } from '@mui/material'
+import {
+  ArrowDropDown,
+  ArrowDropUp,
+  ExpandLess,
+  ExpandMore,
+} from '@mui/icons-material'
+import { Box, Button, Collapse, Stack } from '@mui/material'
 import { useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import CreateProjectDialog from './CreateProjectDialog'
-import ProjectListItemButton from './ProjectListItemButton'
+import CreateProjectButton from './CreateProjectButton'
+import ProjectListItem from './ProjectListItem'
 
 const ProjectList = () => {
-  const [showCreateDialog, setShowCreateDialog] = useState(false)
-  const openCreateDialog = () => setShowCreateDialog(true)
-  const closeCreateDialog = () => setShowCreateDialog(false)
-
-  const navigate = useNavigate()
-  const location = useLocation()
+  const [showFavorites, setShowFavorites] = useState(true)
+  const [showProjects, setShowProjects] = useState(true)
+  const toggleFavorites = () => setShowFavorites((prev) => !prev)
+  const toggleProjects = () => setShowProjects((prev) => !prev)
   const { data: projects } = useListProjects()
-
-  const onCreateClick = () => openCreateDialog()
 
   return (
     <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        justifyContent: 'space-between',
         borderRight: 1,
-        width: 64,
-        py: 1,
+        width: 240,
+        p: 1,
         borderColor: 'divider',
       }}
     >
-      <Stack spacing={2}>
-        <Link to="/">
-          <Box
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 3,
+        }}
+      >
+        <Box>
+          <Button
+            onClick={toggleFavorites}
+            startIcon={showFavorites ? <ExpandLess /> : <ExpandMore />}
+            size="small"
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              borderRadius: 3,
-              height: 40,
-              width: 40,
-              backgroundColor: 'primary.main',
+              justifyContent: 'flex-start',
+              width: '100%',
+              color: 'text.secondary',
             }}
           >
-            <Apps sx={{ color: 'primary.contrastText' }} />
-          </Box>
-        </Link>
-        <Divider flexItem />
-        {projects?.map((project) => (
-          <ProjectListItemButton
-            key={project.id}
-            text={avatarInitials(project.name)}
-            tooltip={project.name}
-            onClick={() => navigate(`/project/${project.id}`)}
-            active={location.pathname.includes(project.id)}
-          />
-        ))}
-        <ProjectListItemButton
-          text="+"
-          tooltip="Create Project"
-          onClick={onCreateClick}
-        />
-      </Stack>
-      <CreateProjectDialog
-        open={showCreateDialog}
-        onClose={closeCreateDialog}
-      />
+            Favorites
+          </Button>
+          <Collapse in={showFavorites}>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              No Favorites
+            </Box>
+          </Collapse>
+        </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+          <Button
+            onClick={toggleProjects}
+            startIcon={showProjects ? <ExpandLess /> : <ExpandMore />}
+            size="small"
+            sx={{
+              justifyContent: 'flex-start',
+              width: '100%',
+              color: 'text.secondary',
+            }}
+          >
+            All Projects
+          </Button>
+
+          <Collapse in={showProjects}>
+            <Stack spacing={1} sx={{ px: 1 }}>
+              {projects?.map((project) => (
+                <ProjectListItem key={project.id} project={project} />
+              ))}
+            </Stack>
+          </Collapse>
+        </Box>
+      </Box>
+      <CreateProjectButton />
     </Box>
   )
 }

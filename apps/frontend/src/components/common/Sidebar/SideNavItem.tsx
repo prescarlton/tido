@@ -1,9 +1,4 @@
-import {
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from '@mui/material'
+import { ListItem, ListItemButton, ListItemIcon } from '@mui/material'
 import { MouseEvent, ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -19,53 +14,62 @@ const SideNavItem = ({
   to: string
 }) => {
   const location = useLocation()
-  const active = location.pathname.endsWith(to)
+  const active = location.pathname.includes(to)
 
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     if (!open) e.stopPropagation()
   }
 
   return (
-    <Link to={to} style={{ textDecoration: 'none', color: 'inherit' }}>
+    <Link
+      to={to}
+      style={{
+        textDecoration: 'none',
+        color: 'inherit',
+      }}
+    >
       <ListItem disablePadding sx={{ display: 'block' }}>
         <ListItemButton
           onClick={handleClick}
           sx={{
-            minHeight: 48,
-            minWidth: 48,
+            height: 30,
             justifyContent: open ? 'initial' : 'center',
-            transition: '.3s ease-in-out all',
-            borderRadius: 2,
-            ...(!active && {
-              '&:hover': {
-                backgroundColor: 'primary.main',
-                '*': {
-                  color: 'primary.contrastText',
-                },
-              },
-            }),
-            ...(active && {
+            boxSizing: 'content-box',
+            '*': {
+              transition: '.3s ease-in-out all',
+              color: active ? 'primary.main' : 'text.secondary',
+            },
+            '&:hover': {
+              backgroundColor: 'transparent',
               '*': {
-                color: 'primary.contrastText',
+                color: 'primary.main',
               },
-              backgroundColor: 'primary.main',
-              '&:hover': {
+              '&:before': {
                 backgroundColor: 'primary.main',
               },
-            }),
+            },
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: 4,
+              height: '100%',
+              backgroundColor: active ? 'primary.main' : 'transparent',
+              transition: '.3s ease-in-out all',
+              borderTopRightRadius: 4,
+              borderBottomRightRadius: 4,
+            },
           }}
           disableRipple
         >
           <ListItemIcon
             sx={{
-              minWidth: 0,
-              mr: open ? 3 : 'auto',
               justifyContent: 'center',
             }}
           >
             {icon}
           </ListItemIcon>
-          <ListItemText primary={label} sx={{ opacity: open ? 1 : 0 }} />
         </ListItemButton>
       </ListItem>
     </Link>

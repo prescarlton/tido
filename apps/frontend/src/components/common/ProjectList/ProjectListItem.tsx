@@ -6,15 +6,10 @@ const ProjectListItem = ({ project }: { project: Project }) => {
   const location = useLocation()
   const active = location.pathname.includes(project.id)
 
-  const nameInitials = project.name
-    .split(' ')
-    .map((word) => word[0])
-    .join('')
-
   const navigate = useNavigate()
 
   const handleClick = () => {
-    navigate(`/project/${project.id}`)
+    navigate(`${project.id}`)
   }
 
   return (
@@ -22,31 +17,24 @@ const ProjectListItem = ({ project }: { project: Project }) => {
       sx={{
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 3,
-        height: 36,
-        width: 36,
-        backgroundColor: active ? 'primary.main' : 'transparent',
-        border: active ? 0 : 2,
-        borderColor: 'primary.main',
         cursor: 'pointer',
         transition: '.3s ease-in-out all',
         '&:hover': {
-          backgroundColor: 'primary.main',
-          '*': {
-            color: 'primary.contrastText',
-          },
+          backgroundColor: '#f5f5f5',
         },
+        py: 1,
+        px: 2,
+        borderRadius: 2,
       }}
       onClick={handleClick}
     >
       <Typography
         variant="body1"
         sx={{
-          color: active ? 'primary.contrastText' : 'primary.main',
+          color: active ? 'text.primary' : 'text.secondary',
         }}
       >
-        {nameInitials}
+        {project.name}
       </Typography>
     </Box>
   )

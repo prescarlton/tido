@@ -1,15 +1,13 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 import HomePage from '@/pages/Home'
-import NotFoundPage from '@/pages/404'
 import AppLayout from './layouts/AppLayout'
 import SettingsPage from './pages/Settings'
-import BoardsPage from './pages/projects/Boards'
-import ResourcesPage from './pages/projects/Resources'
-import CalendarPage from './pages/projects/CalendarPage'
 import ProjectLayout from './layouts/ProjectLayout'
 import ProjectOverview from './pages/projects/Overview'
 import LoginPage from './pages/Login'
 import useAuthContext from './contexts/AuthContext'
+import TeamOverviewPage from './pages/TeamOverview'
+import ProjectListPage from './pages/ProjectList'
 
 const AppRouter = () => {
   const { auth } = useAuthContext()
@@ -17,16 +15,13 @@ const AppRouter = () => {
     <Routes>
       {auth && (
         <Route path="/" element={<AppLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/project/:projectId" element={<ProjectLayout />}>
-            <Route index element={<Navigate to="home" />} />
-            <Route path="home" element={<ProjectOverview />} />
-            <Route path="boards" element={<BoardsPage />} />
-            <Route path="resources" element={<ResourcesPage />} />
-            <Route path="calendar" element={<CalendarPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+          <Route index element={<Navigate to="/dashboard" />} />
+          <Route path="dashboard" element={<HomePage />} />
+          <Route path="projects" element={<ProjectLayout />}>
+            <Route index element={<ProjectListPage />} />
+            <Route path=":projectId" element={<ProjectOverview />} />
           </Route>
+          <Route path="team" element={<TeamOverviewPage />} />
           <Route path="/settings" element={<SettingsPage />} />
         </Route>
       )}

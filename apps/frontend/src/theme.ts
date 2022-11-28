@@ -15,6 +15,14 @@ const theme: ThemeOptions = {
       fontSize: '2.5rem',
       fontWeight: 700,
     },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 700,
+    },
+    h3: {
+      fontSize: '1.5rem',
+      fontWeight: 700,
+    },
   },
   components: {
     MuiButton: {

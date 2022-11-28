@@ -1,5 +1,5 @@
 import Page from '@/components/common/Page'
-import ProjectList from '@/components/common/ProjectList'
+import Sidebar from '@/components/common/Sidebar'
 import UserComponent from '@/components/common/UserComponent'
 import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
@@ -12,7 +12,7 @@ const AppLayout = () => {
         height: '100%',
       }}
     >
-      <ProjectList />
+      <Sidebar />
       <Box
         sx={{
           display: 'flex',

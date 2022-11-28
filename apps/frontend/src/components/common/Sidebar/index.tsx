@@ -1,42 +1,33 @@
 import useProjectContext from '@/contexts/ProjectContext'
 import {
   ArrowDropDown,
-  Article,
-  CalendarMonth,
-  Dashboard,
-  Home,
+  FolderOpen,
+  GridView,
+  PeopleAlt,
   Settings,
 } from '@mui/icons-material'
-import { Box, Button, List, useTheme } from '@mui/material'
+import { Box, Button, List } from '@mui/material'
 import { useState } from 'react'
 import NavItem from './SideNavItem'
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true)
-  const handleOpenDrawer = () => setOpen(true)
-  const handleCloseDrawer = () => setOpen(false)
-  const theme = useTheme()
+  const [open, setOpen] = useState(false)
 
   const pages = [
     {
-      title: 'Home',
-      to: 'home',
-      icon: <Home />,
+      title: 'Dashboard',
+      to: 'dashboard',
+      icon: <GridView />,
     },
     {
-      title: 'Boards',
-      to: 'boards',
-      icon: <Dashboard />,
+      title: 'Projects',
+      to: 'projects',
+      icon: <FolderOpen />,
     },
     {
-      title: 'Resources',
-      to: 'resources',
-      icon: <Article />,
-    },
-    {
-      title: 'Calendar',
-      to: 'calendar',
-      icon: <CalendarMonth />,
+      title: 'Team',
+      to: 'team',
+      icon: <PeopleAlt />,
     },
     {
       title: 'Settings',
@@ -52,15 +43,14 @@ const Sidebar = () => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        width: open ? 240 : `calc(${theme.spacing(8)} + 1px)`,
+        width: 64,
         transition: 'width 0.3s',
         borderRight: 1,
         borderColor: 'divider',
         overflowX: 'hidden',
-        p: 1,
+        py: 1,
         gap: 2,
       }}
-      onClick={handleOpenDrawer}
     >
       {open && (
         <Button
@@ -77,7 +67,7 @@ const Sidebar = () => {
         sx={{
           display: 'flex',
           flexDirection: 'column',
-          gap: 0.5,
+          gap: 2,
         }}
       >
         {pages.map((page) => (
