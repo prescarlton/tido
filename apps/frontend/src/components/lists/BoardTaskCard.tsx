@@ -8,8 +8,10 @@ const BoardTaskCard = () => {
   return (
     <Card
       sx={{
-        borderRadius: 1.5,
+        borderRadius: 0.75,
         boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+        minHeight: 'min-content',
+        mb: 1,
       }}
     >
       <CardActionArea sx={{ width: '100%', height: '100%', py: 1, px: 1.5 }}>

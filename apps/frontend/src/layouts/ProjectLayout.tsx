@@ -11,6 +11,7 @@ const ProjectsLayout = () => {
           display: 'flex',
           alignItems: 'stretch',
           flex: 1,
+          height: '100%',
         }}
       >
         <ProjectList />
