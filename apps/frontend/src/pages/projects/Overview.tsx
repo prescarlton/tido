@@ -1,10 +1,6 @@
-import { Box, Typography } from '@mui/material'
+import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
 
-const ProjectOverview = () => {
-  return (
-    <Box>
-      <Typography variant="h1">Project overview</Typography>
-    </Box>
-  )
+const OverviewPage = () => {
+  return <ProjectTabContent title="Overview">overview page</ProjectTabContent>
 }
-export default ProjectOverview
+export default OverviewPage

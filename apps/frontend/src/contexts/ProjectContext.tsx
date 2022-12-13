@@ -1,30 +1,50 @@
-import { Project } from '@/types/Project'
-import { createContext, ReactNode, useContext } from 'react'
+import { Project } from '@/api/ProjectService/requests/getProjectById'
+import useGetProjectById from '@/hooks/api/projects/useGetProject'
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from 'react'
 import { useParams } from 'react-router-dom'
 
 type ProjectContextType = {
-  project: Project | null
+  project: Project | undefined
+  fullscreen: boolean
+  setFullscreen: Dispatch<SetStateAction<boolean>>
+  showProjectHeader: boolean
+  setShowProjectHeader: Dispatch<SetStateAction<boolean>>
+  showSideNav: boolean
+  setShowSideNav: Dispatch<SetStateAction<boolean>>
 }
 
-const ProjectContext = createContext<ProjectContextType>({
-  project: null,
-})
+const ProjectContext = createContext<ProjectContextType>(
+  {} as ProjectContextType
+)
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {
-  const { projectId } = useParams()
+  const [fullscreen, setFullscreen] = useState(false)
+  const [showProjectHeader, setShowProjectHeader] = useState(true)
+  const [showSideNav, setShowSideNav] = useState(true)
 
-  const project = {
-    id: projectId || '',
-    name: 'Sample Project',
-    description: 'Project Description',
-    owner: {
-      id: '1',
-      name: 'John Doe',
-    },
-  }
+  const { projectId } = useParams() as { projectId: string }
+
+  const { data: project } = useGetProjectById({ id: projectId })
 
   return (
-    <ProjectContext.Provider value={{ project }}>
+    <ProjectContext.Provider
+      value={{
+        project,
+        fullscreen,
+        setFullscreen,
+        showProjectHeader,
+        setShowProjectHeader,
+        showSideNav,
+        setShowSideNav,
+      }}
+    >
       {children}
     </ProjectContext.Provider>
   )

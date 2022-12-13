@@ -1,11 +1,13 @@
+import useProjectContext from '@/contexts/ProjectContext'
 import useListProjects from '@/hooks/api/projects/useListProjects'
 import {
   ArrowDropDown,
   ArrowDropUp,
+  ArrowForwardIos,
   ExpandLess,
   ExpandMore,
 } from '@mui/icons-material'
-import { Box, Button, Collapse, Stack } from '@mui/material'
+import { Box, Button, Collapse, IconButton, Stack } from '@mui/material'
 import { useState } from 'react'
 import CreateProjectButton from './CreateProjectButton'
 import ProjectListItem from './ProjectListItem'
@@ -27,6 +29,7 @@ const ProjectList = () => {
         width: 240,
         p: 1,
         borderColor: 'divider',
+        backgroundColor: 'background.paper',
       }}
     >
       <Box

@@ -1,6 +1,8 @@
 import ProjectCard from '@/components/projects/ProjectCard'
+import useProjectContext from '@/contexts/ProjectContext'
 import useListProjects from '@/hooks/api/projects/useListProjects'
-import { Box, Typography } from '@mui/material'
+import { ArrowForwardIos } from '@mui/icons-material'
+import { Box, Collapse, IconButton, Slide, Typography } from '@mui/material'
 
 const ProjectListPage = () => {
   const { data: projects } = useListProjects()
@@ -13,7 +15,8 @@ const ProjectListPage = () => {
         p: 2,
         gap: 2,
         flex: 1,
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#FAFBFC',
+        position: 'relative',
       }}
     >
       <Typography variant="h1">Projects</Typography>

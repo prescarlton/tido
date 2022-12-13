@@ -1,4 +1,5 @@
 import useAuthContext from '@/contexts/AuthContext'
+import useGetMe from '@/hooks/api/useMe'
 import { Logout, Settings } from '@mui/icons-material'
 import {
   Avatar,
@@ -17,7 +18,9 @@ import { MouseEvent, useState } from 'react'
 const UserComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
-  const { auth, user, logout } = useAuthContext()
+  const { logout } = useAuthContext()
+
+  const { data: me } = useGetMe()
 
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
@@ -54,15 +57,15 @@ const UserComponent = () => {
               width: 36,
             }}
           >
-            {user?.firstName[0]}
-            {user?.lastName[0]}
+            {me?.firstName[0]}
+            {me?.lastName[0]}
           </Avatar>
           <Stack spacing={-0.25} sx={{ textAlign: 'left' }}>
             <Typography variant="body2">
-              {user?.firstName} {user?.lastName}
+              {me?.firstName} {me?.lastName}
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              @{user?.username}
+              @{me?.username}
             </Typography>
           </Stack>
         </Box>
@@ -79,7 +82,7 @@ const UserComponent = () => {
         >
           <Stack spacing={1}>
             <Typography variant="body1" sx={{ p: 1 }}>
-              {user?.firstName} {user?.lastName}
+              {me?.firstName} {me?.lastName}
             </Typography>
             <MenuList>
               <ListItem button>

@@ -1,10 +1,11 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 const projectData = [
   {
-    name: 'Sample Project',
+    name: 'Tido',
+    description: 'A task management app',
   },
 ]
 
@@ -24,7 +25,12 @@ const projectSeed = async () => {
     const project = await prisma.project.create({
       data: {
         ...p,
-        ownerId: user.id,
+        members: {
+          create: {
+            userId: user.id,
+            role: 'ADMIN',
+          },
+        },
       },
     })
     console.log(`Created project with id: ${project.id}`)

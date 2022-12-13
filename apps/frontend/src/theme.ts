@@ -6,10 +6,19 @@ const theme: ThemeOptions = {
     primary: {
       main: '#4685FF',
     },
+    background: {
+      // default: '#FAFBFC',
+      // default: '#F2F2F2',
+      default: '#F4F5F7',
+    },
   },
   typography: {
     allVariants: {
-      fontFamily: 'Lato, sans-serif',
+      fontFamily: 'Open Sans, sans-serif',
+      /*
+      fontFamily:
+        '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;',
+      */
     },
     h1: {
       fontSize: '2.5rem',
@@ -22,6 +31,22 @@ const theme: ThemeOptions = {
     h3: {
       fontSize: '1.5rem',
       fontWeight: 700,
+    },
+    h4: {
+      fontSize: '1.25rem',
+      fontWeight: 'normal',
+    },
+    h5: {
+      fontSize: '1rem',
+      fontWeight: 'normal',
+    },
+    h6: {
+      fontSize: '0.875rem',
+      fontWeight: 'normal',
+    },
+    caption: {
+      lineHeight: 1.5,
+      color: '#898989',
     },
   },
   components: {

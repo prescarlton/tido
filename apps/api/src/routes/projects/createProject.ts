@@ -6,13 +6,15 @@ const createProject = async (req: Request, res: Response) => {
   const { name } = req.body as {
     name: string
   }
+  const { user } = res.locals
   try {
     const project = await prisma.project.create({
       data: {
         name,
-        owner: {
-          connect: {
-            id: res.locals.user.id,
+        members: {
+          create: {
+            userId: user.id,
+            role: 'ADMIN',
           },
         },
       },

@@ -21,7 +21,7 @@ const Sidebar = () => {
     },
     {
       title: 'Projects',
-      to: 'projects',
+      to: 'p',
       icon: <FolderOpen />,
     },
     {
@@ -50,6 +50,7 @@ const Sidebar = () => {
         overflowX: 'hidden',
         py: 1,
         gap: 2,
+        backgroundColor: 'background.paper',
       }}
     >
       {open && (

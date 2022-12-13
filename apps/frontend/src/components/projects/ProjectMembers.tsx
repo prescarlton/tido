@@ -25,6 +25,7 @@ const ProjectMembers = () => {
     >
       {members.map((member) => (
         <Avatar
+          key={member.name}
           alt={member.name}
           src={member.avatar}
           sx={{

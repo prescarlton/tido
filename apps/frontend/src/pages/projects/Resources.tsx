@@ -1,11 +1,8 @@
+import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
 import { Box, Typography } from '@mui/material'
 
 const ResourcesPage = () => {
-  return (
-    <Box>
-      <Typography variant="h1">Resources</Typography>
-    </Box>
-  )
+  return <ProjectTabContent title="Resources">resources page</ProjectTabContent>
 }
 
 export default ResourcesPage

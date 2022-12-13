@@ -1,29 +1,33 @@
 import ProjectList from '@/components/common/ProjectList'
+import { ProjectProvider } from '@/contexts/ProjectContext'
 import { Box } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 
-const ProjectLayout = () => {
+const ProjectsLayout = () => {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flex: 1,
-      }}
-    >
-      <ProjectList />
+    <ProjectProvider>
       <Box
         sx={{
           display: 'flex',
-          flexDirection: 'column',
+          alignItems: 'stretch',
           flex: 1,
-          overflow: 'hidden',
-          position: 'relative',
         }}
       >
-        <Outlet />
+        <ProjectList />
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          <Outlet />
+        </Box>
       </Box>
-    </Box>
+    </ProjectProvider>
   )
 }
 
-export default ProjectLayout
+export default ProjectsLayout
