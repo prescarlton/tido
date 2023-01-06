@@ -1,5 +1,6 @@
 import Page from '@/components/common/Page'
 import Sidebar from '@/components/common/Sidebar'
+import Topbar from '@/components/common/Topbar'
 import UserComponent from '@/components/common/UserComponent'
 import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
@@ -9,10 +10,11 @@ const AppLayout = () => {
     <Box
       sx={{
         display: 'flex',
+        flexDirection: 'column',
         height: '100%',
       }}
     >
-      <Sidebar />
+      <Topbar />
       <Box
         sx={{
           display: 'flex',
@@ -24,7 +26,6 @@ const AppLayout = () => {
       >
         <Page>
           <Outlet />
-          <UserComponent />
         </Page>
       </Box>
     </Box>

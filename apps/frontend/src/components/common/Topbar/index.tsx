@@ -1,5 +1,6 @@
 import { Apps } from '@mui/icons-material'
-import { Box, IconButton, Stack } from '@mui/material'
+import { Box, Button, IconButton, Stack } from '@mui/material'
+import { ChevronDown } from 'react-feather'
 import UserComponent from '../UserComponent'
 
 const Topbar = () => {
@@ -16,11 +17,33 @@ const Topbar = () => {
       }}
     >
       <Stack direction="row" spacing={2} alignItems="center">
-        <IconButton color="primary">
-          <Apps />
-        </IconButton>
+        <Button
+          variant="text"
+          size="large"
+          sx={{
+            textTransform: 'none',
+            fontWeight: 'bold',
+            fontSize: '2rem',
+          }}
+        >
+          tido
+        </Button>
+        <Stack
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          sx={{
+            '& .MuiButton-root': {
+              textTransform: 'none',
+            },
+          }}
+        >
+          <Button endIcon={<ChevronDown />}>Workspaces</Button>
+          <Button endIcon={<ChevronDown />}>Projects</Button>
+          <Button endIcon={<ChevronDown />}>Recent</Button>
+          <Button endIcon={<ChevronDown />}>Pinned</Button>
+        </Stack>
       </Stack>
-
       <UserComponent />
     </Box>
   )
