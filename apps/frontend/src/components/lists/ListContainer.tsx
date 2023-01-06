@@ -1,8 +1,17 @@
-import { Add, MoreHoriz, MoreVert } from '@mui/icons-material'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
+import { MouseEvent, useState } from 'react'
+import { MoreVertical, Plus } from 'react-feather'
 import BoardTaskCard from './BoardTaskCard'
+import ListContextMenu from './ListContextMenu'
 
 const ListContainer = () => {
+  const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null)
+
+  const handleMenuOpen = (event: MouseEvent<HTMLElement>) => {
+    setMenuAnchorEl(event.currentTarget)
+  }
+  const handleMenuClose = () => setMenuAnchorEl(null)
+
   return (
     <Box
       sx={{
@@ -37,10 +46,10 @@ const ListContainer = () => {
           </Typography>
           <Stack direction="row" spacing={0.5}>
             <IconButton>
-              <Add />
+              <Plus />
             </IconButton>
-            <IconButton>
-              <MoreVert />
+            <IconButton onClick={handleMenuOpen}>
+              <MoreVertical />
             </IconButton>
           </Stack>
         </Box>
@@ -56,7 +65,7 @@ const ListContainer = () => {
         </Box>
         <Button
           variant="text"
-          startIcon={<Add />}
+          startIcon={<Plus />}
           sx={{
             color: 'text.secondary',
             textTransform: 'none',
@@ -67,6 +76,7 @@ const ListContainer = () => {
           Add a task
         </Button>
       </Box>
+      <ListContextMenu anchorEl={menuAnchorEl} onClose={handleMenuClose} />
     </Box>
   )
 }

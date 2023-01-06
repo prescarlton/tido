@@ -19,6 +19,7 @@ const BoardPage = () => {
         flex: 1,
         flexDirection: 'column',
         overflow: 'hidden',
+        height: '100%',
       }}
     >
       <BoardPageHeader boardName={data?.name || 'Loading...'} />
@@ -26,19 +27,23 @@ const BoardPage = () => {
         sx={{
           px: 4,
           pb: 2,
-          overflow: 'hidden',
-          /*
+          overflowY: 'hidden',
+          overflowX: 'auto',
+          height: '100%',
+          whiteSpace: 'nowrap',
           display: 'flex',
-          gap: 1.5,
           overflow: 'auto',
           alignItems: 'flex-start',
           flex: 1,
-          */
         }}
       >
         <ListContainer />
         <ListContainer />
         <ListContainer />
+        <ListContainer />
+        <ListContainer />
+        <ListContainer />
+        <NewListButton />
       </Box>
     </Box>
   )

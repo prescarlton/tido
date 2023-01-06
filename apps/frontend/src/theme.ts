@@ -51,6 +51,9 @@ const theme: ThemeOptions = {
   },
   components: {
     MuiButton: {
+      defaultProps: {
+        disableTouchRipple: true,
+      },
       styleOverrides: {
         root: {
           borderRadius: 8,
@@ -79,6 +82,20 @@ const theme: ThemeOptions = {
           fontWeight: 500,
           color: '#898989',
           fontSize: '.75rem',
+        },
+      },
+    },
+    MuiIconButton: {
+      defaultProps: {
+        disableTouchRipple: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 5,
+          transition: 'background-color 0.1s ease-in-out',
+          '&:active': {
+            backgroundColor: 'rgba(0, 0, 0, 0.08)',
+          },
         },
       },
     },

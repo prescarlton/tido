@@ -9,8 +9,8 @@ const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
     password: '',
   }
   const schema = yup.object({
-    username: yup.string().required(),
-    password: yup.string().required(),
+    username: yup.string().required('Username is required'),
+    password: yup.string().required('Password is required'),
   })
   const { handleSubmit, register, reset } = useForm({
     defaultValues,
@@ -30,10 +30,10 @@ const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
     <Box
       sx={{
         width: '50%',
+        p: 24,
         display: 'flex',
         flexDirection: 'column',
         gap: 4,
-        p: 16,
       }}
       component="form"
       onSubmit={handleSubmit(onSubmit)}
