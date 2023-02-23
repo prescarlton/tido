@@ -1,7 +1,8 @@
-import useCreateBoard from '@/hooks/api/boards/useCreateBoard'
 import { Add } from '@mui/icons-material'
 import { Button } from '@mui/material'
 import { useParams } from 'react-router-dom'
+
+import useCreateBoard from '@/hooks/api/boards/useCreateBoard'
 
 const CreateBoardButton = () => {
   const { projectId } = useParams() as { projectId: string }

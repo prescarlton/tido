@@ -1,13 +1,14 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
+
 import {
+  CREATE_BOARD_QUERY_KEY,
   createBoard,
   CreateBoardRequest,
   CreateBoardResponse,
-  CREATE_BOARD_QUERY_KEY,
 } from '@/api/ProjectService/requests/createBoard'
 import { BOARD_LIST_QUERY_KEY } from '@/api/ProjectService/requests/listBoards'
 import useSnackbarContext from '@/contexts/SnackbarContext'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
 
 const useCreateBoard = () => {
   const { openSnackbar } = useSnackbarContext()

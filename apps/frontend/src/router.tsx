@@ -1,20 +1,22 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+
 import HomePage from '@/pages/Home'
-import AppLayout from './layouts/AppLayout'
-import SettingsPage from './pages/Settings'
-import ProjectsLayout from './layouts/ProjectLayout'
-import LoginPage from './pages/Login'
+
 import useAuthContext from './contexts/AuthContext'
-import TeamOverviewPage from './pages/TeamOverview'
+import AppLayout from './layouts/AppLayout'
+import ProjectsLayout from './layouts/ProjectLayout'
+import NotFoundPage from './pages/404'
+import BoardPage from './pages/boards/BoardPage'
+import LoginPage from './pages/Login'
 import ProjectListPage from './pages/ProjectList'
 import ProjectHomepage from './pages/projects'
-import BoardPage from './pages/boards/BoardPage'
-import BoardsPage from './pages/projects/Boards'
-import NotFoundPage from './pages/404'
-import OverviewPage from './pages/projects/Overview'
 import AnnouncementsPage from './pages/projects/Announcements'
+import BoardsPage from './pages/projects/Boards'
+import OverviewPage from './pages/projects/Overview'
 import ResourcesPage from './pages/projects/Resources'
 import ProjectSettingsPage from './pages/projects/Settings'
+import SettingsPage from './pages/Settings'
+import TeamOverviewPage from './pages/TeamOverview'
 
 const AppRouter = () => {
   const { auth } = useAuthContext()

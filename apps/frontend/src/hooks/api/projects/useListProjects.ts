@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query'
+
 import ProjectService from '@/api/ProjectService'
 import {
-  ProjectListResponse,
   PROJECT_LIST_QUERY_KEY,
+  ProjectListResponse,
 } from '@/api/ProjectService/requests/listProjects'
-import { useQuery } from '@tanstack/react-query'
 
 const getProjectList = () =>
   ProjectService.get('/').then((res) => res.data.data)

@@ -1,7 +1,8 @@
-import ProjectHeader from '@/components/projects/overview/ProjectHeader'
-import { ProjectProvider } from '@/contexts/ProjectContext'
 import { Box } from '@mui/material'
 import { Outlet, useParams } from 'react-router-dom'
+
+import ProjectHeader from '@/components/projects/overview/ProjectHeader'
+import { ProjectProvider } from '@/contexts/ProjectContext'
 
 export enum ProjectTab {
   Overview = 'overview',

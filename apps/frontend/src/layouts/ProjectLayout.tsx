@@ -1,7 +1,8 @@
-import ProjectList from '@/components/common/ProjectList'
-import { ProjectProvider } from '@/contexts/ProjectContext'
 import { Box } from '@mui/material'
 import { Outlet, useParams } from 'react-router-dom'
+
+import ProjectList from '@/components/common/ProjectList'
+import { ProjectProvider } from '@/contexts/ProjectContext'
 
 const ProjectsLayout = () => {
   return (

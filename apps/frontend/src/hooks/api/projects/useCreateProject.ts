@@ -1,12 +1,13 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { AxiosError } from 'axios'
+
 import ProjectService from '@/api/ProjectService'
 import {
-  CreateProjectRequest,
   CREATE_PROJECT_QUERY_KEY,
+  CreateProjectRequest,
 } from '@/api/ProjectService/requests/createProject'
 import { PROJECT_LIST_QUERY_KEY } from '@/api/ProjectService/requests/listProjects'
 import useSnackbarContext from '@/contexts/SnackbarContext'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 
 const createProject = (data: CreateProjectRequest) =>
   ProjectService.post('/', data).then((res) => res.data.data)

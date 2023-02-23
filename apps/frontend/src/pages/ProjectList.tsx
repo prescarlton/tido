@@ -1,8 +1,9 @@
+import { ArrowForwardIos } from '@mui/icons-material'
+import { Box, Collapse, IconButton, Slide, Typography } from '@mui/material'
+
 import ProjectCard from '@/components/projects/ProjectCard'
 import useProjectContext from '@/contexts/ProjectContext'
 import useListProjects from '@/hooks/api/projects/useListProjects'
-import { ArrowForwardIos } from '@mui/icons-material'
-import { Box, Collapse, IconButton, Slide, Typography } from '@mui/material'
 
 const ProjectListPage = () => {
   const { data: projects } = useListProjects()

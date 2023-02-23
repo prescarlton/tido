@@ -1,5 +1,3 @@
-import { Project } from '@/api/ProjectService/requests/getProjectById'
-import useGetProjectById from '@/hooks/api/projects/useGetProject'
 import {
   createContext,
   Dispatch,
@@ -9,6 +7,9 @@ import {
   useState,
 } from 'react'
 import { useParams } from 'react-router-dom'
+
+import { Project } from '@/api/ProjectService/requests/getProjectById'
+import useGetProjectById from '@/hooks/api/projects/useGetProject'
 
 type ProjectContextType = {
   project: Project | undefined

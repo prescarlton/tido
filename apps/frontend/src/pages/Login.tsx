@@ -1,8 +1,9 @@
+import { Box, Button, Typography, useTheme } from '@mui/material'
+import { useState } from 'react'
+
 import Page from '@/components/common/Page'
 import LoginForm from '@/components/login/LoginForm'
 import SignupForm from '@/components/login/SignupForm'
-import { Box, Button, Typography, useTheme } from '@mui/material'
-import { useState } from 'react'
 
 const LoginPage = () => {
   const [mode, setMode] = useState<'login' | 'signup'>('login')

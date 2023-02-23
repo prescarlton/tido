@@ -1,10 +1,11 @@
+import { Box, Stack } from '@mui/material'
+import { useParams, useSearchParams } from 'react-router-dom'
+
 import BoardPageHeader from '@/components/boards/BoardPageHeader'
 import ListContainer from '@/components/lists/ListContainer'
 import ListContainer2 from '@/components/lists/ListContainer2'
 import NewListButton from '@/components/lists/NewListButton'
 import useGetBoard from '@/hooks/api/boards/useGetBoard'
-import { Box, Stack } from '@mui/material'
-import { useParams, useSearchParams } from 'react-router-dom'
 
 const BoardPage = () => {
   const { boardId, projectId } = useParams()

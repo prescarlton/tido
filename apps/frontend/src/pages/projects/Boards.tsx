@@ -1,9 +1,10 @@
+import { Box } from '@mui/material'
+import { useParams } from 'react-router-dom'
+
 import BoardCard from '@/components/boards/BoardCard'
 import CreateBoardButton from '@/components/boards/CreateBoardButton'
 import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
 import useListBoards from '@/hooks/api/boards/useListBoards'
-import { Box } from '@mui/material'
-import { useParams } from 'react-router-dom'
 
 const BoardsPage = () => {
   const { projectId } = useParams() as { projectId: string }
