@@ -27,7 +27,7 @@ const LoginPage = () => {
             justifyContent: 'center',
             backgroundColor: 'primary.main',
             color: 'primary.contrastText',
-            borderRadius: 2,
+            borderRadius: 4,
             width: '50%',
             p: 2,
             position: 'absolute',
