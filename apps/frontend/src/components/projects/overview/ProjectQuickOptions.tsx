@@ -1,4 +1,3 @@
-import useProjectContext from '@/contexts/ProjectContext'
 import { Close, MoreVert, StarOutline } from '@mui/icons-material'
 import { IconButton, Stack } from '@mui/material'
 

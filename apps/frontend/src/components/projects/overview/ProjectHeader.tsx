@@ -1,15 +1,12 @@
+import { Box, Typography } from '@mui/material'
+
 import useProjectContext from '@/contexts/ProjectContext'
-import { Box, Collapse, Typography } from '@mui/material'
+
 import ProjectQuickOptions from './ProjectQuickOptions'
 import TabList from './ProjectTabs/TabList'
 
 const ProjectHeader = () => {
-  const { project, showProjectHeader, setShowProjectHeader } =
-    useProjectContext()
-
-  const handleCollapseToggle = () => {
-    setShowProjectHeader((prev) => !prev)
-  }
+  const { project } = useProjectContext()
 
   return (
     <Box
@@ -27,7 +24,6 @@ const ProjectHeader = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           p: 2,
-          pr: 24,
         }}
       >
         <Typography variant="h2">{project?.name}</Typography>
