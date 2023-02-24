@@ -1,7 +1,6 @@
 import { Box } from '@mui/material'
-import { Outlet, useParams } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 
-import ProjectList from '@/components/common/ProjectList'
 import { ProjectProvider } from '@/contexts/ProjectContext'
 
 const ProjectsLayout = () => {
@@ -15,7 +14,6 @@ const ProjectsLayout = () => {
           height: '100%',
         }}
       >
-        <ProjectList />
         <Box
           sx={{
             display: 'flex',

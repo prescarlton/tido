@@ -1,9 +1,15 @@
 import { Box, Button, Stack } from '@mui/material'
 import { ChevronDown } from 'react-feather'
+import { useNavigate } from 'react-router-dom'
 
 import UserComponent from '../UserComponent'
 
 const Topbar = () => {
+  const navigate = useNavigate()
+
+  const handleHomeClick = () => {
+    navigate('/')
+  }
   return (
     <Box
       sx={{
@@ -25,6 +31,7 @@ const Topbar = () => {
             fontWeight: 'bold',
             fontSize: '2rem',
           }}
+          onClick={handleHomeClick}
         >
           tido
         </Button>

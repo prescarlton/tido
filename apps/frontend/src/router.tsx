@@ -16,7 +16,6 @@ import OverviewPage from './pages/projects/Overview'
 import ResourcesPage from './pages/projects/Resources'
 import ProjectSettingsPage from './pages/projects/Settings'
 import SettingsPage from './pages/Settings'
-import TeamOverviewPage from './pages/TeamOverview'
 
 const AppRouter = () => {
   const { auth } = useAuthContext()
@@ -39,8 +38,8 @@ const AppRouter = () => {
               </Route>
             </Route>
           </Route>
-          <Route path="team" element={<TeamOverviewPage />} />
-          <Route path="/settings" element={<SettingsPage />} />
+
+          <Route path="settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       )}

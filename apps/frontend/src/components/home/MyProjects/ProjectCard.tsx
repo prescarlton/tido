@@ -1,28 +1,39 @@
-import { Card, Grow, Typography } from '@mui/material'
+import { Card, CardActionArea, Grow, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import { Project } from 'shared/types/projects'
 
 const ProjectCard = ({ project }: { project: Project }) => {
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    navigate(`/p/${project.id}`)
+  }
   return (
     <Grow in>
       <Card
         sx={{
           width: 350,
           height: 125,
-          py: 1.25,
-          px: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 1,
           boxShadow: 1,
-          '&:hover': {
-            boxShadow: 3,
-            cursor: 'pointer',
-          },
-          transition: '3s all',
+          display: 'flex',
         }}
       >
-        <Typography variant="h3">{project.name}</Typography>
-        <Typography variant="subtitle2">{project.description}</Typography>
+        <CardActionArea
+          onClick={handleClick}
+          sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-start',
+            gap: 1,
+            py: 1.25,
+            px: 2,
+          }}
+        >
+          <Typography variant="h3">{project.name}</Typography>
+          <Typography variant="subtitle2">{project.description}</Typography>
+        </CardActionArea>
       </Card>
     </Grow>
   )

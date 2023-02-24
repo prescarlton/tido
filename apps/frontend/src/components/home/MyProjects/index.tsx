@@ -8,6 +8,7 @@ import ProjectCard from './ProjectCard'
 const MyProjects = () => {
   const { data: myProjects, isLoading } = useListProjects()
   if (isLoading || !myProjects) return <MyProjectsLoading />
+
   return (
     <Box
       sx={{
