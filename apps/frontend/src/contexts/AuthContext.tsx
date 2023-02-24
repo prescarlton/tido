@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const logout = () => {
     removeAuth()
     removeUser()
+    navigate('/login')
   }
 
   return (

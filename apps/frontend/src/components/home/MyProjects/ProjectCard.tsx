@@ -1,24 +1,30 @@
-import { Box, Card, Typography } from '@mui/material'
+import { Card, Grow, Typography } from '@mui/material'
+import { Project } from 'shared/types/projects'
 
-const ProjectCard = () => {
+const ProjectCard = ({ project }: { project: Project }) => {
   return (
-    <Card
-      sx={{
-        width: 350,
-        height: 125,
-        py: 1.25,
-        px: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 1,
-        boxShadow: 0,
-      }}
-    >
-      <Typography variant="h3">Project Name</Typography>
-      <Typography variant="subtitle2">
-        This is a brief description of the project.
-      </Typography>
-    </Card>
+    <Grow in>
+      <Card
+        sx={{
+          width: 350,
+          height: 125,
+          py: 1.25,
+          px: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1,
+          boxShadow: 1,
+          '&:hover': {
+            boxShadow: 3,
+            cursor: 'pointer',
+          },
+          transition: '3s all',
+        }}
+      >
+        <Typography variant="h3">{project.name}</Typography>
+        <Typography variant="subtitle2">{project.description}</Typography>
+      </Card>
+    </Grow>
   )
 }
 

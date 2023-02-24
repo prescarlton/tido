@@ -1,11 +1,11 @@
+import { Request, Response } from 'express'
+
 import prisma from '@/utils/db'
 import errorHandler from '@/utils/errorHandler'
-import { Request, Response } from 'express'
 
 const listProjects = async (req: Request, res: Response) => {
   try {
     const { user } = res.locals
-    console.log(user.id)
     const projects = await prisma.project.findMany({
       include: {
         members: true,

@@ -1,24 +1,20 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Box, Button, Stack, TextField, Typography } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
+import { AuthRequestBody, AuthRequestSchema } from 'shared/types/auth'
 
 const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
-  const defaultValues = {
+  const defaultValues: AuthRequestBody = {
     username: '',
     password: '',
   }
-  const schema = yup.object({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
-  })
   const { handleSubmit, register, reset } = useForm({
     defaultValues,
-    resolver: yupResolver(schema),
+    resolver: zodResolver(AuthRequestSchema.body),
   })
 
-  const onSubmit = (data: any) => {
-    console.log(data)
+  const onSubmit = (data: AuthRequestBody) => {
+    console.info(data)
   }
 
   const handleSwitchForm = () => {

@@ -1,14 +1,16 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { DefaultResponse } from 'shared/types/api'
 
 let isRefreshing = false
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const refreshSubscribers: any[] = []
 
-function subscribeTokenRefresh(callback: Function) {
+function subscribeTokenRefresh(callback: () => void) {
   refreshSubscribers.push(callback)
 }
 
 function onRefreshed() {
-  refreshSubscribers.map((callback: Function) => callback())
+  refreshSubscribers.map((callback: () => void) => callback())
 }
 
 const ApiBaseUrl = `${import.meta.env.VITE_API_ENDPOINT}`
@@ -45,7 +47,6 @@ function handleError(error: AxiosError) {
   const { config, response } = error
   const originalConfig = config
   // fix for newer axios versions
-  originalConfig!.headers = { ...originalConfig!.headers }
 
   switch (response?.status) {
     case 500: {
@@ -73,6 +74,7 @@ function handleError(error: AxiosError) {
         })
         return retryOrigReq
       }
+      break
     }
 
     case 429: {
@@ -104,15 +106,27 @@ export function CreateApiService({
 
   const buildURL = (url: string) => `${baseURL}${url}`
   return {
-    get: (url: string, config?: AxiosRequestConfig) =>
-      instance.get(buildURL(url), config),
-    post: (url: string, data?: unknown, config?: AxiosRequestConfig) =>
-      instance.post(buildURL(url), data, config),
-    put: (url: string, data: unknown, config?: AxiosRequestConfig) =>
-      instance.put(buildURL(url), data, config),
-    delete: (url: string, config?: AxiosRequestConfig) =>
-      instance.delete(buildURL(url), config),
-    request: (config: AxiosRequestConfig) => instance.request(config),
+    get: <T = DefaultResponse, R = AxiosResponse<T>>(
+      url: string,
+      config?: AxiosRequestConfig
+    ): Promise<R> => instance.get(buildURL(url), config),
+    post: <T = DefaultResponse, R = AxiosResponse<T>, D = object>(
+      url: string,
+      data?: D,
+      config?: AxiosRequestConfig
+    ): Promise<R> => instance.post(buildURL(url), data, config),
+    put: <T = DefaultResponse, R = AxiosResponse<T>, D = object>(
+      url: string,
+      data: D,
+      config?: AxiosRequestConfig
+    ): Promise<R> => instance.put(buildURL(url), data, config),
+    delete: <T = DefaultResponse, R = AxiosResponse<T>>(
+      url: string,
+      config?: AxiosRequestConfig
+    ): Promise<R> => instance.delete(buildURL(url), config),
+    request: <T = DefaultResponse, R = AxiosResponse<T>>(
+      config: AxiosRequestConfig
+    ): Promise<R> => instance.request(config),
   }
 }
 

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
 import MyProjects from '@/components/home/MyProjects'
 import MyTasks from '@/components/home/MyTasks'
@@ -18,7 +18,6 @@ const HomePage = () => {
         }}
       >
         <MyTasks />
-        <MyWorkspaces />
         <MyProjects />
       </Box>
     </PageWrapper>

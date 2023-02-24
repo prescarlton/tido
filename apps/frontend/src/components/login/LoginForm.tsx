@@ -1,12 +1,13 @@
-import useAuthContext from '@/contexts/AuthContext'
-import useSnackbarContext from '@/contexts/SnackbarContext'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Visibility } from '@mui/icons-material'
 import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
 import { AxiosError } from 'axios'
 import { MouseEvent, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
+import { AuthRequestBody, AuthRequestSchema } from 'shared/types/auth'
+
+import useAuthContext from '@/contexts/AuthContext'
+
 import ControlledTextField from '../fields/ControlledTextField'
 
 const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
@@ -19,21 +20,16 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
     e.preventDefault()
     setShowPassword((prev) => !prev)
   }
-
-  const defaultValues = {
+  const defaultValues: AuthRequestBody = {
     username: '',
     password: '',
   }
-  const schema = yup.object({
-    username: yup.string().required('Username is required'),
-    password: yup.string().required('Password is required'),
-  })
   const { control, handleSubmit, reset, formState } = useForm({
     defaultValues,
-    resolver: yupResolver(schema),
+    resolver: zodResolver(AuthRequestSchema.body),
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: AuthRequestBody) => {
     await loginMutation
       .mutateAsync(data)
       .catch((err: AxiosError<{ message: string }>) => {
@@ -97,7 +93,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
             type: showPassword ? 'text' : 'password',
             InputProps: {
               endAdornment: (
-                <IconButton onClick={toggleShowPassword}>
+                <IconButton onMouseDown={toggleShowPassword}>
                   <Visibility />
                 </IconButton>
               ),

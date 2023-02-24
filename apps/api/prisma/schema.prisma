@@ -20,9 +20,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  projects   ProjectMember[]
-  workspaces WorkspaceMember[]
-  tasks      UserTask[]
+  projects ProjectMember[]
+  tasks    UserTask[]
 }
 
 model UserTask {
@@ -49,19 +48,6 @@ model ProjectMember {
   updatedAt DateTime @updatedAt
 }
 
-model WorkspaceMember {
-  id          String      @id @default(cuid())
-  workspaceId String
-  userId      String
-  role        ProjectRole @default(MEMBER)
-
-  workspace Workspace @relation(fields: [workspaceId], references: [id])
-  user      User      @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
 model Project {
   id          String @id @default(cuid())
   name        String
@@ -70,10 +56,8 @@ model Project {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  boards      Board[]
-  members     ProjectMember[]
-  Workspace   Workspace?      @relation(fields: [workspaceId], references: [id])
-  workspaceId String?
+  boards  Board[]
+  members ProjectMember[]
 }
 
 model Board {
@@ -113,16 +97,6 @@ model Task {
   list  List  @relation(fields: [listId], references: [id])
 
   users UserTask[]
-}
-
-model Workspace {
-  id        String   @id @default(cuid())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  projects        Project[]
-  WorkspaceMember WorkspaceMember[]
 }
 
 enum ProjectRole {

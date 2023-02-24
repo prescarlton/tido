@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import ProjectService from '@/api/ProjectService'
+import { PROJECT_LIST_QUERY_KEY } from '@/api/ProjectService/constants'
 import {
   CREATE_PROJECT_QUERY_KEY,
   CreateProjectRequest,
 } from '@/api/ProjectService/requests/createProject'
-import { PROJECT_LIST_QUERY_KEY } from '@/api/ProjectService/requests/listProjects'
 import useSnackbarContext from '@/contexts/SnackbarContext'
 
 const createProject = (data: CreateProjectRequest) =>
@@ -21,7 +21,7 @@ const useCreateProject = () => {
     (data: CreateProjectRequest) => createProject(data),
     {
       onError: (error: AxiosError) => {
-        console.log(error)
+        console.error(error)
         openSnackbar({
           message: error?.message,
           type: 'error',

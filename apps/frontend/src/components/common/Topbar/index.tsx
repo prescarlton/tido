@@ -1,6 +1,6 @@
-import { Apps } from '@mui/icons-material'
-import { Box, Button, IconButton, Stack } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
 import { ChevronDown } from 'react-feather'
+
 import UserComponent from '../UserComponent'
 
 const Topbar = () => {
@@ -38,7 +38,6 @@ const Topbar = () => {
             },
           }}
         >
-          <Button endIcon={<ChevronDown />}>Workspaces</Button>
           <Button endIcon={<ChevronDown />}>Projects</Button>
           <Button endIcon={<ChevronDown />}>Recent</Button>
           <Button endIcon={<ChevronDown />}>Pinned</Button>

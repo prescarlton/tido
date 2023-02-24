@@ -41,12 +41,13 @@ const AppRouter = () => {
           </Route>
           <Route path="team" element={<TeamOverviewPage />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       )}
       {!auth && <Route index element={<LoginPage />} />}
       <Route path="login" element={<LoginPage />} />
 
-      <Route path="*" element={<NotFoundPage />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   )
 }

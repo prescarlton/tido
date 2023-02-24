@@ -20,6 +20,7 @@
     "dotenv": "^16.0.3",
     "express": "4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "shared": "workspace:*",
     "uuid": "^9.0.0"
   },
   "devDependencies": {
@@ -32,6 +33,7 @@
     "@types/uuid": "^8.3.4",
     "prisma": "^4.6.1",
     "ts-node": "10.9.1",
+    "tsconfig": "workspace:*",
     "typescript": "4.8.4"
   },
   "prisma": {
