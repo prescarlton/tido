@@ -7,12 +7,13 @@ import {
   useState,
 } from 'react'
 import { useParams } from 'react-router-dom'
+import { Project } from 'shared/types/projects'
 
-import { Project } from '@/api/ProjectService/requests/getProjectById'
 import useGetProjectById from '@/hooks/api/projects/useGetProject'
 
 type ProjectContextType = {
   project: Project | undefined
+  projectId: string
   fullscreen: boolean
   setFullscreen: Dispatch<SetStateAction<boolean>>
   showProjectHeader: boolean
@@ -38,6 +39,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
     <ProjectContext.Provider
       value={{
         project,
+        projectId,
         fullscreen,
         setFullscreen,
         showProjectHeader,

@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt'
 import * as jwt from 'jsonwebtoken'
+
 import prisma from './db'
 
 export const generateToken = async (userId: string) => {

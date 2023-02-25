@@ -14,8 +14,7 @@ const theme: ThemeOptions = {
   },
   typography: {
     allVariants: {
-      fontFamily: 'Open Sans,serif',
-      // fontFamily: 'SF Pro Display, serif',
+      fontFamily: 'Inter, serif',
       /*
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;',

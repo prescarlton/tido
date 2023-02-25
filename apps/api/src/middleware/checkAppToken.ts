@@ -1,7 +1,8 @@
-import prisma from '@/utils/db'
-import errorHandler from '@/utils/errorHandler'
 import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
+
+import prisma from '@/utils/db'
+import errorHandler from '@/utils/errorHandler'
 
 const checkAppToken = async (
   req: Request,

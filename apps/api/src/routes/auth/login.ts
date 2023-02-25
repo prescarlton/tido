@@ -1,7 +1,7 @@
-import prisma from '@/utils/db'
 import bcrypt from 'bcrypt'
-
 import { Request, Response } from 'express'
+
+import prisma from '@/utils/db'
 import generateTokens from '@/utils/generateTokens'
 
 const login = async (req: Request, res: Response) => {

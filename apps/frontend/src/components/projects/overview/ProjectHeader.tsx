@@ -2,7 +2,6 @@ import { Box, Typography } from '@mui/material'
 
 import useProjectContext from '@/contexts/ProjectContext'
 
-import ProjectQuickOptions from './ProjectQuickOptions'
 import TabList from './ProjectTabs/TabList'
 
 const ProjectHeader = () => {
@@ -27,7 +26,7 @@ const ProjectHeader = () => {
         }}
       >
         <Typography variant="h2">{project?.name}</Typography>
-        <ProjectQuickOptions />
+        {/* <ProjectQuickOptions /> */}
       </Box>
       <TabList />
     </Box>

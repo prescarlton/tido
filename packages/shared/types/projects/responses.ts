@@ -1,6 +1,10 @@
 import { Project } from '.'
-import { DefaultListResponse } from '../api'
+import { DefaultListResponse, DefaultResponse } from '../api'
 
 export interface ProjectListResponse extends DefaultListResponse {
   data: Project[]
+}
+
+export interface GetProjectResponse extends DefaultResponse {
+  data: Project
 }

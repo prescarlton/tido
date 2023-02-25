@@ -1,4 +1,5 @@
 import { Response } from 'express'
+
 import { generateRefreshToken, generateToken } from './jwt'
 
 const generateTokens = async (userId: string, res: Response) => {
@@ -6,12 +7,10 @@ const generateTokens = async (userId: string, res: Response) => {
   const refreshToken = await generateRefreshToken(userId)
 
   res.cookie('accessToken', accessToken, {
-    httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
   })
   res.cookie('refreshToken', refreshToken, {
-    httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === 'production',
   })
 }
 
