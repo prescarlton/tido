@@ -1,6 +1,7 @@
 {
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#ea580c"
+    "titleBar.activeBackground": "#4685FF",
+    "titleBar.activeForeground": "#F4F5F7"
   },
 
   "editor.codeActionsOnSave": {
