@@ -1,9 +1,10 @@
-import prisma from '@/utils/db'
-import errorHandler from '@/utils/errorHandler'
-import generateTokens from '@/utils/generateTokens'
 import { compareSync } from 'bcrypt'
 import { Request, Response } from 'express'
 import { verify } from 'jsonwebtoken'
+
+import prisma from '@/utils/db'
+import errorHandler from '@/utils/errorHandler'
+import generateTokens from '@/utils/generateTokens'
 
 const refreshToken = async (req: Request, res: Response) => {
   try {
