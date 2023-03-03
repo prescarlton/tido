@@ -1,20 +1,27 @@
-import checkAppToken from '@/middleware/checkAppToken'
 import { Router } from 'express'
-import login from './login'
-import logout from './logout'
+import passport from 'passport'
+
+import verifyUser from '@/middleware/verifyUser'
+
 import getMe from './me'
-import refreshToken from './refresh'
 import register from './register'
 
-const AuthRouter = Router()
+const AuthRouter: Router = Router()
 
 // get
-AuthRouter.get('/refresh', refreshToken)
-AuthRouter.get('/me', checkAppToken, getMe)
+AuthRouter.get('/me', verifyUser, getMe)
 
 // post
 AuthRouter.post('/register', register)
-AuthRouter.post('/login', login)
-AuthRouter.post('/logout', checkAppToken, logout)
+AuthRouter.post(
+  '/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+  })
+)
+// AuthRouter.post('/login', login)
+// AuthRouter.post('/logout', (req, res) => {
+//   req.session.destroy()
+// })
 
 export default AuthRouter

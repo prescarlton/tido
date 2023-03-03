@@ -1,6 +1,7 @@
+import { NextFunction, Request, Response } from 'express'
+
 import prisma from '@/utils/db'
 import errorHandler from '@/utils/errorHandler'
-import { NextFunction, Request, Response } from 'express'
 
 const checkProjectAccess = async (
   req: Request,

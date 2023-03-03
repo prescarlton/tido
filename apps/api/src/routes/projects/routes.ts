@@ -1,6 +1,5 @@
 import { Router } from 'express'
 
-import checkAppToken from '@/middleware/checkAppToken'
 import checkProjectAccess from '@/middleware/checkProjectAccess'
 
 import BoardsRouter from './boards/routes'
@@ -12,13 +11,13 @@ const ProjectRouter: Router = Router()
 
 // get
 ProjectRouter.get('/', listProjects)
-ProjectRouter.get('/:projectId', checkAppToken, getProjectById)
+ProjectRouter.get('/:projectId', getProjectById)
 
 // post
-ProjectRouter.post('/', checkAppToken, createProject)
+ProjectRouter.post('/', createProject)
 
 // delete
-ProjectRouter.delete('/:projectId', checkAppToken, getProjectById)
+ProjectRouter.delete('/:projectId', getProjectById)
 
 ProjectRouter.use('/:projectId/boards', BoardsRouter, checkProjectAccess)
 

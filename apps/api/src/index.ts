@@ -1,31 +1,26 @@
-import express from 'express'
 import 'dotenv/config'
-import cookies from 'cookie-parser'
-import cors from 'cors'
-import UserRouter from './routes/users/routes'
-import ProjectRouter from './routes/projects/routes'
-import AuthRouter from './routes/auth/routes'
+
+import express from 'express'
+
+import setupMiddleware from '@/middleware/setupMiddleware'
+import verifyUser from '@/middleware/verifyUser'
+
 import checkAppToken from './middleware/checkAppToken'
+import AuthRouter from './routes/auth/routes'
+import ProjectRouter from './routes/projects/routes'
+import UserRouter from './routes/users/routes'
 
 const app = express()
-
-app.use(express.json())
-app.use(cookies())
-app.use(
-  cors({
-    origin: ['http://localhost:3000'],
-    credentials: true,
-  })
-)
+setupMiddleware(app)
 
 app.use('/auth', AuthRouter)
-app.use('/users', checkAppToken, UserRouter)
-app.use('/projects', checkAppToken, ProjectRouter)
+app.use('/users', verifyUser, UserRouter)
+app.use('/projects', verifyUser, ProjectRouter)
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'API base url' })
 })
 
-const server = app.listen(process.env.PORT, () =>
-  console.log('Server is running on port 5000')
+app.listen(process.env.PORT, () =>
+  console.info('Server is running on port 5000')
 )

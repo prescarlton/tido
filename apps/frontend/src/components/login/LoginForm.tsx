@@ -43,10 +43,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
   }
 
   useEffect(() => {
-    if (loginMutation.error)
-      setErrorMessage(
-        loginMutation.error.response?.data.message ?? 'Login failed'
-      )
+    if (loginMutation.error) setErrorMessage('Login failed')
   }, [loginMutation.error])
 
   useEffect(() => {

@@ -14,37 +14,28 @@ import {
 type AuthContextType = {
   auth?: boolean
   user: any
-  loginMutation: UseMutationResult<
-    AxiosResponse<LoginResponse>,
-    AxiosError<{ message: string }>,
-    LoginRequest
-  >
+  loginMutation: UseMutationResult<LoginResponse, unknown, LoginRequest>
   logout: () => void
 }
 
 const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [auth, setAuth, removeAuth] = useLocalStorage('auth', false, {
-    raw: true,
-  })
+  const [auth, setAuth, removeAuth] = useLocalStorage('auth', false)
   const [user, setUser, removeUser] = useLocalStorage('user', {})
 
   const navigate = useNavigate()
 
-  const onAuth = (user: any) => {
+  const onAuth = () => {
     setAuth(true)
-    setUser(user)
+    // setUser(user)
     navigate('/')
   }
 
-  const loginMutation = useMutation<
-    AxiosResponse<LoginResponse>,
-    AxiosError<{ message: string }>,
-    LoginRequest
-  >(LOGIN_QUERY_KEY, login, {
+  const loginMutation = useMutation(LOGIN_QUERY_KEY, login, {
     onSuccess: (res) => {
-      onAuth(res.data)
+      alert('login')
+      onAuth()
     },
   })
 

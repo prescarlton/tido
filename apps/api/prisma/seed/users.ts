@@ -16,13 +16,13 @@ const userData: Prisma.UserCreateInput[] = [
 ]
 
 async function UserSeed() {
-  console.log('User seed started')
+  console.info('User seed started')
   for (const u of userData) {
     const user = await prisma.user.create({
       data: u,
     })
-    console.log(`Created user with id: ${user.id}`)
+    console.info(`Created user with id: ${user.id}`)
   }
-  console.log('User seed finished')
+  console.info('User seed finished')
 }
 export default UserSeed
