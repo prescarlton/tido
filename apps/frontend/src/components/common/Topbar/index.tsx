@@ -31,6 +31,7 @@ const Topbar = () => {
         px: 2,
         backgroundColor: 'background.paper',
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+        overflow: 'hidden',
       }}
     >
       <Stack direction="row" spacing={2} alignItems="center">

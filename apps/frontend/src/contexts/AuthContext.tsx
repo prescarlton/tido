@@ -13,7 +13,6 @@ import {
 
 type AuthContextType = {
   auth?: boolean
-  user: any
   loginMutation: UseMutationResult<LoginResponse, unknown, LoginRequest>
   logout: () => void
 }
@@ -22,13 +21,11 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType)
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [auth, setAuth, removeAuth] = useLocalStorage('auth', false)
-  const [user, setUser, removeUser] = useLocalStorage('user', {})
 
   const navigate = useNavigate()
 
   const onAuth = () => {
     setAuth(true)
-    // setUser(user)
     navigate('/')
   }
 
@@ -40,12 +37,11 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const logout = () => {
     removeAuth()
-    removeUser()
     navigate('/login')
   }
 
   return (
-    <AuthContext.Provider value={{ auth, user, loginMutation, logout }}>
+    <AuthContext.Provider value={{ auth, loginMutation, logout }}>
       {children}
     </AuthContext.Provider>
   )

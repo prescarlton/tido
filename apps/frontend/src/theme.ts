@@ -1,15 +1,17 @@
 import { ThemeOptions } from '@mui/material'
-import { createTheme } from '@mui/material/styles'
+
+export const darkModePalette: ThemeOptions['palette'] = {}
+
+export const lightModePalette: ThemeOptions['palette'] = {
+  background: {
+    default: '#F4F5F7',
+  },
+}
 
 const theme: ThemeOptions = {
   palette: {
     primary: {
       main: '#4685FF',
-    },
-    background: {
-      // default: '#FAFBFC',
-      // default: '#F2F2F2',
-      default: '#F4F5F7',
     },
   },
   typography: {
@@ -102,4 +104,4 @@ const theme: ThemeOptions = {
   },
 }
 
-export default createTheme(theme)
+export default theme
