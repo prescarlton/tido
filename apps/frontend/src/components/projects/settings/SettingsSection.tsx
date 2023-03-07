@@ -1,14 +1,6 @@
-import { Box, Divider, Stack, Typography } from '@mui/material'
+import { Box, Divider, Typography } from '@mui/material'
 
-interface ISetting {
-  title: string
-  description: string
-  dataType: 'text' | 'toggle' | 'long text'
-}
-interface ISettingsSection {
-  sectionName: string
-  settings: ISetting[]
-}
+import { ISettingsSection } from '@/types/components/Settings'
 
 const SettingsSection = ({ sectionName, settings }: ISettingsSection) => {
   return (
@@ -16,17 +8,23 @@ const SettingsSection = ({ sectionName, settings }: ISettingsSection) => {
       sx={{
         display: 'flex',
         flexDirection: 'column',
+        gap: 1,
       }}
     >
       <Typography variant="h3">{sectionName}</Typography>
 
       <Divider flexItem />
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-        }}
-      ></Box>
+      {settings.map((setting) => (
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+          key={setting.title}
+        >
+          {setting.title}
+        </Box>
+      ))}
     </Box>
   )
 }
