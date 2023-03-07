@@ -5,7 +5,7 @@ import GeneralProjectSettings from '@/components/projects/settings/GeneralSettin
 
 const ProjectSettingsPage = () => {
   return (
-    <ProjectTabContent title="Project Settings">
+    <ProjectTabContent>
       <Stack spacing={2} mt={2}>
         <GeneralProjectSettings />
       </Stack>

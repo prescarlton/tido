@@ -22,6 +22,17 @@ model User {
 
   projects ProjectMember[]
   tasks    UserTask[]
+
+  @@map("users")
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String   @db.Text
+  expiresAt DateTime
+
+  @@map("sessions")
 }
 
 model UserTask {
@@ -33,6 +44,8 @@ model UserTask {
   task   Task   @relation(fields: [taskId], references: [id])
   userId String
   taskId String
+
+  @@map("user_tasks")
 }
 
 model ProjectMember {
@@ -46,6 +59,8 @@ model ProjectMember {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("project_members")
 }
 
 model Project {
@@ -58,6 +73,8 @@ model Project {
 
   boards  Board[]
   members ProjectMember[]
+
+  @@map("projects")
 }
 
 model Board {
@@ -71,6 +88,8 @@ model Board {
 
   tasks Task[]
   lists List[]
+
+  @@map("boards")
 }
 
 model List {
@@ -81,6 +100,8 @@ model List {
 
   board Board  @relation(fields: [boardId], references: [id])
   tasks Task[]
+
+  @@map("lists")
 }
 
 model Task {
@@ -97,6 +118,8 @@ model Task {
   list  List  @relation(fields: [listId], references: [id])
 
   users UserTask[]
+
+  @@map("tasks")
 }
 
 enum ProjectRole {

@@ -14,4 +14,4 @@ export interface LoginResponse {
 export const LOGIN_QUERY_KEY = ['login']
 
 export const login = (data: LoginRequest) =>
-  AuthService.post('/login', data).then((res) => res.data)
+  AuthService.post<LoginResponse>('/login', data).then((res) => res.data)

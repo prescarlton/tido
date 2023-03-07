@@ -1,18 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { DefaultResponse } from 'shared/types/api'
 
-let isRefreshing = false
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const refreshSubscribers: any[] = []
-
-function subscribeTokenRefresh(callback: () => void) {
-  refreshSubscribers.push(callback)
-}
-
-function onRefreshed() {
-  refreshSubscribers.map((callback: () => void) => callback())
-}
-
 const ApiBaseUrl = `${import.meta.env.VITE_API_ENDPOINT}`
 
 const instance = axios.create({
@@ -24,29 +12,14 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     console.error(error)
-    if (!error.config.url?.includes('/refresh')) {
-      return handleError(error)
-    }
-    // Logout user and redirect
-    localStorage.removeItem('auth')
-    window.location.href = `/login`
-    return error
+    return handleError(error)
   }
 )
-
-function refreshAccessToken() {
-  return instance.request({
-    baseURL: `${import.meta.env.VITE_API_ENDPOINT}`, // need to make a clean request without previous baseURL configuration
-    url: '/auth/refresh',
-  })
-}
 
 // Handle global app errors
 // We can handle generic app errors depending on the status code
 function handleError(error: AxiosError) {
-  const { config, response } = error
-  const originalConfig = config
-  // fix for newer axios versions
+  const { response } = error
 
   switch (response?.status) {
     case 500: {
@@ -59,21 +32,8 @@ function handleError(error: AxiosError) {
     }
     case 401: {
       // Handle Unauthorized
-      if (!isRefreshing) {
-        isRefreshing = true
-        refreshAccessToken().then(() => {
-          isRefreshing = false
-          onRefreshed()
-        })
-      }
-      if (originalConfig) {
-        const retryOrigReq = new Promise((resolve) => {
-          subscribeTokenRefresh(() => {
-            resolve(axios(originalConfig))
-          })
-        })
-        return retryOrigReq
-      }
+      window.location.href = '/login'
+      localStorage.setItem('auth', 'false')
       break
     }
 
