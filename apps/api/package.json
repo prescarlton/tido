@@ -13,7 +13,7 @@
     "ext": "ts"
   },
   "dependencies": {
-    "@prisma/client": "4.5.0",
+    "@prisma/client": "4.11.0",
     "@quixo3/prisma-session-store": "^3.1.10",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
@@ -40,7 +40,7 @@
     "@types/passport": "^1.0.12",
     "@types/passport-local": "^1.0.35",
     "@types/uuid": "^8.3.4",
-    "prisma": "^4.6.1",
+    "prisma": "^4.11.0",
     "ts-node": "10.9.1",
     "tsconfig": "workspace:*",
     "typescript": "4.8.4"
