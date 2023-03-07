@@ -34,7 +34,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const loginMutation = useMutation(LOGIN_QUERY_KEY, login, {
     onSuccess: (res) => {
-      alert('login')
       onAuth()
     },
   })

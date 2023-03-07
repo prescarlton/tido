@@ -1,15 +1,17 @@
 import { Box, Typography } from '@mui/material'
 import { ReactNode } from 'react'
 
+interface IProjectTabContent {
+  children: ReactNode
+  title?: string
+  primaryAction?: ReactNode
+}
+
 const ProjectTabContent = ({
   children,
   title,
   primaryAction,
-}: {
-  children: ReactNode
-  title: string
-  primaryAction?: ReactNode
-}) => {
+}: IProjectTabContent) => {
   return (
     <Box
       sx={{
@@ -22,20 +24,22 @@ const ProjectTabContent = ({
         overflow: 'hidden',
       }}
     >
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: 2,
-          height: 40,
-        }}
-      >
-        <Typography variant="h3" sx={{ fontWeight: 'normal' }}>
-          {title}
-        </Typography>
-        {primaryAction}
-      </Box>
+      {title && (
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 2,
+            height: 40,
+          }}
+        >
+          <Typography variant="h3" sx={{ fontWeight: 'normal' }}>
+            {title}
+          </Typography>
+          {primaryAction}
+        </Box>
+      )}
       <Box
         sx={{
           flex: 1,
