@@ -5,7 +5,6 @@ import express from 'express'
 import setupMiddleware from '@/middleware/setupMiddleware'
 import verifyUser from '@/middleware/verifyUser'
 
-import checkAppToken from './middleware/checkAppToken'
 import AuthRouter from './routes/auth/routes'
 import ProjectRouter from './routes/projects/routes'
 import UserRouter from './routes/users/routes'

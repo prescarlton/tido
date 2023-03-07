@@ -33,7 +33,6 @@ function handleError(error: AxiosError) {
     case 401: {
       // Handle Unauthorized
       window.location.href = '/login'
-      localStorage.setItem('auth', 'false')
       break
     }
 
