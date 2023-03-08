@@ -1,3 +1,4 @@
+import { User } from '@prisma/client'
 import { NextFunction, Request, Response } from 'express'
 
 import prisma from '@/utils/db'
@@ -10,7 +11,7 @@ const checkProjectAccess = async (
 ) => {
   try {
     const { projectId } = req.params as { projectId: string }
-    const { user } = res.locals
+    const user = req.user as User
 
     const project = await prisma.project.findUnique({
       where: {

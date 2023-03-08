@@ -1,6 +1,7 @@
 import { Router } from 'express'
 
 import checkProjectAccess from '@/middleware/checkProjectAccess'
+import projectSettingsRouter from '@/routes/projects/settings/routes'
 
 import BoardsRouter from './boards/routes'
 import createProject from './createProject'
@@ -19,6 +20,11 @@ ProjectRouter.post('/', createProject)
 // delete
 ProjectRouter.delete('/:projectId', getProjectById)
 
-ProjectRouter.use('/:projectId/boards', BoardsRouter, checkProjectAccess)
+ProjectRouter.use('/:projectId/boards', checkProjectAccess, BoardsRouter)
+ProjectRouter.use(
+  '/:projectId/settings',
+  checkProjectAccess,
+  projectSettingsRouter
+)
 
 export default ProjectRouter

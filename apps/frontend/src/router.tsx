@@ -19,6 +19,7 @@ import SettingsPage from './pages/Settings'
 
 const AppRouter = () => {
   const { auth } = useAuthContext()
+
   return (
     <Routes>
       {auth && (
