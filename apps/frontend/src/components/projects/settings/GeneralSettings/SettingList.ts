@@ -2,8 +2,15 @@ import { ISetting } from '@/types/components/Settings'
 
 const SettingList: ISetting[] = [
   {
-    title: 'Project Name',
+    label: 'Project Name',
+    name: 'name',
     dataType: 'text',
+  },
+  {
+    label: 'Project Description',
+    name: 'description',
+    dataType: 'long text',
+    description: 'Short description of the project',
   },
 ]
 

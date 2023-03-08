@@ -59,6 +59,7 @@ const theme: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: 8,
+          textTransform: 'none',
         },
       },
     },
@@ -98,6 +99,45 @@ const theme: ThemeOptions = {
           '&:active': {
             backgroundColor: 'rgba(0, 0, 0, 0.08)',
           },
+        },
+      },
+    },
+    MuiTabs: {
+      variants: [
+        {
+          props: { orientation: 'vertical' },
+          style: {
+            '& .MuiTabs-flexContainer': {
+              gap: 8,
+            },
+            '& .MuiTab-root': {
+              height: 36,
+              minHeight: 36,
+              textTransform: 'none',
+              alignItems: 'flex-start',
+            },
+            '& .MuiTabs-indicator': {
+              left: 0,
+              width: 4,
+              borderTopRightRadius: 8,
+              borderBottomRightRadius: 8,
+              height: 10,
+            },
+          },
+        },
+      ],
+    },
+
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          '&.MuiInputBase-multiline': {
+            padding: 0,
+          },
+        },
+        input: {
+          padding: '.5rem 1rem',
+          borderRadius: 8,
         },
       },
     },
