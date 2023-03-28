@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
+import { GetGenProjSettingsResponse } from 'shared/types/projects'
 
-import { GetGenProjSettingsResponse } from '@/../../../packages/shared/types/projects'
 import ProjectService, {
   PROJECT_GEN_SETTINGS_QUERY_KEY,
 } from '@/api/ProjectService'

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { AxiosError } from 'axios'
 
 import ProjectService from '@/api/ProjectService'
-import { PROJECT_LIST_QUERY_KEY } from '@/api/ProjectService/constants'
+import { PROJECTS_QUERY_KEY } from '@/api/ProjectService/constants'
 import {
   CREATE_PROJECT_QUERY_KEY,
   CreateProjectRequest,
@@ -28,7 +28,7 @@ const useCreateProject = () => {
         })
       },
       onSuccess: () => {
-        queryClient.invalidateQueries(PROJECT_LIST_QUERY_KEY.all)
+        queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
         openSnackbar({
           message: 'Project created successfully',
           type: 'success',

@@ -4,7 +4,7 @@ import { CssBaseline, useMediaQuery } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 
 import { AuthProvider } from './contexts/AuthContext'
@@ -57,6 +57,4 @@ const App = () => {
   )
 }
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <App />
-)
+createRoot(document.getElementById('root') as HTMLElement).render(<App />)

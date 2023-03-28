@@ -34,6 +34,7 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
         open={open}
         onClose={() => setOpen(false)}
         autoHideDuration={3000}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
         <Alert severity={type}>{message}</Alert>
       </Snackbar>

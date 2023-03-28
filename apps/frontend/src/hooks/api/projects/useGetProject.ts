@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { GetProjectParams, GetProjectResponse } from 'shared/types/projects'
 
 import ProjectService from '@/api/ProjectService'
-import { PROJECT_LIST_QUERY_KEY } from '@/api/ProjectService'
+import { PROJECTS_QUERY_KEY } from '@/api/ProjectService'
 
 const getProjectById = async (data: GetProjectParams) =>
   ProjectService.get<GetProjectResponse>(`/${data.projectId}`).then(
@@ -11,7 +11,7 @@ const getProjectById = async (data: GetProjectParams) =>
 
 const useGetProjectById = (data: GetProjectParams) => {
   return useQuery(
-    PROJECT_LIST_QUERY_KEY.detail(data.projectId),
+    PROJECTS_QUERY_KEY.detail(data.projectId),
     () => getProjectById(data),
     {
       enabled: Boolean(data.projectId),

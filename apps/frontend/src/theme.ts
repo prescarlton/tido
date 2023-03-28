@@ -16,7 +16,7 @@ const theme: ThemeOptions = {
   },
   typography: {
     allVariants: {
-      fontFamily: 'Inter, serif',
+      fontFamily: 'Inter, -apple-system,sans-serif',
       /*
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;',

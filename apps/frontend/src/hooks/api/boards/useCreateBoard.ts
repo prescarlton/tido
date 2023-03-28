@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { CreateBoardBody, CreateBoardResponse } from 'shared/types/boards'
 
 import ProjectService, {
-  BOARD_LIST_QUERY_KEY,
+  BOARDS_QUERY_KEY,
   CREATE_BOARD_QUERY_KEY,
 } from '@/api/ProjectService'
 import useProjectContext from '@/contexts/ProjectContext'
@@ -30,7 +30,7 @@ const useCreateBoard = () => {
           message: 'Board created successfully',
           type: 'success',
         })
-        queryClient.invalidateQueries(BOARD_LIST_QUERY_KEY.all)
+        queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
         navigate(`/p/${data.projectId}/b/${data.id}`)
       },
     }

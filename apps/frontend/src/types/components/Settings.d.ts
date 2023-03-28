@@ -8,4 +8,5 @@ export interface ISettingsSection {
   sectionName: string
   settings: ISetting[]
   color?: 'default' | 'error' | 'primary'
+  onSubmit: (data: any) => void
 }

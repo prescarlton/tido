@@ -8,6 +8,7 @@ const SettingsSection = ({
   sectionName,
   settings,
   color = 'default',
+  onSubmit,
 }: ISettingsSection) => {
   const borderColor = color === 'default' ? 'divider' : `${color}.main`
 
@@ -20,6 +21,8 @@ const SettingsSection = ({
           gap: 2,
           flex: 0.75,
         }}
+        component="form"
+        onSubmit={onSubmit}
       >
         <Typography variant="h3">{sectionName}</Typography>
         <Box

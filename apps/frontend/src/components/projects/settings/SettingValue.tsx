@@ -24,7 +24,6 @@ const SettingValue = ({ name, dataType }: ISetting) => {
           TextFieldProps={{
             multiline: true,
             rows: 4,
-            maxRows: 4,
             sx: {
               width: 300,
             },
