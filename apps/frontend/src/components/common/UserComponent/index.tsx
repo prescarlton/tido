@@ -1,6 +1,9 @@
-import useGetMe from '@/hooks/api/useMe'
-import { Avatar, ClickAwayListener } from '@mui/material'
+import { AccountCircle } from '@mui/icons-material'
+import { ClickAwayListener, IconButton } from '@mui/material'
 import { MouseEvent, useState } from 'react'
+
+import useGetMe from '@/hooks/api/useMe'
+
 import UserContextMenu from './UserContextMenu'
 
 const UserComponent = () => {
@@ -19,17 +22,9 @@ const UserComponent = () => {
   return (
     <ClickAwayListener onClickAway={handleClose}>
       <>
-        <Avatar
-          sx={{
-            height: 36,
-            width: 36,
-            cursor: 'pointer',
-          }}
-          onClick={handleClick}
-        >
-          {me?.firstName[0]}
-          {me?.lastName[0]}
-        </Avatar>
+        <IconButton color="primary" onClick={handleClick}>
+          <AccountCircle />
+        </IconButton>
         <UserContextMenu
           anchorEl={anchorEl}
           handleClose={handleClose}

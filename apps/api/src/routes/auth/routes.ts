@@ -19,9 +19,5 @@ AuthRouter.post(
     successRedirect: '/',
   })
 )
-// AuthRouter.post('/login', login)
-// AuthRouter.post('/logout', (req, res) => {
-//   req.session.destroy()
-// })
 
 export default AuthRouter

@@ -1,4 +1,3 @@
-import useAuthContext from '@/contexts/AuthContext'
 import { Logout } from '@mui/icons-material'
 import {
   ListItem,
@@ -10,6 +9,8 @@ import {
   Typography,
 } from '@mui/material'
 import { Settings } from 'react-feather'
+
+import useAuthContext from '@/contexts/AuthContext'
 
 const UserContextMenu = ({
   anchorEl,
