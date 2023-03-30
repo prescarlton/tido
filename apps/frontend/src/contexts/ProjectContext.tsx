@@ -33,7 +33,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 
   const { projectId } = useParams() as { projectId: string }
 
-  const { data: project } = useGetProjectById({ id: projectId })
+  const { data: project } = useGetProjectById({ projectId })
 
   return (
     <ProjectContext.Provider

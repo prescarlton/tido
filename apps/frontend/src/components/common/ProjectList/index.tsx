@@ -1,5 +1,3 @@
-import useProjectContext from '@/contexts/ProjectContext'
-import useListProjects from '@/hooks/api/projects/useListProjects'
 import {
   ArrowDropDown,
   ArrowDropUp,
@@ -9,6 +7,10 @@ import {
 } from '@mui/icons-material'
 import { Box, Button, Collapse, IconButton, Stack } from '@mui/material'
 import { useState } from 'react'
+
+import useProjectContext from '@/contexts/ProjectContext'
+import useListProjects from '@/hooks/api/projects/useListProjects'
+
 import CreateProjectButton from './CreateProjectButton'
 import ProjectListItem from './ProjectListItem'
 

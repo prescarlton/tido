@@ -1,9 +1,9 @@
-import { Tab, Tabs } from '@mui/material'
+import { alpha, Tab, Tabs, useTheme } from '@mui/material'
 import { Link, useParams } from 'react-router-dom'
 
 import useRouteMatch from '@/hooks/useRouteMatch'
 
-const TabList = () => {
+const ProjectTabs = () => {
   const { projectId } = useParams()
 
   const routeMatch = useRouteMatch([
@@ -13,33 +13,32 @@ const TabList = () => {
     '/p/:projectId/announcements',
     '/p/:projectId/settings',
   ])
+  const theme = useTheme()
   const currentTab = routeMatch?.pattern?.path
 
   return (
     <Tabs
+      orientation="vertical"
       value={currentTab}
       TabIndicatorProps={{
         children: <span className="MuiTabs-indicatorSpan" />,
       }}
       sx={{
-        minHeight: 0,
-        height: 40,
         '& .MuiTab-root': {
           minHeight: 0,
           textTransform: 'none',
+          transition: '.2s ease-in-out',
+          borderRadius: 2,
+          '&:hover': {
+            backgroundColor: alpha('#fff', 0.3),
+          },
         },
         '& .MuiTabs-indicator': {
-          display: 'flex',
-          justifyContent: 'center',
-          backgroundColor: 'transparent',
-          height: 4,
+          display: 'none',
         },
-        '& .MuiTabs-indicatorSpan': {
-          maxWidth: 50,
-          width: '90%',
-          backgroundColor: 'primary.main',
-          borderTopLeftRadius: 4,
-          borderTopRightRadius: 4,
+        '& .Mui-selected': {
+          fontWeight: 'bold',
+          backgroundColor: alpha(theme.palette.primary.main, 0.3),
         },
       }}
     >
@@ -82,4 +81,4 @@ const TabList = () => {
   )
 }
 
-export default TabList
+export default ProjectTabs

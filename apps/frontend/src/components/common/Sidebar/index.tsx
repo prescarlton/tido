@@ -1,4 +1,3 @@
-import useProjectContext from '@/contexts/ProjectContext'
 import {
   ArrowDropDown,
   FolderOpen,
@@ -8,6 +7,9 @@ import {
 } from '@mui/icons-material'
 import { Box, Button, List } from '@mui/material'
 import { useState } from 'react'
+
+import useProjectContext from '@/contexts/ProjectContext'
+
 import NavItem from './SideNavItem'
 
 const Sidebar = () => {
@@ -50,7 +52,7 @@ const Sidebar = () => {
         overflowX: 'hidden',
         py: 1,
         gap: 2,
-        backgroundColor: 'background.paper',
+        // backgroundColor: 'background.paper',
       }}
     >
       {open && (

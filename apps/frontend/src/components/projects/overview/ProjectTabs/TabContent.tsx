@@ -20,8 +20,8 @@ const ProjectTabContent = ({
         flexDirection: 'column',
         px: 2,
         py: 1,
-        backgroundColor: 'background.paper',
         overflow: 'hidden',
+        backgroundColor: 'background.alt',
       }}
     >
       {title && (
