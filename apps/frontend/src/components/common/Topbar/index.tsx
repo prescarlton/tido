@@ -29,7 +29,7 @@ const Topbar = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         px: 2,
-        background: 'background.default',
+        backgroundColor: 'background.paper',
         borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
         overflow: 'hidden',
       }}

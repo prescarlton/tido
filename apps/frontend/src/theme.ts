@@ -9,7 +9,7 @@ export const darkModePalette: ThemeOptions['palette'] = {
 export const lightModePalette: ThemeOptions['palette'] = {
   background: {
     default: '#F4F5F7',
-    paper: '#dddddd',
+    paper: '#fff',
   },
 }
 

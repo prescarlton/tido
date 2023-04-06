@@ -2,9 +2,7 @@ import { Box } from '@mui/material'
 import { Outlet } from 'react-router-dom'
 
 import Page from '@/components/common/Page'
-import Sidebar from '@/components/common/Sidebar'
 import Topbar from '@/components/common/Topbar'
-import UserComponent from '@/components/common/UserComponent'
 
 const AppLayout = () => {
   return (

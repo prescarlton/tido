@@ -24,7 +24,8 @@ const queryClient = new QueryClient({
 })
 
 const App = () => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  // const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const prefersDarkMode = false
 
   const combinedTheme = React.useMemo(
     () =>
