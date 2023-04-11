@@ -1,8 +1,8 @@
-import { useQuery } from '@tanstack/react-query'
-import { GetProjectParams, GetProjectResponse } from 'shared/types/projects'
+import { useQuery } from "@tanstack/react-query"
+import { GetProjectParams, GetProjectResponse } from "shared/types/projects"
 
-import ProjectService from '@/api/ProjectService'
-import { PROJECTS_QUERY_KEY } from '@/api/ProjectService'
+import ProjectService from "@/api/ProjectService"
+import { PROJECTS_QUERY_KEY } from "@/api/ProjectService"
 
 const getProjectById = async (data: GetProjectParams) =>
   ProjectService.get<GetProjectResponse>(`/${data.projectId}`).then(

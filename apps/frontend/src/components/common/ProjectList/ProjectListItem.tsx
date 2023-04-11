@@ -1,6 +1,6 @@
-import { Project } from '@/types/Project'
-import { Box, Typography } from '@mui/material'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Project } from "@/types/Project"
+import { Box, Typography } from "@mui/material"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const ProjectListItem = ({ project }: { project: Project }) => {
   const location = useLocation()
@@ -15,12 +15,12 @@ const ProjectListItem = ({ project }: { project: Project }) => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        cursor: 'pointer',
-        transition: '.3s ease-in-out all',
-        '&:hover': {
-          backgroundColor: '#f5f5f5',
+        display: "flex",
+        alignItems: "center",
+        cursor: "pointer",
+        transition: ".3s ease-in-out all",
+        "&:hover": {
+          backgroundColor: "#f5f5f5",
         },
         py: 1,
         px: 2,
@@ -31,7 +31,7 @@ const ProjectListItem = ({ project }: { project: Project }) => {
       <Typography
         variant="body1"
         sx={{
-          color: active ? 'text.primary' : 'text.secondary',
+          color: active ? "text.primary" : "text.secondary",
         }}
       >
         {project.name}

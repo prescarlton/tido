@@ -1,8 +1,8 @@
-import { CreateApiService } from '../APIService'
+import { CreateApiService } from "../APIService"
 
 const ProjectService = CreateApiService({
-  baseURL: '/projects',
+  baseURL: "/projects",
 })
 export default ProjectService
 
-export * from './constants'
+export * from "./constants"

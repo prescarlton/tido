@@ -1,9 +1,9 @@
-import { Box, Stack, Typography } from '@mui/material'
+import { Box, Stack, Typography } from "@mui/material"
 
-import MyProjectsLoading from '@/components/home/MyProjects/Loading'
-import useListProjects from '@/hooks/api/projects/useListProjects'
+import MyProjectsLoading from "@/components/home/MyProjects/Loading"
+import useListProjects from "@/hooks/api/projects/useListProjects"
 
-import ProjectCard from './ProjectCard'
+import ProjectCard from "./ProjectCard"
 
 const MyProjects = () => {
   const { data: myProjects, isLoading } = useListProjects()
@@ -12,18 +12,18 @@ const MyProjects = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 1.25,
       }}
     >
-      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
         <Typography variant="h2">My Projects</Typography>
         <Typography variant="h4">({myProjects.length}/5)</Typography>
       </Stack>
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           gap: 1.5,
         }}
       >

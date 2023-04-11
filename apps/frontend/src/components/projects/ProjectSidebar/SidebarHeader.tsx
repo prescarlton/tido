@@ -1,22 +1,22 @@
-import { UnfoldMore } from '@mui/icons-material'
-import { Box, IconButton, Stack, Typography } from '@mui/material'
+import { UnfoldMore } from "@mui/icons-material"
+import { Box, IconButton, Stack, Typography } from "@mui/material"
 
-import useProjectContext from '@/contexts/ProjectContext'
+import useProjectContext from "@/contexts/ProjectContext"
 
 const SidebarHeader = () => {
   const { project } = useProjectContext()
 
   return (
-    <Stack direction="row" sx={{ alignItems: 'center' }} spacing={2}>
+    <Stack direction="row" sx={{ alignItems: "center" }} spacing={2}>
       <Box
         sx={{
           borderRadius: 2,
           width: 42,
           height: 42,
-          backgroundColor: 'primary.main',
+          backgroundColor: "primary.main",
         }}
       />
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <Typography variant="h4" sx={{ fontWeight: 700 }}>
           {project?.name}
         </Typography>

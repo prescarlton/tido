@@ -1,4 +1,4 @@
-import useCreateProject from '@/hooks/api/projects/useCreateProject'
+import useCreateProject from "@/hooks/api/projects/useCreateProject"
 import {
   Button,
   Dialog,
@@ -6,8 +6,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from '@mui/material'
-import { ChangeEvent, useState } from 'react'
+} from "@mui/material"
+import { ChangeEvent, useState } from "react"
 
 const CreateProjectDialog = ({
   open,
@@ -16,7 +16,7 @@ const CreateProjectDialog = ({
   open: boolean
   onClose: () => void
 }) => {
-  const [projectName, setProjectName] = useState('')
+  const [projectName, setProjectName] = useState("")
   const createMutation = useCreateProject()
 
   const onClick = async () => {

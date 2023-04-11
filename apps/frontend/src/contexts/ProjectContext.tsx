@@ -5,11 +5,11 @@ import {
   SetStateAction,
   useContext,
   useState,
-} from 'react'
-import { useParams } from 'react-router-dom'
-import { Project } from 'shared/types/projects'
+} from "react"
+import { useParams } from "react-router-dom"
+import { Project } from "shared/types/projects"
 
-import useGetProjectById from '@/hooks/api/projects/useGetProject'
+import useGetProjectById from "@/hooks/api/projects/useGetProject"
 
 type ProjectContextType = {
   project: Project | undefined
@@ -56,7 +56,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
 const useProjectContext = () => {
   const context = useContext(ProjectContext)
   if (context === undefined) {
-    throw new Error('useProjectContext must be used within a ProjectProvider')
+    throw new Error("useProjectContext must be used within a ProjectProvider")
   }
   return context
 }

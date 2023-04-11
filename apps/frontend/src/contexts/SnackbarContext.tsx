@@ -1,9 +1,9 @@
-import { Alert, Snackbar } from '@mui/material'
-import { createContext, ReactNode, useContext, useState } from 'react'
+import { Alert, Snackbar } from "@mui/material"
+import { createContext, ReactNode, useContext, useState } from "react"
 
 type OpenSnackbarProps = {
   message: string
-  type?: 'success' | 'info' | 'warning' | 'error'
+  type?: "success" | "info" | "warning" | "error"
 }
 
 type SnackbarContextType = {
@@ -16,14 +16,14 @@ const SnackbarContext = createContext<SnackbarContextType>(
 
 export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false)
-  const [message, setMessage] = useState('')
-  const [type, setType] = useState<'success' | 'info' | 'warning' | 'error'>(
-    'info'
+  const [message, setMessage] = useState("")
+  const [type, setType] = useState<"success" | "info" | "warning" | "error">(
+    "info"
   )
 
   const openSnackbar = (config: OpenSnackbarProps) => {
     setMessage(config.message)
-    setType(config.type || 'info')
+    setType(config.type || "info")
     setOpen(true)
   }
 
@@ -34,7 +34,7 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
         open={open}
         onClose={() => setOpen(false)}
         autoHideDuration={3000}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
       >
         <Alert severity={type}>{message}</Alert>
       </Snackbar>
@@ -45,7 +45,7 @@ export const SnackbarProvider = ({ children }: { children: ReactNode }) => {
 const useSnackbarContext = () => {
   const context = useContext(SnackbarContext)
   if (context === undefined) {
-    throw new Error('useSnackbarContext must be used within a SnackbarProvider')
+    throw new Error("useSnackbarContext must be used within a SnackbarProvider")
   }
   return context
 }

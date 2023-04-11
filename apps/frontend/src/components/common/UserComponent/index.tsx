@@ -1,10 +1,10 @@
-import { AccountCircle } from '@mui/icons-material'
-import { ClickAwayListener, IconButton } from '@mui/material'
-import { MouseEvent, useState } from 'react'
+import { AccountCircle } from "@mui/icons-material"
+import { ClickAwayListener, IconButton } from "@mui/material"
+import { MouseEvent, useState } from "react"
 
-import useGetMe from '@/hooks/api/useMe'
+import useGetMe from "@/hooks/api/useMe"
 
-import UserContextMenu from './UserContextMenu'
+import UserContextMenu from "./UserContextMenu"
 
 const UserComponent = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)

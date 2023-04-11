@@ -1,4 +1,4 @@
-import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
+import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 
 const OverviewPage = () => {
   return <ProjectTabContent title="Overview">overview page</ProjectTabContent>

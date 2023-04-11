@@ -1,11 +1,11 @@
-import { Box, Tab, Tabs } from '@mui/material'
-import { useState } from 'react'
+import { Box, Tab, Tabs } from "@mui/material"
+import { useState } from "react"
 
-import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
-import DangerZone from '@/components/projects/settings/DangerZone'
-import FeatureToggles from '@/components/projects/settings/FeatureToggles'
-import GeneralProjectSettings from '@/components/projects/settings/GeneralSettings'
-import TeamSettings from '@/components/projects/settings/TeamSettings'
+import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
+import DangerZone from "@/components/projects/settings/DangerZone"
+import FeatureToggles from "@/components/projects/settings/FeatureToggles"
+import GeneralProjectSettings from "@/components/projects/settings/GeneralSettings"
+import TeamSettings from "@/components/projects/settings/TeamSettings"
 
 const ProjectSettingsPage = () => {
   const [tab, setTab] = useState(0)
@@ -13,11 +13,11 @@ const ProjectSettingsPage = () => {
     <ProjectTabContent title="Settings">
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           mt: 4,
           gap: 2,
           flex: 1,
-          alignItems: 'stretch',
+          alignItems: "stretch",
         }}
       >
         <Tabs

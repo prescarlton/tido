@@ -1,6 +1,6 @@
-import { ListItem, ListItemButton, ListItemIcon } from '@mui/material'
-import { MouseEvent, ReactNode } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { ListItem, ListItemButton, ListItemIcon } from "@mui/material"
+import { MouseEvent, ReactNode } from "react"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 
 const SideNavItem = ({
   open,
@@ -23,35 +23,35 @@ const SideNavItem = ({
   }
 
   return (
-    <ListItem disablePadding sx={{ display: 'block' }}>
+    <ListItem disablePadding sx={{ display: "block" }}>
       <ListItemButton
         onClick={handleClick}
         sx={{
           height: 30,
-          justifyContent: open ? 'initial' : 'center',
-          boxSizing: 'content-box',
-          '*': {
-            transition: '.3s ease-in-out all',
-            color: active ? 'primary.main' : 'text.secondary',
+          justifyContent: open ? "initial" : "center",
+          boxSizing: "content-box",
+          "*": {
+            transition: ".3s ease-in-out all",
+            color: active ? "primary.main" : "text.secondary",
           },
-          '&:hover': {
-            backgroundColor: 'transparent',
-            '*': {
-              color: 'primary.main',
+          "&:hover": {
+            backgroundColor: "transparent",
+            "*": {
+              color: "primary.main",
             },
-            '&:before': {
-              backgroundColor: 'primary.main',
+            "&:before": {
+              backgroundColor: "primary.main",
             },
           },
-          '&:before': {
+          "&:before": {
             content: '""',
-            position: 'absolute',
+            position: "absolute",
             top: 0,
             left: 0,
             width: 4,
-            height: '100%',
-            backgroundColor: active ? 'primary.main' : 'transparent',
-            transition: '.3s ease-in-out all',
+            height: "100%",
+            backgroundColor: active ? "primary.main" : "transparent",
+            transition: ".3s ease-in-out all",
             borderTopRightRadius: 4,
             borderBottomRightRadius: 4,
           },
@@ -60,7 +60,7 @@ const SideNavItem = ({
       >
         <ListItemIcon
           sx={{
-            justifyContent: 'center',
+            justifyContent: "center",
           }}
         >
           {icon}

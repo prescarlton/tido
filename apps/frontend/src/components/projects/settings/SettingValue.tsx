@@ -1,12 +1,12 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext } from "react-hook-form"
 
-import ControlledTextField from '@/components/fields/ControlledTextField'
-import { ISetting } from '@/types/components/Settings'
+import ControlledTextField from "@/components/fields/ControlledTextField"
+import { ISetting } from "@/types/components/Settings"
 
 const SettingValue = ({ name, dataType }: ISetting) => {
   const { control } = useFormContext()
   switch (dataType) {
-    case 'text':
+    case "text":
       return (
         <ControlledTextField
           name={name}
@@ -18,7 +18,7 @@ const SettingValue = ({ name, dataType }: ISetting) => {
           }}
         />
       )
-    case 'long text':
+    case "long text":
       return (
         <ControlledTextField
           TextFieldProps={{

@@ -1,4 +1,4 @@
-import AuthService from '..'
+import AuthService from ".."
 
 export interface LoginRequest {
   username: string
@@ -11,7 +11,7 @@ export interface LoginResponse {
   user: any
 }
 
-export const LOGIN_QUERY_KEY = ['login']
+export const LOGIN_QUERY_KEY = ["login"]
 
 export const login = (data: LoginRequest) =>
-  AuthService.post<LoginResponse>('/login', data).then((res) => res.data)
+  AuthService.post<LoginResponse>("/login", data).then((res) => res.data)

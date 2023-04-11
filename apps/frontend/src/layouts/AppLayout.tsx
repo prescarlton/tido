@@ -1,26 +1,26 @@
-import { Box } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { Box } from "@mui/material"
+import { Outlet } from "react-router-dom"
 
-import Page from '@/components/common/Page'
-import Topbar from '@/components/common/Topbar'
+import Page from "@/components/common/Page"
+import Topbar from "@/components/common/Topbar"
 
 const AppLayout = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
+        display: "flex",
+        flexDirection: "column",
+        height: "100%",
       }}
     >
       <Topbar />
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           flex: 1,
-          overflow: 'hidden',
-          position: 'relative',
+          overflow: "hidden",
+          position: "relative",
         }}
       >
         <Page>

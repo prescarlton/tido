@@ -1,4 +1,4 @@
-import { Sort } from '@mui/icons-material'
+import { Sort } from "@mui/icons-material"
 import {
   Divider,
   ListItemIcon,
@@ -7,8 +7,8 @@ import {
   MenuItem,
   MenuList,
   Typography,
-} from '@mui/material'
-import { Edit2, Plus, Trash2 } from 'react-feather'
+} from "@mui/material"
+import { Edit2, Plus, Trash2 } from "react-feather"
 
 const ListContextMenu = ({
   anchorEl,
@@ -22,28 +22,28 @@ const ListContextMenu = ({
       anchorEl={anchorEl}
       open={Boolean(anchorEl)}
       onClose={onClose}
-      transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-      anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+      transformOrigin={{ horizontal: "right", vertical: "top" }}
+      anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       PaperProps={{
         sx: {
           width: 200,
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
         },
       }}
     >
       <Typography
         variant="h6"
         sx={{
-          color: 'text.secondary',
-          textAlign: 'center',
+          color: "text.secondary",
+          textAlign: "center",
         }}
       >
         List Actions
       </Typography>
       <Divider flexItem sx={{ mt: 1, mx: 1 }} />
       <MenuList sx={{ py: 0.5 }}>
-        <MenuItem sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <MenuItem sx={{ display: "flex", justifyContent: "space-between" }}>
           <ListItemText>
             <Typography variant="body2">Add a task</Typography>
           </ListItemText>
@@ -66,7 +66,7 @@ const ListContextMenu = ({
       </MenuList>
       <Divider flexItem sx={{ mx: 1 }} />
       <MenuList sx={{ py: 0.5 }}>
-        <MenuItem sx={{ '& *': { color: 'error.main' } }}>
+        <MenuItem sx={{ "& *": { color: "error.main" } }}>
           <ListItemText>
             <Typography variant="body2">Delete list</Typography>
           </ListItemText>

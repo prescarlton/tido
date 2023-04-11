@@ -1,4 +1,4 @@
-import { Box, Card, Typography } from '@mui/material'
+import { Box, Card, Typography } from "@mui/material"
 
 const TaskCard = () => {
   return (
@@ -8,15 +8,15 @@ const TaskCard = () => {
         height: 110,
         p: 1,
         boxShadow: 0,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 0.5,
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          alignItems: 'center',
+          display: "flex",
+          alignItems: "center",
           gap: 0.5,
         }}
       >
@@ -24,7 +24,7 @@ const TaskCard = () => {
           sx={{
             width: 24,
             height: 24,
-            backgroundColor: 'primary.main',
+            backgroundColor: "primary.main",
             borderRadius: 1,
           }}
         />
@@ -33,10 +33,10 @@ const TaskCard = () => {
       <Typography
         variant="body1"
         sx={{
-          fontWeight: 'bold',
+          fontWeight: "bold",
         }}
       >
-        {' '}
+        {" "}
         Task Name
       </Typography>
       <Typography variant="caption">Task Description</Typography>

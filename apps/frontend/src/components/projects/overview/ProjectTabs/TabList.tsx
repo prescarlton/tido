@@ -1,17 +1,17 @@
-import { Tab, Tabs } from '@mui/material'
-import { Link, useParams } from 'react-router-dom'
+import { Tab, Tabs } from "@mui/material"
+import { Link, useParams } from "react-router-dom"
 
-import useRouteMatch from '@/hooks/useRouteMatch'
+import useRouteMatch from "@/hooks/useRouteMatch"
 
 const TabList = () => {
   const { projectId } = useParams()
 
   const routeMatch = useRouteMatch([
-    '/p/:projectId/',
-    '/p/:projectId/b/*',
-    '/p/:projectId/resources',
-    '/p/:projectId/announcements',
-    '/p/:projectId/settings',
+    "/p/:projectId/",
+    "/p/:projectId/b/*",
+    "/p/:projectId/resources",
+    "/p/:projectId/announcements",
+    "/p/:projectId/settings",
   ])
   const currentTab = routeMatch?.pattern?.path
 
@@ -24,20 +24,20 @@ const TabList = () => {
       sx={{
         minHeight: 0,
         height: 40,
-        '& .MuiTab-root': {
+        "& .MuiTab-root": {
           minHeight: 0,
-          textTransform: 'none',
+          textTransform: "none",
         },
-        '& .MuiTabs-indicator': {
-          display: 'flex',
-          justifyContent: 'center',
-          backgroundColor: 'transparent',
+        "& .MuiTabs-indicator": {
+          display: "flex",
+          justifyContent: "center",
+          backgroundColor: "transparent",
           height: 4,
         },
-        '& .MuiTabs-indicatorSpan': {
+        "& .MuiTabs-indicatorSpan": {
           maxWidth: 50,
-          width: '90%',
-          backgroundColor: 'primary.main',
+          width: "90%",
+          backgroundColor: "primary.main",
           borderTopLeftRadius: 4,
           borderTopRightRadius: 4,
         },

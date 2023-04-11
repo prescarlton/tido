@@ -7,4 +7,4 @@ export interface CreateProjectRequest {
   name: string
 }
 
-export const CREATE_PROJECT_QUERY_KEY = ['createProject']
+export const CREATE_PROJECT_QUERY_KEY = ["createProject"]

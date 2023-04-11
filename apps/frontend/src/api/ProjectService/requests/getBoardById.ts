@@ -1,4 +1,4 @@
-import ProjectService from '..'
+import ProjectService from ".."
 
 export interface GetBoardByIdRequest {
   id: string

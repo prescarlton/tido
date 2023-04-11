@@ -1,17 +1,17 @@
-import { useEffect } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
-import { UpdateGenProjSettingsBody } from 'shared/types/projects'
+import { useEffect } from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import { UpdateGenProjSettingsBody } from "shared/types/projects"
 
-import SettingList from '@/components/projects/settings/GeneralSettings/SettingList'
-import SettingsSection from '@/components/projects/settings/SettingsSection'
-import useGetGenProjSettings from '@/hooks/api/projects/settings/useGetGeneralSettings'
-import useUpdateGenProjSettings from '@/hooks/api/projects/settings/useUpdateGeneralSettings'
+import SettingList from "@/components/projects/settings/GeneralSettings/SettingList"
+import SettingsSection from "@/components/projects/settings/SettingsSection"
+import useGetGenProjSettings from "@/hooks/api/projects/settings/useGetGeneralSettings"
+import useUpdateGenProjSettings from "@/hooks/api/projects/settings/useUpdateGeneralSettings"
 
 const GeneralProjectSettings = () => {
   const formMethods = useForm({
     defaultValues: {
-      name: '',
-      description: '',
+      name: "",
+      description: "",
     },
   })
   const { control, reset, handleSubmit } = formMethods

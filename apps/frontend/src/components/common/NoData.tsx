@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { Box, Typography } from "@mui/material"
+import { ReactNode } from "react"
 
 const NoData = ({
   dataType,
@@ -11,10 +11,10 @@ const NoData = ({
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignItems: 'center',
+        display: "flex",
+        alignItems: "center",
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: "column",
         mt: 4,
       }}
     >

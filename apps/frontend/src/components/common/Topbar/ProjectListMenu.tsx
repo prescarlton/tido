@@ -1,4 +1,4 @@
-import { Add } from '@mui/icons-material'
+import { Add } from "@mui/icons-material"
 import {
   Divider,
   ListItemIcon,
@@ -6,10 +6,10 @@ import {
   Menu,
   MenuItem,
   MenuList,
-} from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+} from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
-import useListProjects from '@/hooks/api/projects/useListProjects'
+import useListProjects from "@/hooks/api/projects/useListProjects"
 
 const ProjectListMenu = ({
   anchorEl,

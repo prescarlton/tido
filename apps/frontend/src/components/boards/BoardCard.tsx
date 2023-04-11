@@ -1,5 +1,5 @@
-import { Card, CardActionArea, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { Card, CardActionArea, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
 
 const BoardCard = ({ name, id }: { name: string; id: string }) => {
   const navigate = useNavigate()
@@ -12,19 +12,19 @@ const BoardCard = ({ name, id }: { name: string; id: string }) => {
       sx={{
         width: 200,
         height: 80,
-        display: 'flex',
+        display: "flex",
       }}
     >
       <CardActionArea
         onClick={handleCardClick}
         sx={{
-          height: '100%',
-          width: '100%',
+          height: "100%",
+          width: "100%",
           p: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
         }}
       >
         <Typography variant="h5">{name}</Typography>

@@ -1,59 +1,59 @@
-import { ThemeOptions } from '@mui/material'
+import { ThemeOptions } from "@mui/material"
 
-export const darkModePalette: ThemeOptions['palette'] = {
+export const darkModePalette: ThemeOptions["palette"] = {
   background: {
-    paper: '#202124',
+    paper: "#202124",
   },
 }
 
-export const lightModePalette: ThemeOptions['palette'] = {
+export const lightModePalette: ThemeOptions["palette"] = {
   background: {
-    default: '#F4F5F7',
-    paper: '#fff',
+    default: "#F4F5F7",
+    paper: "#fff",
   },
 }
 
 const theme: ThemeOptions = {
   palette: {
     primary: {
-      main: '#4685FF',
+      main: "#4685FF",
     },
   },
   typography: {
     allVariants: {
-      fontFamily: 'Inter, -apple-system,sans-serif',
+      fontFamily: "Inter, -apple-system,sans-serif",
       /*
       fontFamily:
         '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Noto Sans,Ubuntu,Droid Sans,Helvetica Neue,sans-serif;',
       */
     },
     h1: {
-      fontSize: '2.5rem',
+      fontSize: "2.5rem",
       fontWeight: 700,
     },
     h2: {
-      fontSize: '2rem',
+      fontSize: "2rem",
       fontWeight: 700,
     },
     h3: {
-      fontSize: '1.5rem',
+      fontSize: "1.5rem",
       fontWeight: 700,
     },
     h4: {
-      fontSize: '1.25rem',
-      fontWeight: 'normal',
+      fontSize: "1.25rem",
+      fontWeight: "normal",
     },
     h5: {
-      fontSize: '1rem',
-      fontWeight: 'normal',
+      fontSize: "1rem",
+      fontWeight: "normal",
     },
     h6: {
-      fontSize: '0.875rem',
-      fontWeight: 'normal',
+      fontSize: "0.875rem",
+      fontWeight: "normal",
     },
     caption: {
       lineHeight: 1.5,
-      color: '#898989',
+      color: "#898989",
     },
   },
   components: {
@@ -64,7 +64,7 @@ const theme: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: 8,
-          textTransform: 'none',
+          textTransform: "none",
         },
       },
     },
@@ -78,18 +78,18 @@ const theme: ThemeOptions = {
     MuiFormControl: {
       styleOverrides: {
         root: {
-          gap: '.25rem',
+          gap: ".25rem",
         },
       },
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          position: 'relative',
-          transform: 'none',
+          position: "relative",
+          transform: "none",
           fontWeight: 500,
-          color: '#898989',
-          fontSize: '.75rem',
+          color: "#898989",
+          fontSize: ".75rem",
         },
       },
     },
@@ -100,9 +100,9 @@ const theme: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: 5,
-          transition: 'background-color 0.1s ease-in-out',
-          '&:active': {
-            backgroundColor: 'rgba(0, 0, 0, 0.08)',
+          transition: "background-color 0.1s ease-in-out",
+          "&:active": {
+            backgroundColor: "rgba(0, 0, 0, 0.08)",
           },
         },
       },
@@ -110,18 +110,18 @@ const theme: ThemeOptions = {
     MuiTabs: {
       variants: [
         {
-          props: { orientation: 'vertical' },
+          props: { orientation: "vertical" },
           style: {
-            '& .MuiTabs-flexContainer': {
+            "& .MuiTabs-flexContainer": {
               gap: 8,
             },
-            '& .MuiTab-root': {
+            "& .MuiTab-root": {
               height: 36,
               minHeight: 36,
-              textTransform: 'none',
-              alignItems: 'flex-start',
+              textTransform: "none",
+              alignItems: "flex-start",
             },
-            '& .MuiTabs-indicator': {
+            "& .MuiTabs-indicator": {
               left: 0,
               width: 4,
               borderTopRightRadius: 8,
@@ -136,12 +136,12 @@ const theme: ThemeOptions = {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          '&.MuiInputBase-multiline': {
+          "&.MuiInputBase-multiline": {
             padding: 0,
           },
         },
         input: {
-          padding: '.5rem 1rem',
+          padding: ".5rem 1rem",
           borderRadius: 8,
         },
       },

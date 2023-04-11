@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { Box, Typography } from "@mui/material"
+import { ReactNode } from "react"
 
 type ProjectListItemButtonProps = {
   text?: string
@@ -19,21 +19,21 @@ const ProjectListItemButton = ({
   return (
     <Box
       sx={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         borderRadius: 3,
         height: 40,
         width: 40,
-        backgroundColor: active ? 'primary.main' : 'transparent',
+        backgroundColor: active ? "primary.main" : "transparent",
         border: active ? 0 : 2,
-        borderColor: 'primary.main',
-        cursor: 'pointer',
-        transition: '.3s ease-in-out all',
-        '&:hover': {
-          backgroundColor: 'primary.main',
-          '*': {
-            color: 'primary.contrastText',
+        borderColor: "primary.main",
+        cursor: "pointer",
+        transition: ".3s ease-in-out all",
+        "&:hover": {
+          backgroundColor: "primary.main",
+          "*": {
+            color: "primary.contrastText",
           },
         },
       }}
@@ -42,7 +42,7 @@ const ProjectListItemButton = ({
       {text && (
         <Typography
           variant="body1"
-          sx={{ color: active ? 'primary.contrastText' : 'primary.main' }}
+          sx={{ color: active ? "primary.contrastText" : "primary.main" }}
         >
           {text}
         </Typography>

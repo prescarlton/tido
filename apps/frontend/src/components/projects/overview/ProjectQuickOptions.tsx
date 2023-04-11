@@ -1,5 +1,5 @@
-import { Close, MoreVert, StarOutline } from '@mui/icons-material'
-import { IconButton, Stack } from '@mui/material'
+import { Close, MoreVert, StarOutline } from "@mui/icons-material"
+import { IconButton, Stack } from "@mui/material"
 
 const ProjectQuickOptions = () => {
   return (

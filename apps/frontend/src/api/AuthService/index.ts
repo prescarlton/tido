@@ -1,7 +1,7 @@
-import { CreateApiService } from '../APIService'
+import { CreateApiService } from "../APIService"
 
 const AuthService = CreateApiService({
-  baseURL: '/auth',
+  baseURL: "/auth",
 })
 
 export default AuthService

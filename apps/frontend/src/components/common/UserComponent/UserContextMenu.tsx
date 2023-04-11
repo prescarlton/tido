@@ -1,4 +1,4 @@
-import { Logout } from '@mui/icons-material'
+import { Logout } from "@mui/icons-material"
 import {
   ListItem,
   ListItemIcon,
@@ -7,10 +7,10 @@ import {
   MenuList,
   Stack,
   Typography,
-} from '@mui/material'
-import { Settings } from 'react-feather'
+} from "@mui/material"
+import { Settings } from "react-feather"
 
-import useAuthContext from '@/contexts/AuthContext'
+import useAuthContext from "@/contexts/AuthContext"
 
 const UserContextMenu = ({
   anchorEl,

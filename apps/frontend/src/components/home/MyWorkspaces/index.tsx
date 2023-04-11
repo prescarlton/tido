@@ -1,19 +1,19 @@
-import { Box, Typography } from '@mui/material'
-import WorkspaceCard from './WorkspaceCard'
+import { Box, Typography } from "@mui/material"
+import WorkspaceCard from "./WorkspaceCard"
 
 const MyWorkspaces = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 1.25,
       }}
     >
       <Typography variant="h2">My Workspaces</Typography>
       <Box
         sx={{
-          display: 'flex',
+          display: "flex",
           gap: 1.5,
         }}
       >

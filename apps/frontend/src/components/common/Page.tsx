@@ -1,6 +1,6 @@
-import { Box, Button, Typography } from '@mui/material'
-import { Component, ReactNode } from 'react'
-import { ErrorBoundary, FallbackProps } from 'react-error-boundary'
+import { Box, Button, Typography } from "@mui/material"
+import { Component, ReactNode } from "react"
+import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   console.error(error)
@@ -9,11 +9,11 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
     <Box
       role="alert"
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
       }}
     >
       <Typography variant="h6">Something went wrong</Typography>

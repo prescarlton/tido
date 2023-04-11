@@ -4,36 +4,36 @@ import {
   GridView,
   PeopleAlt,
   Settings,
-} from '@mui/icons-material'
-import { Box, Button, List } from '@mui/material'
-import { useState } from 'react'
+} from "@mui/icons-material"
+import { Box, Button, List } from "@mui/material"
+import { useState } from "react"
 
-import useProjectContext from '@/contexts/ProjectContext'
+import useProjectContext from "@/contexts/ProjectContext"
 
-import NavItem from './SideNavItem'
+import NavItem from "./SideNavItem"
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false)
 
   const pages = [
     {
-      title: 'Dashboard',
-      to: 'dashboard',
+      title: "Dashboard",
+      to: "dashboard",
       icon: <GridView />,
     },
     {
-      title: 'Projects',
-      to: 'p',
+      title: "Projects",
+      to: "p",
       icon: <FolderOpen />,
     },
     {
-      title: 'Team',
-      to: 'team',
+      title: "Team",
+      to: "team",
       icon: <PeopleAlt />,
     },
     {
-      title: 'Settings',
-      to: 'settings',
+      title: "Settings",
+      to: "settings",
       icon: <Settings />,
     },
   ]
@@ -43,13 +43,13 @@ const Sidebar = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         width: 64,
-        transition: 'width 0.3s',
+        transition: "width 0.3s",
         borderRight: 1,
-        borderColor: 'divider',
-        overflowX: 'hidden',
+        borderColor: "divider",
+        overflowX: "hidden",
         py: 1,
         gap: 2,
         // backgroundColor: 'background.paper',
@@ -60,7 +60,7 @@ const Sidebar = () => {
           variant="text"
           endIcon={<ArrowDropDown />}
           sx={{
-            justifyContent: 'space-between',
+            justifyContent: "space-between",
           }}
         >
           {project?.name}
@@ -68,8 +68,8 @@ const Sidebar = () => {
       )}
       <List
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 2,
         }}
       >

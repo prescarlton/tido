@@ -1,5 +1,5 @@
-import { ListItem, Menu, MenuList } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { ListItem, Menu, MenuList } from "@mui/material"
+import { useParams } from "react-router-dom"
 
 const EditBoardMenu = ({
   anchorEl,
@@ -11,8 +11,8 @@ const EditBoardMenu = ({
   const { boardId, projectId } = useParams()
 
   const handleDelete = () => {
-    if (confirm('Are you sure you want to delete this board?')) {
-      console.log('delete')
+    if (confirm("Are you sure you want to delete this board?")) {
+      console.log("delete")
     }
   }
 

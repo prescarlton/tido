@@ -1,24 +1,24 @@
-import { Box } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { Box } from "@mui/material"
+import { Outlet } from "react-router-dom"
 
-import ProjectSidebar from '@/components/projects/ProjectSidebar'
+import ProjectSidebar from "@/components/projects/ProjectSidebar"
 
 export enum ProjectTab {
-  Overview = 'overview',
-  Boards = 'boards',
-  Resources = 'resources',
-  Announcements = 'announcements',
-  Settings = 'settings',
+  Overview = "overview",
+  Boards = "boards",
+  Resources = "resources",
+  Announcements = "announcements",
+  Settings = "settings",
 }
 
 const ProjectHomepage = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: "flex",
         flex: 1,
-        height: '100%',
-        backgroundColor: 'background.paper',
+        height: "100%",
+        backgroundColor: "background.paper",
       }}
     >
       <ProjectSidebar />

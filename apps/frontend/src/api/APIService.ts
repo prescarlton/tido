@@ -1,5 +1,5 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { DefaultResponse } from 'shared/types/api'
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
+import { DefaultResponse } from "shared/types/api"
 
 const ApiBaseUrl = `${import.meta.env.VITE_API_ENDPOINT}`
 
@@ -32,7 +32,7 @@ function handleError(error: AxiosError) {
     }
     case 401: {
       // Handle Unauthorized
-      window.location.href = '/login'
+      window.location.href = "/login"
       break
     }
 
@@ -52,7 +52,7 @@ interface ApiServiceProps {
 }
 
 export function CreateApiService({
-  baseURL = '',
+  baseURL = "",
   interceptResponse,
   interceptRequest,
 }: ApiServiceProps) {

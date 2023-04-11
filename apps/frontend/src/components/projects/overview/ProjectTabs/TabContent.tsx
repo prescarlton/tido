@@ -1,5 +1,5 @@
-import { Box, Typography } from '@mui/material'
-import { ReactNode } from 'react'
+import { Box, Typography } from "@mui/material"
+import { ReactNode } from "react"
 
 interface IProjectTabContent {
   children: ReactNode
@@ -15,26 +15,26 @@ const ProjectTabContent = ({
   return (
     <Box
       sx={{
-        display: 'flex',
+        display: "flex",
         flex: 1,
-        flexDirection: 'column',
+        flexDirection: "column",
         px: 2,
         py: 1,
-        overflow: 'hidden',
-        backgroundColor: 'background.alt',
+        overflow: "hidden",
+        backgroundColor: "background.alt",
       }}
     >
       {title && (
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
             gap: 2,
             height: 40,
           }}
         >
-          <Typography variant="h3" sx={{ fontWeight: 'normal' }}>
+          <Typography variant="h3" sx={{ fontWeight: "normal" }}>
             {title}
           </Typography>
           {primaryAction}
@@ -43,8 +43,8 @@ const ProjectTabContent = ({
       <Box
         sx={{
           flex: 1,
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         {children}

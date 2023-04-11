@@ -1,12 +1,12 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
-import { UpdateGenProjSettingsBody } from 'shared/types/projects'
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useParams } from "react-router-dom"
+import { UpdateGenProjSettingsBody } from "shared/types/projects"
 
 import ProjectService, {
   PROJECT_GEN_SETTINGS_QUERY_KEY,
   PROJECTS_QUERY_KEY,
-} from '@/api/ProjectService'
-import useSnackbarContext from '@/contexts/SnackbarContext'
+} from "@/api/ProjectService"
+import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const updateGenProjSettings = (
   projectId: string,
@@ -20,7 +20,7 @@ const useUpdateGenProjSettings = () => {
   const { projectId } = useParams()
   const queryClient = useQueryClient()
   const { openSnackbar } = useSnackbarContext()
-  if (!projectId) throw new Error('Project ID not found')
+  if (!projectId) throw new Error("Project ID not found")
 
   return useMutation(
     PROJECT_GEN_SETTINGS_QUERY_KEY.detail(projectId),
@@ -28,15 +28,15 @@ const useUpdateGenProjSettings = () => {
     {
       onSuccess: () => {
         openSnackbar({
-          message: 'Successfully updated project settings',
-          type: 'success',
+          message: "Successfully updated project settings",
+          type: "success",
         })
         queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
       },
       onError: () => {
         openSnackbar({
-          message: 'Failed to update project settings',
-          type: 'error',
+          message: "Failed to update project settings",
+          type: "error",
         })
       },
     }

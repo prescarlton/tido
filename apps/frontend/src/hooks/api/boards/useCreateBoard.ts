@@ -1,13 +1,13 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate } from 'react-router-dom'
-import { CreateBoardBody, CreateBoardResponse } from 'shared/types/boards'
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { useNavigate } from "react-router-dom"
+import { CreateBoardBody, CreateBoardResponse } from "shared/types/boards"
 
 import ProjectService, {
   BOARDS_QUERY_KEY,
   CREATE_BOARD_QUERY_KEY,
-} from '@/api/ProjectService'
-import useProjectContext from '@/contexts/ProjectContext'
-import useSnackbarContext from '@/contexts/SnackbarContext'
+} from "@/api/ProjectService"
+import useProjectContext from "@/contexts/ProjectContext"
+import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const createBoard = (data: CreateBoardBody, projectId: string) =>
   ProjectService.post<CreateBoardResponse>(`/${projectId}/boards`, data).then(
@@ -27,8 +27,8 @@ const useCreateBoard = () => {
     {
       onSuccess: (data) => {
         openSnackbar({
-          message: 'Board created successfully',
-          type: 'success',
+          message: "Board created successfully",
+          type: "success",
         })
         queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
         navigate(`/p/${data.projectId}/b/${data.id}`)

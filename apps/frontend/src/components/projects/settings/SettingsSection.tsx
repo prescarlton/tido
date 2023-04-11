@@ -1,23 +1,23 @@
-import { Box, Button, Grow, Stack, Typography } from '@mui/material'
-import { FormProvider, useForm } from 'react-hook-form'
+import { Box, Button, Grow, Stack, Typography } from "@mui/material"
+import { FormProvider, useForm } from "react-hook-form"
 
-import SettingValue from '@/components/projects/settings/SettingValue'
-import { ISettingsSection } from '@/types/components/Settings'
+import SettingValue from "@/components/projects/settings/SettingValue"
+import { ISettingsSection } from "@/types/components/Settings"
 
 const SettingsSection = ({
   sectionName,
   settings,
-  color = 'default',
+  color = "default",
   onSubmit,
 }: ISettingsSection) => {
-  const borderColor = color === 'default' ? 'divider' : `${color}.main`
+  const borderColor = color === "default" ? "divider" : `${color}.main`
 
   return (
     <Grow in>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 2,
           flex: 0.75,
         }}
@@ -31,8 +31,8 @@ const SettingsSection = ({
             borderColor,
             borderRadius: 4,
             p: 2,
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             gap: 3,
           }}
         >
@@ -40,8 +40,8 @@ const SettingsSection = ({
             {settings.map((setting) => (
               <Box
                 sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
+                  display: "flex",
+                  justifyContent: "space-between",
                 }}
                 key={setting.name}
               >
@@ -62,7 +62,7 @@ const SettingsSection = ({
           <Button
             variant="contained"
             type="submit"
-            sx={{ alignSelf: 'flex-end' }}
+            sx={{ alignSelf: "flex-end" }}
           >
             Save Changes
           </Button>

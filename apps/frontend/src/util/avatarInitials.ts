@@ -1,6 +1,6 @@
 export const avatarInitials = (str: string) => {
   return str
-    .split(' ')
+    .split(" ")
     .map((word) => word[0])
-    .join('')
+    .join("")
 }

@@ -1,17 +1,17 @@
-import './styles/main.css'
+import "./styles/main.css"
 
-import { CssBaseline, useMediaQuery } from '@mui/material'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
+import { CssBaseline, useMediaQuery } from "@mui/material"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import React from "react"
+import { createRoot } from "react-dom/client"
+import { BrowserRouter } from "react-router-dom"
 
-import { AuthProvider } from './contexts/AuthContext'
-import { ProjectProvider } from './contexts/ProjectContext'
-import { SnackbarProvider } from './contexts/SnackbarContext'
-import AppRouter from './router'
-import theme, { darkModePalette, lightModePalette } from './theme'
+import { AuthProvider } from "./contexts/AuthContext"
+import { ProjectProvider } from "./contexts/ProjectContext"
+import { SnackbarProvider } from "./contexts/SnackbarContext"
+import AppRouter from "./router"
+import theme, { darkModePalette, lightModePalette } from "./theme"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +32,7 @@ const App = () => {
       createTheme({
         ...theme,
         palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
+          mode: prefersDarkMode ? "dark" : "light",
           ...(prefersDarkMode ? darkModePalette : lightModePalette),
         },
       }),
@@ -58,4 +58,4 @@ const App = () => {
   )
 }
 
-createRoot(document.getElementById('root') as HTMLElement).render(<App />)
+createRoot(document.getElementById("root") as HTMLElement).render(<App />)

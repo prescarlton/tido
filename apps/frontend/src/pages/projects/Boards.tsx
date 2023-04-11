@@ -1,11 +1,11 @@
-import { Box, Typography } from '@mui/material'
-import { useParams } from 'react-router-dom'
+import { Box, Typography } from "@mui/material"
+import { useParams } from "react-router-dom"
 
-import BoardCard from '@/components/boards/BoardCard'
-import CreateBoardButton from '@/components/boards/CreateBoardButton'
-import NoData from '@/components/common/NoData'
-import ProjectTabContent from '@/components/projects/overview/ProjectTabs/TabContent'
-import useListBoards from '@/hooks/api/boards/useListBoards'
+import BoardCard from "@/components/boards/BoardCard"
+import CreateBoardButton from "@/components/boards/CreateBoardButton"
+import NoData from "@/components/common/NoData"
+import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
+import useListBoards from "@/hooks/api/boards/useListBoards"
 
 const BoardsPage = () => {
   const { projectId } = useParams() as { projectId: string }
@@ -16,8 +16,8 @@ const BoardsPage = () => {
     <ProjectTabContent title="Boards" primaryAction={<CreateBoardButton />}>
       <Box
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
+          display: "flex",
+          flexWrap: "wrap",
           gap: 2,
           mt: 2,
           flex: 1,

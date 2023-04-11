@@ -1,8 +1,8 @@
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
-import { MouseEvent, useState } from 'react'
-import { MoreVertical, Plus } from 'react-feather'
-import BoardTaskCard from './BoardTaskCard'
-import ListContextMenu from './ListContextMenu'
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material"
+import { MouseEvent, useState } from "react"
+import { MoreVertical, Plus } from "react-feather"
+import BoardTaskCard from "./BoardTaskCard"
+import ListContextMenu from "./ListContextMenu"
 
 const ListContainer = () => {
   const [menuAnchorEl, setMenuAnchorEl] = useState<HTMLElement | null>(null)
@@ -15,30 +15,30 @@ const ListContainer = () => {
   return (
     <Box
       sx={{
-        display: 'inline-block',
-        height: '100%',
+        display: "inline-block",
+        height: "100%",
         mx: 0.5,
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 0.5,
           width: 275,
           borderRadius: 0.75,
-          flex: 'none',
+          flex: "none",
           px: 1,
           py: 0.5,
-          backgroundColor: 'background.default',
-          maxHeight: '100%',
+          backgroundColor: "background.default",
+          maxHeight: "100%",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <Typography variant="h6" sx={{ fontWeight: 900 }}>
@@ -55,7 +55,7 @@ const ListContainer = () => {
         </Box>
         <Box
           sx={{
-            overflowY: 'auto',
+            overflowY: "auto",
             flex: 1,
           }}
         >
@@ -67,9 +67,9 @@ const ListContainer = () => {
           variant="text"
           startIcon={<Plus />}
           sx={{
-            color: 'text.secondary',
-            textTransform: 'none',
-            justifyContent: 'flex-start',
+            color: "text.secondary",
+            textTransform: "none",
+            justifyContent: "flex-start",
             mt: -1,
           }}
         >

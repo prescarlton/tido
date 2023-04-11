@@ -1,9 +1,9 @@
-import { Box } from '@mui/material'
+import { Box } from "@mui/material"
 
-import MyProjects from '@/components/home/MyProjects'
-import MyTasks from '@/components/home/MyTasks'
-import MyWorkspaces from '@/components/home/MyWorkspaces'
-import PageWrapper from '@/layouts/PageLayout'
+import MyProjects from "@/components/home/MyProjects"
+import MyTasks from "@/components/home/MyTasks"
+import MyWorkspaces from "@/components/home/MyWorkspaces"
+import PageWrapper from "@/layouts/PageLayout"
 
 const HomePage = () => {
   return (
@@ -12,8 +12,8 @@ const HomePage = () => {
         sx={{
           py: 2,
           px: 12,
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 3,
         }}
       >

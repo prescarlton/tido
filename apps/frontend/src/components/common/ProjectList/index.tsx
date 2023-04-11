@@ -4,15 +4,15 @@ import {
   ArrowForwardIos,
   ExpandLess,
   ExpandMore,
-} from '@mui/icons-material'
-import { Box, Button, Collapse, IconButton, Stack } from '@mui/material'
-import { useState } from 'react'
+} from "@mui/icons-material"
+import { Box, Button, Collapse, IconButton, Stack } from "@mui/material"
+import { useState } from "react"
 
-import useProjectContext from '@/contexts/ProjectContext'
-import useListProjects from '@/hooks/api/projects/useListProjects'
+import useProjectContext from "@/contexts/ProjectContext"
+import useListProjects from "@/hooks/api/projects/useListProjects"
 
-import CreateProjectButton from './CreateProjectButton'
-import ProjectListItem from './ProjectListItem'
+import CreateProjectButton from "./CreateProjectButton"
+import ProjectListItem from "./ProjectListItem"
 
 const ProjectList = () => {
   const [showFavorites, setShowFavorites] = useState(true)
@@ -24,20 +24,20 @@ const ProjectList = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
         borderRight: 1,
         width: 240,
         p: 1,
-        borderColor: 'divider',
-        backgroundColor: 'background.paper',
+        borderColor: "divider",
+        backgroundColor: "background.paper",
       }}
     >
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
+          display: "flex",
+          flexDirection: "column",
           gap: 3,
         }}
       >
@@ -47,9 +47,9 @@ const ProjectList = () => {
             startIcon={showFavorites ? <ExpandLess /> : <ExpandMore />}
             size="small"
             sx={{
-              justifyContent: 'flex-start',
-              width: '100%',
-              color: 'text.secondary',
+              justifyContent: "flex-start",
+              width: "100%",
+              color: "text.secondary",
             }}
           >
             Favorites
@@ -57,24 +57,24 @@ const ProjectList = () => {
           <Collapse in={showFavorites}>
             <Box
               sx={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               No Favorites
             </Box>
           </Collapse>
         </Box>
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
           <Button
             onClick={toggleProjects}
             startIcon={showProjects ? <ExpandLess /> : <ExpandMore />}
             size="small"
             sx={{
-              justifyContent: 'flex-start',
-              width: '100%',
-              color: 'text.secondary',
+              justifyContent: "flex-start",
+              width: "100%",
+              color: "text.secondary",
             }}
           >
             All Projects

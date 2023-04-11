@@ -1,26 +1,26 @@
-import { Box } from '@mui/material'
-import { Outlet } from 'react-router-dom'
+import { Box } from "@mui/material"
+import { Outlet } from "react-router-dom"
 
-import { ProjectProvider } from '@/contexts/ProjectContext'
+import { ProjectProvider } from "@/contexts/ProjectContext"
 
 const ProjectsLayout = () => {
   return (
     <ProjectProvider>
       <Box
         sx={{
-          display: 'flex',
-          alignItems: 'stretch',
+          display: "flex",
+          alignItems: "stretch",
           flex: 1,
-          height: '100%',
+          height: "100%",
         }}
       >
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
+            display: "flex",
+            flexDirection: "column",
             flex: 1,
-            overflow: 'hidden',
-            position: 'relative',
+            overflow: "hidden",
+            position: "relative",
           }}
         >
           <Outlet />

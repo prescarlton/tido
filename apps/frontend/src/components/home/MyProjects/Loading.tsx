@@ -1,16 +1,16 @@
-import { Box, Grow, Skeleton, Stack, Typography } from '@mui/material'
-import { range } from 'lodash'
+import { Box, Grow, Skeleton, Stack, Typography } from "@mui/material"
+import { range } from "lodash"
 
 const MyProjectsLoading = () => {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 1.25,
       }}
     >
-      <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
+      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
         <Typography variant="h2">My Projects</Typography>
         <Typography variant="h4">(0/5)</Typography>
       </Stack>

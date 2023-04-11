@@ -1,18 +1,18 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Visibility } from '@mui/icons-material'
-import { Box, Button, IconButton, Stack, Typography } from '@mui/material'
-import { AxiosError } from 'axios'
-import { MouseEvent, useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { AuthRequestBody, AuthRequestSchema } from 'shared/types/auth'
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Visibility } from "@mui/icons-material"
+import { Box, Button, IconButton, Stack, Typography } from "@mui/material"
+import { AxiosError } from "axios"
+import { MouseEvent, useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { AuthRequestBody, AuthRequestSchema } from "shared/types/auth"
 
-import useAuthContext from '@/contexts/AuthContext'
+import useAuthContext from "@/contexts/AuthContext"
 
-import ControlledTextField from '../fields/ControlledTextField'
+import ControlledTextField from "../fields/ControlledTextField"
 
 const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
   const [showPassword, setShowPassword] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState("")
 
   const { loginMutation } = useAuthContext()
 
@@ -21,8 +21,8 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
     setShowPassword((prev) => !prev)
   }
   const defaultValues: AuthRequestBody = {
-    username: '',
-    password: '',
+    username: "",
+    password: "",
   }
   const { control, handleSubmit, reset, formState } = useForm({
     defaultValues,
@@ -33,7 +33,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
     await loginMutation
       .mutateAsync(data)
       .catch((err: AxiosError<{ message: string }>) => {
-        setErrorMessage(err.response?.data.message ?? 'Login failed')
+        setErrorMessage(err.response?.data.message ?? "Login failed")
       })
   }
 
@@ -43,21 +43,21 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
   }
 
   useEffect(() => {
-    if (loginMutation.error) setErrorMessage('Login failed')
+    if (loginMutation.error) setErrorMessage("Login failed")
   }, [loginMutation.error])
 
   useEffect(() => {
     if (formState.errors && formState.isSubmitted)
-      setErrorMessage('Username and password are required')
+      setErrorMessage("Username and password are required")
   }, [formState.errors, formState.isSubmitted])
 
   return (
     <Box
       sx={{
-        width: '50%',
+        width: "50%",
         p: 24,
-        display: 'flex',
-        flexDirection: 'column',
+        display: "flex",
+        flexDirection: "column",
         gap: 4,
       }}
       component="form"
@@ -87,7 +87,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
           label="Password"
           TextFieldProps={{
             fullWidth: true,
-            type: showPassword ? 'text' : 'password',
+            type: showPassword ? "text" : "password",
             InputProps: {
               endAdornment: (
                 <IconButton onMouseDown={toggleShowPassword}>
@@ -102,12 +102,12 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
           Login
         </Button>
       </Stack>
-      <Stack direction="row" sx={{ alignItems: 'center', gap: 1 }}>
+      <Stack direction="row" sx={{ alignItems: "center", gap: 1 }}>
         <Typography variant="caption">New around here?</Typography>
         <Button
           onClick={handleSwitchForm}
           variant="text"
-          sx={{ textTransform: 'none' }}
+          sx={{ textTransform: "none" }}
         >
           Create an account
         </Button>

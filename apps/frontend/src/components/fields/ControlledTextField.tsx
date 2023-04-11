@@ -1,8 +1,8 @@
-import { TextField } from '@mui/material'
-import { TextFieldProps } from '@mui/material/TextField'
-import { isEmpty } from 'lodash'
-import { ReactElement } from 'react'
-import { Controller, UseControllerProps, FieldValues } from 'react-hook-form'
+import { TextField } from "@mui/material"
+import { TextFieldProps } from "@mui/material/TextField"
+import { isEmpty } from "lodash"
+import { ReactElement } from "react"
+import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
 export interface ControlledTextFieldProps<FieldValueProps extends FieldValues>
   extends UseControllerProps<FieldValueProps> {
@@ -34,7 +34,7 @@ function ControlledTextField<FieldValueProps extends FieldValues>({
           onBlur={onBlur}
           ref={ref}
           value={value}
-          helperText={(!disableError && error?.message) ?? ''}
+          helperText={(!disableError && error?.message) ?? ""}
           {...TextFieldProps}
         />
       )}
