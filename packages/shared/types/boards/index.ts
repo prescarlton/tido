@@ -9,5 +9,11 @@ export interface Board {
   projectId: string
 }
 
-export * from './responses'
-export * from './requests'
+export enum BoardView {
+  Table = "TABLE",
+  List = "LIST",
+  Kanban = "KANBAN",
+}
+
+export * from "./responses"
+export * from "./requests"

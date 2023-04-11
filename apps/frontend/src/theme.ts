@@ -130,9 +130,33 @@ const theme: ThemeOptions = {
             },
           },
         },
+        {
+          props: { orientation: "horizontal" },
+          style: {
+            minHeight: 0,
+            "& .MuiTabs-flexContainer": {
+              height: "100%",
+              gap: "1.5rem",
+            },
+            "& .MuiTabs-indicator": {
+              borderTopRightRadius: 8,
+              borderTopLeftRadius: 8,
+              height: 3,
+            },
+          },
+        },
       ],
     },
-
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          minHeight: 0,
+          minWidth: 0,
+          padding: ".5rem 0",
+        },
+      },
+    },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {

@@ -2,8 +2,11 @@ import { ArrowBackIos } from "@mui/icons-material"
 import { Box, IconButton, Typography } from "@mui/material"
 import { useNavigate, useParams } from "react-router-dom"
 
+import useProjectContext from "@/contexts/ProjectContext"
+
 const BoardPageHeader = ({ boardName }: { boardName: string }) => {
   const { projectId } = useParams()
+  const { project } = useProjectContext()
   const navigate = useNavigate()
   const handleBackClick = () => {
     navigate(`/p/${projectId}/b`)
@@ -30,7 +33,7 @@ const BoardPageHeader = ({ boardName }: { boardName: string }) => {
         <IconButton onClick={handleBackClick}>
           <ArrowBackIos />
         </IconButton>
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h3" sx={{ fontWeight: "bold" }}>
           {boardName}
         </Typography>
       </Box>

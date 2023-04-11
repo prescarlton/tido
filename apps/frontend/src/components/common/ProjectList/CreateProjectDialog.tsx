@@ -1,4 +1,3 @@
-import useCreateProject from "@/hooks/api/projects/useCreateProject"
 import {
   Button,
   Dialog,
@@ -8,6 +7,8 @@ import {
   TextField,
 } from "@mui/material"
 import { ChangeEvent, useState } from "react"
+
+import useCreateProject from "@/hooks/api/projects/useCreateProject"
 
 const CreateProjectDialog = ({
   open,
@@ -35,7 +36,7 @@ const CreateProjectDialog = ({
           autoFocus
           value={projectName}
           onChange={handleChange}
-          fullWidth
+          InputProps={{ fullWidth: true }}
           placeholder="Project Name"
         />
       </DialogContent>

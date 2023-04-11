@@ -1,19 +1,14 @@
 import { Add } from "@mui/icons-material"
 import { Button } from "@mui/material"
-import { useParams } from "react-router-dom"
 
 import useCreateBoard from "@/hooks/api/boards/useCreateBoard"
 
 const CreateBoardButton = () => {
-  const { projectId } = useParams() as { projectId: string }
-
   const createMutation = useCreateBoard()
 
   const onClick = () => {
-    console.log(projectId)
     createMutation.mutateAsync({
       name: "New Board",
-      projectId,
     })
   }
 
@@ -22,11 +17,14 @@ const CreateBoardButton = () => {
       startIcon={<Add />}
       sx={{
         textTransform: "none",
+        ml: 2,
+        px: 2,
+        justifyContent: "flex-start",
       }}
-      variant="contained"
+      variant="text"
       onClick={onClick}
     >
-      Create New Board
+      Add New
     </Button>
   )
 }
