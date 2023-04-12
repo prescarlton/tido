@@ -1,5 +1,5 @@
-import { DefaultListResponse, DefaultResponse } from 'types/api'
-import { Board, BoardList } from '../boards'
+import { DefaultListResponse, DefaultResponse } from "../api"
+import { Board, BoardList } from "../boards"
 
 export interface BoardListResponse extends DefaultListResponse {
   data: BoardList[]

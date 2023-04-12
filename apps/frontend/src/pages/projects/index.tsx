@@ -18,7 +18,7 @@ const ProjectHomepage = () => {
         display: "flex",
         flex: 1,
         height: "100%",
-        backgroundColor: "background.paper",
+        backgroundColor: "background.default",
       }}
     >
       <ProjectSidebar />

@@ -25,7 +25,7 @@ const BoardPage = () => {
         height: "100%",
       }}
     >
-      <BoardPageHeader boardName={data?.name} />
+      {data && <BoardPageHeader board={data} />}
       <BoardPageContent />
     </Box>
   )

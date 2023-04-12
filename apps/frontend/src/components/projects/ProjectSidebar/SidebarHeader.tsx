@@ -1,5 +1,4 @@
-import { UnfoldMore } from "@mui/icons-material"
-import { Box, IconButton, Stack, Typography } from "@mui/material"
+import { Box, Stack, Typography } from "@mui/material"
 
 import useProjectContext from "@/contexts/ProjectContext"
 
@@ -22,9 +21,9 @@ const SidebarHeader = () => {
         </Typography>
         <Typography variant="h5">Lorem ipsum</Typography>
       </Box>
-      <IconButton>
+      {/* <IconButton>
         <UnfoldMore />
-      </IconButton>
+      </IconButton> */}
     </Stack>
   )
 }
