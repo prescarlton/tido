@@ -9,3 +9,5 @@ export const BOARDS_QUERY_KEY = createQueryKey("boardList")
 
 export const CREATE_BOARD_QUERY_KEY = ["createBoard"]
 export const DELETE_PROJECT_QUERY_KEY = ["deleteProject"]
+
+export const TASKS_QUERY_KEY = createQueryKey("taskList")

@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
+import { GetBoardByIdParams, GetBoardByIdResponse } from "shared/types/boards"
 
-import { BOARDS_QUERY_KEY } from "@/api/ProjectService"
-import {
-  getBoardById,
-  GetBoardByIdRequest,
-} from "@/api/ProjectService/requests/getBoardById"
+import ProjectService, { BOARDS_QUERY_KEY } from "@/api/ProjectService"
 
-const useGetBoard = (data: GetBoardByIdRequest) =>
+export const getBoardById = async (data: GetBoardByIdParams) =>
+  ProjectService.get<GetBoardByIdResponse>(
+    `/${data.projectId}/boards/${data.id}`
+  ).then((res) => res.data.data)
+
+const useGetBoard = (data: GetBoardByIdParams) =>
   useQuery(BOARDS_QUERY_KEY.detail(data.id), () => getBoardById(data))
 
 export default useGetBoard

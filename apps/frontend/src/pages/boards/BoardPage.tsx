@@ -2,13 +2,14 @@ import { Box } from "@mui/material"
 import { useParams } from "react-router-dom"
 
 import BoardPageHeader from "@/components/boards/BoardPageHeader"
-import useProjectContext from "@/contexts/ProjectContext"
 import useGetBoard from "@/hooks/api/boards/useGetBoard"
 import BoardPageContent from "@/pages/boards/BoardPageContent"
 
 const BoardPage = () => {
-  const { project } = useProjectContext()
-  const { projectId, boardId } = useParams()
+  const { projectId, boardId } = useParams() as {
+    projectId: string
+    boardId: string
+  }
 
   const { data } = useGetBoard({
     id: boardId as string,
@@ -26,7 +27,7 @@ const BoardPage = () => {
       }}
     >
       {data && <BoardPageHeader board={data} />}
-      <BoardPageContent />
+      <BoardPageContent projectId={projectId} boardId={boardId} />
     </Box>
   )
 }

@@ -8,3 +8,5 @@ export interface BoardListResponse extends DefaultListResponse {
 export interface CreateBoardResponse extends DefaultResponse {
   data: Board
 }
+
+export type GetBoardByIdResponse = DefaultResponse<Board>

@@ -1,19 +1,19 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
 
 const projectData = [
   {
-    name: 'Tido',
-    description: 'A task management app',
+    name: "Tido",
+    description: "A task management app",
   },
 ]
 
 const projectSeed = async () => {
-  console.log('Project seed started')
+  console.log("Project seed started")
   const user = await prisma.user.findUnique({
     where: {
-      username: 'preston',
+      username: "preston",
     },
   })
   if (!user) {
@@ -28,14 +28,14 @@ const projectSeed = async () => {
         members: {
           create: {
             userId: user.id,
-            role: 'ADMIN',
+            role: "ADMIN",
           },
         },
       },
     })
     console.log(`Created project with id: ${project.id}`)
   }
-  console.log('Project seed finished')
+  console.log("Project seed finished")
 }
 
 export default projectSeed

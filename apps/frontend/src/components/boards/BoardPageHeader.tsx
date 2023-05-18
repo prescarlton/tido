@@ -1,7 +1,9 @@
-import { Box, TextField, Typography, useTheme } from "@mui/material"
+import { Box, Button, TextField, Typography, useTheme } from "@mui/material"
 import { FocusEvent, SyntheticEvent, useEffect, useRef, useState } from "react"
+import { Plus } from "react-feather"
 import { Board } from "shared/types/boards"
 
+import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
@@ -38,10 +40,9 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "space-between",
         mx: 4,
         my: 2,
-        width: "85%",
       }}
     >
       <Box
@@ -80,6 +81,7 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
           </Typography>
         )}
       </Box>
+      <CreateTaskButton />
     </Box>
   )
 }

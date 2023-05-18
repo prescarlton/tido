@@ -19,7 +19,7 @@ const SidebarHeader = () => {
         <Typography variant="h4" sx={{ fontWeight: 700 }}>
           {project?.name}
         </Typography>
-        <Typography variant="h5">Lorem ipsum</Typography>
+        <Typography variant="caption">{project?.description}</Typography>
       </Box>
       {/* <IconButton>
         <UnfoldMore />

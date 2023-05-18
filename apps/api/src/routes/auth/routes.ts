@@ -1,22 +1,20 @@
-import { Router } from 'express'
-import passport from 'passport'
+import { Router } from "express"
+import passport from "passport"
 
-import verifyUser from '@/middleware/verifyUser'
+import verifyUser from "@/middleware/verifyUser"
 
-import getMe from './me'
-import register from './register'
+import getMe from "./me"
 
 const AuthRouter: Router = Router()
 
 // get
-AuthRouter.get('/me', verifyUser, getMe)
+AuthRouter.get("/me", verifyUser, getMe)
 
 // post
-AuthRouter.post('/register', register)
 AuthRouter.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
   })
 )
 

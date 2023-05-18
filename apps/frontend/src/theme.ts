@@ -1,3 +1,4 @@
+import { Circle } from "@mui/icons-material"
 import { ThemeOptions } from "@mui/material"
 
 export const darkModePalette: ThemeOptions["palette"] = {
@@ -167,6 +168,23 @@ const theme: ThemeOptions = {
         input: {
           padding: ".5rem 1rem",
           borderRadius: 8,
+        },
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          "& .MuiSvgIcon-root": {
+            borderRadius: "100px",
+          },
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: ".5rem",
         },
       },
     },

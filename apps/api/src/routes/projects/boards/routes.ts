@@ -3,25 +3,28 @@ import { RenameBoardSchema } from "shared/types/boards"
 import { processRequest } from "zod-express-middleware"
 
 import renameBoard from "@/routes/projects/boards/renameBoard"
+import TaskRouter from "@/routes/projects/tasks/routes"
 
 import createBoard from "./createBoard"
 import getBoardById from "./getBoardById"
 import listBoards from "./listBoards"
 
-const BoardsRouter: Router = Router({ mergeParams: true })
+const BoardRouter: Router = Router({ mergeParams: true })
+
+BoardRouter.use("/:boardId/tasks", TaskRouter)
 
 // get
-BoardsRouter.get("/", listBoards)
-BoardsRouter.get("/:boardId", getBoardById)
+BoardRouter.get("/", listBoards)
+BoardRouter.get("/:boardId", getBoardById)
 
 // post
-BoardsRouter.post("/", createBoard)
+BoardRouter.post("/", createBoard)
 
 // put
-BoardsRouter.put(
+BoardRouter.put(
   "/:boardId/rename",
   processRequest(RenameBoardSchema),
   renameBoard
 )
 
-export default BoardsRouter
+export default BoardRouter
