@@ -121,6 +121,7 @@ const theme: ThemeOptions = {
               minHeight: 36,
               textTransform: "none",
               alignItems: "flex-start",
+              paddingLeft: 8,
             },
             "& .MuiTabs-indicator": {
               left: 0,

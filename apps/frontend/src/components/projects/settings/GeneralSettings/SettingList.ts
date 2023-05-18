@@ -1,15 +1,15 @@
-import { ISetting } from "@/types/components/Settings"
+import { ISetting, SettingType } from "@/types/components/Settings"
 
 const SettingList: ISetting[] = [
   {
     label: "Project Name",
     name: "name",
-    dataType: "text",
+    dataType: SettingType.Text,
   },
   {
     label: "Project Description",
     name: "description",
-    dataType: "long text",
+    dataType: SettingType.LongText,
     description: "Short description of the project",
   },
 ]

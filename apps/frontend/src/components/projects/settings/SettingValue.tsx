@@ -1,12 +1,13 @@
+import { Box } from "@mui/material"
 import { useFormContext } from "react-hook-form"
 
 import ControlledTextField from "@/components/fields/ControlledTextField"
-import { ISetting } from "@/types/components/Settings"
+import { ISetting, SettingType } from "@/types/components/Settings"
 
 const SettingValue = ({ name, dataType }: ISetting) => {
   const { control } = useFormContext()
   switch (dataType) {
-    case "text":
+    case SettingType.Text:
       return (
         <ControlledTextField
           name={name}
@@ -18,7 +19,7 @@ const SettingValue = ({ name, dataType }: ISetting) => {
           }}
         />
       )
-    case "long text":
+    case SettingType.LongText:
       return (
         <ControlledTextField
           TextFieldProps={{
@@ -32,6 +33,8 @@ const SettingValue = ({ name, dataType }: ISetting) => {
           control={control}
         />
       )
+    case SettingType.Toggle:
+      return <Box>toggle</Box>
     default:
       return null
   }

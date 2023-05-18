@@ -1,9 +1,16 @@
+export enum SettingType {
+  Text,
+  Toggle,
+  LongText,
+}
+
 export interface ISetting {
   label: string
   name: string
   description?: string
-  dataType: "text" | "toggle" | "long text"
+  dataType: SettingType
 }
+
 export interface ISettingsSection {
   sectionName: string
   settings: ISetting[]
