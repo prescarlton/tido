@@ -14,6 +14,9 @@ const listTasks = async (
     where: {
       boardId,
     },
+    orderBy: {
+      complete: "asc",
+    },
   })
 
   return res.json({ data: tasks })
