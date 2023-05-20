@@ -3,12 +3,12 @@ import { ListTasksParams, ListTasksResponse } from "shared/types/tasks"
 
 import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 
-const listTasks = async (data: ListTasksParams) =>
+const listTasks = async (params: ListTasksParams) =>
   ProjectService.get<ListTasksResponse>(
-    `/${data.projectId}/boards/${data.boardId}/tasks`
+    `/${params.projectId}/boards/${params.boardId}/tasks`
   ).then((res) => res.data.data)
 
-const useListTasks = (data: ListTasksParams) =>
-  useQuery(TASKS_QUERY_KEY.list(data), () => listTasks(data))
+const useListTasks = (params: ListTasksParams) =>
+  useQuery(TASKS_QUERY_KEY.list(params), () => listTasks(params))
 
 export default useListTasks

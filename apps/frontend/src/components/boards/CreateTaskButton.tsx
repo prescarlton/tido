@@ -4,7 +4,7 @@ import { SyntheticEvent, useRef, useState } from "react"
 import { Plus } from "react-feather"
 import { useParams } from "react-router-dom"
 
-import useCreateTask from "@/hooks/api/boards/tasks/useCreateTask"
+import useCreateTask from "@/hooks/api/tasks/useCreateTask"
 
 const CreateTaskButton = () => {
   const { projectId, boardId } = useParams() as {

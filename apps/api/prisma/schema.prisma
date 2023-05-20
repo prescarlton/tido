@@ -90,10 +90,10 @@ model Board {
 }
 
 model Task {
-  id        String  @id @default(nanoid(24))
-  name      String
-  order     Int     @default(0)
-  completed Boolean @default(false)
+  id       String  @id @default(nanoid(24))
+  name     String
+  order    Int     @default(0)
+  complete Boolean @default(false)
 
   board Board      @relation(fields: [boardId], references: [id])
   users UserTask[]

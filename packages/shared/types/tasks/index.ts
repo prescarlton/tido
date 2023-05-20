@@ -2,7 +2,7 @@ export interface Task {
   id: string
   name: string
   boardId: string
-  completed: Boolean
+  complete: boolean
 }
 
 export * from "./requests"

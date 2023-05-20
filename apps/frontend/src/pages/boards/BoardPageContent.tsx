@@ -5,7 +5,7 @@ import { BoardView } from "shared/types/boards"
 import BoardKanbanView from "@/components/boards/views/KanbanView"
 import BoardListView from "@/components/boards/views/ListView"
 import BoardTableView from "@/components/boards/views/TableView"
-import useListTasks from "@/hooks/api/boards/tasks/useListTasks"
+import useListTasks from "@/hooks/api/tasks/useListTasks"
 
 interface IBoardPageContent {
   boardId: string
