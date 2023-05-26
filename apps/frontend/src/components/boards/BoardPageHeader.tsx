@@ -1,11 +1,22 @@
-import { Box, Button, TextField, Typography, useTheme } from "@mui/material"
-import { FocusEvent, SyntheticEvent, useEffect, useRef, useState } from "react"
-import { Plus } from "react-feather"
+import { MoreHoriz, Star, StarBorder } from "@mui/icons-material"
+import {
+  Box,
+  Checkbox,
+  FormControl,
+  IconButton,
+  Stack,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material"
+import { FocusEvent, useEffect, useRef, useState } from "react"
 import { Board } from "shared/types/boards"
 
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
+
+import EditBoardButton from "./EditBoardButton"
 
 const BoardPageHeader = ({ board }: { board: Board }) => {
   const [showTextField, setShowTextField] = useState(false)
@@ -57,29 +68,32 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
         <Typography variant="subtitle1" sx={{ opacity: 0.6 }}>
           {project?.name}
         </Typography>
-
-        {showTextField ? (
-          <TextField
-            defaultValue={board.name}
-            onBlur={handleBlurTextField}
-            InputProps={{
-              sx: {
-                fontWeight: "bold",
-                fontSize: theme.typography.h3.fontSize,
-              },
-            }}
-            inputRef={textFieldRef}
-            variant="standard"
-          />
-        ) : (
-          <Typography
-            variant="h3"
-            sx={{ fontWeight: "bold" }}
-            onClick={toggleTextField}
-          >
-            {board.name}
-          </Typography>
-        )}
+        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+          {showTextField ? (
+            <TextField
+              defaultValue={board.name}
+              onBlur={handleBlurTextField}
+              InputProps={{
+                sx: {
+                  fontWeight: "bold",
+                  fontSize: theme.typography.h3.fontSize,
+                  minWidth: 0,
+                },
+              }}
+              inputRef={textFieldRef}
+              variant="standard"
+            />
+          ) : (
+            <Typography
+              variant="h3"
+              sx={{ fontWeight: "bold" }}
+              onClick={toggleTextField}
+            >
+              {board.name}
+            </Typography>
+          )}
+          <EditBoardButton />
+        </Stack>
       </Box>
       <CreateTaskButton />
     </Box>

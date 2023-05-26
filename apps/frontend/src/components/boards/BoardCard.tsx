@@ -1,7 +1,10 @@
 import { Card, CardActionArea, Typography } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import { BoardList } from "shared/types/boards"
 
-const BoardCard = ({ name, id }: { name: string; id: string }) => {
+type IBoardCard = BoardList
+
+const BoardCard = ({ name, id, tasks }: IBoardCard) => {
   const navigate = useNavigate()
 
   const handleCardClick = () => {
@@ -28,7 +31,7 @@ const BoardCard = ({ name, id }: { name: string; id: string }) => {
         }}
       >
         <Typography variant="h5">{name}</Typography>
-        <Typography variant="caption">64 tasks</Typography>
+        <Typography variant="caption">{tasks?.length} tasks</Typography>
       </CardActionArea>
     </Card>
   )

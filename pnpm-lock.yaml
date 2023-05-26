@@ -4,6 +4,7 @@ importers:
 
   .:
     specifiers:
+      '@faker-js/faker': ^8.0.1
       '@types/lodash': ^4.14.191
       eslint-config-custom: ^0.0.0
       lodash: ^4.17.21
@@ -17,6 +18,7 @@ importers:
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
+      '@faker-js/faker': 8.0.1
       '@types/lodash': 4.14.191
       eslint-config-custom: 0.0.0_vgl77cfdswitgr47lm5swmv43m
       prettier: 2.8.4
@@ -635,6 +637,11 @@ packages:
   /@eslint/js/8.36.0:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@faker-js/faker/8.0.1:
+    resolution: {integrity: sha512-kbh5MenpTN9U0B4QcOI1NoTPlZHniSYQ3BHbhAnPjJGAmmFqxoxTE4sGdpy7ZOO9038DPGCuhXyMkjOr05uVwA==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: true
 
   /@hookform/resolvers/2.9.10_react-hook-form@7.39.4:

@@ -1,11 +1,15 @@
 import { Router } from "express"
-import { RenameBoardSchema } from "shared/types/boards"
+import {
+  GetBoardByIdRequestSchema,
+  RenameBoardSchema,
+} from "shared/types/boards"
 import { processRequest } from "zod-express-middleware"
 
 import renameBoard from "@/routes/projects/boards/renameBoard"
 import TaskRouter from "@/routes/projects/tasks/routes"
 
 import createBoard from "./createBoard"
+import deleteBoard from "./deleteBoard"
 import getBoardById from "./getBoardById"
 import listBoards from "./listBoards"
 
@@ -25,6 +29,13 @@ BoardRouter.put(
   "/:boardId/rename",
   processRequest(RenameBoardSchema),
   renameBoard
+)
+
+// delete
+BoardRouter.delete(
+  "/:id",
+  processRequest(GetBoardByIdRequestSchema),
+  deleteBoard
 )
 
 export default BoardRouter

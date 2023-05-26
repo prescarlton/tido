@@ -24,7 +24,12 @@ const BoardsPage = () => {
         }}
       >
         {boards?.map((board) => (
-          <BoardCard key={board.id} id={board.id} name={board.name} />
+          <BoardCard
+            key={board.id}
+            id={board.id}
+            name={board.name}
+            tasks={board.tasks}
+          />
         ))}
         {boards?.length == 0 && (
           <NoData dataType="boards">

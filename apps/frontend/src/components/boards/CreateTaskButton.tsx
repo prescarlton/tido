@@ -20,8 +20,10 @@ const CreateTaskButton = () => {
   }
 
   const onCloseMenu = () => {
+    setTaskName("")
     setAnchorEl(undefined)
   }
+
   const createMutation = useCreateTask({ projectId, boardId })
 
   const onSubmit = async () => {

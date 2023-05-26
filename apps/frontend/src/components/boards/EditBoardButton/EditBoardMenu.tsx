@@ -1,5 +1,7 @@
-import { ListItem, Menu, MenuList } from "@mui/material"
+import { ListItem, ListItemButton, Menu, MenuList } from "@mui/material"
 import { useParams } from "react-router-dom"
+
+import useDeleteBoard from "@/hooks/api/boards/useDeleteBoard"
 
 const EditBoardMenu = ({
   anchorEl,
@@ -8,18 +10,21 @@ const EditBoardMenu = ({
   anchorEl: HTMLElement | null
   onClose: () => void
 }) => {
-  const { boardId, projectId } = useParams()
+  const { boardId, projectId } = useParams() as {
+    boardId: string
+    projectId: string
+  }
 
-  const handleDelete = () => {
-    if (confirm("Are you sure you want to delete this board?")) {
-      console.log("delete")
-    }
+  const deleteMutation = useDeleteBoard({ id: boardId, projectId })
+
+  const handleDelete = async () => {
+    await deleteMutation.mutateAsync()
   }
 
   return (
     <Menu open={Boolean(anchorEl)} anchorEl={anchorEl} onClose={onClose}>
       <MenuList>
-        <ListItem onClick={handleDelete}>Delete</ListItem>
+        <ListItemButton onClick={handleDelete}>Delete Board</ListItemButton>
       </MenuList>
     </Menu>
   )
