@@ -1,6 +1,7 @@
-import { Project } from "@/types/Project"
 import { Box, Typography } from "@mui/material"
 import { useLocation, useNavigate } from "react-router-dom"
+
+import { Project } from "@/types/Project"
 
 const ProjectListItem = ({ project }: { project: Project }) => {
   const location = useLocation()

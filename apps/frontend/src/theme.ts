@@ -1,10 +1,11 @@
-import { Circle } from "@mui/icons-material"
 import { ThemeOptions } from "@mui/material"
 
 export const darkModePalette: ThemeOptions["palette"] = {
   background: {
-    paper: "#202124",
+    paper: "#1F2124",
+    default: "#161819",
   },
+  divider: "#232428",
 }
 
 export const lightModePalette: ThemeOptions["palette"] = {

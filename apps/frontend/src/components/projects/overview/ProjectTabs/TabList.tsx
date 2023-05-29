@@ -28,18 +28,22 @@ const TabList = () => {
           minHeight: 0,
           textTransform: "none",
         },
+        "& .MuiTabs-flexContainer": {
+          gap: 5,
+        },
         "& .MuiTabs-indicator": {
           display: "flex",
           justifyContent: "center",
           backgroundColor: "transparent",
-          height: 4,
+          height: 2,
         },
         "& .MuiTabs-indicatorSpan": {
-          maxWidth: 50,
-          width: "90%",
+          // maxWidth: 50,
+          // width: "90%",
+          width: "100%",
           backgroundColor: "primary.main",
-          borderTopLeftRadius: 4,
-          borderTopRightRadius: 4,
+          // borderTopLeftRadius: 4,
+          // borderTopRightRadius: 4,
         },
       }}
     >

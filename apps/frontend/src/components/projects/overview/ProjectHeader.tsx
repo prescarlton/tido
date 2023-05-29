@@ -15,6 +15,7 @@ const ProjectHeader = () => {
         borderBottom: "1px solid",
         borderColor: "divider",
         transition: "all 0.3s ease",
+        px: 2,
       }}
     >
       <Box

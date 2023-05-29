@@ -1,7 +1,7 @@
 import { Box } from "@mui/material"
 import { Outlet } from "react-router-dom"
 
-import ProjectSidebar from "@/components/projects/ProjectSidebar"
+import ProjectHeader from "@/components/projects/overview/ProjectHeader"
 
 export enum ProjectTab {
   Overview = "overview",
@@ -18,10 +18,10 @@ const ProjectHomepage = () => {
         display: "flex",
         flex: 1,
         height: "100%",
-        backgroundColor: "background.default",
+        flexDirection: "column",
       }}
     >
-      <ProjectSidebar />
+      <ProjectHeader />
       <Outlet />
     </Box>
   )

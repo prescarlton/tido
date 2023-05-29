@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, Stack, Typography } from "@mui/material"
 import { MouseEvent, useState } from "react"
 import { MoreVertical, Plus } from "react-feather"
+
 import BoardTaskCard from "./BoardTaskCard"
 import ListContextMenu from "./ListContextMenu"
 
@@ -30,7 +31,6 @@ const ListContainer = () => {
           flex: "none",
           px: 1,
           py: 0.5,
-          backgroundColor: "background.default",
           maxHeight: "100%",
         }}
       >

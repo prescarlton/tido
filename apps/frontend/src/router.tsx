@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useRoutes } from "react-router-dom"
+import { Navigate, Route, Routes } from "react-router-dom"
 
 import HomePage from "@/pages/Home"
 

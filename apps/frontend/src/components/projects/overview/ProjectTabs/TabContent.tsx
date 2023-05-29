@@ -21,7 +21,6 @@ const ProjectTabContent = ({
         px: 2,
         py: 1,
         overflow: "hidden",
-        backgroundColor: "background.alt",
       }}
     >
       {title && (
