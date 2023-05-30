@@ -1,4 +1,4 @@
-import { MoreHoriz } from "@mui/icons-material"
+import { MoreHoriz, MoreVert } from "@mui/icons-material"
 import { IconButton } from "@mui/material"
 import { MouseEvent, useState } from "react"
 
@@ -15,7 +15,7 @@ const EditBoardButton = () => {
   return (
     <>
       <IconButton onClick={handleClick}>
-        <MoreHoriz />
+        <MoreVert />
       </IconButton>
       <EditBoardMenu anchorEl={anchorEl} onClose={handleClose} />
     </>

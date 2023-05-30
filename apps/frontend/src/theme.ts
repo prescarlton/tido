@@ -51,7 +51,8 @@ const theme: ThemeOptions = {
     },
     h6: {
       fontSize: "0.875rem",
-      fontWeight: "normal",
+      opacity: 0.7,
+      fontWeight: "medium",
     },
     caption: {
       lineHeight: 1.5,
@@ -187,6 +188,13 @@ const theme: ThemeOptions = {
       styleOverrides: {
         root: {
           borderRadius: ".5rem",
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: ".25rem",
         },
       },
     },

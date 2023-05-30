@@ -1,4 +1,4 @@
-import { Close, MoreVert, StarOutline } from "@mui/icons-material"
+import { StarOutline } from "@mui/icons-material"
 import { IconButton, Stack } from "@mui/material"
 
 const ProjectQuickOptions = () => {
@@ -6,9 +6,6 @@ const ProjectQuickOptions = () => {
     <Stack direction="row" alignItems="center" spacing={1}>
       <IconButton>
         <StarOutline />
-      </IconButton>
-      <IconButton>
-        <MoreVert />
       </IconButton>
     </Stack>
   )

@@ -1,14 +1,4 @@
-import { MoreHoriz, Star, StarBorder } from "@mui/icons-material"
-import {
-  Box,
-  Checkbox,
-  FormControl,
-  IconButton,
-  Stack,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material"
+import { Box, Stack, TextField, Typography, useTheme } from "@mui/material"
 import { FocusEvent, useEffect, useRef, useState } from "react"
 import { Board } from "shared/types/boards"
 
@@ -54,6 +44,7 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
         justifyContent: "space-between",
         mx: 4,
         my: 2,
+        gap: 1,
       }}
     >
       <Box
@@ -65,9 +56,6 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
           flex: 1,
         }}
       >
-        <Typography variant="subtitle1" sx={{ opacity: 0.6 }}>
-          {project?.name}
-        </Typography>
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           {showTextField ? (
             <TextField
@@ -92,10 +80,10 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
               {board.name}
             </Typography>
           )}
-          <EditBoardButton />
         </Stack>
       </Box>
       <CreateTaskButton />
+      <EditBoardButton />
     </Box>
   )
 }

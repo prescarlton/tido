@@ -1,8 +1,16 @@
-import { RadioButtonUnchecked, TaskAlt } from "@mui/icons-material"
-import { Box, Card, Checkbox, Typography } from "@mui/material"
-import { SyntheticEvent } from "react"
+import { MoreHoriz, RadioButtonUnchecked, TaskAlt } from "@mui/icons-material"
+import {
+  Card,
+  CardActionArea,
+  Checkbox,
+  Stack,
+  Typography,
+} from "@mui/material"
+import { SyntheticEvent, useState } from "react"
 import { Task } from "shared/types/tasks"
 
+import TaskDialog from "@/components/boards/tasks/TaskDialog"
+import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
 
@@ -11,6 +19,7 @@ interface ITaskCard {
 }
 
 const TaskCard = ({ task }: ITaskCard) => {
+  const [showDialog, setShowDialog] = useState(false)
   const { project } = useProjectContext()
   const completeMutation = useCompleteTask({
     projectId: project?.id as string,
@@ -23,35 +32,47 @@ const TaskCard = ({ task }: ITaskCard) => {
       complete,
     })
   }
+  const onClickCard = () => setShowDialog(true)
+  const onCloseDialog = () => setShowDialog(false)
 
   return (
-    <Card
-      sx={{
-        display: "flex",
-        gap: 2,
-        p: 2,
-      }}
-    >
-      <Box>
-        <Checkbox
-          icon={<RadioButtonUnchecked />}
-          checkedIcon={<TaskAlt />}
-          checked={task.complete}
-          onChange={onCheck}
-        />
-      </Box>
-      <Box
+    <Card>
+      <CardActionArea
+        onClick={onClickCard}
         sx={{
           display: "flex",
-          flexDirection: "column",
-          gap: 1,
+          gap: 2,
+          p: 2,
+          alignItems: "center",
+          justifyContent: "space-between",
+          transition: ".2s all ease-in-out",
+          "&:hover": {
+            cursor: "pointer",
+            boxShadow: 3,
+            color: "primary.main",
+          },
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-          {task.name}
-        </Typography>
-        <Typography variant="caption">Task Description</Typography>
-      </Box>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Checkbox
+            icon={<RadioButtonUnchecked />}
+            checkedIcon={<TaskAlt />}
+            checked={task.complete}
+            onChange={onCheck}
+          />
+          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+            {task.name}
+          </Typography>
+        </Stack>
+        <EditTaskButton icon={<MoreHoriz />} />
+      </CardActionArea>
+      {showDialog && (
+        <TaskDialog
+          taskId={task.id}
+          onClose={onCloseDialog}
+          open={showDialog}
+        />
+      )}
     </Card>
   )
 }

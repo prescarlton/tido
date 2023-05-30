@@ -38,12 +38,8 @@ const TabList = () => {
           height: 2,
         },
         "& .MuiTabs-indicatorSpan": {
-          // maxWidth: 50,
-          // width: "90%",
           width: "100%",
           backgroundColor: "primary.main",
-          // borderTopLeftRadius: 4,
-          // borderTopRightRadius: 4,
         },
       }}
     >
