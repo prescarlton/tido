@@ -34,6 +34,7 @@ const TaskDialog = ({ taskId, open, onClose }: ITaskDialog) => {
           display: "flex",
           gap: 2,
           minHeight: 400,
+          backgroundColor: "background.default",
         },
       }}
     >

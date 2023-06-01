@@ -1,6 +1,22 @@
-import { Box, Stack, TextField, Typography, useTheme } from "@mui/material"
-import { FocusEvent, useEffect, useRef, useState } from "react"
-import { Board } from "shared/types/boards"
+import {
+  Box,
+  Stack,
+  Tab,
+  Tabs,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material"
+import {
+  Dispatch,
+  FocusEvent,
+  SetStateAction,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
+import { Board, BoardView } from "shared/types/boards"
 
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
@@ -8,7 +24,13 @@ import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
 import EditBoardButton from "./EditBoardButton"
 
-const BoardPageHeader = ({ board }: { board: Board }) => {
+interface IBoardPageHeader {
+  board: Board
+  tab: BoardView
+  setTab: Dispatch<SetStateAction<BoardView>>
+}
+
+const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
   const [showTextField, setShowTextField] = useState(false)
   const textFieldRef = useRef<HTMLDivElement>(null)
   const { project } = useProjectContext()
@@ -31,6 +53,8 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
       setShowTextField(false)
     }
   }
+  const handleChangeTab = (e: SyntheticEvent, value: string) =>
+    setTab(value as BoardView)
 
   useEffect(() => {
     if (showTextField) textFieldRef.current?.focus()
@@ -80,6 +104,19 @@ const BoardPageHeader = ({ board }: { board: Board }) => {
               {board.name}
             </Typography>
           )}
+          <Tabs
+            value={tab}
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              px: 6,
+            }}
+            onChange={handleChangeTab}
+          >
+            <Tab label="List View" value={BoardView.List} />
+            <Tab label="Table View" value={BoardView.Table} />
+            <Tab label="Board View" value={BoardView.Kanban} />
+          </Tabs>
         </Stack>
       </Box>
       <CreateTaskButton />

@@ -28,10 +28,15 @@ const TaskCard = ({ task }: ITaskCard) => {
   })
 
   const onCheck = async (e: SyntheticEvent, complete: boolean) => {
+    e.stopPropagation()
     await completeMutation.mutateAsync({
       complete,
     })
   }
+  const onCheckboxClick = (e: SyntheticEvent) => {
+    e.stopPropagation()
+  }
+
   const onClickCard = () => setShowDialog(true)
   const onCloseDialog = () => setShowDialog(false)
 
@@ -59,6 +64,7 @@ const TaskCard = ({ task }: ITaskCard) => {
             checkedIcon={<TaskAlt />}
             checked={task.complete}
             onChange={onCheck}
+            onClick={onCheckboxClick}
           />
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             {task.name}

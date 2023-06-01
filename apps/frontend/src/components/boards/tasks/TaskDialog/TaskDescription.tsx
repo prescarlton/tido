@@ -14,7 +14,7 @@ const TaskDescription = () => {
         sx={{
           borderRadius: 2,
           minHeight: 75,
-          backgroundColor: "background.default",
+          backgroundColor: "background.paper",
         }}
       ></Box>
     </Box>
