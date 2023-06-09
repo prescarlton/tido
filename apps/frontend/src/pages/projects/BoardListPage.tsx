@@ -13,7 +13,11 @@ const BoardsPage = () => {
   const { data: boards } = useListBoards({ projectId })
 
   return (
-    <ProjectTabContent title="Boards" primaryAction={<CreateBoardButton />}>
+    <ProjectTabContent
+      title="Boards"
+      primaryAction={<CreateBoardButton />}
+      showBack
+    >
       <Box
         sx={{
           display: "flex",

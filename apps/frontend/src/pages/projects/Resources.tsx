@@ -6,7 +6,11 @@ import NoteCard from "@/components/resources/NoteCard"
 
 const ResourcesPage = () => {
   return (
-    <ProjectTabContent title="Resources" primaryAction={<NewResourceButton />}>
+    <ProjectTabContent
+      title="Resources"
+      primaryAction={<NewResourceButton />}
+      showBack
+    >
       <Box
         sx={{
           flex: 1,

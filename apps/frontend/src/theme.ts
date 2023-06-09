@@ -1,4 +1,4 @@
-import { ThemeOptions } from "@mui/material"
+import { alpha, createTheme, ThemeOptions } from "@mui/material"
 
 export const darkModePalette: ThemeOptions["palette"] = {
   background: {
@@ -15,12 +15,15 @@ export const lightModePalette: ThemeOptions["palette"] = {
   },
 }
 
-const theme: ThemeOptions = {
+let theme = createTheme({
   palette: {
     primary: {
       main: "#4685FF",
     },
   },
+})
+
+theme = createTheme(theme, {
   typography: {
     allVariants: {
       fontFamily: "Inter, -apple-system,sans-serif",
@@ -147,6 +150,12 @@ const theme: ThemeOptions = {
               borderTopLeftRadius: 8,
               height: 3,
             },
+            "&.buttonTabs": {
+              "& .MuiTabs-indicator": {
+                height: 0,
+                width: 0,
+              },
+            },
           },
         },
       ],
@@ -158,6 +167,15 @@ const theme: ThemeOptions = {
           minHeight: 0,
           minWidth: 0,
           padding: ".5rem 0",
+          "&.buttonTab": {
+            padding: ".5rem",
+            borderRadius: ".25rem",
+            "&.Mui-selected": {
+              backgroundColor: alpha(theme.palette.primary.light, 0.4),
+              // color: theme.palette.primary.dark,
+              color: theme.palette.text.primary,
+            },
+          },
         },
       },
     },
@@ -206,6 +224,6 @@ const theme: ThemeOptions = {
       },
     },
   },
-}
+})
 
 export default theme

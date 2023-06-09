@@ -107,15 +107,26 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
           <Tabs
             value={tab}
             sx={{
-              borderBottom: 1,
-              borderColor: "divider",
               px: 6,
             }}
             onChange={handleChangeTab}
+            className="buttonTabs"
           >
-            <Tab label="List View" value={BoardView.List} />
-            <Tab label="Table View" value={BoardView.Table} />
-            <Tab label="Board View" value={BoardView.Kanban} />
+            <Tab
+              label="List View"
+              value={BoardView.List}
+              className="buttonTab"
+            />
+            <Tab
+              label="Table View"
+              value={BoardView.Table}
+              className="buttonTab"
+            />
+            <Tab
+              label="Board View"
+              value={BoardView.Kanban}
+              className="buttonTab"
+            />
           </Tabs>
         </Stack>
       </Box>

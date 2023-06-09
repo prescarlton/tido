@@ -2,7 +2,7 @@ import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabCon
 
 const AnnouncementsPage = () => {
   return (
-    <ProjectTabContent title="Announcements">
+    <ProjectTabContent title="Announcements" showBack>
       announcements page
     </ProjectTabContent>
   )

@@ -27,7 +27,8 @@ const ProjectHeader = () => {
         borderBottom: "1px solid",
         borderColor: "divider",
         transition: "all 0.3s ease",
-        px: 2,
+        px: 5,
+        pt: 2,
       }}
     >
       <Box
@@ -35,7 +36,6 @@ const ProjectHeader = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          p: 2,
         }}
       >
         <Stack direction="row" spacing={2} alignItems="center">
@@ -62,7 +62,7 @@ const ProjectHeader = () => {
           <ProjectQuickOptions />
         </Stack>
       </Box>
-      <TabList />
+      {/* <TabList /> */}
     </Box>
   )
 }

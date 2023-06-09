@@ -8,7 +8,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material"
-import { Activity, AlignLeft } from "react-feather"
 
 import TaskActivity from "@/components/boards/tasks/TaskDialog/TaskActivity"
 import TaskDescription from "@/components/boards/tasks/TaskDialog/TaskDescription"

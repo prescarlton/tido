@@ -1,17 +1,26 @@
-import { Box, Typography } from "@mui/material"
+import { Box, IconButton, Typography } from "@mui/material"
 import { ReactNode } from "react"
+import { ChevronLeft } from "react-feather"
+import { useNavigate } from "react-router-dom"
 
 interface IProjectTabContent {
   children: ReactNode
   title?: string
+  showBack?: boolean
   primaryAction?: ReactNode
 }
 
 const ProjectTabContent = ({
   children,
   title,
+  showBack = false,
   primaryAction,
 }: IProjectTabContent) => {
+  const navigate = useNavigate()
+  const handleBackClick = () => {
+    navigate(-1)
+  }
+
   return (
     <Box
       sx={{
@@ -33,9 +42,23 @@ const ProjectTabContent = ({
             height: 40,
           }}
         >
-          <Typography variant="h3" sx={{ fontWeight: "normal" }}>
-            {title}
-          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 1,
+            }}
+          >
+            {showBack && (
+              <IconButton onClick={handleBackClick}>
+                <ChevronLeft />
+              </IconButton>
+            )}
+            <Typography variant="h3" sx={{ fontWeight: "normal" }}>
+              {title}
+            </Typography>
+          </Box>
           {primaryAction}
         </Box>
       )}

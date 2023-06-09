@@ -76,34 +76,58 @@ model Project {
 }
 
 model Board {
-  id        String  @id @default(nanoid(8))
+  id        String @id @default(nanoid(8))
   name      String
-  project   Project @relation(fields: [projectId], references: [id])
-  projectId String  @map("project_id")
+  projectId String @map("project_id")
+
+  project      Project      @relation(fields: [projectId], references: [id])
+  tasks        Task[]
+  taskStatuses TaskStatus[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
-
-  tasks Task[]
 
   @@map("boards")
 }
 
-model Task {
-  id       String  @id @default(nanoid(24))
-  name     String
-  order    Int     @default(0)
-  complete Boolean @default(false)
+model BoardSettings {
+  id String @id @default(nanoid(24))
 
-  board Board      @relation(fields: [boardId], references: [id])
-  users UserTask[]
+  doneStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
+  taskStatusId String
+
+  @@map("board_settings")
+}
+
+model Task {
+  id           String  @id @default(nanoid(24))
+  name         String
+  order        Int     @default(0)
+  complete     Boolean @default(false)
+  statusId     String?
+  boardId      String  @map("board_id")
+  taskStatusId String? @map("task_status_id")
+
+  board  Board       @relation(fields: [boardId], references: [id])
+  users  UserTask[]
+  status TaskStatus? @relation(fields: [taskStatusId], references: [id])
 
   updated DateTime @updatedAt
   created DateTime @default(now())
 
-  boardId String @map("board_id")
-
   @@map("tasks")
+}
+
+model TaskStatus {
+  id      String @id @default(nanoid(24))
+  label   String
+  boardId String
+
+  board         Board           @relation(fields: [boardId], references: [id])
+  tasks         Task[]
+  BoardSettings BoardSettings[]
+
+  @@map("task_statuses")
 }
 
 enum ProjectRole {
