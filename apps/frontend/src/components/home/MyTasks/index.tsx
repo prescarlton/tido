@@ -1,7 +1,5 @@
 import { Box, Typography } from "@mui/material"
 
-import TaskCard from "./TaskCard"
-
 const MyTasks = () => {
   return (
     <Box
@@ -11,14 +9,14 @@ const MyTasks = () => {
         gap: 1.25,
       }}
     >
-      <Typography variant="h2">My Tasks</Typography>
+      <Typography variant="h3">My Tasks</Typography>
       <Box
         sx={{
           display: "flex",
           gap: 1,
         }}
       >
-        <Typography variant="h4">You have no tasks assigned to you.</Typography>
+        <Typography>Coming soon</Typography>
       </Box>
     </Box>
   )

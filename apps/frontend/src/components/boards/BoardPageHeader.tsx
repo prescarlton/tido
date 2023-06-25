@@ -118,8 +118,8 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
               className="buttonTab"
             />
             <Tab
-              label="Table View"
-              value={BoardView.Table}
+              label="Group View"
+              value={BoardView.Group}
               className="buttonTab"
             />
             <Tab

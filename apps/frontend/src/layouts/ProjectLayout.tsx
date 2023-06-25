@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 import { Outlet } from "react-router-dom"
 
+import UserMenu from "@/components/common/UserComponent"
 import { ProjectProvider } from "@/contexts/ProjectContext"
 
 const ProjectsLayout = () => {
@@ -14,6 +15,7 @@ const ProjectsLayout = () => {
           height: "100%",
         }}
       >
+        <UserMenu />
         <Box
           sx={{
             display: "flex",

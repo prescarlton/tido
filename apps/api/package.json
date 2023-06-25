@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon ./src/index.ts"
+    "dev": "nodemon ./src/index.ts",
+    "prisma:migrate": "pnpm prisma migrate dev",
+    "prisma:reset": "pnpm prisma migrate reset",
+    "prisma:generate": "pnpm prisma generate"
   },
   "nodemonConfig": {
     "watch": [

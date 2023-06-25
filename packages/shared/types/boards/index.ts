@@ -1,8 +1,9 @@
 export interface BoardList {
   id: string
   name: string
-  // any is bad, ok here because we really only care about the #
+  // any is bad, but its ok here because we really only care about the #
   tasks: any[]
+  color: string
 }
 
 export interface Board {
@@ -12,7 +13,7 @@ export interface Board {
 }
 
 export enum BoardView {
-  Table = "TABLE",
+  Group = "GROUP",
   List = "LIST",
   Kanban = "KANBAN",
 }

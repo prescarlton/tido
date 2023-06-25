@@ -1,18 +1,13 @@
-import { alpha, createTheme, ThemeOptions } from "@mui/material"
+import { alpha, createTheme } from "@mui/material"
 
-export const darkModePalette: ThemeOptions["palette"] = {
-  background: {
-    paper: "#1F2124",
-    default: "#161819",
-  },
-  divider: "#232428",
+export const darkModeBackground = {
+  paper: "#1F2124",
+  default: "#161819",
 }
 
-export const lightModePalette: ThemeOptions["palette"] = {
-  background: {
-    default: "#F4F5F7",
-    paper: "#fff",
-  },
+export const lightModeBackground = {
+  default: "#F4F5F7",
+  paper: "#fff",
 }
 
 let theme = createTheme({
@@ -20,6 +15,7 @@ let theme = createTheme({
     primary: {
       main: "#4685FF",
     },
+    background: lightModeBackground,
   },
 })
 

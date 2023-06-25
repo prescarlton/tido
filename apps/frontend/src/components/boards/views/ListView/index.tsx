@@ -14,7 +14,7 @@ const BoardListView = ({ tasks }: IBoardListView) => {
         sx={{
           display: "flex",
           flexDirection: "column",
-          gap: 2,
+          gap: 0.25,
           paddingX: 4,
           paddingY: 3,
         }}

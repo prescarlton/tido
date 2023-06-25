@@ -8,14 +8,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const handleClick = () => {
     navigate(`/p/${project.id}`)
   }
+
   return (
     <Grow in>
       <Card
         sx={{
-          width: 350,
-          height: 125,
-          boxShadow: 1,
+          height: 75,
+          boxShadow: 0,
           display: "flex",
+          backgroundColor: "primary.light",
+          borderRadius: 2,
         }}
       >
         <CardActionArea
@@ -25,13 +27,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            justifyContent: "flex-start",
-            gap: 1,
+            justifyContent: "flex-end",
             py: 1.25,
             px: 2,
           }}
         >
-          <Typography variant="h3">{project.name}</Typography>
+          <Typography variant="subtitle1">{project.name}</Typography>
           <Typography variant="subtitle2">{project.description}</Typography>
         </CardActionArea>
       </Card>

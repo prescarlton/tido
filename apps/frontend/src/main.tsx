@@ -11,7 +11,7 @@ import { AuthProvider } from "./contexts/AuthContext"
 import { ProjectProvider } from "./contexts/ProjectContext"
 import { SnackbarProvider } from "./contexts/SnackbarContext"
 import AppRouter from "./router"
-import theme, { darkModePalette, lightModePalette } from "./theme"
+import theme, { darkModeBackground, lightModeBackground } from "./theme"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,20 +26,22 @@ const queryClient = new QueryClient({
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
 
-  const combinedTheme = React.useMemo(
-    () =>
-      createTheme({
-        ...theme,
-        palette: {
-          mode: prefersDarkMode ? "dark" : "light",
-          ...(prefersDarkMode ? darkModePalette : lightModePalette),
-        },
-      }),
-    [prefersDarkMode]
-  )
+  // const combinedTheme = React.useMemo(
+  //   () =>
+  //     createTheme({
+  //       ...theme,
+  //       palette: {
+  //         background: lightModeBackground,
+  //         primary: {
+  //           main: "#4685FF",
+  //         },
+  //       },
+  //     }),
+  //   [prefersDarkMode]
+  // )
   return (
     <React.StrictMode>
-      <ThemeProvider theme={combinedTheme}>
+      <ThemeProvider theme={theme}>
         <BrowserRouter>
           <CssBaseline />
           <QueryClientProvider client={queryClient}>

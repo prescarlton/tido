@@ -41,20 +41,22 @@ const TaskCard = ({ task }: ITaskCard) => {
   const onCloseDialog = () => setShowDialog(false)
 
   return (
-    <Card>
+    <Card sx={{ boxShadow: 0 }}>
       <CardActionArea
         onClick={onClickCard}
         sx={{
           display: "flex",
           gap: 2,
-          p: 2,
+          p: 1,
           alignItems: "center",
           justifyContent: "space-between",
           transition: ".2s all ease-in-out",
           "&:hover": {
             cursor: "pointer",
-            boxShadow: 3,
             color: "primary.main",
+            ".EditTaskButton": {
+              visibility: "visible",
+            },
           },
         }}
       >
@@ -70,7 +72,7 @@ const TaskCard = ({ task }: ITaskCard) => {
             {task.name}
           </Typography>
         </Stack>
-        <EditTaskButton icon={<MoreHoriz />} />
+        <EditTaskButton icon={<MoreHoriz />} task={task} />
       </CardActionArea>
       {showDialog && (
         <TaskDialog

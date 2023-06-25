@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 
 import ProjectListMenu from "@/components/common/Topbar/ProjectListMenu"
 
-import UserComponent from "../UserComponent"
+import UserMenu from "../UserComponent"
 
 const Topbar = () => {
   const [projectListAnchorEl, setProjectListAnchorEl] =
@@ -68,7 +68,7 @@ const Topbar = () => {
           </Button>
         </Stack>
       </Stack>
-      <UserComponent />
+      <UserMenu />
       {/* menus */}
 
       <ProjectListMenu

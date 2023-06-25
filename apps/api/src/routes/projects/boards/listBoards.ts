@@ -16,6 +16,7 @@ const listBoards = async (req: Request, res: Response<BoardListResponse>) => {
         id: true,
         name: true,
         tasks: true,
+        color: true,
       },
     })
 

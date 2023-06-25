@@ -1,24 +1,31 @@
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material"
 
-import MyProjects from "@/components/home/MyProjects"
-import MyTasks from "@/components/home/MyTasks"
-import MyWorkspaces from "@/components/home/MyWorkspaces"
+import ProjectList from "@/components/home/ProjectList"
+import useGetMe from "@/hooks/api/useMe"
 import PageWrapper from "@/layouts/PageLayout"
 
 const HomePage = () => {
+  const { data: me } = useGetMe()
+
   return (
     <PageWrapper>
       <Box
         sx={{
           py: 2,
-          px: 12,
+          px: 3,
           display: "flex",
           flexDirection: "column",
-          gap: 3,
+          gap: 5,
         }}
       >
-        <MyTasks />
-        <MyProjects />
+        <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Typography variant="h3">Welcome back, {me?.firstName}!</Typography>
+          <Typography variant="subtitle1" sx={{ opacity: 0.6 }}>
+            Let&apos;s get shit done today.
+          </Typography>
+        </Box>
+        <ProjectList />
+        {/* <MyTasks /> */}
       </Box>
     </PageWrapper>
   )

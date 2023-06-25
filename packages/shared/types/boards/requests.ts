@@ -20,6 +20,7 @@ export const CreateBoardSchema = {
   }),
   body: z.object({
     name: z.string({ required_error: "Board Name is required" }),
+    color: z.string({ required_error: "Board Color is required" }),
   }),
 }
 
