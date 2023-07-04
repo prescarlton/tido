@@ -2,10 +2,10 @@ import { Text, Title } from "@mantine/core"
 
 import PageWrapper from "@/layouts/PageLayout"
 
-const SettingsPage = () => {
+const MyTasksPage = () => {
   return (
     <PageWrapper>
-      <Title size="h1">Settings</Title>
+      <Title size="h1">My Tasks</Title>
       <Text color="dimmed">
         {`There's nothing here yet, but eventually there will be. I promise.`}
       </Text>
@@ -13,4 +13,4 @@ const SettingsPage = () => {
   )
 }
 
-export default SettingsPage
+export default MyTasksPage

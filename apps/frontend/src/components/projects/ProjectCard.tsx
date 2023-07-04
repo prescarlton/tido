@@ -1,14 +1,7 @@
-import { Article, Dashboard, Message } from "@mui/icons-material"
-import {
-  Box,
-  Card,
-  CardActionArea,
-  Divider,
-  Stack,
-  Typography,
-} from "@mui/material"
+import { Box, Card, Group, Text, Title, UnstyledButton } from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 import { Project } from "shared/types/projects"
+import { Article, Dashboard, Message } from "tabler-icons-react"
 
 import ProjectMembers from "./ProjectMembers"
 
@@ -21,16 +14,21 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <Card
-      sx={{
+      sx={(theme) => ({
         width: 240,
         height: 180,
         display: "flex",
-        borderRadius: 2,
+        borderRadius: theme.radius.md,
         position: "relative",
         overflow: "visible",
-      }}
+        boxShadow: theme.shadows.sm,
+        "&:hover": {
+          boxShadow: theme.shadows.md,
+        },
+        transition: ".2s all ease-in-out",
+      })}
     >
-      <CardActionArea
+      <UnstyledButton
         onClick={handleClick}
         sx={{
           flex: 1,
@@ -43,27 +41,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
         }}
       >
         <Box>
-          <Typography variant="h3">{project.name}</Typography>
-          <Typography variant="body2" color="text.secondary">
-            Last updated 2 days ago
-          </Typography>
+          <Title size="h3">{project.name}</Title>
+          <Text color="dimmed">Last updated 2 days ago</Text>
         </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Dashboard sx={{ color: "text.secondary" }} />
-            <Article sx={{ color: "text.secondary" }} />
-            <Message sx={{ color: "text.secondary" }} />
-          </Stack>
-          <ProjectMembers />
-        </Box>
-      </CardActionArea>
+        <ProjectMembers />
+      </UnstyledButton>
     </Card>
   )
 }

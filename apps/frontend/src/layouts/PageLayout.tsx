@@ -1,17 +1,17 @@
-import { Box } from "@mui/material"
+import { Box } from "@mantine/core"
 import { ReactNode } from "react"
 
 const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         display: "flex",
         flexDirection: "column",
         flex: 1,
         overflow: "hidden",
         position: "relative",
-        p: 2,
-      }}
+        padding: theme.spacing.sm,
+      })}
     >
       {children}
     </Box>

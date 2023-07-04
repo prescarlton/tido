@@ -7,6 +7,7 @@ import NotFoundPage from "@/pages/404"
 import BoardPage from "@/pages/boards/BoardPage"
 import HomePage from "@/pages/Home"
 import LoginPage from "@/pages/Login"
+import MyTasksPage from "@/pages/MyTasks"
 import ProjectListPage from "@/pages/ProjectList"
 import AnnouncementsPage from "@/pages/projects/Announcements"
 import OverviewPage from "@/pages/projects/Overview"
@@ -36,7 +37,7 @@ const AppRouter = () => {
               </Route>
             </Route>
           </Route>
-
+          <Route path="my-tasks" element={<MyTasksPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

@@ -1,4 +1,4 @@
-import { Avatar, Box, Stack } from "@mui/material"
+import { Avatar } from "@mantine/core"
 
 const ProjectMembers = () => {
   const members = [
@@ -11,31 +11,17 @@ const ProjectMembers = () => {
       avatar: "https://i.pravatar.cc/64?img=2",
     },
     {
-      name: "John Doe",
+      name: "John Smith",
       avatar: "https://i.pravatar.cc/64?img=65",
     },
   ]
   return (
-    <Stack
-      direction={"row"}
-      spacing={-2}
-      sx={{
-        justifyContent: "flex-end",
-      }}
-    >
+    <Avatar.Group spacing="sm">
       {members.map((member) => (
-        <Avatar
-          key={member.name}
-          alt={member.name}
-          src={member.avatar}
-          sx={{
-            height: 32,
-            width: 32,
-            border: "2px solid #fff",
-          }}
-        />
+        <Avatar key={member.name} src={member.avatar} radius="xl" />
       ))}
-    </Stack>
+      <Avatar radius="xl">+5</Avatar>
+    </Avatar.Group>
   )
 }
 export default ProjectMembers

@@ -1,8 +1,6 @@
-import { ArrowForwardIos } from "@mui/icons-material"
-import { Box, Collapse, IconButton, Slide, Typography } from "@mui/material"
+import { Box, Title } from "@mantine/core"
 
 import ProjectCard from "@/components/projects/ProjectCard"
-import useProjectContext from "@/contexts/ProjectContext"
 import useListProjects from "@/hooks/api/projects/useListProjects"
 
 const ProjectListPage = () => {
@@ -10,23 +8,22 @@ const ProjectListPage = () => {
 
   return (
     <Box
-      sx={{
+      sx={(theme) => ({
         display: "flex",
         flexDirection: "column",
-        p: 2,
-        gap: 2,
+        padding: theme.spacing.sm,
+        gap: theme.spacing.md,
         flex: 1,
-        backgroundColor: "#FAFBFC",
         position: "relative",
-      }}
+      })}
     >
-      <Typography variant="h1">Projects</Typography>
+      <Title size="h1">Projects</Title>
       <Box
-        sx={{
+        sx={(theme) => ({
           display: "flex",
           flexWrap: "wrap",
-          gap: 2,
-        }}
+          gap: theme.spacing.sm,
+        })}
       >
         {projects?.map((project) => (
           <ProjectCard key={project.id} project={project} />
