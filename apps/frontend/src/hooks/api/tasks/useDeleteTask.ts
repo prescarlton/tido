@@ -1,9 +1,9 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 import { CompleteTaskParams } from "shared/types/tasks"
 
 import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const deleteTask = (params: CompleteTaskParams) =>
   ProjectService.delete(
@@ -16,7 +16,6 @@ const useDeleteTask = (taskId: string) => {
     projectId: string
   }
   const queryClient = useQueryClient()
-  const { openSnackbar } = useSnackbarContext()
   return useMutation({
     mutationFn: () => deleteTask({ boardId, projectId, taskId }),
     onSuccess: () => {
@@ -26,15 +25,15 @@ const useDeleteTask = (taskId: string) => {
           boardId,
         })
       )
-      openSnackbar({
+      notifications.show({
         message: "Deleted task",
-        type: "success",
+        color: "green",
       })
     },
     onError: () => {
-      openSnackbar({
+      notifications.show({
         message: "Unable to delete task",
-        type: "error",
+        color: "red",
       })
     },
   })

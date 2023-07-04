@@ -1,3 +1,4 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useParams } from "react-router-dom"
 import { UpdateGenProjSettingsBody } from "shared/types/projects"
@@ -6,7 +7,6 @@ import ProjectService, {
   PROJECT_GEN_SETTINGS_QUERY_KEY,
   PROJECTS_QUERY_KEY,
 } from "@/api/ProjectService"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const updateGenProjSettings = (
   projectId: string,
@@ -19,7 +19,6 @@ const updateGenProjSettings = (
 const useUpdateGenProjSettings = () => {
   const { projectId } = useParams()
   const queryClient = useQueryClient()
-  const { openSnackbar } = useSnackbarContext()
   if (!projectId) throw new Error("Project ID not found")
 
   return useMutation(
@@ -27,16 +26,16 @@ const useUpdateGenProjSettings = () => {
     (body: UpdateGenProjSettingsBody) => updateGenProjSettings(projectId, body),
     {
       onSuccess: () => {
-        openSnackbar({
+        notifications.show({
           message: "Successfully updated project settings",
-          type: "success",
+          color: "green",
         })
         queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
       },
       onError: () => {
-        openSnackbar({
+        notifications.show({
           message: "Failed to update project settings",
-          type: "error",
+          color: "red",
         })
       },
     }

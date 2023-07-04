@@ -6,6 +6,7 @@ import {
   MantineProvider,
 } from "@mantine/core"
 import { useColorScheme } from "@mantine/hooks"
+import { Notifications } from "@mantine/notifications"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import React, { useState } from "react"
 import { createRoot } from "react-dom/client"
@@ -15,7 +16,6 @@ import theme from "@/theme"
 
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProjectProvider } from "./contexts/ProjectContext"
-import { SnackbarProvider } from "./contexts/SnackbarContext"
 import AppRouter from "./router"
 
 const queryClient = new QueryClient({
@@ -47,13 +47,12 @@ const App = () => {
         >
           <BrowserRouter>
             <QueryClientProvider client={queryClient}>
-              <SnackbarProvider>
-                <AuthProvider>
-                  <ProjectProvider>
-                    <AppRouter />
-                  </ProjectProvider>
-                </AuthProvider>
-              </SnackbarProvider>
+              <AuthProvider>
+                <ProjectProvider>
+                  <AppRouter />
+                </ProjectProvider>
+              </AuthProvider>
+              <Notifications />
             </QueryClientProvider>
           </BrowserRouter>
         </MantineProvider>

@@ -1,3 +1,4 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import { CreateBoardBody, CreateBoardResponse } from "shared/types/boards"
@@ -7,7 +8,6 @@ import ProjectService, {
   CREATE_BOARD_QUERY_KEY,
 } from "@/api/ProjectService"
 import useProjectContext from "@/contexts/ProjectContext"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const createBoard = (data: CreateBoardBody, projectId: string) =>
   ProjectService.post<CreateBoardResponse>(`/${projectId}/boards`, data).then(
@@ -15,7 +15,6 @@ const createBoard = (data: CreateBoardBody, projectId: string) =>
   )
 
 const useCreateBoard = () => {
-  const { openSnackbar } = useSnackbarContext()
   const { projectId } = useProjectContext()
 
   const queryClient = useQueryClient()
@@ -26,9 +25,9 @@ const useCreateBoard = () => {
     (data: CreateBoardBody) => createBoard(data, projectId),
     {
       onSuccess: (data) => {
-        openSnackbar({
+        notifications.show({
           message: "Board created successfully",
-          type: "success",
+          color: "green",
         })
         queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
         navigate(`/p/${data.projectId}/b/${data.id}`)

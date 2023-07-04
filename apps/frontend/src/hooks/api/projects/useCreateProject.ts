@@ -1,3 +1,4 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 
@@ -7,13 +8,11 @@ import {
   CREATE_PROJECT_QUERY_KEY,
   CreateProjectRequest,
 } from "@/api/ProjectService/requests/createProject"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const createProject = (data: CreateProjectRequest) =>
   ProjectService.post("/", data).then((res) => res.data.data)
 
 const useCreateProject = () => {
-  const { openSnackbar } = useSnackbarContext()
   const queryClient = useQueryClient()
 
   return useMutation(
@@ -22,16 +21,16 @@ const useCreateProject = () => {
     {
       onError: (error: AxiosError) => {
         console.error(error)
-        openSnackbar({
-          message: error?.message,
-          type: "error",
+        notifications.show({
+          message: error?.message || "Unable to create project",
+          color: "red",
         })
       },
       onSuccess: () => {
         queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
-        openSnackbar({
+        notifications.show({
           message: "Project created successfully",
-          type: "success",
+          color: "green",
         })
       },
     }

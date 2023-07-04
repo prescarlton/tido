@@ -1,29 +1,27 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation } from "@tanstack/react-query"
 import { DeleteProjectParams } from "shared/types/projects"
 
 import ProjectService, { DELETE_PROJECT_QUERY_KEY } from "@/api/ProjectService"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const deleteProject = (data: DeleteProjectParams) =>
-  ProjectService.delete(`/${data.id}`).then((res) => res.data.data)
+  ProjectService.delete(`/${data.projectId}`).then((res) => res.data.data)
 
 const useDeleteProject = () => {
-  const { openSnackbar } = useSnackbarContext()
-
   return useMutation(
     DELETE_PROJECT_QUERY_KEY,
     (data: DeleteProjectParams) => deleteProject(data),
     {
       onSuccess: () => {
-        openSnackbar({
+        notifications.show({
           message: "Project successfully deleted",
-          type: "success",
+          color: "green",
         })
       },
       onError: () => {
-        openSnackbar({
+        notifications.show({
           message: "Unable to delete project",
-          type: "error",
+          color: "red",
         })
       },
     }

@@ -1,9 +1,9 @@
+import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useNavigate } from "react-router-dom"
 import { GetBoardByIdParams } from "shared/types/boards"
 
 import ProjectService, { BOARDS_QUERY_KEY } from "@/api/ProjectService"
-import useSnackbarContext from "@/contexts/SnackbarContext"
 
 const deleteBoard = (params: GetBoardByIdParams) =>
   ProjectService.delete(`/${params.projectId}/boards/${params.id}`).then(
@@ -11,23 +11,22 @@ const deleteBoard = (params: GetBoardByIdParams) =>
   )
 
 const useDeleteBoard = (params: GetBoardByIdParams) => {
-  const { openSnackbar } = useSnackbarContext()
   const queryClient = useQueryClient()
   const navigate = useNavigate()
   return useMutation({
     mutationFn: () => deleteBoard(params),
     onSuccess: () => {
-      openSnackbar({
+      notifications.show({
         message: "Successfully deleted board",
-        type: "success",
+        color: "green",
       })
       queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
       navigate(`/p/${params.projectId}/b`)
     },
     onError: () => {
-      openSnackbar({
+      notifications.show({
         message: "Unable to delete board",
-        type: "error",
+        color: "red",
       })
     },
   })
