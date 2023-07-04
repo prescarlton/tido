@@ -1,34 +1,62 @@
-import { Divider, Stack } from "@mui/material"
+import { Code, createStyles, Navbar, rem, TextInput } from "@mantine/core"
+import { Search } from "tabler-icons-react"
 
-import SidebarHeader from "@/components/common/Sidebar/SidebarHeader"
+import MainLinks from "@/components/common/Sidebar/MainLinks"
+import SidebarProjects from "@/components/common/Sidebar/SidebarProjects"
 
-import SidebarFavorites from "./SidebarFavorites"
-import SidebarLinks from "./SidebarLinks"
-import SidebarProjects from "./SidebarProjects"
+export const useStyles = createStyles((theme) => ({
+  navbar: {
+    paddingTop: 0,
+    overflow: "hidden",
+    transition: "width 200ms ease, min-width 200ms ease",
+  },
 
-interface ISidebar {
-  show: boolean
-}
+  section: {
+    marginLeft: `calc(${theme.spacing.md} * -1)`,
+    marginRight: `calc(${theme.spacing.md} * -1)`,
+    marginBottom: theme.spacing.md,
+  },
 
-const Sidebar = ({ show }: ISidebar) => {
+  searchCode: {
+    fontWeight: 700,
+    fontSize: rem(10),
+    backgroundColor:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[7]
+        : theme.colors.gray[0],
+    border: `${rem(1)} solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
+    }`,
+  },
+}))
+
+const Sidebar = () => {
+  const { classes } = useStyles()
+
   return (
-    <Stack
-      spacing={2}
-      sx={{
-        backgroundColor: "background.default",
-        width: show ? 240 : 0,
-        transition: "width .2s",
-        py: 2.25,
-      }}
-    >
-      <SidebarHeader />
-      <SidebarLinks />
-      <Divider />
-      <SidebarFavorites />
-      <Divider />
+    <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
+      {/* <Navbar.Section className={classes.section}>
+        <UserButton
+          image="https://i.imgur.com/fGxgcDF.png"
+          name="Bob Rulebreaker"
+          email="Product owner"
+          icon={<IconSelector size="0.9rem" stroke={1.5} />}
+        />
+      </Navbar.Section> */}
+
+      <TextInput
+        placeholder="Search"
+        size="xs"
+        icon={<Search size="0.8rem" />}
+        rightSectionWidth={70}
+        rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
+        styles={{ rightSection: { pointerEvents: "none" } }}
+        mb="sm"
+      />
+      <MainLinks />
+      {/* <SidebarFavorites /> */}
       <SidebarProjects />
-    </Stack>
+    </Navbar>
   )
 }
-
 export default Sidebar

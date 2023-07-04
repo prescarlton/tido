@@ -1,14 +1,25 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Box, Button, Stack, TextField, Typography } from "@mui/material"
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Group,
+  Stack,
+  Text,
+  Title,
+  useMantineColorScheme,
+  useMantineTheme,
+} from "@mantine/core"
 import { useForm } from "react-hook-form"
 import { AuthRequestBody, AuthRequestSchema } from "shared/types/auth"
 
+import ControlledTextField from "@/components/fields/ControlledTextField"
 const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
   const defaultValues: AuthRequestBody = {
     username: "",
     password: "",
   }
-  const { handleSubmit, register, reset } = useForm({
+  const { handleSubmit, reset, control } = useForm({
     defaultValues,
     resolver: zodResolver(AuthRequestSchema.body),
   })
@@ -26,7 +37,6 @@ const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
     <Box
       sx={{
         width: "50%",
-        p: 24,
         display: "flex",
         flexDirection: "column",
         gap: 4,
@@ -34,24 +44,38 @@ const SignupForm = ({ switchForm }: { switchForm: () => void }) => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Typography variant="h1">Sign up</Typography>
-      <Stack spacing={2} sx={{ alignItems: "center" }}>
-        <TextField label="Username" {...register("username")} fullWidth />
-        <TextField label="Password" {...register("password")} fullWidth />
-        <Button type="submit" variant="contained" sx={{ width: "40%" }}>
-          Sign up
+      <Box sx={{}}>
+        <Title size="h1">Sign up</Title>
+      </Box>
+      <Stack spacing={"sm"}>
+        <ControlledTextField
+          control={control}
+          name="username"
+          label="Username"
+          disableError
+        />
+        <ControlledTextField
+          control={control}
+          name="password"
+          label="Password"
+          disableError
+        />
+        <Button type="submit" variant="gradient">
+          Login
         </Button>
       </Stack>
-      <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
-        <Typography variant="caption">Already have an account?</Typography>
+      <Group>
+        <Text c="dimmed" size="sm">
+          New around here?
+        </Text>
         <Button
           onClick={handleSwitchForm}
           variant="text"
           sx={{ textTransform: "none" }}
         >
-          Login
+          Create an account
         </Button>
-      </Stack>
+      </Group>
     </Box>
   )
 }

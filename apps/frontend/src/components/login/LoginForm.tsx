@@ -1,10 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Visibility } from "@mui/icons-material"
-import { Box, Button, IconButton, Stack, Typography } from "@mui/material"
+import {
+  ActionIcon,
+  Box,
+  Button,
+  Group,
+  Stack,
+  Text,
+  Title,
+  useMantineColorScheme,
+  useMantineTheme,
+} from "@mantine/core"
 import { AxiosError } from "axios"
 import { MouseEvent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { AuthRequestBody, AuthRequestSchema } from "shared/types/auth"
+import { Eye, EyeOff } from "tabler-icons-react"
 
 import useAuthContext from "@/contexts/AuthContext"
 
@@ -51,6 +61,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
       setErrorMessage("Username and password are required")
   }, [formState.errors, formState.isSubmitted])
 
+  const theme = useMantineTheme()
   return (
     <Box
       sx={{
@@ -63,47 +74,41 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
       component="form"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Box sx={{}}>
-        <Typography variant="h1">Log In</Typography>
+      <Box>
+        <Title size="h1">Log In</Title>
         {errorMessage && (
-          <Typography variant="body1" color="error.main">
-            {errorMessage}
-          </Typography>
+          <Text color={theme.colors.red[6]}>{errorMessage}</Text>
         )}
       </Box>
-      <Stack spacing={2} sx={{}}>
+      <Stack spacing={"sm"}>
         <ControlledTextField
           control={control}
           name="username"
           label="Username"
-          TextFieldProps={{
-            fullWidth: true,
-          }}
           disableError
         />
         <ControlledTextField
           control={control}
           name="password"
           label="Password"
-          TextFieldProps={{
-            fullWidth: true,
+          TextInputProps={{
             type: showPassword ? "text" : "password",
-            InputProps: {
-              endAdornment: (
-                <IconButton onMouseDown={toggleShowPassword}>
-                  <Visibility />
-                </IconButton>
-              ),
-            },
+            rightSection: (
+              <ActionIcon onMouseDown={toggleShowPassword}>
+                {showPassword ? <EyeOff /> : <Eye />}
+              </ActionIcon>
+            ),
           }}
           disableError
         />
-        <Button type="submit" variant="contained">
+        <Button type="submit" variant="gradient">
           Login
         </Button>
       </Stack>
-      <Stack direction="row" sx={{ alignItems: "center", gap: 1 }}>
-        <Typography variant="caption">New around here?</Typography>
+      <Group>
+        <Text c="dimmed" size="sm">
+          New around here?
+        </Text>
         <Button
           onClick={handleSwitchForm}
           variant="text"
@@ -111,7 +116,7 @@ const LoginForm = ({ switchForm }: { switchForm: () => void }) => {
         >
           Create an account
         </Button>
-      </Stack>
+      </Group>
     </Box>
   )
 }

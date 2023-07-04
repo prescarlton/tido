@@ -20,6 +20,7 @@ importers:
       eslint-config-custom: ^0.0.0
       lodash: ^4.17.21
       prettier: ^2.8.4
+      tabler-icons-react: ^1.56.0
       tsconfig-paths: ^4.1.2
       turbo: ^1.8.3
       typescript: ^4.9.5
@@ -37,6 +38,7 @@ importers:
       '@mantine/spotlight': 6.0.14_7zus2umlgwcl22567q4zt5ctvy
       dayjs: 1.11.8
       lodash: 4.17.21
+      tabler-icons-react: 1.56.0_react@18.2.0
       typescript: 4.9.5
       zod: 3.21.4
     devDependencies:
@@ -5013,6 +5015,14 @@ packages:
 
   /tabbable/6.1.2:
     resolution: {integrity: sha512-qCN98uP7i9z0fIS4amQ5zbGBOq+OSigYeGvPy7NDk8Y9yncqDZ9pRPgfsc2PJIVM9RrJj7GIfuRgmjoUU9zTHQ==}
+    dev: false
+
+  /tabler-icons-react/1.56.0_react@18.2.0:
+    resolution: {integrity: sha512-FOme3w6PJIWDpeXqQ4xjArQqdxzrr9xNy7PSSgWpRzOUQ71RyZ7jt6WThsfyLBz5os78TPJRA8f/0NLjnKcx9A==}
+    peerDependencies:
+      react: '>= 16.8.0'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /tar/6.1.13:

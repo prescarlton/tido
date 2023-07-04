@@ -1,4 +1,4 @@
-import { Box, Collapse, IconButton, Typography } from "@mui/material"
+import { ActionIcon, Collapse, Group, Navbar, rem, Text } from "@mantine/core"
 import { useState } from "react"
 import { ChevronDown, ChevronUp } from "react-feather"
 
@@ -8,30 +8,27 @@ const SidebarFavorites = () => {
   const toggleCollapse = () => setOpen((prev) => !prev)
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 1,
-        px: 2,
-      }}
+    <Navbar.Section
+      sx={(theme) => ({
+        marginLeft: `calc(${theme.spacing.md} * -1)`,
+        marginRight: `calc(${theme.spacing.md} * -1)`,
+        marginBottom: theme.spacing.md,
+        paddingLeft: theme.spacing.md,
+        paddingRight: theme.spacing.md,
+        paddingBottom: theme.spacing.md,
+        borderBottom: `${rem(1)} solid ${
+          theme.colorScheme === "dark"
+            ? theme.colors.dark[4]
+            : theme.colors.gray[3]
+        }`,
+      })}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Typography variant="body2">Favorites</Typography>
-        <IconButton onClick={toggleCollapse}>
-          {open ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-        </IconButton>
-      </Box>
-      <Collapse in={open}>
-        <Typography variant="subtitle2">You have no favorites.</Typography>
-      </Collapse>
-    </Box>
+      <Group position="apart">
+        <Text size="xs" c="dimmed" weight={500}>
+          Favorites
+        </Text>
+      </Group>
+    </Navbar.Section>
   )
 }
 

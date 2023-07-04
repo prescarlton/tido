@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Flex } from "@mantine/core"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { BoardView } from "shared/types/boards"
@@ -23,14 +23,22 @@ const BoardPage = () => {
     <Box
       sx={{
         display: "flex",
-        flex: 1,
         flexDirection: "column",
-        overflow: "hidden",
-        height: "100%",
+        flex: 1,
       }}
     >
       {data && <BoardPageHeader board={data} tab={tab} setTab={setTab} />}
-      <BoardPageContent projectId={projectId} boardId={boardId} tab={tab} />
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          flex: 1,
+          minHeight: 0,
+          overflow: "auto",
+        }}
+      >
+        <BoardPageContent projectId={projectId} boardId={boardId} tab={tab} />
+      </Box>
     </Box>
   )
 }

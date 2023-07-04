@@ -1,4 +1,4 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Box, Text } from "@mantine/core"
 
 import MyProjectsLoading from "@/components/home/ProjectList/Loading"
 import useListProjects from "@/hooks/api/projects/useListProjects"
@@ -14,16 +14,16 @@ const ProjectList = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 1.25,
+        gap: ".5rem",
       }}
     >
-      <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+      <Text variant="h3" sx={{ fontWeight: "bold" }}>
         Projects
-      </Typography>
+      </Text>
       <Box
         sx={{
           display: "flex",
-          gap: 1.5,
+          gap: 16,
         }}
       >
         {projects?.map((project) => (

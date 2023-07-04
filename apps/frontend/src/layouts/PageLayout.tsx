@@ -1,8 +1,6 @@
 import { Box } from "@mui/material"
 import { ReactNode } from "react"
 
-import UserMenu from "@/components/common/UserComponent"
-
 const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <Box
@@ -15,7 +13,6 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
         p: 2,
       }}
     >
-      <UserMenu />
       {children}
     </Box>
   )

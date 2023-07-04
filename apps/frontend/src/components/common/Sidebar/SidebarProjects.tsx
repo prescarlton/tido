@@ -1,60 +1,66 @@
-import { Box, Collapse, IconButton, Stack, Typography } from "@mui/material"
-import { useState } from "react"
-import { ChevronDown, ChevronUp, Plus } from "react-feather"
+import {
+  ActionIcon,
+  Flex,
+  Group,
+  Navbar,
+  rem,
+  Text,
+  useMantineTheme,
+} from "@mantine/core"
+import { Plus } from "tabler-icons-react"
 
 import useListProjects from "@/hooks/api/projects/useListProjects"
 
 import SidebarProjectItem from "./SidebarProjectItem"
 
 const SidebarProjects = () => {
-  const [open, setOpen] = useState(true)
-
   const onClickCreateProject = () => {}
-  const onClickToggleCollapse = () => setOpen((prev) => !prev)
 
   const { data: projects } = useListProjects()
+  const theme = useMantineTheme()
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 1,
-      }}
+    <Navbar.Section
+      sx={(theme) => ({
+        marginLeft: `calc(${theme.spacing.md} * -1)`,
+        marginRight: `calc(${theme.spacing.md} * -1)`,
+        marginBottom: theme.spacing.md,
+      })}
     >
-      <Box
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          px: 2,
-        }}
+      <Group
+        position="apart"
+        sx={(theme) => ({
+          paddingLeft: `calc(${theme.spacing.md} + ${rem(2)})`,
+          paddingRight: theme.spacing.md,
+          marginBottom: rem(5),
+        })}
       >
-        <Typography variant="body2" sx={{}}>
+        <Text size="xs" c="dimmed" weight={500}>
           Projects
-        </Typography>
-        <Stack spacing={1} sx={{ alignItems: "center" }} direction="row">
-          <IconButton onClick={onClickCreateProject}>
-            <Plus size={16} />
-          </IconButton>
-          <IconButton onClick={onClickToggleCollapse}>
-            {open ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </IconButton>
-        </Stack>
-      </Box>
-      <Collapse
-        in={open}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "stretch",
-        }}
+        </Text>
+        <Group spacing={theme.spacing.sm}>
+          <ActionIcon
+            onClick={onClickCreateProject}
+            variant="default"
+            size="xs"
+          >
+            <Plus size="0.8em" />
+          </ActionIcon>
+        </Group>
+      </Group>
+      <Flex
+        direction="column"
+        sx={(theme) => ({
+          paddingLeft: `calc(${theme.spacing.md} - ${rem(6)})`,
+          paddingRight: `calc(${theme.spacing.md} - ${rem(6)})`,
+          paddingBottom: theme.spacing.md,
+        })}
       >
         {projects?.map((project) => (
           <SidebarProjectItem key={project.id} project={project} />
         ))}
-      </Collapse>
-    </Box>
+      </Flex>
+    </Navbar.Section>
   )
 }
 

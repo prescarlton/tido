@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Text, Title } from "@mantine/core"
 
 import ProjectList from "@/components/home/ProjectList"
 import useGetMe from "@/hooks/api/useMe"
@@ -15,14 +15,12 @@ const HomePage = () => {
           px: 3,
           display: "flex",
           flexDirection: "column",
-          gap: 5,
+          gap: 32,
         }}
       >
         <Box sx={{ display: "flex", flexDirection: "column" }}>
-          <Typography variant="h3">Welcome back, {me?.firstName}!</Typography>
-          <Typography variant="subtitle1" sx={{ opacity: 0.6 }}>
-            Let&apos;s get shit done today.
-          </Typography>
+          <Title size="h4">Welcome back, {me?.firstName}!</Title>
+          <Text sx={{ opacity: 0.6 }}>Let&apos;s get stuff done today.</Text>
         </Box>
         <ProjectList />
         {/* <MyTasks /> */}

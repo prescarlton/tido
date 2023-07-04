@@ -1,4 +1,4 @@
-import { Card, CardActionArea, Grow, Typography } from "@mui/material"
+import { Card, Text, Transition, UnstyledButton } from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 import { Project } from "shared/types/projects"
 
@@ -10,33 +10,40 @@ const ProjectCard = ({ project }: { project: Project }) => {
   }
 
   return (
-    <Grow in>
-      <Card
-        sx={{
-          height: 75,
-          boxShadow: 0,
-          display: "flex",
-          backgroundColor: "primary.light",
-          borderRadius: 2,
-        }}
-      >
-        <CardActionArea
-          onClick={handleClick}
-          sx={{
-            flex: 1,
+    <Transition mounted transition="skew-down">
+      {(styles) => (
+        <Card
+          sx={(theme) => ({
+            height: 75,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-end",
-            py: 1.25,
-            px: 2,
-          }}
+            backgroundColor: theme.fn.variant({
+              variant: "light",
+              color: theme.primaryColor,
+            }).background,
+
+            borderRadius: 8,
+          })}
         >
-          <Typography variant="subtitle1">{project.name}</Typography>
-          <Typography variant="subtitle2">{project.description}</Typography>
-        </CardActionArea>
-      </Card>
-    </Grow>
+          <UnstyledButton
+            sx={(theme) => ({
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              justifyContent: "flex-end",
+              color: theme.fn.variant({
+                variant: "light",
+                color: theme.primaryColor,
+              }).color,
+            })}
+            onClick={handleClick}
+          >
+            <Text>{project.name}</Text>
+            <Text>{project.description}</Text>
+          </UnstyledButton>
+        </Card>
+      )}
+    </Transition>
   )
 }
 

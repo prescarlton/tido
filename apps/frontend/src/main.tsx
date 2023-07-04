@@ -1,17 +1,22 @@
 import "./styles/main.css"
 
-import { CssBaseline, useMediaQuery } from "@mui/material"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
+import {
+  ColorScheme,
+  ColorSchemeProvider,
+  MantineProvider,
+} from "@mantine/core"
+import { useColorScheme } from "@mantine/hooks"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import React from "react"
+import React, { useState } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
+
+import theme from "@/theme"
 
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProjectProvider } from "./contexts/ProjectContext"
 import { SnackbarProvider } from "./contexts/SnackbarContext"
 import AppRouter from "./router"
-import theme, { darkModeBackground, lightModeBackground } from "./theme"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,37 +29,35 @@ const queryClient = new QueryClient({
 })
 
 const App = () => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)")
-
-  // const combinedTheme = React.useMemo(
-  //   () =>
-  //     createTheme({
-  //       ...theme,
-  //       palette: {
-  //         background: lightModeBackground,
-  //         primary: {
-  //           main: "#4685FF",
-  //         },
-  //       },
-  //     }),
-  //   [prefersDarkMode]
-  // )
+  const preferredColorScheme = useColorScheme()
+  const [colorScheme, setColorScheme] =
+    useState<ColorScheme>(preferredColorScheme)
+  const toggleColorScheme = (value?: ColorScheme) =>
+    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
   return (
     <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <CssBaseline />
-          <QueryClientProvider client={queryClient}>
-            <SnackbarProvider>
-              <AuthProvider>
-                <ProjectProvider>
-                  <AppRouter />
-                </ProjectProvider>
-              </AuthProvider>
-            </SnackbarProvider>
-          </QueryClientProvider>
-        </BrowserRouter>
-      </ThemeProvider>
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
+      >
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ ...theme, colorScheme }}
+        >
+          <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+              <SnackbarProvider>
+                <AuthProvider>
+                  <ProjectProvider>
+                    <AppRouter />
+                  </ProjectProvider>
+                </AuthProvider>
+              </SnackbarProvider>
+            </QueryClientProvider>
+          </BrowserRouter>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </React.StrictMode>
   )
 }

@@ -1,4 +1,12 @@
-import { Box, ButtonBase, Stack, Typography } from "@mui/material"
+import {
+  Box,
+  CheckIcon,
+  ColorSwatch,
+  rem,
+  Stack,
+  Text,
+  useMantineTheme,
+} from "@mantine/core"
 import { ReactElement } from "react"
 import { Check } from "react-feather"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
@@ -7,41 +15,51 @@ interface IControlledColorPicker<FieldValueProps extends FieldValues>
   extends UseControllerProps<FieldValueProps> {
   label?: string | ReactElement
   disableError?: boolean
-  colors: string[]
 }
 
 const ControlledColorPicker = <FieldValueProps extends FieldValues>({
-  colors,
   control,
   name,
   label,
 }: IControlledColorPicker<FieldValueProps>) => {
   // TODO: ADD HANDLERS FOR SETTING VALUE
+  const theme = useMantineTheme()
+
+  const scheme = theme.colorScheme
+  // @ts-expect-error primaryShade always returns an object with
+  // 'light' and 'dark' as keys, and colorScheme is always 'light' or 'dark'
+  const shade = theme.primaryShade[scheme]
 
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value } }) => (
-        <Stack gap={1}>
-          <Typography variant="caption">{label}</Typography>
-          <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
-            {colors.map((color) => (
-              <ButtonBase
+      render={({ fieldState: { error }, field: { onChange, value } }) => (
+        <Stack spacing="xs">
+          <Text variant="xs">{label}</Text>
+
+          <Box
+            sx={(theme) => ({
+              display: "flex",
+              gap: theme.spacing.sm,
+              flexWrap: "wrap",
+            })}
+          >
+            {Object.keys(theme.colors).map((color) => (
+              <ColorSwatch
                 key={color}
-                sx={{
-                  width: 50,
-                  height: 30,
-                  backgroundColor: color,
-                  borderRadius: 1,
-                  border: value === color ? "2px solid #fff" : "",
-                }}
+                color={theme.colors[color][shade]}
                 onClick={() => onChange(color)}
               >
-                {value === color && <Check />}
-              </ButtonBase>
+                {value === color && <CheckIcon width={rem(10)} />}
+              </ColorSwatch>
             ))}
           </Box>
+          {error && (
+            <Text size="xs" color="red">
+              {error?.message}
+            </Text>
+          )}
         </Stack>
       )}
     />

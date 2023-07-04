@@ -1,4 +1,4 @@
-import { Box, Button, Stack, Typography } from "@mui/material"
+import { Box, Button, Group, Title } from "@mantine/core"
 import { ChevronRight } from "react-feather"
 import { useNavigate } from "react-router-dom"
 
@@ -20,23 +20,23 @@ const BoardCarousel = ({ projectId }: IBoardCarousel) => {
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 1.5 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 4 }}>
-        <Typography variant="h4">Boards</Typography>
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 12 }}>
+      <Box sx={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <Title size="h4">Boards</Title>
         <Button
-          variant="text"
-          endIcon={<ChevronRight />}
+          variant="subtle"
+          rightIcon={<ChevronRight />}
           onClick={onClickAllBoards}
         >
           All Boards
         </Button>
       </Box>
-      <Stack direction="row" sx={{ alignItems: "center" }} spacing={2}>
+      <Group sx={{ alignItems: "center" }} spacing={16}>
         {boards?.map((board) => (
           <BoardCarouselCard key={board.id} board={board} />
         ))}
         <NewBoardButton />
-      </Stack>
+      </Group>
     </Box>
   )
 }

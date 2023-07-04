@@ -1,13 +1,12 @@
-import { TextField } from "@mui/material"
-import { TextFieldProps } from "@mui/material/TextField"
+import { TextInput, TextInputProps } from "@mantine/core"
 import { isEmpty } from "lodash"
-import { ReactElement } from "react"
+import { ReactElement, Ref } from "react"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
 export interface ControlledTextFieldProps<FieldValueProps extends FieldValues>
   extends UseControllerProps<FieldValueProps> {
   label?: string | ReactElement
-  TextFieldProps?: TextFieldProps
+  TextInputProps?: TextInputProps
   disableError?: boolean
 }
 
@@ -15,7 +14,7 @@ function ControlledTextField<FieldValueProps extends FieldValues>({
   control,
   name,
   label,
-  TextFieldProps = {},
+  TextInputProps = {},
   disableError = false,
 }: ControlledTextFieldProps<FieldValueProps>) {
   return (
@@ -26,16 +25,15 @@ function ControlledTextField<FieldValueProps extends FieldValues>({
         fieldState: { error },
         field: { onChange, onBlur, value, ref },
       }) => (
-        <TextField
-          error={!isEmpty(error)}
+        <TextInput
           id={name}
           label={label}
           onChange={onChange}
           onBlur={onBlur}
-          ref={ref}
+          ref={ref as Ref<HTMLInputElement>}
           value={value}
-          helperText={(!disableError && error?.message) ?? ""}
-          {...TextFieldProps}
+          error={(!disableError && error?.message) ?? ""}
+          {...TextInputProps}
         />
       )}
     />

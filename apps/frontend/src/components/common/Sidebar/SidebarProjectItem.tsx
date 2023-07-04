@@ -1,4 +1,5 @@
-import { alpha, Box, ButtonBase, useTheme } from "@mui/material"
+// import { alpha, Box, ButtonBase, useTheme } from "@mui/material"
+import { Box, rem, UnstyledButton, useMantineTheme } from "@mantine/core"
 import { random } from "lodash"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Project } from "shared/types/projects"
@@ -18,37 +19,41 @@ const SidebarProjectItem = ({ project }: ISidebarProjectItem) => {
     navigate(`/p/${project.id}`)
   }
 
-  const theme = useTheme()
-
-  const hoverColor = alpha(theme.palette.background.paper, 0.7)
-  const selectedColor = alpha(theme.palette.background.paper, 0.8)
+  // const hoverColor = alpha(theme.palette.background.paper, 0.7)
+  // const selectedColor = alpha(theme.palette.background.paper, 0.8)
 
   return (
-    <ButtonBase
+    <UnstyledButton
       onClick={handleClick}
-      sx={{
+      sx={(theme) => ({
         display: "flex",
         justifyContent: "start",
-        gap: 0.75,
-        py: 1,
-        px: 2,
-        width: "100%",
+        gap: 6,
+        padding: `${rem(8)} ${theme.spacing.xs}`,
+        borderRadius: theme.radius.sm,
+        fontSize: theme.fontSizes.sm,
         "&:hover": {
-          backgroundColor: active ? "" : hoverColor,
+          backgroundColor: active
+            ? ""
+            : theme.colorScheme === "dark"
+            ? theme.colors.dark[6]
+            : theme.colors.gray[0],
         },
-        backgroundColor: active ? selectedColor : "none",
-      }}
+
+        backgroundColor: active
+          ? theme.fn.variant({
+              variant: "light",
+              color: theme.primaryColor,
+            }).background
+          : "transparent",
+        color: active
+          ? theme.fn.variant({ variant: "light", color: theme.primaryColor })
+              .color
+          : "",
+      })}
     >
-      <Box
-        sx={{
-          height: 16,
-          width: 16,
-          borderRadius: 1,
-          backgroundColor: `rgb(${color.join(",")})`,
-        }}
-      />
       {project.name}
-    </ButtonBase>
+    </UnstyledButton>
   )
 }
 

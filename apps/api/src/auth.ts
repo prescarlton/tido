@@ -1,14 +1,14 @@
-import { User } from '@prisma/client'
-import bcrypt from 'bcrypt'
-import passport from 'passport'
-import { Strategy as LocalStrategy } from 'passport-local'
+import { User } from "@prisma/client"
+import bcrypt from "bcrypt"
+import passport from "passport"
+import { Strategy as LocalStrategy } from "passport-local"
 
-import prisma from '@/utils/db'
+import prisma from "@/utils/db"
 
 passport.use(
   new LocalStrategy(
     {
-      usernameField: 'username',
+      usernameField: "username",
     },
     async (username, password, done) => {
       const user = await prisma.user.findUnique({
@@ -17,12 +17,12 @@ passport.use(
         },
       })
       // if no user found, return
-      if (!user) return done('Invalid Credentials')
+      if (!user) return done("Invalid Credentials")
 
       // decode password and compare to what the user gave us
       const validPassword = await bcrypt.compare(password, user.password)
       // if user gave us a bad password, return
-      if (!validPassword) return done('Invalid Credentials')
+      if (!validPassword) return done("Invalid Credentials")
 
       // if we made it this far, the user is good to go
       return done(null, user)
@@ -45,7 +45,7 @@ passport.deserializeUser(async (id: string, done) => {
       email: true,
     },
   })
-  if (!user) return done('No user to deserialize')
+  if (!user) return done("No user to deserialize")
 
   return done(null, user)
 })

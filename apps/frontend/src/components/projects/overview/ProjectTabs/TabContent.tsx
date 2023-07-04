@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material"
+import { ActionIcon, Box, Title } from "@mantine/core"
 import { ReactNode } from "react"
 import { ChevronLeft } from "react-feather"
 import { useNavigate } from "react-router-dom"
@@ -27,8 +27,7 @@ const ProjectTabContent = ({
         display: "flex",
         flex: 1,
         flexDirection: "column",
-        px: 2,
-        py: 1,
+        padding: ".5rem 1rem",
         overflow: "hidden",
       }}
     >
@@ -38,7 +37,7 @@ const ProjectTabContent = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            gap: 2,
+            gap: 16,
             height: 40,
           }}
         >
@@ -47,17 +46,17 @@ const ProjectTabContent = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              gap: 1,
+              gap: 8,
             }}
           >
             {showBack && (
-              <IconButton onClick={handleBackClick}>
+              <ActionIcon onClick={handleBackClick}>
                 <ChevronLeft />
-              </IconButton>
+              </ActionIcon>
             )}
-            <Typography variant="h3" sx={{ fontWeight: "normal" }}>
+            <Title size="h3" sx={{ fontWeight: "normal" }}>
               {title}
-            </Typography>
+            </Title>
           </Box>
           {primaryAction}
         </Box>

@@ -11,6 +11,7 @@ import {
   Stack,
   Text,
   Title,
+  useMantineTheme,
 } from "@mantine/core"
 import { AxiosError } from "axios"
 import { MouseEvent, useEffect, useState } from "react"
@@ -22,7 +23,7 @@ import { Eye, EyeOff } from "tabler-icons-react"
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import useAuthContext from "@/contexts/AuthContext"
 
-const LoginPage = () => {
+const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -50,9 +51,7 @@ const LoginPage = () => {
     setShowPassword((prev) => !prev)
   }
 
-  const onClickSignup = () => {
-    navigate("/signup")
-  }
+  const onClickLogin = () => navigate("/login")
 
   useEffect(() => {
     if (loginMutation.error) setErrorMessage("Login failed")
@@ -105,7 +104,7 @@ const LoginPage = () => {
               opacity: 0.6,
             })}
           >
-            Welcome back.
+            Your projects will never be the same.
           </Title>
         </Stack>
 
@@ -113,6 +112,7 @@ const LoginPage = () => {
           withBorder
           shadow="md"
           p={30}
+          mt={30}
           radius="md"
           component="form"
           onSubmit={handleSubmit(onSubmit)}
@@ -123,10 +123,7 @@ const LoginPage = () => {
             control={control}
             name="username"
             label="Username"
-            TextInputProps={{
-              autoFocus: true,
-              autoComplete: "username",
-            }}
+            TextInputProps={{ autoFocus: true }}
           />
           <ControlledTextField
             control={control}
@@ -148,12 +145,12 @@ const LoginPage = () => {
             </Anchor>
           </Group>
           <Button fullWidth mt="xl" type="submit">
-            Sign in
+            Sign Up
           </Button>
           <Text color="dimmed" size="sm" align="center" mt="sm">
-            New around here?{" "}
-            <Button variant="subtle" onClick={onClickSignup}>
-              Sign Up
+            Already running successful projects?{" "}
+            <Button variant="subtle" onClick={onClickLogin}>
+              Log In
             </Button>
           </Text>
         </Paper>
@@ -161,4 +158,4 @@ const LoginPage = () => {
     </Box>
   )
 }
-export default LoginPage
+export default SignupPage

@@ -1,4 +1,3 @@
-import { ProjectListResponse } from "@/api/ProjectService/requests/listProjects"
 import { Article, Dashboard, Message } from "@mui/icons-material"
 import {
   Box,
@@ -9,9 +8,11 @@ import {
   Typography,
 } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import { Project } from "shared/types/projects"
+
 import ProjectMembers from "./ProjectMembers"
 
-const ProjectCard = ({ project }: { project: ProjectListResponse }) => {
+const ProjectCard = ({ project }: { project: Project }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {

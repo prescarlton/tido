@@ -1,12 +1,13 @@
-import { MoreHoriz, RadioButtonUnchecked, TaskAlt } from "@mui/icons-material"
 import {
   Card,
-  CardActionArea,
   Checkbox,
-  Stack,
-  Typography,
-} from "@mui/material"
+  Group,
+  Paper,
+  Text,
+  UnstyledButton,
+} from "@mantine/core"
 import { SyntheticEvent, useState } from "react"
+import { MoreHorizontal } from "react-feather"
 import { Task } from "shared/types/tasks"
 
 import TaskDialog from "@/components/boards/tasks/TaskDialog"
@@ -41,39 +42,23 @@ const TaskCard = ({ task }: ITaskCard) => {
   const onCloseDialog = () => setShowDialog(false)
 
   return (
-    <Card sx={{ boxShadow: 0 }}>
-      <CardActionArea
-        onClick={onClickCard}
-        sx={{
-          display: "flex",
-          gap: 2,
-          p: 1,
-          alignItems: "center",
-          justifyContent: "space-between",
-          transition: ".2s all ease-in-out",
-          "&:hover": {
-            cursor: "pointer",
-            color: "primary.main",
-            ".EditTaskButton": {
-              visibility: "visible",
-            },
-          },
-        }}
-      >
-        <Stack direction="row" spacing={1} alignItems="center">
+    <Card p="sm" withBorder sx={{ display: "flex", alignItems: "center" }}>
+      <UnstyledButton onClick={onClickCard}>
+        <Group spacing="xs">
           <Checkbox
-            icon={<RadioButtonUnchecked />}
-            checkedIcon={<TaskAlt />}
+            // icon={<RadioButtonUnchecked />}
+            // checkedIcon={<TaskAlt />}
             checked={task.complete}
-            onChange={onCheck}
+            // onChange={onCheck}
             onClick={onCheckboxClick}
           />
-          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+          <Text variant="h5" sx={{ fontWeight: "bold" }}>
             {task.name}
-          </Typography>
-        </Stack>
-        <EditTaskButton icon={<MoreHoriz />} task={task} />
-      </CardActionArea>
+          </Text>
+        </Group>
+        {/* <EditTaskButton icon={<MoreHorizontal />} task={task} /> */}
+      </UnstyledButton>
+
       {showDialog && (
         <TaskDialog
           taskId={task.id}

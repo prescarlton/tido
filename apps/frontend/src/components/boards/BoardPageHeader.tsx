@@ -1,23 +1,23 @@
 import {
   Box,
-  Stack,
-  Tab,
-  Tabs,
-  TextField,
-  Typography,
-  useTheme,
-} from "@mui/material"
+  Button,
+  Group,
+  Header,
+  Paper,
+  TextInput,
+  Title,
+} from "@mantine/core"
 import {
   Dispatch,
   FocusEvent,
   SetStateAction,
-  SyntheticEvent,
   useEffect,
   useRef,
   useState,
 } from "react"
 import { Board, BoardView } from "shared/types/boards"
 
+import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
@@ -34,7 +34,6 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
   const [showTextField, setShowTextField] = useState(false)
   const textFieldRef = useRef<HTMLDivElement>(null)
   const { project } = useProjectContext()
-  const theme = useTheme()
 
   const toggleTextField = () => {
     setShowTextField((prev) => !prev)
@@ -53,23 +52,21 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
       setShowTextField(false)
     }
   }
-  const handleChangeTab = (e: SyntheticEvent, value: string) =>
-    setTab(value as BoardView)
 
   useEffect(() => {
     if (showTextField) textFieldRef.current?.focus()
   }, [showTextField])
 
   return (
-    <Box
-      sx={{
+    <Header
+      height={48}
+      sx={(theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        mx: 4,
-        my: 2,
-        gap: 1,
-      }}
+        gap: 16,
+        padding: ".25rem 1rem",
+      })}
     >
       <Box
         sx={{
@@ -80,59 +77,36 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
           flex: 1,
         }}
       >
-        <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
+        <Group spacing={16} sx={{ alignItems: "center" }}>
           {showTextField ? (
-            <TextField
+            <TextInput
               defaultValue={board.name}
               onBlur={handleBlurTextField}
-              InputProps={{
-                sx: {
-                  fontWeight: "bold",
-                  fontSize: theme.typography.h3.fontSize,
-                  minWidth: 0,
-                },
-              }}
-              inputRef={textFieldRef}
+              // InputProps={{
+              //   sx: {
+              //     fontWeight: "bold",
+              //     fontSize: theme.typography.h3.fontSize,
+              //     minWidth: 0,
+              //   },
+              // }}
+              // inputRef={textFieldRef}
               variant="standard"
             />
           ) : (
-            <Typography
-              variant="h3"
+            <Title
+              size="h4"
               sx={{ fontWeight: "bold" }}
               onClick={toggleTextField}
             >
               {board.name}
-            </Typography>
+            </Title>
           )}
-          <Tabs
-            value={tab}
-            sx={{
-              px: 6,
-            }}
-            onChange={handleChangeTab}
-            className="buttonTabs"
-          >
-            <Tab
-              label="List View"
-              value={BoardView.List}
-              className="buttonTab"
-            />
-            <Tab
-              label="Group View"
-              value={BoardView.Group}
-              className="buttonTab"
-            />
-            <Tab
-              label="Board View"
-              value={BoardView.Kanban}
-              className="buttonTab"
-            />
-          </Tabs>
-        </Stack>
+          <BoardViewSwitcher tab={tab} setTab={setTab} />
+        </Group>
       </Box>
       <CreateTaskButton />
       <EditBoardButton />
-    </Box>
+    </Header>
   )
 }
 

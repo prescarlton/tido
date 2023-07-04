@@ -14,6 +14,7 @@ export interface Board {
 
 export enum BoardView {
   Group = "GROUP",
+  Table = "TABLE",
   List = "LIST",
   Kanban = "KANBAN",
 }

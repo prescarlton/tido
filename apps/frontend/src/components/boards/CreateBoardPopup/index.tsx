@@ -1,6 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Close } from "@mui/icons-material"
-import { Box, Button, IconButton, Menu, Typography } from "@mui/material"
 import { FormProvider, useForm } from "react-hook-form"
 import { CreateBoardBody, CreateBoardSchema } from "shared/types/boards"
 

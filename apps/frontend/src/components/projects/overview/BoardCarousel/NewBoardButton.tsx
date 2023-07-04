@@ -1,51 +1,88 @@
-import { Box, ButtonBase, Fade, Typography } from "@mui/material"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { Box, Button, Card, Menu, Title, UnstyledButton } from "@mantine/core"
 import { SyntheticEvent, useState } from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import { CreateBoardBody, CreateBoardSchema } from "shared/types/boards"
 
 import CreateBoardPopup from "@/components/boards/CreateBoardPopup"
+import ControlledColorPicker from "@/components/boards/CreateBoardPopup/BoardColorPicker"
+import ControlledTextField from "@/components/fields/ControlledTextField"
+import useCreateBoard from "@/hooks/api/boards/useCreateBoard"
 
 const NewBoardButton = () => {
-  const [hovered, setHovered] = useState(false)
-  const [popupAnchor, setPopupAnchor] = useState<HTMLElement>()
-  const onMouseOver = () => setHovered(true)
-  const onMouseOut = () => setHovered(false)
+  const createMutation = useCreateBoard()
 
-  const onClick = (e: SyntheticEvent<HTMLButtonElement>) =>
-    setPopupAnchor(e.currentTarget)
-  const onClosePopup = () => setPopupAnchor(undefined)
+  const formMethods = useForm({
+    defaultValues: { name: "", color: "" },
+    resolver: zodResolver(CreateBoardSchema.body),
+  })
+  const { control, reset, handleSubmit, formState } = formMethods
+
+  const onSubmit = async (data: CreateBoardBody) => {
+    await createMutation.mutateAsync(data)
+  }
 
   return (
-    <Box
-      sx={{
-        width: 200,
-        height: 85,
-        overflow: "hidden",
-        borderWidth: "1px",
-        borderStyle: "solid",
-        borderColor: "divider",
-        borderRadius: 1,
-        position: "relative",
-        backgroundColor: "background.paper",
-        transition: ".2s all ease-in-out",
+    <Menu
+      styles={{
+        item: {
+          "&[data-hovered]": {
+            backgroundColor: "transparent",
+            cursor: "default",
+          },
+        },
       }}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
+      closeOnItemClick={false}
+      width={300}
     >
-      <Fade in={hovered}>
-        <Box
-          sx={{
-            position: "absolute",
-            inset: 0,
-            backgroundColor: "rgba(0,0,0,0.2)",
-          }}
-        />
-      </Fade>
-      <ButtonBase sx={{ width: "100%", height: "100%" }} onClick={onClick}>
-        <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-          Create new Board
-        </Typography>
-      </ButtonBase>
-      <CreateBoardPopup anchorEl={popupAnchor} onClose={onClosePopup} />
-    </Box>
+      <Menu.Target>
+        <Card
+          sx={(theme) => ({
+            width: 200,
+            height: 85,
+            position: "relative",
+            transition: ".2s all ease-in-out",
+            "&:hover": {
+              boxShadow: theme.shadows.sm,
+            },
+            display: "flex",
+            flexDirection: "column",
+          })}
+          withBorder
+          p={0}
+        >
+          <UnstyledButton p="sm" sx={{ flex: 1, display: "flex" }}>
+            <Title size="h5" sx={{ fontWeight: "bold" }}>
+              Create new Board
+            </Title>
+          </UnstyledButton>
+        </Card>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Menu.Item>Create Board</Menu.Item>
+          <Menu.Item>
+            <ControlledTextField
+              control={control}
+              name="name"
+              label="Board Name"
+            />
+          </Menu.Item>
+          <Menu.Item>
+            <FormProvider {...formMethods}>
+              <ControlledColorPicker
+                name="color"
+                control={control}
+                label="Board Color"
+              />
+            </FormProvider>
+          </Menu.Item>
+          <Menu.Item>
+            <Button type="submit">Create</Button>
+          </Menu.Item>
+        </form>
+      </Menu.Dropdown>
+    </Menu>
   )
 }
 

@@ -1,48 +1,43 @@
-import { Box } from "@mui/material"
+import { AppShell, Box } from "@mantine/core"
+import { useHotkeys } from "@mantine/hooks"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
-import { useKey } from "react-use"
 
+import AppHeader from "@/components/common/AppHeader"
 import Page from "@/components/common/Page"
 import Sidebar from "@/components/common/Sidebar"
+import { HeaderProvider } from "@/contexts/HeaderContext"
 
 const AppLayout = () => {
-  const [showSidebar, setShowSidebar] = useState(true)
+  const [hideShell, setHideShell] = useState(false)
 
-  const toggleSidebar = () => {
-    setShowSidebar((prev) => !prev)
-  }
+  const toggleShell = () => setHideShell((prev) => !prev)
 
-  useKey("m", toggleSidebar)
+  useHotkeys([["mod+M", toggleShell]])
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        height: "100%",
-      }}
-    >
-      <Sidebar show={showSidebar} />
+    <HeaderProvider>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
-          flex: 1,
-          overflow: "hidden",
-          position: "relative",
-          backgroundColor: "background.paper",
-          borderTopLeftRadius: showSidebar ? "1rem" : 0,
-          borderBottomLeftRadius: showSidebar ? "1rem" : 0,
-          borderWidth: 2,
-          borderStyle: "solid",
-          borderColor: "divider",
+          height: "100%",
         }}
       >
+        <AppHeader />
+        <Box sx={{ display: "flex", overflow: "hidden" }}>
+          <Sidebar />
+          <Page>
+            <Outlet />
+          </Page>
+        </Box>
+      </Box>
+      {/* <AppShell navbar={<Sidebar />} header={<AppHeader />}>
         <Page>
           <Outlet />
         </Page>
-      </Box>
-    </Box>
+      </AppShell> */}
+    </HeaderProvider>
   )
 }
 export default AppLayout

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material"
+import { Box, Stack } from "@mantine/core"
 import { Task } from "shared/types/tasks"
 
 import TaskCard from "@/components/boards/views/ListView/TaskCard"
@@ -9,20 +9,12 @@ interface IBoardListView {
 
 const BoardListView = ({ tasks }: IBoardListView) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 0.25,
-          paddingX: 4,
-          paddingY: 3,
-        }}
-      >
+    <Box sx={{ padding: "1rem" }}>
+      <Stack spacing={8}>
         {tasks.map((task) => (
           <TaskCard key={task.id} task={task} />
         ))}
-      </Box>
+      </Stack>
     </Box>
   )
 }

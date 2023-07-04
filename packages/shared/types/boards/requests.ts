@@ -19,8 +19,8 @@ export const CreateBoardSchema = {
     projectId: z.string({ required_error: "Project ID is required" }),
   }),
   body: z.object({
-    name: z.string({ required_error: "Board Name is required" }),
-    color: z.string({ required_error: "Board Color is required" }),
+    name: z.string().nonempty({ message: "Board Name is required" }),
+    color: z.string().nonempty({ message: "Board Color is required" }),
   }),
 }
 
