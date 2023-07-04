@@ -1,27 +1,16 @@
-import { Box, Grow, Skeleton, Stack, Typography } from "@mui/material"
+import { Group, Skeleton, Stack, Title } from "@mantine/core"
 import { range } from "lodash"
 
 const MyProjectsLoading = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 1.25,
-      }}
-    >
-      <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
-        <Typography variant="h2">My Projects</Typography>
-        <Typography variant="h4">(0/5)</Typography>
-      </Stack>
-      <Stack direction="row" spacing={1.5}>
+    <Stack spacing="sm">
+      <Title size="h3">Projects</Title>
+      <Group spacing="md">
         {range(0, 5).map((i) => (
-          <Grow key={i} in>
-            <Skeleton variant="rectangular" width={350} height={125} />
-          </Grow>
+          <Skeleton key={i} variant="rectangular" width={225} height={75} />
         ))}
-      </Stack>
-    </Box>
+      </Group>
+    </Stack>
   )
 }
 

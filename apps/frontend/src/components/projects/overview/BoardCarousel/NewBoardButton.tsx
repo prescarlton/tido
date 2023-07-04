@@ -1,11 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Box, Button, Card, Menu, Title, UnstyledButton } from "@mantine/core"
-import { SyntheticEvent, useState } from "react"
+import { Button, Card, Menu, Title, UnstyledButton } from "@mantine/core"
 import { FormProvider, useForm } from "react-hook-form"
 import { CreateBoardBody, CreateBoardSchema } from "shared/types/boards"
 
-import CreateBoardPopup from "@/components/boards/CreateBoardPopup"
-import ControlledColorPicker from "@/components/boards/CreateBoardPopup/BoardColorPicker"
+import ControlledColorPicker from "@/components/fields/ControlledColorPicker"
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import useCreateBoard from "@/hooks/api/boards/useCreateBoard"
 
@@ -16,7 +14,7 @@ const NewBoardButton = () => {
     defaultValues: { name: "", color: "" },
     resolver: zodResolver(CreateBoardSchema.body),
   })
-  const { control, reset, handleSubmit, formState } = formMethods
+  const { control, handleSubmit } = formMethods
 
   const onSubmit = async (data: CreateBoardBody) => {
     await createMutation.mutateAsync(data)

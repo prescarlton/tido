@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material"
+import { Box, Button, Title } from "@mantine/core"
 import { Component, ReactNode } from "react"
 import { ErrorBoundary, FallbackProps } from "react-error-boundary"
 
@@ -16,13 +16,8 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         height: "100%",
       }}
     >
-      <Typography variant="h6">Something went wrong</Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        size="small"
-        onClick={resetErrorBoundary}
-      >
+      <Title variant="h6">Something went wrong</Title>
+      <Button variant="filled" onClick={resetErrorBoundary}>
         Try again
       </Button>
     </Box>

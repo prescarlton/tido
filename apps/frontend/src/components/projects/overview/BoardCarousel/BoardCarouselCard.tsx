@@ -1,12 +1,4 @@
-import {
-  Box,
-  Card,
-  Text,
-  Title,
-  Transition,
-  UnstyledButton,
-} from "@mantine/core"
-import { SyntheticEvent, useRef, useState } from "react"
+import { Card, Text, Title, UnstyledButton } from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 import { BoardList } from "shared/types/boards"
 
@@ -17,17 +9,9 @@ interface IBoardCarouselCard {
 const BoardCarouselCard = ({
   board: { name, tasks, id, color },
 }: IBoardCarouselCard) => {
-  const [hovered, setHovered] = useState(false)
-
   const navigate = useNavigate()
-  // const theme = useTheme()
 
-  const onClickFavorite = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
-  }
   const onClick = () => navigate(`b/${id}`)
-  const onMouseOver = () => setHovered(true)
-  const onMouseOut = () => setHovered(false)
 
   return (
     <Card
@@ -37,18 +21,16 @@ const BoardCarouselCard = ({
         overflow: "hidden",
         position: "relative",
         transition: ".2s all ease-in-out",
-        backgroundColor: color,
+        backgroundColor: theme.colors[color][theme.fn.primaryShade()],
         padding: "0px !important",
         "&:hover": {
           boxShadow: theme.shadows.sm,
         },
       })}
-      onMouseOver={onMouseOver}
-      onMouseOut={onMouseOut}
       withBorder
     >
       <UnstyledButton
-        sx={{
+        sx={(theme) => ({
           height: "100%",
           width: "100%",
           display: "flex",
@@ -56,9 +38,8 @@ const BoardCarouselCard = ({
           alignItems: "flex-start",
           justifyContent: "flex-start",
           padding: ".5rem",
-          // background:
-          //   "linear-gradient(to bottom, rgba(0,0,0,.3) 0%,rgba(0,0,0,.1) 100%)",
-        }}
+          color: theme.white,
+        })}
         onClick={onClick}
       >
         <Title size="h5" sx={{ fontWeight: "bold" }}>

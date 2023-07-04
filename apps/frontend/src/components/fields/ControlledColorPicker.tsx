@@ -8,7 +8,6 @@ import {
   useMantineTheme,
 } from "@mantine/core"
 import { ReactElement } from "react"
-import { Check } from "react-feather"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
 interface IControlledColorPicker<FieldValueProps extends FieldValues>
@@ -22,7 +21,6 @@ const ControlledColorPicker = <FieldValueProps extends FieldValues>({
   name,
   label,
 }: IControlledColorPicker<FieldValueProps>) => {
-  // TODO: ADD HANDLERS FOR SETTING VALUE
   const theme = useMantineTheme()
 
   const scheme = theme.colorScheme

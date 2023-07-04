@@ -1,9 +1,8 @@
-import { Box, Text } from "@mantine/core"
+import { Box, Group, Title } from "@mantine/core"
 
 import MyProjectsLoading from "@/components/home/ProjectList/Loading"
+import ProjectCard from "@/components/projects/ProjectCard"
 import useListProjects from "@/hooks/api/projects/useListProjects"
-
-import ProjectCard from "./ProjectCard"
 
 const ProjectList = () => {
   const { data: projects, isLoading } = useListProjects()
@@ -17,19 +16,12 @@ const ProjectList = () => {
         gap: ".5rem",
       }}
     >
-      <Text variant="h3" sx={{ fontWeight: "bold" }}>
-        Projects
-      </Text>
-      <Box
-        sx={{
-          display: "flex",
-          gap: 16,
-        }}
-      >
+      <Title size="h3">Projects</Title>
+      <Group spacing="md">
         {projects?.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
-      </Box>
+      </Group>
     </Box>
   )
 }

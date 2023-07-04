@@ -1,6 +1,4 @@
-// import { alpha, Box, ButtonBase, useTheme } from "@mui/material"
-import { Box, rem, UnstyledButton, useMantineTheme } from "@mantine/core"
-import { random } from "lodash"
+import { rem, UnstyledButton } from "@mantine/core"
 import { useLocation, useNavigate } from "react-router-dom"
 import { Project } from "shared/types/projects"
 
@@ -9,8 +7,6 @@ interface ISidebarProjectItem {
 }
 
 const SidebarProjectItem = ({ project }: ISidebarProjectItem) => {
-  const color = [random(0, 255), random(0, 255), random(0, 255)]
-
   const location = useLocation()
   const active = location.pathname.includes(project.id)
   const navigate = useNavigate()

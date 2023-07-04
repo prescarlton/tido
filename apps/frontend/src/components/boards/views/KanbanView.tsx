@@ -1,11 +1,7 @@
-import { Box } from "@mui/material"
+import PageWrapper from "@/layouts/PageLayout"
 
 const BoardKanbanView = () => {
-  return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
-      kanban view, son
-    </Box>
-  )
+  return <PageWrapper>Kanban View</PageWrapper>
 }
 
 export default BoardKanbanView

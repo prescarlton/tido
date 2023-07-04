@@ -1,9 +1,7 @@
-import { Box } from "@mui/material"
+import PageWrapper from "@/layouts/PageLayout"
 
 const BoardGroupView = () => {
-  return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>group view, son</Box>
-  )
+  return <PageWrapper>Group View</PageWrapper>
 }
 
 export default BoardGroupView
