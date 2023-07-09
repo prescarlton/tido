@@ -1,5 +1,5 @@
-import { GeneralProjectSettings, Project } from '.'
-import { DefaultListResponse, DefaultResponse } from '../api'
+import { GeneralProjectSettings, Project } from "."
+import { DefaultListResponse, DefaultResponse } from "../shared"
 
 export interface ProjectListResponse extends DefaultListResponse {
   data: Project[]

@@ -47,7 +47,7 @@
     "prisma": "^4.11.0",
     "ts-node": "10.9.1",
     "tsconfig": "workspace:*",
-    "typescript": "4.8.4"
+    "typescript": "5.1.6"
   },
   "prisma": {
     "seed": "ts-node prisma/seed/index.ts"

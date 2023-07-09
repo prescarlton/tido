@@ -2,10 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { CompleteTaskBody, CompleteTaskParams } from "shared/types/tasks"
 
 import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
+import { notifications } from "@mantine/notifications"
 
 const completeTask = (params: CompleteTaskParams, body: CompleteTaskBody) =>
   ProjectService.put(
-    `/${params.projectId}/boards/${params.boardId}/tasks/${params.taskId}`,
+    `/${params.projectId}/boards/${params.boardId}/tasks/${params.taskId}/complete`,
     body
   ).then((res) => res.data.data)
 
@@ -20,6 +21,10 @@ const useCompleteTask = (params: CompleteTaskParams) => {
           boardId: params.boardId,
         })
       )
+      notifications.show({
+        message: "Task updated",
+        color: "green",
+      })
     },
   })
 }

@@ -1,4 +1,4 @@
-import { DefaultListResponse, DefaultResponse } from "../api"
+import { DefaultListResponse, DefaultResponse } from "../shared"
 import { Board, BoardList } from "../boards"
 
 export interface BoardListResponse extends DefaultListResponse {

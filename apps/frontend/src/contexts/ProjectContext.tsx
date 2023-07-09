@@ -12,8 +12,9 @@ import { Project } from "shared/types/projects"
 import useGetProjectById from "@/hooks/api/projects/useGetProject"
 
 type ProjectContextType = {
-  project: Project | undefined
+  project?: Project
   projectId: string
+  boardId?: string
   fullscreen: boolean
   setFullscreen: Dispatch<SetStateAction<boolean>>
   showProjectHeader: boolean
@@ -31,7 +32,10 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
   const [showProjectHeader, setShowProjectHeader] = useState(true)
   const [showSideNav, setShowSideNav] = useState(true)
 
-  const { projectId } = useParams() as { projectId: string }
+  const { projectId, boardId } = useParams() as {
+    projectId: string
+    boardId?: string
+  }
 
   const { data: project } = useGetProjectById({ projectId })
 
@@ -40,6 +44,7 @@ export const ProjectProvider = ({ children }: { children: ReactNode }) => {
       value={{
         project,
         projectId,
+        boardId,
         fullscreen,
         setFullscreen,
         showProjectHeader,

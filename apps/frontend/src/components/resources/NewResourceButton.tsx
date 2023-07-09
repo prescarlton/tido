@@ -1,4 +1,4 @@
-import { Button, ListItemText, Menu, MenuItem } from "@mui/material"
+import { Button } from "@mantine/core"
 import { SyntheticEvent, useState } from "react"
 import { ChevronDown } from "react-feather"
 
@@ -12,25 +12,26 @@ const NewResourceButton = () => {
   const onClose = () => setAnchorEl(undefined)
 
   return (
-    <>
-      <Button endIcon={<ChevronDown />} variant="contained" onClick={onClick}>
-        New Resource
-      </Button>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={onClose}>
-        <MenuItem>
-          <ListItemText>New note</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText>New key/value</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText>New link</ListItemText>
-        </MenuItem>
-        <MenuItem>
-          <ListItemText>New GDrive resource</ListItemText>
-        </MenuItem>
-      </Menu>
-    </>
+    // <>
+    //   <Button endIcon={<ChevronDown />} variant="contained" onClick={onClick}>
+    //     New Resource
+    //   </Button>
+    //   <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={onClose}>
+    //     <MenuItem>
+    //       <ListItemText>New note</ListItemText>
+    //     </MenuItem>
+    //     <MenuItem>
+    //       <ListItemText>New key/value</ListItemText>
+    //     </MenuItem>
+    //     <MenuItem>
+    //       <ListItemText>New link</ListItemText>
+    //     </MenuItem>
+    //     <MenuItem>
+    //       <ListItemText>New GDrive resource</ListItemText>
+    //     </MenuItem>
+    //   </Menu>
+    // </>
+    <Button>New Resource</Button>
   )
 }
 

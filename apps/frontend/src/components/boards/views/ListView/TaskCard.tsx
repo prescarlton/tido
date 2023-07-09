@@ -1,26 +1,19 @@
-import {
-  Card,
-  Checkbox,
-  Group,
-  Paper,
-  Text,
-  UnstyledButton,
-} from "@mantine/core"
-import { SyntheticEvent, useState } from "react"
-import { MoreHorizontal } from "react-feather"
+import { Card, Checkbox, Group, Text, UnstyledButton } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
+import { ChangeEvent, SyntheticEvent } from "react"
 import { Task } from "shared/types/tasks"
 
 import TaskDialog from "@/components/boards/tasks/TaskDialog"
-import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
+import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 
 interface ITaskCard {
   task: Task
 }
 
 const TaskCard = ({ task }: ITaskCard) => {
-  const [showDialog, setShowDialog] = useState(false)
+  const [opened, { close, open }] = useDisclosure()
   const { project } = useProjectContext()
   const completeMutation = useCompleteTask({
     projectId: project?.id as string,
@@ -28,43 +21,63 @@ const TaskCard = ({ task }: ITaskCard) => {
     taskId: task.id,
   })
 
-  const onCheck = async (e: SyntheticEvent, complete: boolean) => {
+  const onChange = async (e: ChangeEvent<HTMLInputElement>) => {
     e.stopPropagation()
     await completeMutation.mutateAsync({
-      complete,
+      complete: e.currentTarget.checked,
     })
   }
   const onCheckboxClick = (e: SyntheticEvent) => {
     e.stopPropagation()
   }
 
-  const onClickCard = () => setShowDialog(true)
-  const onCloseDialog = () => setShowDialog(false)
+  const onClickCard = () => {
+    open()
+  }
+  const onCloseDialog = () => {
+    close()
+  }
 
   return (
-    <Card p="sm" withBorder sx={{ display: "flex", alignItems: "center" }}>
-      <UnstyledButton onClick={onClickCard}>
-        <Group spacing="xs">
+    <Card
+      withBorder
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        opacity: task.complete ? 0.6 : 1,
+        overflow: "visible",
+      }}
+      className={task.complete ? "task--completed" : ""}
+      p={0}
+    >
+      <UnstyledButton
+        onClick={onClickCard}
+        sx={(theme) => ({
+          flex: 1,
+          padding: theme.spacing.sm,
+          display: "flex",
+        })}
+      >
+        <Group spacing="xs" sx={{ flex: 1 }}>
           <Checkbox
-            // icon={<RadioButtonUnchecked />}
-            // checkedIcon={<TaskAlt />}
             checked={task.complete}
-            // onChange={onCheck}
+            onChange={onChange}
             onClick={onCheckboxClick}
+            styles={{
+              input: {
+                cursor: "pointer",
+              },
+            }}
           />
           <Text variant="h5" sx={{ fontWeight: "bold" }}>
             {task.name}
           </Text>
         </Group>
-        {/* <EditTaskButton icon={<MoreHorizontal />} task={task} /> */}
+        <EditTaskButton task={task} />
       </UnstyledButton>
 
-      {showDialog && (
-        <TaskDialog
-          taskId={task.id}
-          onClose={onCloseDialog}
-          open={showDialog}
-        />
+      {opened && (
+        <TaskDialog task={task} onClose={onCloseDialog} opened={opened} />
       )}
     </Card>
   )

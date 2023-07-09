@@ -11,8 +11,8 @@ model User {
   id        String @id @default(nanoid(16))
   username  String @unique
   email     String @default("")
-  firstName String @default("") @map("first_name")
-  lastName  String @default("") @map("last_name")
+  firstName String @map("first_name")
+  lastName  String @map("last_name")
   password  String @default("")
 
   created DateTime @default(now())
@@ -20,6 +20,7 @@ model User {
 
   projects ProjectMember[]
   tasks    UserTask[]
+  Task     Task[]
 
   @@map("users")
 }
@@ -85,8 +86,9 @@ model Board {
   tasks        Task[]
   taskStatuses TaskStatus[]
 
-  created DateTime @default(now())
-  updated DateTime @updatedAt
+  created DateTime  @default(now())
+  updated DateTime  @updatedAt
+  TaskTag TaskTag[]
 
   @@map("boards")
 }
@@ -101,22 +103,36 @@ model BoardSettings {
 }
 
 model Task {
-  id           String  @id @default(nanoid(24))
-  name         String
-  order        Int     @default(0)
-  complete     Boolean @default(false)
-  statusId     String?
-  boardId      String  @map("board_id")
-  taskStatusId String? @map("task_status_id")
+  id              String  @id @default(nanoid(24))
+  code            Int
+  name            String
+  order           Int     @default(0)
+  complete        Boolean @default(false)
+  description     String? @db.VarChar(2000)
+  statusId        String?
+  boardId         String  @map("board_id")
+  taskStatusId    String? @map("task_status_id")
+  createdByUserId String  @map("created_by_user_id")
 
-  board  Board       @relation(fields: [boardId], references: [id])
-  users  UserTask[]
-  status TaskStatus? @relation(fields: [taskStatusId], references: [id])
+  createdBy User        @relation(fields: [createdByUserId], references: [id])
+  board     Board       @relation(fields: [boardId], references: [id])
+  users     UserTask[]
+  status    TaskStatus? @relation(fields: [taskStatusId], references: [id])
+  tags      TaskTag[]
 
   updated DateTime @updatedAt
   created DateTime @default(now())
 
   @@map("tasks")
+}
+
+model TaskTag {
+  id      String @id @default(nanoid(32))
+  label   String
+  boardId String
+
+  board Board  @relation(fields: [boardId], references: [id])
+  tasks Task[]
 }
 
 model TaskStatus {

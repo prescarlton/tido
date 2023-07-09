@@ -1,4 +1,4 @@
-import { DefaultResponse } from "../api"
+import { DefaultResponse } from "../shared"
 import { Me } from "."
 
 export type GetMeResponse = DefaultResponse<Me>

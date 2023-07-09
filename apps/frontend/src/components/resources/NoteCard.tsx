@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker"
-import { Box, Card } from "@mui/material"
+import { Box, Card } from "@mantine/core"
 
 const NoteCard = () => {
   const content = faker.lorem.paragraph({ min: 1, max: 6 })

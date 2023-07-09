@@ -1,8 +1,7 @@
-import { Box } from "@mui/material"
-
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 import NewResourceButton from "@/components/resources/NewResourceButton"
 import NoteCard from "@/components/resources/NoteCard"
+import { Box } from "@mantine/core"
 
 const ResourcesPage = () => {
   return (

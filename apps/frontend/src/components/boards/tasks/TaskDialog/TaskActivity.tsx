@@ -1,14 +1,14 @@
-import { Box, Icon, Typography } from "@mui/material"
-import { Activity } from "react-feather"
+import { Stack, Text, Title } from "@mantine/core"
 
 const TaskActivity = () => {
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-      <Icon fontSize="small">
-        <Activity />
-      </Icon>
-      <Typography variant="h6">Activity</Typography>
-    </Box>
+    <Stack spacing="xs">
+      <Title size="h6">Activity</Title>
+      <Text color="dimmed" size="sm">
+        Once things start happening with this task, update history will show up
+        here.
+      </Text>
+    </Stack>
   )
 }
 

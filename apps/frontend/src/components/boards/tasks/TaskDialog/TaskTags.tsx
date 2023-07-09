@@ -1,18 +1,17 @@
-import { Box, Stack, Typography } from "@mui/material"
+import { Group, Text } from "@mantine/core"
 
 import TaskTag from "@/components/boards/tasks/TaskDialog/TaskTag"
 
 const TaskTags = () => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
-      <Typography variant="h6">Tags</Typography>
-      <Stack direction="row" spacing={1}>
+    <Group spacing="xl">
+      <Text color="dimmed" w={100}>
+        Tags
+      </Text>
+      <Group spacing="xs">
         <TaskTag />
-        <TaskTag />
-        <TaskTag />
-        <TaskTag />
-      </Stack>
-    </Box>
+      </Group>
+    </Group>
   )
 }
 

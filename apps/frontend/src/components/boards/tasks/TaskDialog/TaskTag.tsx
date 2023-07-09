@@ -1,9 +1,26 @@
-import { Chip } from "@mui/material"
+import { Box, Text, useMantineTheme } from "@mantine/core"
 
 const TaskTag = () => {
-  const colors = ["primary", "secondary", "warning", "error", "success"]
+  const theme = useMantineTheme()
+  const colors = ["red", "orange", "yellow", "green", "lime", "violet"]
   const color = colors[Math.floor(Math.random() * 5)]
-  return <Chip label="Tag" color={color as "primary"} />
+
+  return (
+    <Box
+      sx={(theme) => ({
+        backgroundColor: theme.fn.variant({
+          variant: "light",
+          color,
+        }).background,
+        borderRadius: theme.radius.sm,
+      })}
+      px="xs"
+    >
+      <Text color={color} size="xs" weight="bold">
+        Tag
+      </Text>
+    </Box>
+  )
 }
 
 export default TaskTag

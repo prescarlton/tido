@@ -1,14 +1,11 @@
-import { Box, Tab, Tabs } from "@mui/material"
-import { useState } from "react"
-
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 import DangerZone from "@/components/projects/settings/DangerZone"
 import FeatureToggles from "@/components/projects/settings/FeatureToggles"
 import GeneralProjectSettings from "@/components/projects/settings/GeneralSettings"
 import TeamSettings from "@/components/projects/settings/TeamSettings"
+import { Box, Tabs } from "@mantine/core"
 
 const ProjectSettingsPage = () => {
-  const [tab, setTab] = useState(0)
   return (
     <ProjectTabContent title="Settings">
       <Box
@@ -20,20 +17,26 @@ const ProjectSettingsPage = () => {
           alignItems: "stretch",
         }}
       >
-        <Tabs
-          orientation="vertical"
-          value={tab}
-          onChange={(e, val) => setTab(val)}
-        >
-          <Tab value={0} label="General" />
-          <Tab value={1} label="Features" />
-          <Tab value={2} label="Team" />
-          <Tab value={3} label="Danger Zone" />
+        <Tabs orientation="vertical" defaultValue={"general"}>
+          <Tabs.List>
+            <Tabs.Tab value="general">General</Tabs.Tab>
+            <Tabs.Tab value="features">Features</Tabs.Tab>
+            <Tabs.Tab value="team">Team</Tabs.Tab>
+            <Tabs.Tab value="danger zone">Danger Zone</Tabs.Tab>
+          </Tabs.List>
         </Tabs>
-        {tab === 0 && <GeneralProjectSettings />}
-        {tab === 1 && <FeatureToggles />}
-        {tab === 2 && <TeamSettings />}
-        {tab === 3 && <DangerZone />}
+        <Tabs.Panel value="general">
+          <GeneralProjectSettings />
+        </Tabs.Panel>
+        <Tabs.Panel value="features">
+          <FeatureToggles />
+        </Tabs.Panel>
+        <Tabs.Panel value="team">
+          <TeamSettings />
+        </Tabs.Panel>
+        <Tabs.Panel value="danger zone">
+          <DangerZone />
+        </Tabs.Panel>
       </Box>
     </ProjectTabContent>
   )

@@ -1,23 +1,13 @@
-import { IconButton, ListItemButton, Menu } from "@mui/material"
-import { ReactNode, SyntheticEvent, useState } from "react"
 import { Task } from "shared/types/tasks"
 
 import useDeleteTask from "@/hooks/api/tasks/useDeleteTask"
+import { ActionIcon, Menu } from "@mantine/core"
+import { Dots } from "tabler-icons-react"
 
 interface IEditTaskButton {
-  icon: ReactNode
   task: Task
 }
-const EditTaskButton = ({ icon, task }: IEditTaskButton) => {
-  const [menuAnchor, setMenuAnchor] = useState<HTMLElement>()
-  const onClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.stopPropagation()
-    setMenuAnchor(e.currentTarget)
-  }
-  const onClose = () => {
-    setMenuAnchor(undefined)
-  }
-
+const EditTaskButton = ({ task }: IEditTaskButton) => {
   const deleteMutation = useDeleteTask(task.id)
 
   const onDeleteClick = async () => {
@@ -25,36 +15,16 @@ const EditTaskButton = ({ icon, task }: IEditTaskButton) => {
   }
 
   return (
-    <>
-      <IconButton
-        onClick={onClick}
-        className="EditTaskButton"
-        sx={{ visibility: "hidden" }}
-      >
-        {icon}
-      </IconButton>
-      <Menu
-        anchorEl={menuAnchor}
-        open={Boolean(menuAnchor)}
-        onClose={onClose}
-        onClick={(e) => e.stopPropagation()}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
-        }}
-      >
-        <ListItemButton>Open</ListItemButton>
-        <ListItemButton>Get Link</ListItemButton>
-        <ListItemButton>Clone</ListItemButton>
-        <ListItemButton sx={{ color: "error.main" }} onClick={onDeleteClick}>
-          Delete
-        </ListItemButton>
-      </Menu>
-    </>
+    <Menu>
+      <Menu.Target>
+        <ActionIcon onClick={(e) => e.stopPropagation()}>
+          <Dots />
+        </ActionIcon>
+      </Menu.Target>
+      <Menu.Dropdown>
+        <Menu.Item>Delete</Menu.Item>
+      </Menu.Dropdown>
+    </Menu>
   )
 }
 

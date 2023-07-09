@@ -1,8 +1,9 @@
-import { Box } from "@mui/material"
 import { useFormContext } from "react-hook-form"
 
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import { ISetting, SettingType } from "@/types/components/Settings"
+import ControlledTextArea from "@/components/fields/ControlledTextArea"
+import { Box } from "@mantine/core"
 
 const SettingValue = ({ name, dataType }: ISetting) => {
   const { control } = useFormContext()
@@ -12,7 +13,7 @@ const SettingValue = ({ name, dataType }: ISetting) => {
         <ControlledTextField
           name={name}
           control={control}
-          TextFieldProps={{
+          TextInputProps={{
             sx: {
               width: 300,
             },
@@ -21,10 +22,8 @@ const SettingValue = ({ name, dataType }: ISetting) => {
       )
     case SettingType.LongText:
       return (
-        <ControlledTextField
-          TextFieldProps={{
-            multiline: true,
-            rows: 4,
+        <ControlledTextArea
+          TextAreaProps={{
             sx: {
               width: 300,
             },

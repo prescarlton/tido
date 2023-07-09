@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { ListTasksParams, ListTasksResponse } from "shared/types/tasks/index"
 
 import prisma from "@/utils/db"
+import { userSelect } from "@/utils/selects/users"
 
 const listTasks = async (
   req: Request<ListTasksParams>,
@@ -16,6 +17,11 @@ const listTasks = async (
     },
     orderBy: {
       complete: "asc",
+    },
+    include: {
+      createdBy: {
+        select: userSelect,
+      },
     },
   })
 

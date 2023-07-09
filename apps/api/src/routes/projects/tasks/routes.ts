@@ -1,9 +1,11 @@
 import { Router } from "express"
+import { GetByIdRequestSchema } from "shared/types/shared"
 import {
   CompleteTaskRequestSchema,
   CreateTaskRequestSchema,
-  DeleteTaskRequestSchema,
+  GetTaskRequestSchema,
   ListTasksRequestSchema,
+  UpdateTaskRequestSchema,
 } from "shared/types/tasks"
 import { processRequest } from "zod-express-middleware"
 
@@ -11,27 +13,27 @@ import listTasks from "@/routes/projects/boards/listTasks"
 import completeTask from "@/routes/projects/tasks/completeTask"
 import createTask from "@/routes/projects/tasks/createTask"
 import deleteTask from "@/routes/projects/tasks/deleteTask"
+import getTaskById from "@/routes/projects/tasks/getTaskById"
+import updateTask from "@/routes/projects/tasks/updateTask"
 
 const TaskRouter: Router = Router({ mergeParams: true })
 
 // GET
 TaskRouter.get("/", processRequest(ListTasksRequestSchema), listTasks)
+TaskRouter.get("/:id", processRequest(GetByIdRequestSchema), getTaskById)
 
 // POST
 TaskRouter.post("/", processRequest(CreateTaskRequestSchema), createTask)
 
 // PUT
 TaskRouter.put(
-  "/:taskId",
+  "/:taskId/complete",
   processRequest(CompleteTaskRequestSchema),
   completeTask
 )
+TaskRouter.put("/:taskId", processRequest(UpdateTaskRequestSchema), updateTask)
 
 // DELETE
-TaskRouter.delete(
-  "/:taskId",
-  processRequest(DeleteTaskRequestSchema),
-  deleteTask
-)
+TaskRouter.delete("/:taskId", processRequest(GetTaskRequestSchema), deleteTask)
 
 export default TaskRouter

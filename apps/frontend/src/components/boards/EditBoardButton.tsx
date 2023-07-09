@@ -1,8 +1,9 @@
 import { ActionIcon, Menu } from "@mantine/core"
-import { Delete, MoreHorizontal } from "react-feather"
+import { MoreHorizontal } from "react-feather"
 import { useParams } from "react-router-dom"
 
 import useDeleteBoard from "@/hooks/api/boards/useDeleteBoard"
+import { Trash } from "tabler-icons-react"
 
 const EditBoardButton = () => {
   const { boardId, projectId } = useParams() as {
@@ -23,7 +24,7 @@ const EditBoardButton = () => {
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
-        <Menu.Item icon={<Delete />} onClick={handleDelete} color="red.6">
+        <Menu.Item icon={<Trash />} onClick={handleDelete} color="red.6">
           Delete Board
         </Menu.Item>
       </Menu.Dropdown>
