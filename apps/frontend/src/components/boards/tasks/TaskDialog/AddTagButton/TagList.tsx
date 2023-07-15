@@ -16,7 +16,7 @@ import useListBoardTags from "@/hooks/api/boards/useListBoardTags"
 import useUpdateTaskTags from "@/hooks/api/tasks/useUpdateTaskTags"
 
 interface IListTags {
-  switchStep: () => void
+  switchStep: (selectedTag?: TaskTagType) => void
   taskId: string
   startingTags: TaskTagType[]
 }
@@ -38,6 +38,10 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
 
   const updateMutation = useUpdateTaskTags({ boardId, projectId, taskId })
 
+  const onClickCreate = () => {
+    switchStep()
+  }
+
   useDidUpdate(() => {
     updateMutation.mutate({ tags: taskTags })
   }, [taskTags])
@@ -54,7 +58,7 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
                 <Tooltip label={tag.name}>
                   <Flex align="center" gap="xxs">
                     <TaskTag tag={tag} />
-                    <ActionIcon size="sm">
+                    <ActionIcon size="sm" onClick={() => switchStep(tag)}>
                       <Edit />
                     </ActionIcon>
                   </Flex>
@@ -74,7 +78,7 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
           ))}
         </Stack>
       </Checkbox.Group>
-      <Button variant="outline" onClick={switchStep} size="xs">
+      <Button variant="outline" onClick={onClickCreate} size="xs">
         Create Tag
       </Button>
     </Stack>

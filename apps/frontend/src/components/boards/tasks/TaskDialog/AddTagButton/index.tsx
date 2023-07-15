@@ -3,7 +3,7 @@ import { useState } from "react"
 import { TaskTag } from "shared/types/tasks"
 import { Plus } from "tabler-icons-react"
 
-import CreateTag from "@/components/boards/tasks/TaskDialog/AddTagButton/CreateTag"
+import TagForm from "@/components/boards/tasks/TaskDialog/AddTagButton/TagForm"
 import TagList from "@/components/boards/tasks/TaskDialog/AddTagButton/TagList"
 
 interface IAddTagButton {
@@ -13,14 +13,18 @@ interface IAddTagButton {
 
 const AddTagButton = ({ taskId, startingTags }: IAddTagButton) => {
   const [step, setStep] = useState<"list" | "edit">("list")
+  const [selectedTag, setSelectedTag] = useState<TaskTag>()
 
-  const onClickAddTag = () => {
+  const onClickAddTag = (selectedTag?: TaskTag) => {
+    setSelectedTag(selectedTag)
     setStep("edit")
   }
   const onClickListTags = () => {
+    setSelectedTag(undefined)
     setStep("list")
   }
   const onClose = () => {
+    setSelectedTag(undefined)
     setStep("list")
   }
 
@@ -42,7 +46,7 @@ const AddTagButton = ({ taskId, startingTags }: IAddTagButton) => {
             startingTags={startingTags}
           />
         ) : (
-          <CreateTag switchStep={onClickListTags} />
+          <TagForm switchStep={onClickListTags} tag={selectedTag} />
         )}
       </Popover.Dropdown>
     </Popover>

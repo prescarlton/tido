@@ -6,10 +6,10 @@ export const PROJECT_GEN_SETTINGS_QUERY_KEY = createQueryKey(
 )
 
 export const BOARDS_QUERY_KEY = createQueryKey("boardList")
+export const TASKS_QUERY_KEY = createQueryKey("taskList")
+export const TAGS_QUERY_KEY = createQueryKey("tagList")
 
 export const CREATE_BOARD_QUERY_KEY = ["createBoard"]
 export const DELETE_PROJECT_QUERY_KEY = ["deleteProject"]
 export const CREATE_TAG_QUERY_KEY = ["createTag"]
-
-export const TASKS_QUERY_KEY = createQueryKey("taskList")
-export const TAGS_QUERY_KEY = createQueryKey("tagList")
+export const UPDATE_TAG_QUERY_KEY = ["updateTag"]

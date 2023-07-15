@@ -45,6 +45,15 @@ export const RenameBoardSchema = {
     name: z.string({ required_error: "Board Name is required" }),
   }),
 }
+export const UpdateTagSchema = {
+  params: CreateTagSchema.params.extend({
+    tagId: z.string().nonempty({ message: "Tag ID is required" }),
+  }),
+  body: CreateTagSchema.body,
+}
+export const DeleteTagSchema = {
+  params: UpdateTagSchema.params,
+}
 
 // Params
 export type CreateBoardParams = z.infer<typeof CreateBoardSchema.params>
@@ -54,8 +63,9 @@ export type GetBoardByIdParams = z.infer<
   typeof GetBoardByIdRequestSchema.params
 >
 export type CreateTagParams = z.infer<typeof CreateTagSchema.params>
-
+export type UpdateTagParams = z.infer<typeof UpdateTagSchema.params>
 // Body
 export type CreateBoardBody = z.infer<typeof CreateBoardSchema.body>
 export type RenameBoardBody = z.infer<typeof RenameBoardSchema.body>
 export type CreateTagBody = z.infer<typeof CreateTagSchema.body>
+export type UpdateTagBody = z.infer<typeof UpdateTagSchema.body>
