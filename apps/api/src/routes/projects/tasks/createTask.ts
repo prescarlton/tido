@@ -36,14 +36,14 @@ const createTask = async (
   })
 
   // if no task was found, this is the first task. code can be 1
-  const code = highestTask?.code || 1
+  const code = highestTask?.code || 0
 
   const task = await prisma.task.create({
     data: {
       boardId,
       name,
       createdByUserId: user.id,
-      code,
+      code: code + 1,
     },
   })
 
