@@ -50,6 +50,7 @@ const TaskCard = ({ task }: ITaskCard) => {
         "&:hover": {
           boxShadow: theme.shadows.sm,
         },
+        height: "3.25rem",
       })}
       className={task.complete ? "task--completed" : ""}
       p={0}
@@ -77,8 +78,8 @@ const TaskCard = ({ task }: ITaskCard) => {
             {task.name}
           </Text>
         </Group>
-        <EditTaskButton task={task} />
       </UnstyledButton>
+      <EditTaskButton task={task} />
 
       {opened && (
         <TaskDialog task={task} onClose={onCloseDialog} opened={opened} />

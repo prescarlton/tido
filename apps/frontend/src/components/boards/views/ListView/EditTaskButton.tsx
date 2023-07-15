@@ -20,9 +20,12 @@ const EditTaskButton = ({ task }: IEditTaskButton) => {
   }
 
   return (
-    <Menu>
+    <Menu position="bottom-end">
       <Menu.Target>
-        <ActionIcon onClick={(e) => e.stopPropagation()}>
+        <ActionIcon
+          onClick={(e) => e.stopPropagation()}
+          sx={{ height: "100%", width: "3.25rem" }}
+        >
           <Dots />
         </ActionIcon>
       </Menu.Target>
