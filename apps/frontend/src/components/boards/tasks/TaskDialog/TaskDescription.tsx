@@ -1,12 +1,18 @@
-import ControlledTextArea from "@/components/fields/ControlledTextArea"
-import { Stack, Textarea, Title } from "@mantine/core"
+import { Flex, Kbd, Stack, Text, Title } from "@mantine/core"
+import { getHotkeyHandler } from "@mantine/hooks"
 import { useFormContext } from "react-hook-form"
 
-const TaskDescription = () => {
-  const { control } = useFormContext()
+import ControlledTextArea from "@/components/fields/ControlledTextArea"
+
+interface ITaskDescription {
+  onSubmit: (data: any) => void
+}
+
+const TaskDescription = ({ onSubmit }: ITaskDescription) => {
+  const { control, handleSubmit } = useFormContext()
 
   return (
-    <Stack spacing="xs">
+    <Stack spacing="xs" sx={{ position: "relative" }}>
       <Title size="h6">Description</Title>
       <ControlledTextArea
         control={control}
@@ -16,7 +22,17 @@ const TaskDescription = () => {
           radius: "md",
           minRows: 6,
           maxRows: 6,
+          onKeyDown: getHotkeyHandler([
+            ["mod+Enter", () => handleSubmit(onSubmit)()],
+          ]),
         }}
+        tooltip={
+          <Flex gap="xs">
+            <Kbd>ctrl</Kbd>
+            <Kbd>Enter</Kbd>
+            <Text sx={{ display: "flex", alignItems: "center" }}>to save</Text>
+          </Flex>
+        }
       />
     </Stack>
   )

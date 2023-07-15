@@ -1,11 +1,5 @@
-import {
-  TextInput,
-  TextInputProps,
-  Textarea,
-  TextareaProps,
-} from "@mantine/core"
-import { isEmpty } from "lodash"
-import { ReactElement, Ref } from "react"
+import { Textarea, TextareaProps, Tooltip } from "@mantine/core"
+import { ReactElement, ReactNode, Ref, useState } from "react"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
 export interface ControlledTextFieldProps<FieldValueProps extends FieldValues>
@@ -13,6 +7,7 @@ export interface ControlledTextFieldProps<FieldValueProps extends FieldValues>
   label?: string | ReactElement
   TextAreaProps?: TextareaProps
   disableError?: boolean
+  tooltip?: ReactNode
 }
 
 function ControlledTextArea<FieldValueProps extends FieldValues>({
@@ -21,7 +16,9 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
   label,
   TextAreaProps = {},
   disableError = false,
+  tooltip = null,
 }: ControlledTextFieldProps<FieldValueProps>) {
+  const [opened, setOpened] = useState(false)
   return (
     <Controller
       control={control}
@@ -30,16 +27,32 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
         fieldState: { error },
         field: { onChange, onBlur, value, ref },
       }) => (
-        <Textarea
-          id={name}
-          label={label}
-          onChange={onChange}
-          onBlur={onBlur}
-          ref={ref as Ref<HTMLTextAreaElement>}
-          value={value}
-          error={(!disableError && error?.message) ?? ""}
-          {...TextAreaProps}
-        />
+        <Tooltip
+          label={tooltip}
+          opened={Boolean(tooltip) && opened}
+          position="bottom-end"
+          offset={-40}
+          styles={{
+            tooltip: {
+              height: 40,
+            },
+          }}
+        >
+          <Textarea
+            id={name}
+            label={label}
+            onChange={onChange}
+            onFocus={() => setOpened(true)}
+            onBlur={() => {
+              setOpened(false)
+              onBlur()
+            }}
+            ref={ref as Ref<HTMLTextAreaElement>}
+            value={value}
+            error={(!disableError && error?.message) ?? ""}
+            {...TextAreaProps}
+          />
+        </Tooltip>
       )}
     />
   )

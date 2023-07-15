@@ -8,7 +8,6 @@ import {
   Skeleton,
   Stack,
   Title,
-  useMantineTheme,
 } from "@mantine/core"
 import { useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
@@ -103,7 +102,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
               <TaskCreator creator={task?.createdBy} />
             </Stack>
             <Stack spacing="md">
-              <TaskDescription />
+              <TaskDescription onSubmit={onSubmit} />
               <TaskActivity />
             </Stack>
           </Flex>
