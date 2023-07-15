@@ -6,6 +6,7 @@ import {
   GetTaskRequestSchema,
   ListTasksRequestSchema,
   UpdateTaskRequestSchema,
+  UpdateTaskTagsSchema,
 } from "shared/types/tasks"
 import { processRequest } from "zod-express-middleware"
 
@@ -15,6 +16,7 @@ import createTask from "@/routes/projects/tasks/createTask"
 import deleteTask from "@/routes/projects/tasks/deleteTask"
 import getTaskById from "@/routes/projects/tasks/getTaskById"
 import updateTask from "@/routes/projects/tasks/updateTask"
+import updateTaskTags from "@/routes/projects/tasks/updateTaskTags"
 
 const TaskRouter: Router = Router({ mergeParams: true })
 
@@ -32,6 +34,11 @@ TaskRouter.put(
   completeTask
 )
 TaskRouter.put("/:taskId", processRequest(UpdateTaskRequestSchema), updateTask)
+TaskRouter.put(
+  "/:taskId/tags",
+  processRequest(UpdateTaskTagsSchema),
+  updateTaskTags
+)
 
 // DELETE
 TaskRouter.delete("/:taskId", processRequest(GetTaskRequestSchema), deleteTask)

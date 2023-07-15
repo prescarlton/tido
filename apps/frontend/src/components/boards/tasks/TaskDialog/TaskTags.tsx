@@ -1,17 +1,33 @@
-import { Group, Text } from "@mantine/core"
+import { Flex, Group, Skeleton, Text } from "@mantine/core"
+import { TaskDetails } from "shared/types/tasks"
 
 import AddTagButton from "@/components/boards/tasks/TaskDialog/AddTagButton"
 import TaskTag from "@/components/boards/tasks/TaskDialog/TaskTag"
 
-const TaskTags = () => {
+interface ITaskTags {
+  task?: TaskDetails
+}
+
+const TaskTags = ({ task }: ITaskTags) => {
   return (
-    <Group spacing="xl">
+    <Group spacing="xl" noWrap align="flex-start">
       <Text color="dimmed" w={100}>
         Tags
       </Text>
-      <Group spacing="xs">
-        <AddTagButton />
-      </Group>
+      <Flex gap="xs" wrap="wrap" align="center">
+        {task ? (
+          <>
+            {task.tags.map((tag) => (
+              <TaskTag key={tag.id} tag={tag} />
+            ))}
+            <AddTagButton taskId={task.id} startingTags={task.tags} />
+          </>
+        ) : (
+          <Skeleton radius="sm">
+            <Text>Tag</Text>
+          </Skeleton>
+        )}
+      </Flex>
     </Group>
   )
 }

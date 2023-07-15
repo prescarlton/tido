@@ -40,8 +40,14 @@ export const UpdateTaskRequestSchema = {
   body: z.object({
     description: z.string().nullable(),
     name: z.string().optional(),
-    tags: z.array(z.string()).optional(),
     status: z.string().optional(),
+  }),
+}
+
+export const UpdateTaskTagsSchema = {
+  params: GetTaskRequestSchema.params,
+  body: z.object({
+    tags: z.array(z.string()),
   }),
 }
 
@@ -52,8 +58,10 @@ export type CompleteTaskParams = z.infer<
   typeof CompleteTaskRequestSchema.params
 >
 export type GetTaskParams = z.infer<typeof GetTaskRequestSchema.params>
+export type UpdateTaskTagsParams = z.infer<typeof UpdateTaskTagsSchema.params>
 // BODY
 export type CreateTaskBody = z.infer<typeof CreateTaskRequestSchema.body>
 export type CompleteTaskBody = z.infer<typeof CompleteTaskRequestSchema.body>
 export type UpdateTaskBody = z.infer<typeof UpdateTaskRequestSchema.body>
+export type UpdateTaskTagsBody = z.infer<typeof UpdateTaskTagsSchema.body>
 // QUERY

@@ -1,4 +1,3 @@
-import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import {
@@ -6,6 +5,8 @@ import {
   GetTaskParams,
   UpdateTaskBody,
 } from "shared/types/tasks"
+
+import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 
 const updateTask = (params: GetTaskParams, body: UpdateTaskBody) =>
   ProjectService.put(

@@ -99,7 +99,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
             <Stack spacing="md">
               <TaskMembers />
               <TaskStatus task={task} />
-              <TaskTags />
+              <TaskTags task={taskDetails} />
               <TaskCreator creator={task?.createdBy} />
             </Stack>
             <Stack spacing="md">

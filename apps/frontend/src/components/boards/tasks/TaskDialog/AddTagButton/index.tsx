@@ -1,11 +1,17 @@
-import { ActionIcon, Menu, Popover } from "@mantine/core"
+import { ActionIcon, Popover, Title } from "@mantine/core"
 import { useState } from "react"
+import { TaskTag } from "shared/types/tasks"
 import { Plus } from "tabler-icons-react"
 
 import CreateTag from "@/components/boards/tasks/TaskDialog/AddTagButton/CreateTag"
-import ListTags from "@/components/boards/tasks/TaskDialog/AddTagButton/ListTags"
+import TagList from "@/components/boards/tasks/TaskDialog/AddTagButton/TagList"
 
-const AddTagButton = () => {
+interface IAddTagButton {
+  taskId: string
+  startingTags: TaskTag[]
+}
+
+const AddTagButton = ({ taskId, startingTags }: IAddTagButton) => {
   const [step, setStep] = useState<"list" | "edit">("list")
 
   const onClickAddTag = () => {
@@ -19,15 +25,22 @@ const AddTagButton = () => {
   }
 
   return (
-    <Popover onClose={onClose} width={200} position="bottom-start">
+    <Popover onClose={onClose} width={250} position="bottom-start">
       <Popover.Target>
-        <ActionIcon size="xs">
+        <ActionIcon size="md">
           <Plus />
         </ActionIcon>
       </Popover.Target>
-      <Popover.Dropdown>
+      <Popover.Dropdown p="xs" title="Tags">
+        <Title size="h6" pb="xxs" c="dimmed">
+          Tags
+        </Title>
         {step === "list" ? (
-          <ListTags switchStep={onClickAddTag} />
+          <TagList
+            switchStep={onClickAddTag}
+            taskId={taskId}
+            startingTags={startingTags}
+          />
         ) : (
           <CreateTag switchStep={onClickListTags} />
         )}
