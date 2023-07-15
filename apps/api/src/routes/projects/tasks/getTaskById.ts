@@ -3,6 +3,7 @@ import { GetByIdParams } from "shared/types/shared"
 import { GetTaskByIdResponse } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
+import { taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
 
 const getTaskById = async (
@@ -17,6 +18,9 @@ const getTaskById = async (
     include: {
       createdBy: {
         select: userSelect,
+      },
+      tags: {
+        select: taskTagSelect,
       },
     },
   })

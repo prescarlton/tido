@@ -1,8 +1,9 @@
+import { ActionIcon, Menu } from "@mantine/core"
+import { SyntheticEvent } from "react"
 import { Task } from "shared/types/tasks"
+import { Archive, Copy, Dots, Edit } from "tabler-icons-react"
 
 import useDeleteTask from "@/hooks/api/tasks/useDeleteTask"
-import { ActionIcon, Menu } from "@mantine/core"
-import { Dots } from "tabler-icons-react"
 
 interface IEditTaskButton {
   task: Task
@@ -10,8 +11,12 @@ interface IEditTaskButton {
 const EditTaskButton = ({ task }: IEditTaskButton) => {
   const deleteMutation = useDeleteTask(task.id)
 
-  const onDeleteClick = async () => {
+  const onClickDelete = async (e: SyntheticEvent) => {
+    e.stopPropagation()
     await deleteMutation.mutateAsync()
+  }
+  const onClickDuplicate = (e: SyntheticEvent) => {
+    e.stopPropagation()
   }
 
   return (
@@ -22,7 +27,13 @@ const EditTaskButton = ({ task }: IEditTaskButton) => {
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
-        <Menu.Item>Delete</Menu.Item>
+        <Menu.Item icon={<Edit />}>Edit Task</Menu.Item>
+        <Menu.Item icon={<Copy />} onClick={onClickDuplicate}>
+          Duplicate Task
+        </Menu.Item>
+        <Menu.Item color="red" icon={<Archive />} onClick={onClickDelete}>
+          Archive Task
+        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   )

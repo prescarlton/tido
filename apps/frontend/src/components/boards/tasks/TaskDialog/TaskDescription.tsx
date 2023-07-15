@@ -14,6 +14,8 @@ const TaskDescription = () => {
         TextAreaProps={{
           variant: "filled",
           radius: "md",
+          minRows: 6,
+          maxRows: 6,
         }}
       />
     </Stack>

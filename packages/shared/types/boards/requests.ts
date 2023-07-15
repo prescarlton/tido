@@ -24,6 +24,17 @@ export const CreateBoardSchema = {
   }),
 }
 
+export const CreateTagSchema = {
+  params: z.object({
+    projectId: z.string({ required_error: "Project ID is required" }),
+    boardId: z.string({ required_error: "Board ID is required" }),
+  }),
+  body: z.object({
+    color: z.string().nonempty({ message: "Tag color is required" }),
+    name: z.string().nonempty({ message: "Tag name is required" }),
+  }),
+}
+
 // PUT
 export const RenameBoardSchema = {
   params: z.object({
@@ -42,7 +53,9 @@ export type RenameBoardParams = z.infer<typeof RenameBoardSchema.params>
 export type GetBoardByIdParams = z.infer<
   typeof GetBoardByIdRequestSchema.params
 >
+export type CreateTagParams = z.infer<typeof CreateTagSchema.params>
 
 // Body
 export type CreateBoardBody = z.infer<typeof CreateBoardSchema.body>
 export type RenameBoardBody = z.infer<typeof RenameBoardSchema.body>
+export type CreateTagBody = z.infer<typeof CreateTagSchema.body>

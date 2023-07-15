@@ -1,23 +1,24 @@
 import { Box, Text, useMantineTheme } from "@mantine/core"
+import { TaskTag as TaskTagType } from "shared/types/tasks"
 
-const TaskTag = () => {
-  const theme = useMantineTheme()
-  const colors = ["red", "orange", "yellow", "green", "lime", "violet"]
-  const color = colors[Math.floor(Math.random() * 5)]
+interface ITaskTag {
+  tag: TaskTagType
+}
 
+const TaskTag = ({ tag }: ITaskTag) => {
   return (
     <Box
       sx={(theme) => ({
         backgroundColor: theme.fn.variant({
           variant: "light",
-          color,
+          color: tag.color,
         }).background,
         borderRadius: theme.radius.sm,
       })}
       px="xs"
     >
-      <Text color={color} size="xs" weight="bold">
-        Tag
+      <Text color={tag.color} size="xs" weight="bold">
+        {tag.name}
       </Text>
     </Box>
   )

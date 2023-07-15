@@ -6,9 +6,12 @@ import prisma from "@/utils/db"
 const deleteTask = async (req: Request<GetTaskParams>, res: Response) => {
   const { taskId } = req.params
 
-  const task = await prisma.task.delete({
+  const task = await prisma.task.update({
     where: {
       id: taskId,
+    },
+    data: {
+      archived: true,
     },
   })
 

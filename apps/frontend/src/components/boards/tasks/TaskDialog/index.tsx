@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod"
 import {
   Box,
   Button,
@@ -9,6 +10,14 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core"
+import { useEffect } from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import {
+  Task,
+  TaskDetails,
+  UpdateTaskBody,
+  UpdateTaskRequestSchema,
+} from "shared/types/tasks"
 
 import TaskActivity from "@/components/boards/tasks/TaskDialog/TaskActivity"
 import TaskCreator from "@/components/boards/tasks/TaskDialog/TaskCreator"
@@ -16,18 +25,9 @@ import TaskDescription from "@/components/boards/tasks/TaskDialog/TaskDescriptio
 import TaskMembers from "@/components/boards/tasks/TaskDialog/TaskMembers"
 import TaskStatus from "@/components/boards/tasks/TaskDialog/TaskStatus"
 import TaskTags from "@/components/boards/tasks/TaskDialog/TaskTags"
-import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
 import useProjectContext from "@/contexts/ProjectContext"
+import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
 import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
-import { FormProvider, useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  Task,
-  TaskDetails,
-  UpdateTaskBody,
-  UpdateTaskRequestSchema,
-} from "shared/types/tasks"
-import { useEffect } from "react"
 
 interface ITaskDialog {
   task: Task
@@ -36,7 +36,6 @@ interface ITaskDialog {
 }
 
 const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
-  const theme = useMantineTheme()
   const { projectId, boardId } = useProjectContext()
   const formMethods = useForm<TaskDetails>({
     defaultValues: {
@@ -73,14 +72,6 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
       withCloseButton={false}
       opened={opened}
       onClose={onClose}
-      overlayProps={{
-        color:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[9]
-            : theme.colors.gray[2],
-        opacity: 0.55,
-        blur: 3,
-      }}
       styles={{
         overlay: { zIndex: 10000 },
         inner: { zIndex: 10001 },
@@ -88,7 +79,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
       size="lg"
     >
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Header>
+        <Modal.Header px={0} pt="xs">
           <Modal.Title>
             {task ? (
               <Group spacing="sm">
@@ -107,7 +98,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
           <Flex direction="column" gap="xl">
             <Stack spacing="md">
               <TaskMembers />
-              <TaskStatus />
+              <TaskStatus task={task} />
               <TaskTags />
               <TaskCreator creator={task?.createdBy} />
             </Stack>

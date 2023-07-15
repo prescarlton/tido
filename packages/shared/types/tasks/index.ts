@@ -9,8 +9,15 @@ export interface Task {
   code: number
 }
 
+export interface TaskTag {
+  id: string
+  name: string
+  color: string
+}
+
 export interface TaskDetails extends Task {
   description: string | null
+  tags: TaskTag[]
 }
 
 export * from "./requests"

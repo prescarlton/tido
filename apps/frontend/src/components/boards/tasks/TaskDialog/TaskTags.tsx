@@ -1,5 +1,6 @@
 import { Group, Text } from "@mantine/core"
 
+import AddTagButton from "@/components/boards/tasks/TaskDialog/AddTagButton"
 import TaskTag from "@/components/boards/tasks/TaskDialog/TaskTag"
 
 const TaskTags = () => {
@@ -9,7 +10,7 @@ const TaskTags = () => {
         Tags
       </Text>
       <Group spacing="xs">
-        <TaskTag />
+        <AddTagButton />
       </Group>
     </Group>
   )

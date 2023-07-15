@@ -18,7 +18,6 @@ import {
 import { Board, BoardView } from "shared/types/boards"
 
 import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
-import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
@@ -105,7 +104,6 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
           <BoardViewSwitcher tab={tab} setTab={setTab} />
         </Group>
       </Box>
-      <CreateTaskButton />
       <EditBoardButton />
     </Header>
   )

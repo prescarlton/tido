@@ -4,9 +4,9 @@ import { ChangeEvent, SyntheticEvent } from "react"
 import { Task } from "shared/types/tasks"
 
 import TaskDialog from "@/components/boards/tasks/TaskDialog"
+import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
-import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 
 interface ITaskCard {
   task: Task
@@ -41,12 +41,16 @@ const TaskCard = ({ task }: ITaskCard) => {
   return (
     <Card
       withBorder
-      sx={{
+      sx={(theme) => ({
         display: "flex",
         alignItems: "center",
         opacity: task.complete ? 0.6 : 1,
         overflow: "visible",
-      }}
+        transition: ".2s all ease-in-out",
+        "&:hover": {
+          boxShadow: theme.shadows.sm,
+        },
+      })}
       className={task.complete ? "task--completed" : ""}
       p={0}
     >

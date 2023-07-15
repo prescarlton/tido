@@ -6,6 +6,7 @@ import {
 } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
+import { taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
 
 const updateTask = async (
@@ -33,6 +34,9 @@ const updateTask = async (
     include: {
       createdBy: {
         select: userSelect,
+      },
+      tags: {
+        select: taskTagSelect,
       },
     },
   })

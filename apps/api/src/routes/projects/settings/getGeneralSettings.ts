@@ -1,10 +1,10 @@
-import { Request, Response } from 'express'
+import { Request, Response } from "express"
 import {
   GetGenProjSettingsResponse,
   GetProjectParams,
-} from 'shared/types/projects'
+} from "shared/types/projects"
 
-import prisma from '@/utils/db'
+import prisma from "@/utils/db"
 
 const getGeneralSettings = async (
   req: Request<GetProjectParams>,
@@ -22,9 +22,9 @@ const getGeneralSettings = async (
       description: true,
     },
   })
-  if (!project) return res.status(404).json({ message: 'Project not found' })
+  if (!project) return res.status(404).json({ message: "Project not found" })
 
-  return res.json({ message: 'success', data: project })
+  return res.json({ message: "success", data: project })
 }
 
 export default getGeneralSettings

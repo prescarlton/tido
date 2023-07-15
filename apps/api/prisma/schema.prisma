@@ -109,6 +109,7 @@ model Task {
   order           Int     @default(0)
   complete        Boolean @default(false)
   description     String? @db.VarChar(2000)
+  archived        Boolean @default(false)
   statusId        String?
   boardId         String  @map("board_id")
   taskStatusId    String? @map("task_status_id")
@@ -128,16 +129,19 @@ model Task {
 
 model TaskTag {
   id      String @id @default(nanoid(32))
-  label   String
+  name    String
+  color   String
   boardId String
 
   board Board  @relation(fields: [boardId], references: [id])
   tasks Task[]
+
+  @@map("task_tags")
 }
 
 model TaskStatus {
   id      String @id @default(nanoid(24))
-  label   String
+  name    String
   boardId String
 
   board         Board           @relation(fields: [boardId], references: [id])

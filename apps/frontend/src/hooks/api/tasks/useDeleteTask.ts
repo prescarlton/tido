@@ -26,13 +26,13 @@ const useDeleteTask = (taskId: string) => {
         })
       )
       notifications.show({
-        message: "Deleted task",
+        message: "Archived task",
         color: "green",
       })
     },
     onError: () => {
       notifications.show({
-        message: "Unable to delete task",
+        message: "Unable to archive task",
         color: "red",
       })
     },

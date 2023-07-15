@@ -10,14 +10,20 @@ const listTasks = async (
 ) => {
   const { boardId } = req.params
 
-  // find all tasks in specified board
+  // find all non-archived tasks in specified board
   const tasks = await prisma.task.findMany({
     where: {
       boardId,
+      archived: false,
     },
-    orderBy: {
-      complete: "asc",
-    },
+    orderBy: [
+      {
+        complete: "asc",
+      },
+      {
+        created: "desc",
+      },
+    ],
     include: {
       createdBy: {
         select: userSelect,
