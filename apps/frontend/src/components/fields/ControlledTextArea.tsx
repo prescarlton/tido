@@ -1,4 +1,4 @@
-import { Textarea, TextareaProps, Tooltip } from "@mantine/core"
+import { Box, Textarea, TextareaProps, Tooltip } from "@mantine/core"
 import { ReactElement, ReactNode, Ref, useState } from "react"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
@@ -27,15 +27,9 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
         fieldState: { error },
         field: { onChange, onBlur, value, ref },
       }) => (
-        <Tooltip
-          label={tooltip}
-          opened={Boolean(tooltip) && opened}
-          position="bottom-end"
-          offset={-40}
-          styles={{
-            tooltip: {
-              height: 40,
-            },
+        <Box
+          sx={{
+            position: "relative",
           }}
         >
           <Textarea
@@ -52,7 +46,25 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
             error={(!disableError && error?.message) ?? ""}
             {...TextAreaProps}
           />
-        </Tooltip>
+          {tooltip && (
+            <Box
+              sx={(theme) => ({
+                opacity: opened ? 1 : 0,
+                position: "absolute",
+                bottom: 0,
+                right: 0,
+                margin: theme.spacing.xxs,
+                backgroundColor: "#000000aa",
+                padding: theme.spacing.xxs,
+                borderRadius: theme.radius.md,
+                color: theme.white,
+                transition: ".2s opacity ease-in-out",
+              })}
+            >
+              {tooltip}
+            </Box>
+          )}
+        </Box>
       )}
     />
   )
