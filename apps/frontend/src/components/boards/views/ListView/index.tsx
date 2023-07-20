@@ -1,8 +1,8 @@
 import { Box, Divider, Stack } from "@mantine/core"
 import { Task } from "shared/types/tasks"
 
-import TaskCard from "@/components/boards/views/ListView/TaskCard"
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
+import TaskCard from "@/components/boards/views/ListView/TaskCard"
 
 interface IBoardListView {
   tasks: Task[]

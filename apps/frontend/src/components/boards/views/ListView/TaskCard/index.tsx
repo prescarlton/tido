@@ -5,6 +5,8 @@ import { Task } from "shared/types/tasks"
 
 import TaskDialog from "@/components/boards/tasks/TaskDialog"
 import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
+import TaskStatus from "@/components/boards/views/ListView/TaskCard/TaskStatus"
+import TaskTags from "@/components/boards/views/ListView/TaskCard/TaskTags"
 import useProjectContext from "@/contexts/ProjectContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
 
@@ -45,12 +47,12 @@ const TaskCard = ({ task }: ITaskCard) => {
         display: "flex",
         alignItems: "center",
         opacity: task.complete ? 0.6 : 1,
-        overflow: "visible",
         transition: ".2s all ease-in-out",
         "&:hover": {
           boxShadow: theme.shadows.sm,
         },
         height: "3.25rem",
+        overflow: "visible",
       })}
       className={task.complete ? "task--completed" : ""}
       p={0}
@@ -61,9 +63,12 @@ const TaskCard = ({ task }: ITaskCard) => {
           flex: 1,
           padding: theme.spacing.sm,
           display: "flex",
+          alignItems: "center",
+          gap: theme.spacing.sm,
+          height: "100%",
         })}
       >
-        <Group spacing="xs" sx={{ flex: 1 }}>
+        <Group spacing="xs" sx={{ flex: 1, flexWrap: "nowrap" }}>
           <Checkbox
             checked={task.complete}
             onChange={onChange}
@@ -74,9 +79,22 @@ const TaskCard = ({ task }: ITaskCard) => {
               },
             }}
           />
-          <Text variant="h5" sx={{ fontWeight: "bold" }}>
+          <Text
+            variant="h5"
+            sx={{
+              fontWeight: "bold",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              wordBreak: "break-word",
+            }}
+            lineClamp={1}
+          >
             {task.name}
           </Text>
+        </Group>
+        <Group spacing="sm" align="center" noWrap>
+          <TaskTags task={task} />
+          <TaskStatus task={task} />
         </Group>
       </UnstyledButton>
       <EditTaskButton task={task} />

@@ -7,6 +7,7 @@ export interface Task {
   complete: boolean
   createdBy: ShortUser
   code: number
+  tags: TaskTag[]
 }
 
 export interface TaskTag {
@@ -17,7 +18,6 @@ export interface TaskTag {
 
 export interface TaskDetails extends Task {
   description: string | null
-  tags: TaskTag[]
 }
 
 export * from "./requests"

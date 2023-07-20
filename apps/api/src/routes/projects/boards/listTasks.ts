@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { ListTasksParams, ListTasksResponse } from "shared/types/tasks/index"
 
 import prisma from "@/utils/db"
+import { taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
 
 const listTasks = async (
@@ -21,12 +22,15 @@ const listTasks = async (
         complete: "asc",
       },
       {
-        created: "desc",
+        updated: "desc",
       },
     ],
     include: {
       createdBy: {
         select: userSelect,
+      },
+      tags: {
+        select: taskTagSelect,
       },
     },
   })
