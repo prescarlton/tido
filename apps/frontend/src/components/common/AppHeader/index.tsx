@@ -1,8 +1,9 @@
-import { Header, Title, UnstyledButton } from "@mantine/core"
+import { Header, Title, UnstyledButton, useMantineTheme } from "@mantine/core"
 
 import UserMenu from "@/components/common/AppHeader/UserMenu"
 
 const AppHeader = () => {
+  const theme = useMantineTheme()
   return (
     <Header
       height={48}
@@ -11,14 +12,10 @@ const AppHeader = () => {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "1rem",
-        backgroundColor: theme.fn.variant({
-          variant: "filled",
-          color: theme.primaryColor,
-        }).background,
       })}
     >
       <UnstyledButton>
-        <Title size="h3" color="white">
+        <Title size="h3" color={theme.primaryColor}>
           tido
         </Title>
       </UnstyledButton>

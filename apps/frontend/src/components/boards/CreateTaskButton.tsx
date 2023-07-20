@@ -1,11 +1,11 @@
-import { ActionIcon, Button, Input, Menu } from "@mantine/core"
-import { SyntheticEvent, useRef, useState } from "react"
+import { ActionIcon, Button, Menu, TextInput } from "@mantine/core"
+import { getHotkeyHandler } from "@mantine/hooks"
+import { useState } from "react"
 import { Plus } from "react-feather"
 import { useParams } from "react-router-dom"
+import { ChevronRight } from "tabler-icons-react"
 
 import useCreateTask from "@/hooks/api/tasks/useCreateTask"
-import { ChevronRight } from "tabler-icons-react"
-import { getHotkeyHandler } from "@mantine/hooks"
 
 const CreateTaskButton = () => {
   const { projectId, boardId } = useParams() as {
@@ -35,7 +35,7 @@ const CreateTaskButton = () => {
         </Button>
       </Menu.Target>
       <Menu.Dropdown>
-        <Input
+        <TextInput
           id="createTaskField"
           value={taskName}
           onChange={({ target }) => setTaskName(target.value)}

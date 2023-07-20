@@ -7,10 +7,12 @@ import {
   TextInput,
   Title,
 } from "@mantine/core"
+import { getHotkeyHandler } from "@mantine/hooks"
 import {
   Dispatch,
   FocusEvent,
   SetStateAction,
+  SyntheticEvent,
   useEffect,
   useRef,
   useState,
@@ -18,6 +20,7 @@ import {
 import { Board, BoardView } from "shared/types/boards"
 
 import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
+import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
@@ -31,7 +34,7 @@ interface IBoardPageHeader {
 
 const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
   const [showTextField, setShowTextField] = useState(false)
-  const textFieldRef = useRef<HTMLDivElement>(null)
+  const textFieldRef = useRef<HTMLInputElement>(null)
   const { project } = useProjectContext()
 
   const toggleTextField = () => {
@@ -39,17 +42,14 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
   }
   const renameMutation = useRenameBoard()
 
-  const handleBlurTextField = async ({
-    target,
-  }: FocusEvent<HTMLInputElement>) => {
-    if (target.value) {
+  const submit = async (e: FocusEvent<HTMLHeadingElement>) => {
+    if (e.target.innerHTML)
       await renameMutation.mutateAsync({
-        name: target.value,
+        name: e.target.innerHTML,
         boardId: board.id,
         projectId: project?.id as string,
       })
-      setShowTextField(false)
-    }
+    setShowTextField(false)
   }
 
   useEffect(() => {
@@ -78,29 +78,21 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
         }}
       >
         <Group spacing={16} sx={{ alignItems: "center" }}>
-          {showTextField ? (
-            <TextInput
-              defaultValue={board.name}
-              onBlur={handleBlurTextField}
-              // InputProps={{
-              //   sx: {
-              //     fontWeight: "bold",
-              //     fontSize: theme.typography.h3.fontSize,
-              //     minWidth: 0,
-              //   },
-              // }}
-              // inputRef={textFieldRef}
-              variant="standard"
-            />
-          ) : (
-            <Title
-              size="h4"
-              sx={{ fontWeight: "bold" }}
-              onClick={toggleTextField}
-            >
-              {board.name}
-            </Title>
-          )}
+          <Title
+            size="h4"
+            sx={(theme) => ({
+              fontWeight: "bold",
+              borderRadius: theme.radius.sm,
+            })}
+            onClick={toggleTextField}
+            contentEditable
+            onBlur={submit}
+            px="xs"
+          >
+            {board.name}
+          </Title>
+
+          <CreateTaskButton />
           <BoardViewSwitcher tab={tab} setTab={setTab} />
         </Group>
       </Box>

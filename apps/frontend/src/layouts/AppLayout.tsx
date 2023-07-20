@@ -1,4 +1,4 @@
-import { AppShell, Box } from "@mantine/core"
+import { Box } from "@mantine/core"
 import { useHotkeys } from "@mantine/hooks"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"

@@ -85,7 +85,7 @@ const TaskCard = ({ task }: ITaskCard) => {
               fontWeight: "bold",
               overflow: "hidden",
               textOverflow: "ellipsis",
-              wordBreak: "break-word",
+              wordBreak: "break-all",
             }}
             lineClamp={1}
           >

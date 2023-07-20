@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { DefaultResponse } from "shared/types/api"
+import { DefaultResponse } from "shared/types/shared"
 
 const ApiBaseUrl = `${import.meta.env.VITE_API_ENDPOINT}`
 
