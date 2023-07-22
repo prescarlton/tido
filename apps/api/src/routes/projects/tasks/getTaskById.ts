@@ -22,6 +22,7 @@ const getTaskById = async (
       tags: {
         select: taskTagSelect,
       },
+      taskActivity: true,
     },
   })
   if (!task) return res.status(404).json({ message: "Task not found" })

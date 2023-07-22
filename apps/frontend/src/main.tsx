@@ -9,6 +9,8 @@ import { useColorScheme } from "@mantine/hooks"
 import { Notifications } from "@mantine/notifications"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
 import React, { useState } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
@@ -28,6 +30,8 @@ const queryClient = new QueryClient({
     },
   },
 })
+
+dayjs.extend(relativeTime)
 
 const App = () => {
   const preferredColorScheme = useColorScheme()

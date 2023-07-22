@@ -1,6 +1,7 @@
-import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 import { useQuery } from "@tanstack/react-query"
 import { GetTaskByIdResponse, GetTaskParams } from "shared/types/tasks"
+
+import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 
 const getTaskById = (params: GetTaskParams) =>
   ProjectService.get<GetTaskByIdResponse>(

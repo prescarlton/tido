@@ -8,6 +8,7 @@ import {
 import prisma from "@/utils/db"
 import { taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
+import createTaskActivity from "@/utils/tasks/createTaskActivity"
 
 const updateTask = async (
   req: Request<GetTaskParams, never, UpdateTaskBody>,
@@ -40,6 +41,9 @@ const updateTask = async (
       },
     },
   })
+
+  // once we've updated the task, update the activity log
+  await createTaskActivity(task, req.body, req)
 
   return res.json({ message: "success", data: updTask })
 }

@@ -19,6 +19,16 @@ export interface TaskTag {
 export interface TaskDetails extends Task {
   description: string | null
 }
+export interface TaskActivity {
+  id: string
+  taskId: string
+  userId: string
+  message?: string
+  user: ShortUser
+  created: string
+  oldVal?: string
+  newVal?: string
+}
 
 export * from "./requests"
 export * from "./responses"

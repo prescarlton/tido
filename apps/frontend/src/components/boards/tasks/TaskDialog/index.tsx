@@ -103,7 +103,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
             </Stack>
             <Stack spacing="md">
               <TaskDescription onSubmit={onSubmit} />
-              <TaskActivity />
+              <TaskActivity taskId={task.id} />
             </Stack>
           </Flex>
         </FormProvider>
