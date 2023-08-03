@@ -74,28 +74,27 @@ const LoginPage = () => {
         justifyContent: "center",
       })}
     >
+      <Title
+        size="h3"
+        sx={(theme) => ({
+          fontWeight: 900,
+          color: theme.white,
+          fontSize: "4rem",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          margin: "1rem",
+        })}
+      >
+        tido
+      </Title>
       <Container>
         <Stack
           spacing={0}
           sx={(theme) => ({
-            position: "absolute",
-            top: theme.spacing.lg,
-            left: 0,
-            right: 0,
             width: "100%",
           })}
         >
-          <Title
-            size="h1"
-            align="center"
-            sx={(theme) => ({
-              fontWeight: 900,
-              color: theme.white,
-              fontSize: "4rem",
-            })}
-          >
-            tido
-          </Title>
           <Title
             align="center"
             size="h2"
@@ -108,7 +107,6 @@ const LoginPage = () => {
             Welcome back.
           </Title>
         </Stack>
-
         <Paper
           withBorder
           shadow="md"

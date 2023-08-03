@@ -12,9 +12,16 @@ import {
 } from "@mantine/core"
 import { Moon, Sun } from "tabler-icons-react"
 
+import useAuthContext from "@/contexts/AuthContext"
+
 const UserMenu = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
+  const { logout } = useAuthContext()
+
+  const handleLogout = () => {
+    logout()
+  }
 
   return (
     <Menu width={200} closeOnItemClick={false} withArrow>
@@ -65,7 +72,7 @@ const UserMenu = () => {
           </Group>
         </Menu.Item>
         <Menu.Divider />
-        <Menu.Item>Logout</Menu.Item>
+        <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
       </Menu.Dropdown>
     </Menu>
   )

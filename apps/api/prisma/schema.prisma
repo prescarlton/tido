@@ -112,7 +112,7 @@ model Task {
   name            String
   order           Int     @default(0)
   complete        Boolean @default(false)
-  description     String? @db.VarChar(2000)
+  description     String? @db.LongText
   archived        Boolean @default(false)
   boardId         String  @map("board_id")
   taskStatusId    String? @map("task_status_id")
@@ -161,8 +161,8 @@ model TaskActivity {
   taskId  String  @map("task_id")
   userId  String  @map("user_id")
   message String?
-  oldVal  String? @map("old_val")
-  newVal  String? @map("new_val")
+  oldVal  String? @map("old_val") @db.LongText
+  newVal  String? @map("new_val") @db.LongText
 
   task Task @relation(fields: [taskId], references: [id])
   user User @relation(fields: [userId], references: [id])
