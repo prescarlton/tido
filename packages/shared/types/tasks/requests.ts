@@ -5,6 +5,9 @@ export const ListTasksRequestSchema = {
     projectId: z.string({ required_error: "Project ID is required" }),
     boardId: z.string({ required_error: "Board ID is required" }),
   }),
+  query: z.object({
+    search: z.string().optional(),
+  }),
 }
 
 export const CreateTaskRequestSchema = {
@@ -65,3 +68,4 @@ export type CompleteTaskBody = z.infer<typeof CompleteTaskRequestSchema.body>
 export type UpdateTaskBody = z.infer<typeof UpdateTaskRequestSchema.body>
 export type UpdateTaskTagsBody = z.infer<typeof UpdateTaskTagsSchema.body>
 // QUERY
+export type ListTasksQuery = z.infer<typeof ListTasksRequestSchema.query>

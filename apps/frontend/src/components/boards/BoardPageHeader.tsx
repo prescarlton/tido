@@ -1,41 +1,34 @@
-import {
-  Box,
-  Button,
-  Group,
-  Header,
-  Paper,
-  TextInput,
-  Title,
-} from "@mantine/core"
-import { getHotkeyHandler } from "@mantine/hooks"
+import { Box, Group, Header, TextInput, Title } from "@mantine/core"
 import {
   Dispatch,
   FocusEvent,
   SetStateAction,
-  SyntheticEvent,
   useEffect,
   useRef,
   useState,
 } from "react"
-import { Board, BoardView } from "shared/types/boards"
+import { BoardView } from "shared/types/boards"
+import { Search } from "tabler-icons-react"
 
 import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
+import useBoardContext from "@/contexts/BoardContext"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
 import EditBoardButton from "./EditBoardButton"
 
 interface IBoardPageHeader {
-  board: Board
   tab: BoardView
   setTab: Dispatch<SetStateAction<BoardView>>
 }
 
-const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
+const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
   const [showTextField, setShowTextField] = useState(false)
   const textFieldRef = useRef<HTMLInputElement>(null)
   const { project } = useProjectContext()
+  const { boardId, board, taskSearchValue, setTaskSearchValue } =
+    useBoardContext()
 
   const toggleTextField = () => {
     setShowTextField((prev) => !prev)
@@ -46,7 +39,7 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
     if (e.target.innerHTML)
       await renameMutation.mutateAsync({
         name: e.target.innerHTML,
-        boardId: board.id,
+        boardId,
         projectId: project?.id as string,
       })
     setShowTextField(false)
@@ -89,8 +82,14 @@ const BoardPageHeader = ({ board, tab, setTab }: IBoardPageHeader) => {
             onBlur={submit}
             px="xs"
           >
-            {board.name}
+            {board?.name}
           </Title>
+          <TextInput
+            value={taskSearchValue}
+            onChange={(e) => setTaskSearchValue(e.target.value)}
+            placeholder="Search for tasks"
+            icon={<Search />}
+          />
 
           <CreateTaskButton />
           <BoardViewSwitcher tab={tab} setTab={setTab} />
