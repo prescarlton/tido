@@ -4,11 +4,15 @@ import { Search } from "tabler-icons-react"
 import MainLinks from "@/components/common/Sidebar/MainLinks"
 import SidebarProjects from "@/components/common/Sidebar/SidebarProjects"
 
+interface ISidebar {
+  showSidebar: boolean
+}
+
 export const useStyles = createStyles((theme) => ({
   navbar: {
     paddingTop: 0,
     overflow: "hidden",
-    transition: "width 200ms ease, min-width 200ms ease",
+    transition: "all 200ms ease, min-width 200ms ease",
   },
 
   section: {
@@ -30,11 +34,16 @@ export const useStyles = createStyles((theme) => ({
   },
 }))
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar }: ISidebar) => {
   const { classes } = useStyles()
 
   return (
-    <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
+    <Navbar
+      width={{ sm: showSidebar ? 300 : 0 }}
+      p="sm"
+      px={showSidebar ? "sm" : 0}
+      className={classes.navbar}
+    >
       {/* <Navbar.Section className={classes.section}>
         <UserButton
           image="https://i.imgur.com/fGxgcDF.png"

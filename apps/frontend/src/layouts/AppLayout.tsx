@@ -1,4 +1,4 @@
-import { Box } from "@mantine/core"
+import { AppShell, Box } from "@mantine/core"
 import { useHotkeys } from "@mantine/hooks"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
@@ -9,11 +9,11 @@ import Sidebar from "@/components/common/Sidebar"
 import { HeaderProvider } from "@/contexts/HeaderContext"
 
 const AppLayout = () => {
-  const [hideShell, setHideShell] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(true)
 
-  const toggleShell = () => setHideShell((prev) => !prev)
+  const toggleSidebar = () => setShowSidebar((prev) => !prev)
 
-  useHotkeys([["mod+M", toggleShell]])
+  useHotkeys([["mod+m", toggleSidebar]])
 
   return (
     <HeaderProvider>
@@ -26,17 +26,12 @@ const AppLayout = () => {
       >
         <AppHeader />
         <Box sx={{ display: "flex", overflow: "hidden" }}>
-          <Sidebar />
+          <Sidebar showSidebar={showSidebar} />
           <Page>
             <Outlet />
           </Page>
         </Box>
       </Box>
-      {/* <AppShell navbar={<Sidebar />} header={<AppHeader />}>
-        <Page>
-          <Outlet />
-        </Page>
-      </AppShell> */}
     </HeaderProvider>
   )
 }
