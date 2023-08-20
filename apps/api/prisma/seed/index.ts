@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+
 import projectSeed from './projects'
 import UserSeed from './users'
 

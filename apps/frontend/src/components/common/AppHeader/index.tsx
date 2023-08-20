@@ -1,9 +1,26 @@
-import { Header, Title, UnstyledButton, useMantineTheme } from "@mantine/core"
+import {
+  Divider,
+  Group,
+  Header,
+  Title,
+  UnstyledButton,
+  useMantineTheme,
+} from "@mantine/core"
+import { useNavigate } from "react-router-dom"
 
 import UserMenu from "@/components/common/AppHeader/UserMenu"
 
+import HeaderLinks from "./HeaderLinks"
+
 const AppHeader = () => {
   const theme = useMantineTheme()
+
+  const navigate = useNavigate()
+
+  const onClickLogo = () => {
+    navigate("/")
+  }
+
   return (
     <Header
       height={48}
@@ -14,11 +31,15 @@ const AppHeader = () => {
         padding: "1rem",
       })}
     >
-      <UnstyledButton>
-        <Title size="h3" color={theme.primaryColor}>
-          tido
-        </Title>
-      </UnstyledButton>
+      <Group spacing="sm">
+        <UnstyledButton onClick={onClickLogo}>
+          <Title size="h3" color={theme.primaryColor}>
+            tido
+          </Title>
+        </UnstyledButton>
+        <Divider orientation="vertical" />
+        <HeaderLinks />
+      </Group>
       <UserMenu />
     </Header>
   )

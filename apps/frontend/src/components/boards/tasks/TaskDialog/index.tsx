@@ -39,7 +39,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
   const formMethods = useForm<TaskDetails>({
     defaultValues: {
       name: task.name,
-      description: "",
+      rawDescription: "",
     },
     resolver: zodResolver(UpdateTaskRequestSchema.body),
   })
@@ -63,7 +63,10 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
 
   useEffect(() => {
     if (taskDetails)
-      reset({ name: taskDetails.name, description: taskDetails.description })
+      reset({
+        name: taskDetails.name,
+        rawDescription: taskDetails.rawDescription,
+      })
   }, [taskDetails])
 
   return (

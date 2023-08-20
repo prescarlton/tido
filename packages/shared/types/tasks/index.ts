@@ -17,7 +17,8 @@ export interface TaskTag {
 }
 
 export interface TaskDetails extends Task {
-  description: string | null
+  rawDescription: string | null
+  textDescription: string | null
 }
 export interface TaskActivity {
   id: string

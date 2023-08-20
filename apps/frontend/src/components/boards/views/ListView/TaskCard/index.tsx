@@ -53,6 +53,8 @@ const TaskCard = ({ task }: ITaskCard) => {
         },
         height: "3.25rem",
         overflow: "visible",
+        backgroundColor:
+          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
       })}
       className={task.complete ? "task--completed" : ""}
       p={0}

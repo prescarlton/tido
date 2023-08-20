@@ -1,7 +1,7 @@
-import { User } from '@prisma/client'
-import { Request, Response } from 'express'
+import { User } from "@prisma/client"
+import { Request, Response } from "express"
 
-import prisma from '@/utils/db'
+import prisma from "@/utils/db"
 
 const getMe = async (req: Request, res: Response) => {
   const id = (req.user as User)?.id
@@ -16,7 +16,7 @@ const getMe = async (req: Request, res: Response) => {
       username: true,
     },
   })
-  return res.status(200).json({ message: 'Success', data: user })
+  return res.status(200).json({ message: "Success", data: user })
 }
 
 export default getMe

@@ -1,7 +1,14 @@
 import { isEmpty } from "lodash"
-import { createContext, ReactNode, useContext, useState } from "react"
+import {
+  createContext,
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react"
 import { useParams } from "react-router-dom"
-import { Board } from "shared/types/boards"
+import { Board, BoardView } from "shared/types/boards"
 
 import useGetBoard from "@/hooks/api/boards/useGetBoard"
 
@@ -10,12 +17,18 @@ interface IBoardContext {
   boardId: string
   taskSearchValue: string
   setTaskSearchValue: (newVal: string) => void
+  taskFilterValue: any
+  setTaskFilterValue: (newVal: any) => void
+  boardView: BoardView
+  setBoardView: Dispatch<SetStateAction<BoardView>>
 }
 
 const BoardContext = createContext<IBoardContext>({} as IBoardContext)
 
 export const BoardProvider = ({ children }: { children: ReactNode }) => {
   const [taskSearchValue, setTaskSearchValue] = useState("")
+  const [taskFilterValue, setTaskFilterValue] = useState("")
+  const [boardView, setBoardView] = useState<BoardView>(BoardView.List)
   const { boardId, projectId } = useParams() as {
     boardId: string
     projectId: string
@@ -30,6 +43,10 @@ export const BoardProvider = ({ children }: { children: ReactNode }) => {
         board,
         taskSearchValue,
         setTaskSearchValue,
+        taskFilterValue,
+        setTaskFilterValue,
+        boardView,
+        setBoardView,
       }}
     >
       {children}

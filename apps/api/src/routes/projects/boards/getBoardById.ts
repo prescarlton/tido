@@ -1,6 +1,7 @@
+import { Request, Response } from 'express'
+
 import prisma from '@/utils/db'
 import errorHandler from '@/utils/errorHandler'
-import { Request, Response } from 'express'
 
 const getBoardById = async (req: Request, res: Response) => {
   const { boardId } = req.params as { boardId: string }

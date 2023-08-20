@@ -28,7 +28,7 @@ const listTasks = async (
           },
         },
         {
-          description: {
+          textDescription: {
             contains: search,
           },
         },

@@ -16,7 +16,7 @@ const listTasks = async (params: ListTasksParams, query: ListTasksQuery) =>
   ).then((res) => res.data.data)
 
 const useListTasks = (params: ListTasksParams, query: ListTasksQuery) => {
-  const [debounceSearch] = useDebouncedValue(query.search, 1000)
+  const [debounceSearch] = useDebouncedValue(query.search, 300)
   return useQuery(
     TASKS_QUERY_KEY.list({ ...params, ...query, search: debounceSearch }),
     () => listTasks(params, { ...query, search: debounceSearch })

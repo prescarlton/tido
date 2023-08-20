@@ -112,7 +112,8 @@ model Task {
   name            String
   order           Int     @default(0)
   complete        Boolean @default(false)
-  description     String? @db.LongText
+  rawDescription  String? @map("raw_description") @db.LongText
+  textDescription String? @map("text_description") @db.VarChar(500)
   archived        Boolean @default(false)
   boardId         String  @map("board_id")
   taskStatusId    String? @map("task_status_id")

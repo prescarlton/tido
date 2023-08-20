@@ -1,12 +1,10 @@
 import {
   Avatar,
-  Box,
   Group,
   Menu,
   Stack,
   Switch,
   Text,
-  Tooltip,
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core"
@@ -24,23 +22,26 @@ const UserMenu = () => {
   }
 
   return (
-    <Menu width={200} closeOnItemClick={false} withArrow>
+    <Menu width={200} closeOnItemClick={false} withArrow trigger="click">
       <Menu.Target>
-        <Tooltip label="Account">
-          <Avatar radius="xl" size={"sm"} sx={{ cursor: "pointer" }} />
-        </Tooltip>
+        <Avatar
+          radius="sm"
+          size={"sm"}
+          sx={{ cursor: "pointer" }}
+          color="primary"
+        />
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Item
-          sx={{
+          sx={(theme) => ({
             "&[data-hovered]": {
               backgroundColor: "transparent",
               cursor: "default",
             },
-          }}
+          })}
         >
           <Group spacing="sm" dir="row">
-            <Avatar radius="xl" size="md" />
+            <Avatar radius="sm" size="md" color="primary" />
             <Stack spacing={0}>
               <Text size="xs">Preston Carlton</Text>
               <Text size="xs" c="dimmed">

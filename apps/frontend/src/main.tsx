@@ -20,6 +20,7 @@ import theme from "@/theme"
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProjectProvider } from "./contexts/ProjectContext"
 import AppRouter from "./router"
+import SpotlightProvider from "./contexts/SpotlightContext"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -58,9 +59,11 @@ const App = () => {
           <BrowserRouter>
             <QueryClientProvider client={queryClient}>
               <AuthProvider>
-                <ProjectProvider>
-                  <AppRouter />
-                </ProjectProvider>
+                <SpotlightProvider>
+                  <ProjectProvider>
+                    <AppRouter />
+                  </ProjectProvider>
+                </SpotlightProvider>
               </AuthProvider>
               <Notifications zIndex={100000} />
               <ReactQueryDevtools initialIsOpen={false} />

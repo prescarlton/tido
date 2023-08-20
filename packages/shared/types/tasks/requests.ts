@@ -41,7 +41,7 @@ export const GetTaskRequestSchema = {
 export const UpdateTaskRequestSchema = {
   params: GetTaskRequestSchema.params,
   body: z.object({
-    description: z.string().nullable(),
+    rawDescription: z.string().nullable(),
     name: z.string().optional(),
     status: z.string().optional(),
   }),

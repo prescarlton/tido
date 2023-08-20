@@ -1,4 +1,4 @@
-import { Box, Group, Header, TextInput, Title } from "@mantine/core"
+import { ActionIcon, Box, Group, Header, TextInput, Title } from "@mantine/core"
 import {
   Dispatch,
   FocusEvent,
@@ -7,8 +7,9 @@ import {
   useRef,
   useState,
 } from "react"
+import { useNavigate } from "react-router-dom"
 import { BoardView } from "shared/types/boards"
-import { Search } from "tabler-icons-react"
+import { ChevronLeft, Search } from "tabler-icons-react"
 
 import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
 import CreateTaskButton from "@/components/boards/CreateTaskButton"
@@ -27,6 +28,7 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
   const [showTextField, setShowTextField] = useState(false)
   const textFieldRef = useRef<HTMLInputElement>(null)
   const { project } = useProjectContext()
+  const navigate = useNavigate()
   const { boardId, board, taskSearchValue, setTaskSearchValue } =
     useBoardContext()
 
@@ -34,6 +36,10 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
     setShowTextField((prev) => !prev)
   }
   const renameMutation = useRenameBoard()
+
+  const onClickBack = () => {
+    navigate(-1)
+  }
 
   const submit = async (e: FocusEvent<HTMLHeadingElement>) => {
     if (e.target.innerHTML)
@@ -51,7 +57,7 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
 
   return (
     <Header
-      height={48}
+      height={64}
       sx={(theme) => ({
         display: "flex",
         alignItems: "center",
@@ -64,38 +70,43 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
+          justifyContent: "space-between",
+          alignItems: "center",
           flex: 1,
         }}
       >
-        <Group spacing={16} sx={{ alignItems: "center" }}>
-          <Title
-            size="h4"
-            sx={(theme) => ({
-              fontWeight: "bold",
-              borderRadius: theme.radius.sm,
-            })}
-            onClick={toggleTextField}
-            contentEditable
-            onBlur={submit}
-            px="xs"
-          >
-            {board?.name}
-          </Title>
+        <Group spacing="sm" sx={{ alignItems: "center" }}>
+          <Group spacing="xxs">
+            <ActionIcon onClick={onClickBack}>
+              <ChevronLeft />
+            </ActionIcon>
+            <Title
+              size="h4"
+              sx={(theme) => ({
+                fontWeight: "bold",
+                borderRadius: theme.radius.sm,
+              })}
+              onClick={toggleTextField}
+              contentEditable
+              onBlur={submit}
+              px="xs"
+            >
+              {board?.name}
+            </Title>
+          </Group>
+        </Group>
+        <Group spacing="sm" sx={{ alignItems: "center" }}>
+          {/*
           <TextInput
             value={taskSearchValue}
             onChange={(e) => setTaskSearchValue(e.target.value)}
             placeholder="Search for tasks"
             icon={<Search />}
           />
-
-          <CreateTaskButton />
-          <BoardViewSwitcher tab={tab} setTab={setTab} />
+          */}
+          <EditBoardButton />
         </Group>
       </Box>
-      <EditBoardButton />
     </Header>
   )
 }

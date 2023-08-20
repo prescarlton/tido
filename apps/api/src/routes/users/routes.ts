@@ -1,11 +1,11 @@
-import { Router } from 'express'
+import { Router } from "express"
 
-import getUserById from './getUserById'
-import listUsers from './listUsers'
+import getUserById from "./getUserById"
+import listUsers from "./listUsers"
 
 const UserRouter: Router = Router()
 
-UserRouter.get('/', listUsers)
-UserRouter.get('/:id', getUserById)
+UserRouter.get("/", listUsers)
+UserRouter.get("/:id", getUserById)
 
 export default UserRouter

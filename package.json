@@ -15,6 +15,9 @@
   "devDependencies": {
     "@faker-js/faker": "^8.0.1",
     "@types/lodash": "^4.14.191",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.54.1",
+    "eslint": "^8.47.0",
     "eslint-config-custom": "^0.0.0",
     "prettier": "^2.8.4",
     "tsconfig-paths": "^4.1.2",

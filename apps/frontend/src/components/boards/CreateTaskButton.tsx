@@ -27,7 +27,7 @@ const CreateTaskButton = () => {
     <Menu position="right" opened={opened} onChange={setOpened}>
       <Menu.Target>
         <Button
-          variant="subtle"
+          variant="filled"
           leftIcon={<Plus />}
           sx={{ alignSelf: "flex-start" }}
         >

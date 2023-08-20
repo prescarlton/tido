@@ -11,11 +11,10 @@ import { Plus } from "tabler-icons-react"
 
 import useListProjects from "@/hooks/api/projects/useListProjects"
 
+import NewProjectMenu from "../NewProjectMenu"
 import SidebarProjectItem from "./SidebarProjectItem"
 
 const SidebarProjects = () => {
-  const onClickCreateProject = () => {}
-
   const { data: projects } = useListProjects()
   const theme = useMantineTheme()
 
@@ -39,20 +38,17 @@ const SidebarProjects = () => {
           Projects
         </Text>
         <Group spacing={theme.spacing.sm}>
-          <ActionIcon
-            onClick={onClickCreateProject}
-            variant="default"
-            size="xs"
-          >
-            <Plus size="0.8em" />
-          </ActionIcon>
+          <NewProjectMenu>
+            <ActionIcon variant="default" size="xs">
+              <Plus size="0.8em" />
+            </ActionIcon>
+          </NewProjectMenu>
         </Group>
       </Group>
       <Flex
         direction="column"
         sx={(theme) => ({
-          paddingLeft: `calc(${theme.spacing.md} - ${rem(6)})`,
-          paddingRight: `calc(${theme.spacing.md} - ${rem(6)})`,
+          padding: `calc(${theme.spacing.md} - ${rem(6)})`,
           paddingBottom: theme.spacing.md,
         })}
       >

@@ -15,7 +15,7 @@ const TaskDescription = ({ onSubmit }: ITaskDescription) => {
   return (
     <Stack spacing="xs" sx={{ position: "relative" }}>
       <Title size="h6">Description</Title>
-      <ControlledRichTextEditor control={control} name="description" />
+      <ControlledRichTextEditor control={control} name="rawDescription" />
     </Stack>
   )
 }

@@ -2,26 +2,21 @@ import {
   createStyles,
   getStylesRef,
   Navbar,
-  NavLink as MantineNavLink,
   rem,
   UnstyledButton,
 } from "@mantine/core"
-import { NavLink, useNavigate } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import { Checkbox, Home, Settings, Stack } from "tabler-icons-react"
-
-import useRouteMatch from "@/hooks/useRouteMatch"
 
 const useStyles = createStyles((theme) => ({
   section: {
     marginLeft: `calc(${theme.spacing.md} * -1)`,
     marginRight: `calc(${theme.spacing.md} * -1)`,
     marginBottom: theme.spacing.md,
-    paddingLeft: `calc(${theme.spacing.md} - ${theme.spacing.xs})`,
-    paddingRight: `calc(${theme.spacing.md} - ${theme.spacing.xs})`,
+    padding: `calc(${theme.spacing.md} - ${rem(6)})`,
     paddingBottom: theme.spacing.md,
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-    }`,
+    borderBottom: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+      }`,
   },
 
   mainLink: {

@@ -1,4 +1,4 @@
-import { AppShell, Box } from "@mantine/core"
+import { Box } from "@mantine/core"
 import { useHotkeys } from "@mantine/hooks"
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
@@ -25,7 +25,7 @@ const AppLayout = () => {
         }}
       >
         <AppHeader />
-        <Box sx={{ display: "flex", overflow: "hidden" }}>
+        <Box sx={{ display: "flex", overflow: "hidden", flex: 1 }}>
           <Sidebar showSidebar={showSidebar} />
           <Page>
             <Outlet />

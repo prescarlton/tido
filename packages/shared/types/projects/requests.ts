@@ -22,6 +22,12 @@ export const UpdateGenProjSettingsSchema = {
   }),
 }
 
+export const CreateProjectSchema = {
+  body: z.object({
+    name: z.string().nonempty({ message: "Proejct Name is required" }),
+  }),
+}
+
 export type GetProjectParams = z.infer<typeof GetProjectSchema.params>
 export type DeleteProjectParams = z.infer<typeof DeleteProjectSchema.params>
 export type UpdateGenProjSettingsParams = z.infer<
@@ -30,3 +36,4 @@ export type UpdateGenProjSettingsParams = z.infer<
 export type UpdateGenProjSettingsBody = z.infer<
   typeof UpdateGenProjSettingsSchema.body
 >
+export type CreateProjectBody = z.infer<typeof CreateProjectSchema.body>

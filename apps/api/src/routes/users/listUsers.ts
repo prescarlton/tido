@@ -1,5 +1,6 @@
-import prisma from '@/utils/db'
-import { Request, Response } from 'express'
+import { Request, Response } from "express"
+
+import prisma from "@/utils/db"
 
 const listUsers = async (request: Request, response: Response) => {
   const users = await prisma.user.findMany({

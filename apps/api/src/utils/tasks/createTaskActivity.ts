@@ -29,17 +29,19 @@ const createTaskActivity = async (
         oldVal = task.name
         newVal = body["name"] || ""
         break
-      case "description":
-        if (!task.description) message = "Added a description"
+      case "textDescription":
+        if (!task.textDescription) message = "Added a description"
         else message = "Updated this task's description"
-        oldVal = task.description
-        newVal = body["description"] || ""
+        oldVal = task.textDescription
+        newVal = body["textDescription"] || ""
         break
       case "taskStatusId":
         message = "Updated this task's status"
         oldVal = task.taskStatusId
         newVal = task.taskStatusId
         break
+      default:
+        continue
     }
     updates.push({
       message,
