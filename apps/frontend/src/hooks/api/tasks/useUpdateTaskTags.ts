@@ -36,11 +36,11 @@ const useUpdateTaskTags = (params: GetTaskParams) => {
           TASKS_QUERY_KEY.list({ projectId, boardId }),
           (old) => [
             res.data as Task,
-            ...(old as Task[]).filter((task) => task.id !== res.data?.id),
+            ...(old ? old.filter((task) => task.id !== res.data?.id) : []),
           ]
         )
       },
-      onError: () => {
+      onError: (err) => {
         notifications.show({
           message: "Unable to update task",
           color: "red",

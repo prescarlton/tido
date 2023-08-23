@@ -18,9 +18,7 @@ import {
   UpdateTaskRequestSchema,
 } from "shared/types/tasks"
 
-import TaskActivity from "@/components/boards/tasks/TaskDialog/TaskActivity"
 import TaskCreator from "@/components/boards/tasks/TaskDialog/TaskCreator"
-import TaskDescription from "@/components/boards/tasks/TaskDialog/TaskDescription"
 import TaskMembers from "@/components/boards/tasks/TaskDialog/TaskMembers"
 import TaskStatus from "@/components/boards/tasks/TaskDialog/TaskStatus"
 import TaskTags from "@/components/boards/tasks/TaskDialog/TaskTags"
