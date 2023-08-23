@@ -1,13 +1,15 @@
 import { useQuery } from "@tanstack/react-query"
-import { ProjectListResponse } from "shared/types/projects/responses"
+import { ProjectListResponse } from "shared/types/projects"
 
-import ProjectService from "@/api/ProjectService"
-import { PROJECTS_QUERY_KEY } from "@/api/ProjectService/constants"
+import ProjectService, { PROJECTS_QUERY_KEY } from "@/api/ProjectService"
 
-const getProjectList = () =>
-  ProjectService.get<ProjectListResponse>("/").then((res) => res.data.data)
+const getProjectList = () => ProjectService.get<ProjectListResponse>("/")
 
 const useListProjects = () =>
-  useQuery(PROJECTS_QUERY_KEY.all, () => getProjectList())
+  useQuery({
+    queryKey: PROJECTS_QUERY_KEY.all,
+    queryFn: getProjectList,
+    select: (res) => res.data.data,
+  })
 
 export default useListProjects

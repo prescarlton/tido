@@ -1,3 +1,3 @@
-import { createQueryKeys } from "@lukemorales/query-key-factory"
+import { createQueryKey } from "@/util/createQueryKey"
 
-import { getMyFavorites } from "."
+export const MY_FAVORITES_QUERY_KEY = createQueryKey("myFavorites")

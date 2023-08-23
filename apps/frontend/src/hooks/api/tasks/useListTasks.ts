@@ -1,6 +1,5 @@
 import { useDebouncedValue } from "@mantine/hooks"
 import { useQuery } from "@tanstack/react-query"
-import { useDebounce } from "react-use"
 import {
   ListTasksParams,
   ListTasksQuery,

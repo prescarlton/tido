@@ -32,11 +32,6 @@ const OverviewPage = () => {
         <Group position="apart" align="center">
           <Group spacing="sm" align="center">
             <Title size="h1">{project?.name}</Title>
-            {/*
-            <Title size="h3" c="dimmed">
-              Overview
-            </Title>
-            */}
           </Group>
           <Group spacing="sm">
             <ActionIcon onClick={handleToggleFavorite}>
@@ -45,15 +40,6 @@ const OverviewPage = () => {
           </Group>
         </Group>
         <BoardCarousel projectId={projectId} />
-        {/* <Button onClick={handleClickResources} variant="contained">
-          Resources
-        </Button>
-        <Button onClick={handleClickAnnouncements} variant="contained">
-          Announcements
-        </Button>
-        <Button onClick={handleClickStandup} variant="contained">
-          Standup
-        </Button> */}
       </Box>
     </ProjectTabContent>
   )

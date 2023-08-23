@@ -3,6 +3,8 @@ import { createStyles, Navbar, rem, TextInput } from "@mantine/core"
 import MainLinks from "@/components/common/Sidebar/MainLinks"
 import SidebarProjects from "@/components/common/Sidebar/SidebarProjects"
 
+import SidebarFavorites from "./SidebarFavorites"
+
 interface ISidebar {
   showSidebar: boolean
 }
@@ -47,7 +49,7 @@ const Sidebar = ({ showSidebar }: ISidebar) => {
               should be a dropdown where you can select / create a new workspace
       */}
       <MainLinks />
-      {/* <SidebarFavorites /> */}
+      <SidebarFavorites />
       <SidebarProjects />
     </Navbar>
   )

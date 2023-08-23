@@ -2,7 +2,7 @@ import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { AxiosError } from "axios"
 
-import { favoriteProject, projectQueries } from "@/api/ProjectService"
+import { favoriteProject, PROJECTS_QUERY_KEY } from "@/api/ProjectService"
 
 const useFavoriteProject = () => {
   const queryClient = useQueryClient()
@@ -13,7 +13,7 @@ const useFavoriteProject = () => {
         message: "Favorited Project",
         color: "green",
       })
-      queryClient.invalidateQueries(projectQueries._def)
+      queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
     },
     onError: (error: AxiosError) => {
       notifications.show({

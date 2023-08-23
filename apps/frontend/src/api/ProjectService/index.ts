@@ -1,4 +1,3 @@
-import { createQueryKeys } from "@lukemorales/query-key-factory"
 import {
   FavoriteProjectRequestBody,
   FavoriteProjectRequestParms,
@@ -18,9 +17,5 @@ export const createProject = (data: CreateProjectRequest) =>
 export const favoriteProject = (
   data: FavoriteProjectRequestBody & FavoriteProjectRequestParms
 ) => ProjectService.put(`/${data.projectId}/favorite`, data)
-
-export const projectQueries = createQueryKeys("projects", {
-  all: null,
-})
 
 export * from "./constants"

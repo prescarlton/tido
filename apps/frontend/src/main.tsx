@@ -19,8 +19,8 @@ import theme from "@/theme"
 
 import { AuthProvider } from "./contexts/AuthContext"
 import { ProjectProvider } from "./contexts/ProjectContext"
-import AppRouter from "./router"
 import SpotlightProvider from "./contexts/SpotlightContext"
+import AppRouter from "./router"
 
 const queryClient = new QueryClient({
   defaultOptions: {
