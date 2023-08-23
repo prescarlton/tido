@@ -1,7 +1,7 @@
 import { ActionIcon, Popover, Title } from "@mantine/core"
+import { IconPlus } from "@tabler/icons-react"
 import { useState } from "react"
 import { TaskTag } from "shared/types/tasks"
-import { Plus } from "tabler-icons-react"
 
 import TagForm from "@/components/boards/tasks/TaskDialog/AddTagButton/TagForm"
 import TagList from "@/components/boards/tasks/TaskDialog/AddTagButton/TagList"
@@ -32,7 +32,7 @@ const AddTagButton = ({ taskId, startingTags }: IAddTagButton) => {
     <Popover onClose={onClose} width={250} position="bottom-start">
       <Popover.Target>
         <ActionIcon size="md">
-          <Plus />
+          <IconPlus />
         </ActionIcon>
       </Popover.Target>
       <Popover.Dropdown p="xs" title="Tags">

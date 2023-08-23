@@ -1,8 +1,8 @@
-import { User } from '@prisma/client'
-import { Request, Response } from 'express'
+import { User } from "@prisma/client"
+import { Request, Response } from "express"
 
-import prisma from '@/utils/db'
-import errorHandler from '@/utils/errorHandler'
+import prisma from "@/utils/db"
+import errorHandler from "@/utils/errorHandler"
 
 const listProjects = async (req: Request, res: Response) => {
   try {
@@ -21,9 +21,9 @@ const listProjects = async (req: Request, res: Response) => {
         },
       },
     })
-    res.status(200).json({ data: projects })
+    res.json({ data: projects })
   } catch (err) {
-    return errorHandler(res, err, 'Unable to list projects')
+    return errorHandler(res, err, "Unable to list projects")
   }
 }
 

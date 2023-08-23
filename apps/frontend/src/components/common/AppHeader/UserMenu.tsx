@@ -8,7 +8,7 @@ import {
   useMantineColorScheme,
   useMantineTheme,
 } from "@mantine/core"
-import { Moon, Sun } from "tabler-icons-react"
+import { IconMoon, IconSun } from "@tabler/icons-react"
 
 import useAuthContext from "@/contexts/AuthContext"
 
@@ -60,10 +60,10 @@ const UserMenu = () => {
               label="Dark Mode"
               labelPosition="left"
               onLabel={
-                <Sun color={theme.white} size="1.25rem" strokeWidth={1.5} />
+                <IconSun color={theme.white} size="1.25rem" strokeWidth={1.5} />
               }
               offLabel={
-                <Moon
+                <IconMoon
                   color={theme.colors.gray[6]}
                   size="1.25rem"
                   strokeWidth={1.5}

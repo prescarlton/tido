@@ -1,11 +1,13 @@
-import { Group, Header, UnstyledButton } from "@mantine/core"
+import { Group, UnstyledButton } from "@mantine/core"
+
+import FavoritesMenu from "./FavoritesMenu"
 
 const HeaderLinks = () => {
   return (
     <Group spacing="md">
       <UnstyledButton>Workspaces</UnstyledButton>
       <UnstyledButton>Projects</UnstyledButton>
-      <UnstyledButton>Favorites</UnstyledButton>
+      <FavoritesMenu />
     </Group>
   )
 }

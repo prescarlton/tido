@@ -1,13 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Button, Menu } from "@mantine/core"
 import { ReactNode } from "react"
-import { FormProvider, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { CreateProjectBody, CreateProjectSchema } from "shared/types/projects"
 
 import useCreateProject from "@/hooks/api/projects/useCreateProject"
 
-import ControlledColorPicker from "../fields/ControlledColorPicker"
-import ControlledRichTextEditor from "../fields/ControlledRichTextEditor"
 import ControlledTextField from "../fields/ControlledTextField"
 
 interface INewProjectMenu {
@@ -15,7 +13,7 @@ interface INewProjectMenu {
 }
 
 const NewProjectMenu = ({ children }: INewProjectMenu) => {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     defaultValues: { name: "" },
     resolver: zodResolver(CreateProjectSchema.body),
   })
@@ -23,6 +21,7 @@ const NewProjectMenu = ({ children }: INewProjectMenu) => {
 
   const onSubmit = async (data: CreateProjectBody) => {
     await createMutation.mutateAsync(data)
+    reset()
   }
 
   return (

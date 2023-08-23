@@ -37,7 +37,7 @@ const createBoard = async (
       },
     })
 
-    return res.status(200).json({
+    return res.json({
       message: "Success",
       data: board,
     })

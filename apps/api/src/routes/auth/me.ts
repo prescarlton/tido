@@ -16,7 +16,7 @@ const getMe = async (req: Request, res: Response) => {
       username: true,
     },
   })
-  return res.status(200).json({ message: "Success", data: user })
+  return res.json({ message: "Success", data: user })
 }
 
 export default getMe

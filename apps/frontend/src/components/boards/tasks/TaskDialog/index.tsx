@@ -28,6 +28,8 @@ import useProjectContext from "@/contexts/ProjectContext"
 import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
 import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
 
+import AdditionalTaskTabs from "./AdditionalTaskTabs"
+
 interface ITaskDialog {
   task: Task
   opened: boolean
@@ -104,10 +106,13 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
               <TaskTags task={taskDetails} />
               <TaskCreator creator={task?.createdBy} />
             </Stack>
+            <AdditionalTaskTabs taskId={task.id} />
+            {/*
             <Stack spacing="md">
               <TaskDescription onSubmit={onSubmit} />
               <TaskActivity taskId={task.id} />
             </Stack>
+              */}
           </Flex>
         </FormProvider>
 

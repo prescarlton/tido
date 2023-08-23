@@ -14,7 +14,7 @@ const createUser = async (req: Request, res: Response) => {
       password: bcrypt.hashSync(password, 10),
     },
   })
-  return res.status(200).json(user)
+  return res.json(user)
 }
 
 export default createUser

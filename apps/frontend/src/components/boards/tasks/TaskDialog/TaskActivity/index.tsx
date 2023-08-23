@@ -1,4 +1,4 @@
-import { Stack, Text, Title } from "@mantine/core"
+import { Stack, Text } from "@mantine/core"
 
 import ActivityItem from "@/components/boards/tasks/TaskDialog/TaskActivity/ActivityItem"
 import useProjectContext from "@/contexts/ProjectContext"
@@ -18,7 +18,9 @@ const TaskActivity = ({ taskId }: ITaskActivity) => {
 
   return (
     <Stack spacing="sm">
+      {/*
       <Title size="h6">Activity</Title>
+      */}
       {taskActivity?.length === 0 ? (
         <Text color="dimmed" size="sm">
           Once things start happening with this task, update history will show

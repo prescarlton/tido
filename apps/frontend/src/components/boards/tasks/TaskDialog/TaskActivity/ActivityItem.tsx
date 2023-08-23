@@ -1,7 +1,7 @@
 import { Flex, Group, Stack, Text, Tooltip } from "@mantine/core"
+import { IconArrowRight } from "@tabler/icons-react"
 import dayjs from "dayjs"
 import { TaskActivity } from "shared/types/tasks"
-import { ArrowRight } from "tabler-icons-react"
 
 import UserProfilePicture from "@/components/common/UserProfilePicture"
 
@@ -29,7 +29,7 @@ const ActivityItem = ({ activity }: IActivityItem) => {
         <Text size="xs" lineClamp={1}>
           {activity.oldVal}
         </Text>
-        <ArrowRight size={16} />
+        <IconArrowRight size={16} />
         <Text size="xs" lineClamp={1}>
           {activity.newVal}
         </Text>

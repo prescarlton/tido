@@ -1,20 +1,14 @@
-import { Flex, Kbd, Stack, Text, Title } from "@mantine/core"
-import { getHotkeyHandler } from "@mantine/hooks"
-import { useEffect } from "react"
+import { Stack } from "@mantine/core"
 import { useFormContext } from "react-hook-form"
 
 import ControlledRichTextEditor from "@/components/fields/ControlledRichTextEditor"
 
-interface ITaskDescription {
-  onSubmit: (data: any) => void
-}
-
-const TaskDescription = ({ onSubmit }: ITaskDescription) => {
-  const { control, getValues } = useFormContext()
+const TaskDescription = () => {
+  const { control } = useFormContext()
 
   return (
     <Stack spacing="xs" sx={{ position: "relative" }}>
-      <Title size="h6">Description</Title>
+      {/* <Title size="h6">Description</Title>*/}
       <ControlledRichTextEditor control={control} name="rawDescription" />
     </Stack>
   )

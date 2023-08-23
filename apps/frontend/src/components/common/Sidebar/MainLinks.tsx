@@ -5,8 +5,13 @@ import {
   rem,
   UnstyledButton,
 } from "@mantine/core"
+import {
+  IconCheckbox,
+  IconHome,
+  IconSettings,
+  IconStack,
+} from "@tabler/icons-react"
 import { NavLink } from "react-router-dom"
-import { Checkbox, Home, Settings, Stack } from "tabler-icons-react"
 
 const useStyles = createStyles((theme) => ({
   section: {
@@ -75,22 +80,22 @@ const MainLinks = () => {
   const links = [
     {
       label: "Home",
-      icon: Home,
+      icon: IconHome,
       path: "/dashboard",
     },
     {
       label: "Projects",
-      icon: Stack,
+      icon: IconStack,
       path: "/p",
     },
     {
       label: "My tasks",
-      icon: Checkbox,
+      icon: IconCheckbox,
       path: "/my-tasks",
     },
     {
       label: "Settings",
-      icon: Settings,
+      icon: IconSettings,
       path: "/settings",
     },
   ]

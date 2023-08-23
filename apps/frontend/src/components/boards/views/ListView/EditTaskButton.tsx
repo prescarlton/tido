@@ -1,7 +1,7 @@
 import { ActionIcon, Menu } from "@mantine/core"
+import { IconArchive, IconCopy, IconDots, IconEdit } from "@tabler/icons-react"
 import { SyntheticEvent } from "react"
 import { Task } from "shared/types/tasks"
-import { Archive, Copy, Dots, Edit } from "tabler-icons-react"
 
 import useDeleteTask from "@/hooks/api/tasks/useDeleteTask"
 
@@ -26,15 +26,15 @@ const EditTaskButton = ({ task }: IEditTaskButton) => {
           onClick={(e) => e.stopPropagation()}
           sx={{ height: "100%", width: "3.25rem" }}
         >
-          <Dots />
+          <IconDots />
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
-        <Menu.Item icon={<Edit />}>Edit Task</Menu.Item>
-        <Menu.Item icon={<Copy />} onClick={onClickDuplicate}>
+        <Menu.Item icon={<IconEdit />}>Edit Task</Menu.Item>
+        <Menu.Item icon={<IconCopy />} onClick={onClickDuplicate}>
           Duplicate Task
         </Menu.Item>
-        <Menu.Item color="red" icon={<Archive />} onClick={onClickDelete}>
+        <Menu.Item color="red" icon={<IconArchive />} onClick={onClickDelete}>
           Archive Task
         </Menu.Item>
       </Menu.Dropdown>

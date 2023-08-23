@@ -1,6 +1,6 @@
 import { ActionIcon, Box, Title } from "@mantine/core"
+import { IconChevronLeft } from "@tabler/icons-react"
 import { ReactNode } from "react"
-import { ChevronLeft } from "react-feather"
 import { useNavigate } from "react-router-dom"
 
 interface IProjectTabContent {
@@ -51,7 +51,7 @@ const ProjectTabContent = ({
           >
             {showBack && (
               <ActionIcon onClick={handleBackClick}>
-                <ChevronLeft />
+                <IconChevronLeft />
               </ActionIcon>
             )}
             <Title size="h3" sx={{ fontWeight: "normal" }}>

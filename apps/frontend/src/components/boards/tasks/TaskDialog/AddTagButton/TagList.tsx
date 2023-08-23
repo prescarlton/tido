@@ -7,9 +7,9 @@ import {
   Tooltip,
 } from "@mantine/core"
 import { useDebouncedState, useDidUpdate } from "@mantine/hooks"
+import { IconEdit } from "@tabler/icons-react"
 import { useParams } from "react-router-dom"
 import { TaskTag as TaskTagType } from "shared/types/tasks"
-import { Edit } from "tabler-icons-react"
 
 import TaskTag from "@/components/boards/tasks/TaskDialog/TaskTag"
 import useListBoardTags from "@/hooks/api/boards/useListBoardTags"
@@ -59,7 +59,7 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
                   <Flex align="center" gap="xxs">
                     <TaskTag tag={tag} />
                     <ActionIcon size="sm" onClick={() => switchStep(tag)}>
-                      <Edit />
+                      <IconEdit />
                     </ActionIcon>
                   </Flex>
                 </Tooltip>

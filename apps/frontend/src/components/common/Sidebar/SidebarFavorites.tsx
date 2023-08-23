@@ -1,6 +1,5 @@
-import { ActionIcon, Collapse, Group, Navbar, rem, Text } from "@mantine/core"
+import { Group, Navbar, rem, Text } from "@mantine/core"
 import { useState } from "react"
-import { ChevronDown, ChevronUp } from "react-feather"
 
 const SidebarFavorites = () => {
   const [open, setOpen] = useState(true)
@@ -16,11 +15,10 @@ const SidebarFavorites = () => {
         paddingLeft: theme.spacing.md,
         paddingRight: theme.spacing.md,
         paddingBottom: theme.spacing.md,
-        borderBottom: `${rem(1)} solid ${
-          theme.colorScheme === "dark"
+        borderBottom: `${rem(1)} solid ${theme.colorScheme === "dark"
             ? theme.colors.dark[4]
             : theme.colors.gray[3]
-        }`,
+          }`,
       })}
     >
       <Group position="apart">

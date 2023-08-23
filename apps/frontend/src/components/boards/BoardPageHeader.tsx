@@ -1,4 +1,5 @@
-import { ActionIcon, Box, Group, Header, TextInput, Title } from "@mantine/core"
+import { ActionIcon, Box, Group, Header, Title } from "@mantine/core"
+import { IconChevronLeft } from "@tabler/icons-react"
 import {
   Dispatch,
   FocusEvent,
@@ -9,10 +10,7 @@ import {
 } from "react"
 import { useNavigate } from "react-router-dom"
 import { BoardView } from "shared/types/boards"
-import { ChevronLeft, Search } from "tabler-icons-react"
 
-import BoardViewSwitcher from "@/components/boards/BoardViewSwitcher"
-import CreateTaskButton from "@/components/boards/CreateTaskButton"
 import useBoardContext from "@/contexts/BoardContext"
 import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
@@ -78,7 +76,7 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
         <Group spacing="sm" sx={{ alignItems: "center" }}>
           <Group spacing="xxs">
             <ActionIcon onClick={onClickBack}>
-              <ChevronLeft />
+              <IconChevronLeft />
             </ActionIcon>
             <Title
               size="h4"

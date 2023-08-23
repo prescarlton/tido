@@ -16,10 +16,11 @@ model User {
   lastName  String @map("last_name")
   password  String @default("")
 
-  projects     ProjectMember[]
-  tasks        UserTask[]
-  Task         Task[]
-  TaskActivity TaskActivity[]
+  projects         ProjectMember[]
+  tasks            UserTask[]
+  createdTasks     Task[]
+  taskActivity     TaskActivity[]
+  favoriteProjects UserFavoriteProject[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -71,8 +72,9 @@ model Project {
   name        String
   description String @default("")
 
-  boards  Board[]
-  members ProjectMember[]
+  boards        Board[]
+  members       ProjectMember[]
+  userFavorites UserFavoriteProject[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -172,6 +174,19 @@ model TaskActivity {
   updated DateTime @updatedAt
 
   @@map("task_activity")
+}
+
+model UserFavoriteProject {
+  id String @id @default(nanoid(48))
+
+  userId    String @map("user_id")
+  projectId String @map("project_id")
+
+  user    User    @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@unique([userId, projectId])
+  @@map("user_favorite_projects")
 }
 
 enum ProjectRole {

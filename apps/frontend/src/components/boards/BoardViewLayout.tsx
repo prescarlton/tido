@@ -1,6 +1,6 @@
 import { Box, Group, TextInput } from "@mantine/core"
+import { IconSearch } from "@tabler/icons-react"
 import { ReactNode } from "react"
-import { Search } from "tabler-icons-react"
 
 import useBoardContext from "@/contexts/BoardContext"
 
@@ -30,7 +30,7 @@ const BoardViewLayout = ({ children }: IBoardViewLayout) => {
               value={taskSearchValue}
               onChange={(e) => setTaskSearchValue(e.target.value)}
               placeholder="Search for tasks"
-              icon={<Search />}
+              icon={<IconSearch />}
             />
           </Group>
           <CreateTaskButton />

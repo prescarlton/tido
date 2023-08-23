@@ -2,10 +2,12 @@ import {
   Divider,
   Group,
   Header,
+  TextInput,
   Title,
   UnstyledButton,
   useMantineTheme,
 } from "@mantine/core"
+import { IconSearch } from "@tabler/icons-react"
 import { useNavigate } from "react-router-dom"
 
 import UserMenu from "@/components/common/AppHeader/UserMenu"
@@ -40,6 +42,7 @@ const AppHeader = () => {
         <Divider orientation="vertical" />
         <HeaderLinks />
       </Group>
+      <TextInput icon={<IconSearch />} placeholder="Search" w={400} />
       <UserMenu />
     </Header>
   )

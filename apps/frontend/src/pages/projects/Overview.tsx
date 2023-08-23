@@ -1,17 +1,22 @@
-import { Box, Group, Title } from "@mantine/core"
-import { useNavigate } from "react-router-dom"
+import { ActionIcon, Box, Group, Title } from "@mantine/core"
+import { IconStar, IconStarFilled } from "@tabler/icons-react"
 
 import BoardCarousel from "@/components/projects/overview/BoardCarousel"
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 import useProjectContext from "@/contexts/ProjectContext"
+import useFavoriteProject from "@/hooks/api/projects/useFavoriteProjects"
 
 const OverviewPage = () => {
   const { projectId, project } = useProjectContext()
 
-  const navigate = useNavigate()
-  const handleClickResources = () => navigate("resources")
-  const handleClickAnnouncements = () => navigate("announcements")
-  const handleClickStandup = () => navigate("standup")
+  const favoriteMutation = useFavoriteProject()
+
+  const handleToggleFavorite = async () => {
+    await favoriteMutation.mutateAsync({
+      projectId,
+      favorite: !project?.favorited,
+    })
+  }
 
   return (
     <ProjectTabContent>
@@ -20,16 +25,24 @@ const OverviewPage = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
-          gap: 3,
+          gap: theme.spacing.md,
           paddingTop: theme.spacing.sm,
         })}
       >
-        <Group spacing="sm">
-          <Title size="h1">{project?.name}</Title>
-          <Title size="h3" c="dimmed">
-            {" "}
-            Overview
-          </Title>
+        <Group position="apart" align="center">
+          <Group spacing="sm" align="center">
+            <Title size="h1">{project?.name}</Title>
+            {/*
+            <Title size="h3" c="dimmed">
+              Overview
+            </Title>
+            */}
+          </Group>
+          <Group spacing="sm">
+            <ActionIcon onClick={handleToggleFavorite}>
+              {project?.favorited ? <IconStarFilled /> : <IconStar />}
+            </ActionIcon>
+          </Group>
         </Group>
         <BoardCarousel projectId={projectId} />
         {/* <Button onClick={handleClickResources} variant="contained">

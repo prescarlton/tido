@@ -4,6 +4,7 @@ export interface Project {
   description: string
   created: Date
   updated: Date
+  favorited: boolean
 }
 
 export interface GeneralProjectSettings {

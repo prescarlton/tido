@@ -1,12 +1,12 @@
 import { Button, Menu } from "@mantine/core"
+import {
+  IconChevronDown,
+  IconLayoutKanban,
+  IconLayoutList,
+  IconTable,
+} from "@tabler/icons-react"
 import { Dispatch, SetStateAction } from "react"
 import { BoardView } from "shared/types/boards"
-import {
-  ChevronDown,
-  LayoutKanban,
-  LayoutList,
-  Table,
-} from "tabler-icons-react"
 
 interface IBoardViewSwitcher {
   tab: BoardView
@@ -15,10 +15,10 @@ interface IBoardViewSwitcher {
 
 const BoardViewSwitcher = ({ tab, setTab }: IBoardViewSwitcher) => {
   const iconMap = {
-    [BoardView.List]: <Table size={14} />,
-    [BoardView.Table]: <Table size={14} />,
-    [BoardView.Group]: <LayoutList size={14} />,
-    [BoardView.Kanban]: <LayoutKanban size={14} />,
+    [BoardView.List]: <IconTable size={14} />,
+    [BoardView.Table]: <IconTable size={14} />,
+    [BoardView.Group]: <IconLayoutList size={14} />,
+    [BoardView.Kanban]: <IconLayoutKanban size={14} />,
   }
 
   const labelMap = {
@@ -33,7 +33,7 @@ const BoardViewSwitcher = ({ tab, setTab }: IBoardViewSwitcher) => {
       <Menu.Target>
         <Button
           leftIcon={iconMap[tab]}
-          rightIcon={<ChevronDown />}
+          rightIcon={<IconChevronDown />}
           variant="subtle"
         >
           {labelMap[tab]}

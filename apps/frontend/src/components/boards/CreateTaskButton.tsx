@@ -1,9 +1,8 @@
 import { ActionIcon, Button, Menu, TextInput } from "@mantine/core"
 import { getHotkeyHandler } from "@mantine/hooks"
+import { IconChevronRight, IconPlus } from "@tabler/icons-react"
 import { useState } from "react"
-import { Plus } from "react-feather"
 import { useParams } from "react-router-dom"
-import { ChevronRight } from "tabler-icons-react"
 
 import useCreateTask from "@/hooks/api/tasks/useCreateTask"
 
@@ -28,7 +27,7 @@ const CreateTaskButton = () => {
       <Menu.Target>
         <Button
           variant="filled"
-          leftIcon={<Plus />}
+          leftIcon={<IconPlus />}
           sx={{ alignSelf: "flex-start" }}
         >
           Create Task
@@ -43,7 +42,7 @@ const CreateTaskButton = () => {
           autoComplete="off"
           rightSection={
             <ActionIcon onClick={onClickSubmit}>
-              <ChevronRight />
+              <IconChevronRight />
             </ActionIcon>
           }
           onKeyDown={getHotkeyHandler([["Enter", onClickSubmit]])}

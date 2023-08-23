@@ -12,7 +12,7 @@ const listUsers = async (request: Request, response: Response) => {
       lastName: true,
     },
   })
-  return response.status(200).json(users)
+  return response.json(users)
 }
 
 export default listUsers

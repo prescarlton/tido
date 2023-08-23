@@ -1,7 +1,7 @@
-import { Request, Response } from 'express'
+import { Request, Response } from "express"
 
-import prisma from '@/utils/db'
-import errorHandler from '@/utils/errorHandler'
+import prisma from "@/utils/db"
+import errorHandler from "@/utils/errorHandler"
 
 const getBoardById = async (req: Request, res: Response) => {
   const { boardId } = req.params as { boardId: string }
@@ -11,12 +11,12 @@ const getBoardById = async (req: Request, res: Response) => {
         id: boardId,
       },
     })
-    return res.status(200).json({
-      message: 'Success',
+    return res.json({
+      message: "Success",
       data: board,
     })
   } catch (err) {
-    return errorHandler(res, err, 'Unable to get board')
+    return errorHandler(res, err, "Unable to get board")
   }
 }
 

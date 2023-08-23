@@ -40,7 +40,6 @@
     "@mantine/spotlight": "^6.0.14",
     "dayjs": "^1.11.8",
     "lodash": "^4.17.21",
-    "tabler-icons-react": "^1.56.0",
     "zod": "^3.20.2"
   }
 }

@@ -1,8 +1,7 @@
 import { ActionIcon, Menu } from "@mantine/core"
 import { useDisclosure } from "@mantine/hooks"
-import { MoreHorizontal } from "react-feather"
+import { IconDots, IconSettings, IconTrash } from "@tabler/icons-react"
 import { useParams } from "react-router-dom"
-import { Settings, Trash } from "tabler-icons-react"
 
 import BoardSettingsDialog from "@/components/boards/BoardSettingsDialog"
 import useDeleteBoard from "@/hooks/api/boards/useDeleteBoard"
@@ -27,14 +26,18 @@ const EditBoardButton = () => {
       <Menu>
         <Menu.Target>
           <ActionIcon>
-            <MoreHorizontal />
+            <IconDots />
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item icon={<Settings />} onClick={handleClickSettings}>
+          <Menu.Item icon={<IconSettings />} onClick={handleClickSettings}>
             Board Settings
           </Menu.Item>
-          <Menu.Item icon={<Trash />} onClick={handleClickDelete} color="red.6">
+          <Menu.Item
+            icon={<IconTrash />}
+            onClick={handleClickDelete}
+            color="red.6"
+          >
             Delete Board
           </Menu.Item>
         </Menu.Dropdown>

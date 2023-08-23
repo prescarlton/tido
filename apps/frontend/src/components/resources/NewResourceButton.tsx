@@ -1,6 +1,5 @@
 import { Button } from "@mantine/core"
 import { SyntheticEvent, useState } from "react"
-import { ChevronDown } from "react-feather"
 
 const NewResourceButton = () => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement>()

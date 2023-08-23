@@ -7,7 +7,7 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core"
-import { Plus } from "tabler-icons-react"
+import { IconPlus } from "@tabler/icons-react"
 
 import useListProjects from "@/hooks/api/projects/useListProjects"
 
@@ -40,7 +40,7 @@ const SidebarProjects = () => {
         <Group spacing={theme.spacing.sm}>
           <NewProjectMenu>
             <ActionIcon variant="default" size="xs">
-              <Plus size="0.8em" />
+              <IconPlus size="0.8em" />
             </ActionIcon>
           </NewProjectMenu>
         </Group>

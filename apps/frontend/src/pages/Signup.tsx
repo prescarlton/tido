@@ -11,14 +11,13 @@ import {
   Stack,
   Text,
   Title,
-  useMantineTheme,
 } from "@mantine/core"
+import { IconEye, IconEyeOff } from "@tabler/icons-react"
 import { AxiosError } from "axios"
 import { MouseEvent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
 import { AuthRequestBody, AuthRequestSchema } from "shared/types/auth"
-import { Eye, EyeOff } from "tabler-icons-react"
 
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import useAuthContext from "@/contexts/AuthContext"
@@ -133,7 +132,7 @@ const SignupPage = () => {
               type: showPassword ? "text" : "password",
               rightSection: (
                 <ActionIcon onMouseDown={toggleShowPassword}>
-                  {showPassword ? <EyeOff /> : <Eye />}
+                  {showPassword ? <IconEyeOff /> : <IconEye />}
                 </ActionIcon>
               ),
             }}

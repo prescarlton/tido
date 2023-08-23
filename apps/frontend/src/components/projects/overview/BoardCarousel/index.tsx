@@ -1,5 +1,5 @@
 import { Box, Button, Group, Title } from "@mantine/core"
-import { ChevronRight } from "react-feather"
+import { IconChevronRight } from "@tabler/icons-react"
 import { useNavigate } from "react-router-dom"
 
 import BoardCarouselCard from "@/components/projects/overview/BoardCarousel/BoardCarouselCard"
@@ -25,7 +25,7 @@ const BoardCarousel = ({ projectId }: IBoardCarousel) => {
         <Title size="h4">Boards</Title>
         <Button
           variant="subtle"
-          rightIcon={<ChevronRight />}
+          rightIcon={<IconChevronRight />}
           onClick={onClickAllBoards}
         >
           All Boards

@@ -20,7 +20,7 @@ const listBoards = async (req: Request, res: Response<BoardListResponse>) => {
       },
     })
 
-    return res.status(200).json({
+    return res.json({
       message: "Success",
       data: boards,
       total: boards.length,

@@ -1,5 +1,4 @@
-import { Code, createStyles, Navbar, rem, TextInput } from "@mantine/core"
-import { Search } from "tabler-icons-react"
+import { createStyles, Navbar, rem, TextInput } from "@mantine/core"
 
 import MainLinks from "@/components/common/Sidebar/MainLinks"
 import SidebarProjects from "@/components/common/Sidebar/SidebarProjects"
@@ -28,9 +27,8 @@ export const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[7]
         : theme.colors.gray[0],
-    border: `${rem(1)} solid ${
-      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
-    }`,
+    border: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
+      }`,
   },
 }))
 
@@ -44,24 +42,10 @@ const Sidebar = ({ showSidebar }: ISidebar) => {
       px={showSidebar ? "sm" : 0}
       className={classes.navbar}
     >
-      {/* <Navbar.Section className={classes.section}>
-        <UserButton
-          image="https://i.imgur.com/fGxgcDF.png"
-          name="Bob Rulebreaker"
-          email="Product owner"
-          icon={<IconSelector size="0.9rem" stroke={1.5} />}
-        />
-      </Navbar.Section> */}
-
-      <TextInput
-        placeholder="Search"
-        size="xs"
-        icon={<Search size="0.8rem" />}
-        rightSectionWidth={70}
-        rightSection={<Code className={classes.searchCode}>Ctrl + K</Code>}
-        styles={{ rightSection: { pointerEvents: "none" } }}
-        mb="sm"
-      />
+      {/* 
+        TODO: add workspace switcher here.
+              should be a dropdown where you can select / create a new workspace
+      */}
       <MainLinks />
       {/* <SidebarFavorites /> */}
       <SidebarProjects />
