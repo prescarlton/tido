@@ -9,7 +9,7 @@ import {
   Stack,
   Title,
 } from "@mantine/core"
-import { useEffect } from "react"
+import { FocusEvent, useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import {
   Task,
@@ -60,6 +60,11 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     await updateMutation.mutateAsync(data)
     onClose()
   }
+  const toggleEditTitle = () => { }
+  const handleUpdateTitle = async (e: FocusEvent<HTMLHeadingElement>) => {
+    if (e.target.innerHTML)
+      await updateMutation.mutateAsync({ name: e.target.innerHTML })
+  }
 
   useEffect(() => {
     if (taskDetails)
@@ -88,7 +93,15 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
                 <Title size="h4" c="dimmed">
                   [{task.code}]
                 </Title>
-                <Title size="h2">{task.name}</Title>
+                <Title
+                  size="h2"
+                  contentEditable
+                  suppressContentEditableWarning
+                  onClick={toggleEditTitle}
+                  onBlur={handleUpdateTitle}
+                >
+                  {task.name}
+                </Title>
               </Group>
             ) : (
               <Skeleton height={24} />

@@ -23,16 +23,11 @@ interface IBoardPageHeader {
 }
 
 const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
-  const [showTextField, setShowTextField] = useState(false)
-  const textFieldRef = useRef<HTMLInputElement>(null)
   const { project } = useProjectContext()
   const navigate = useNavigate()
   const { boardId, board, taskSearchValue, setTaskSearchValue } =
     useBoardContext()
 
-  const toggleTextField = () => {
-    setShowTextField((prev) => !prev)
-  }
   const renameMutation = useRenameBoard()
 
   const onClickBack = () => {
@@ -46,12 +41,7 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
         boardId,
         projectId: project?.id as string,
       })
-    setShowTextField(false)
   }
-
-  useEffect(() => {
-    if (showTextField) textFieldRef.current?.focus()
-  }, [showTextField])
 
   return (
     <Header
@@ -84,8 +74,8 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
                 fontWeight: "bold",
                 borderRadius: theme.radius.sm,
               })}
-              onClick={toggleTextField}
               contentEditable
+              suppressContentEditableWarning
               onBlur={submit}
               px="xs"
             >
