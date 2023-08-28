@@ -14,8 +14,9 @@ const listTasks = async (
   res: Response<ListTasksResponse>
 ) => {
   const { boardId } = req.params
-  const { search } = req.query
+  const { search, tags: rawTags } = req.query
 
+  const tags = (rawTags as string)?.split(",").filter((val) => Boolean(val))
   // find all non-archived tasks in specified board
   const tasks = await prisma.task.findMany({
     where: {
@@ -33,6 +34,19 @@ const listTasks = async (
           },
         },
       ],
+      ...(tags?.length
+        ? {
+          AND: [
+            ...tags.map((tag) => ({
+              tags: {
+                some: {
+                  id: tag,
+                },
+              },
+            })),
+          ],
+        }
+        : {}),
     },
     orderBy: [
       {

@@ -4,6 +4,7 @@ import { ReactNode } from "react"
 
 import useBoardContext from "@/contexts/BoardContext"
 
+import BoardViewFilters from "./BoardViewFilters"
 import BoardViewSwitcher from "./BoardViewSwitcher"
 import CreateTaskButton from "./CreateTaskButton"
 
@@ -32,6 +33,7 @@ const BoardViewLayout = ({ children }: IBoardViewLayout) => {
               placeholder="Search for tasks"
               icon={<IconSearch />}
             />
+            <BoardViewFilters />
           </Group>
           <CreateTaskButton />
         </Group>

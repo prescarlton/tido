@@ -22,6 +22,7 @@ const BoardPageContent = ({ boardId, projectId, tab }: IBoardPageContent) => {
     },
     {
       search: taskSearchValue,
+      ...taskFilterValue,
     }
   )
   return tab === BoardView.List ? (

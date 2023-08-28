@@ -3,9 +3,10 @@ import { TaskTag as TaskTagType } from "shared/types/tasks"
 
 interface ITaskTag {
   tag: TaskTagType
+  grow?: boolean
 }
 
-const TaskTag = ({ tag }: ITaskTag) => {
+const TaskTag = ({ tag, grow = false }: ITaskTag) => {
   return (
     <Box
       className="taskTag"
@@ -18,6 +19,7 @@ const TaskTag = ({ tag }: ITaskTag) => {
         height: 32,
         display: "flex",
         alignItems: "center",
+        ...(grow && { flex: 1 }),
       })}
       px="xs"
     >

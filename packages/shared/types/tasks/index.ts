@@ -31,5 +31,9 @@ export interface TaskActivity {
   newVal?: string
 }
 
+export interface TaskListFilters {
+  tags?: string[]
+}
+
 export * from "./requests"
 export * from "./responses"

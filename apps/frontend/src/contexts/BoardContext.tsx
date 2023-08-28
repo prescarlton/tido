@@ -9,6 +9,7 @@ import {
 } from "react"
 import { useParams } from "react-router-dom"
 import { Board, BoardView } from "shared/types/boards"
+import { TaskListFilters } from "shared/types/tasks"
 
 import useGetBoard from "@/hooks/api/boards/useGetBoard"
 
@@ -17,8 +18,8 @@ interface IBoardContext {
   boardId: string
   taskSearchValue: string
   setTaskSearchValue: (newVal: string) => void
-  taskFilterValue: any
-  setTaskFilterValue: (newVal: any) => void
+  taskFilterValue: TaskListFilters
+  setTaskFilterValue: Dispatch<SetStateAction<TaskListFilters>>
   boardView: BoardView
   setBoardView: Dispatch<SetStateAction<BoardView>>
 }
@@ -27,7 +28,7 @@ const BoardContext = createContext<IBoardContext>({} as IBoardContext)
 
 export const BoardProvider = ({ children }: { children: ReactNode }) => {
   const [taskSearchValue, setTaskSearchValue] = useState("")
-  const [taskFilterValue, setTaskFilterValue] = useState("")
+  const [taskFilterValue, setTaskFilterValue] = useState<TaskListFilters>({})
   const [boardView, setBoardView] = useState<BoardView>(BoardView.List)
   const { boardId, projectId } = useParams() as {
     boardId: string

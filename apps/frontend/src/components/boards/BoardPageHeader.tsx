@@ -84,14 +84,6 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
           </Group>
         </Group>
         <Group spacing="sm" sx={{ alignItems: "center" }}>
-          {/*
-          <TextInput
-            value={taskSearchValue}
-            onChange={(e) => setTaskSearchValue(e.target.value)}
-            placeholder="Search for tasks"
-            icon={<Search />}
-          />
-          */}
           <EditBoardButton />
         </Group>
       </Box>

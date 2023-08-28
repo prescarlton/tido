@@ -1,4 +1,3 @@
-import { JSONContent } from "@tiptap/core"
 import { Request, Response } from "express"
 import {
   GetTaskByIdResponse,
