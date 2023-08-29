@@ -1,5 +1,13 @@
-import { ActionIcon, Checkbox, Popover, Stack, Text } from "@mantine/core"
-import { IconFilter } from "@tabler/icons-react"
+import {
+  ActionIcon,
+  Checkbox,
+  Popover,
+  Stack,
+  Text,
+  useMantineTheme,
+} from "@mantine/core"
+import { IconFilter, IconFilterFilled } from "@tabler/icons-react"
+import { flatMap } from "lodash"
 
 import useBoardContext from "@/contexts/BoardContext"
 import useProjectContext from "@/contexts/ProjectContext"
@@ -15,20 +23,25 @@ const BoardViewFilters = () => {
   const { setTaskFilterValue, taskFilterValue } = useBoardContext()
   const { data: tags } = useListBoardTags({ id: boardId, projectId })
 
-  const onChange = (tags: string[]) => {
+  const onChangeTags = (tags: string[]) => {
     setTaskFilterValue((prev) => ({ ...prev, tags }))
   }
+  const theme = useMantineTheme()
+  const isFilterActive = flatMap(Object.values(taskFilterValue)).length > 0
 
   return (
     <Popover>
       <Popover.Target>
-        <ActionIcon>
-          <IconFilter />
+        <ActionIcon color={isFilterActive ? theme.primaryColor : "gray"}>
+          {isFilterActive ? <IconFilterFilled /> : <IconFilter />}
         </ActionIcon>
       </Popover.Target>
       <Popover.Dropdown>
         <Text>Tags</Text>
-        <Checkbox.Group value={taskFilterValue.tags || []} onChange={onChange}>
+        <Checkbox.Group
+          value={taskFilterValue.tags || []}
+          onChange={onChangeTags}
+        >
           <Stack spacing="xs">
             {tags?.map((tag) => (
               <Checkbox

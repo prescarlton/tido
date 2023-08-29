@@ -1,13 +1,13 @@
-import { Request, Response } from 'express'
+import { Request, Response } from "express"
 import {
   UpdateGenProjSettingsBody,
   UpdateGenProjSettingsParams,
-} from 'shared/types/projects'
+} from "shared/types/projects"
 
-import prisma from '@/utils/db'
+import prisma from "@/utils/db"
 
 const updateGeneralSettings = async (
-  req: Request<UpdateGenProjSettingsParams, any, UpdateGenProjSettingsBody>,
+  req: Request<UpdateGenProjSettingsParams, never, UpdateGenProjSettingsBody>,
   res: Response
 ) => {
   const { projectId } = req.params
@@ -27,7 +27,7 @@ const updateGeneralSettings = async (
       description: true,
     },
   })
-  return res.json({ message: 'success', data: project })
+  return res.json({ message: "success", data: project })
 }
 
 export default updateGeneralSettings

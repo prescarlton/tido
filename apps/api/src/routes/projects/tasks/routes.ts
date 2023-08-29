@@ -10,7 +10,6 @@ import {
 } from "shared/types/tasks"
 import { processRequest } from "zod-express-middleware"
 
-import validateSchema from "@/middleware/validateSchema"
 import listTasks from "@/routes/projects/boards/listTasks"
 import completeTask from "@/routes/projects/tasks/completeTask"
 import createTask from "@/routes/projects/tasks/createTask"

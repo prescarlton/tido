@@ -13,7 +13,7 @@ const BoardListView = ({ tasks }: IBoardListView) => {
   const completeTasks = tasks.filter((task) => task.complete)
   const incompleteTasks = tasks.filter((task) => !task.complete)
   return (
-    <BoardViewLayout>
+    <BoardViewLayout tasks={tasks}>
       <Stack spacing="md" p="sm">
         <Stack spacing="xs">
           {incompleteTasks.map((task) => (
