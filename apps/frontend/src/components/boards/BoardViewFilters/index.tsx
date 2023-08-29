@@ -1,12 +1,18 @@
 import {
   ActionIcon,
+  Button,
   Checkbox,
   Popover,
   Stack,
   Text,
+  Tooltip,
   useMantineTheme,
 } from "@mantine/core"
-import { IconFilter, IconFilterFilled } from "@tabler/icons-react"
+import {
+  IconChevronDown,
+  IconFilter,
+  IconFilterFilled,
+} from "@tabler/icons-react"
 import { flatMap } from "lodash"
 
 import useBoardContext from "@/contexts/BoardContext"
@@ -32,12 +38,24 @@ const BoardViewFilters = () => {
   return (
     <Popover>
       <Popover.Target>
-        <ActionIcon color={isFilterActive ? theme.primaryColor : "gray"}>
-          {isFilterActive ? <IconFilterFilled /> : <IconFilter />}
-        </ActionIcon>
+        <Tooltip label="Filters" withArrow>
+          {/*
+          <ActionIcon color={isFilterActive ? theme.primaryColor : "gray"}>
+            {isFilterActive ? <IconFilterFilled /> : <IconFilter />}
+          </ActionIcon>
+          */}
+          <Button
+            variant="subtle"
+            rightIcon={<IconChevronDown />}
+            px="xs"
+            color="gray"
+          >
+            Filters
+          </Button>
+        </Tooltip>
       </Popover.Target>
       <Popover.Dropdown>
-        <Text>Tags</Text>
+        <Text mb="sm">Tags</Text>
         <Checkbox.Group
           value={taskFilterValue.tags || []}
           onChange={onChangeTags}

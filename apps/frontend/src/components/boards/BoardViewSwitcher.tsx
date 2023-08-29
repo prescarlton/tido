@@ -1,4 +1,4 @@
-import { Button, Menu } from "@mantine/core"
+import { Button, Menu, useMantineTheme } from "@mantine/core"
 import {
   IconChevronDown,
   IconLayoutKanban,
@@ -27,7 +27,7 @@ const BoardViewSwitcher = ({ tab, setTab }: IBoardViewSwitcher) => {
     [BoardView.Group]: "Group View",
     [BoardView.Kanban]: "Kanban View",
   }
-
+  const theme = useMantineTheme()
   return (
     <Menu withArrow position="bottom-end">
       <Menu.Target>
@@ -35,6 +35,7 @@ const BoardViewSwitcher = ({ tab, setTab }: IBoardViewSwitcher) => {
           leftIcon={iconMap[tab]}
           rightIcon={<IconChevronDown />}
           variant="subtle"
+          color="gray"
         >
           {labelMap[tab]}
         </Button>
@@ -45,6 +46,7 @@ const BoardViewSwitcher = ({ tab, setTab }: IBoardViewSwitcher) => {
             key={view}
             icon={iconMap[view as BoardView]}
             onClick={() => setTab(view as BoardView)}
+            color={tab === view ? theme.fn.primaryColor() : ""}
           >
             {labelMap[view as BoardView]}
           </Menu.Item>

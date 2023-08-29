@@ -14,7 +14,7 @@ const listTasks = async (
   res: Response<ListTasksResponse>
 ) => {
   const { boardId } = req.params
-  const { search, tags: rawTags } = req.query
+  const { search, tags: rawTags, sortColumn, sortDir } = req.query
 
   const tags = (rawTags as string)?.split(",").filter((val) => Boolean(val))
   // find all non-archived tasks in specified board
@@ -53,7 +53,7 @@ const listTasks = async (
         complete: "asc",
       },
       {
-        updated: "desc",
+        [sortColumn || "updated"]: sortDir || "desc",
       },
     ],
     include: {

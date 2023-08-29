@@ -7,8 +7,9 @@ export const ListTasksRequestSchema = {
   }),
   query: z.object({
     search: z.string().optional(),
-    // tags: z.array(z.string()).optional(),
     tags: z.array(z.string()).or(z.string()).optional(),
+    sortColumn: z.string().optional(),
+    sortDir: z.union([z.literal("asc"), z.literal("desc")]).optional(),
   }),
 }
 

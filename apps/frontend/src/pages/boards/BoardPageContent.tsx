@@ -13,7 +13,8 @@ interface IBoardPageContent {
 }
 
 const BoardPageContent = ({ boardId, projectId, tab }: IBoardPageContent) => {
-  const { taskSearchValue, taskFilterValue } = useBoardContext()
+  const { taskSearchValue, taskFilterValue, sortColumn, sortDir } =
+    useBoardContext()
   // get all the tasks
   const { data: tasks } = useListTasks(
     {
@@ -23,6 +24,8 @@ const BoardPageContent = ({ boardId, projectId, tab }: IBoardPageContent) => {
     {
       search: taskSearchValue,
       ...taskFilterValue,
+      sortColumn,
+      sortDir,
     }
   )
   return tab === BoardView.List ? (

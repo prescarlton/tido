@@ -22,6 +22,10 @@ interface IBoardContext {
   setTaskFilterValue: Dispatch<SetStateAction<TaskListFilters>>
   boardView: BoardView
   setBoardView: Dispatch<SetStateAction<BoardView>>
+  sortColumn: string
+  setSortColumn: Dispatch<SetStateAction<string>>
+  sortDir: "asc" | "desc"
+  setSortDir: Dispatch<SetStateAction<"asc" | "desc">>
 }
 
 const BoardContext = createContext<IBoardContext>({} as IBoardContext)
@@ -29,6 +33,8 @@ const BoardContext = createContext<IBoardContext>({} as IBoardContext)
 export const BoardProvider = ({ children }: { children: ReactNode }) => {
   const [taskSearchValue, setTaskSearchValue] = useState("")
   const [taskFilterValue, setTaskFilterValue] = useState<TaskListFilters>({})
+  const [sortColumn, setSortColumn] = useState("updated")
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc")
   const [boardView, setBoardView] = useState<BoardView>(BoardView.List)
   const { boardId, projectId } = useParams() as {
     boardId: string
@@ -48,6 +54,10 @@ export const BoardProvider = ({ children }: { children: ReactNode }) => {
         setTaskFilterValue,
         boardView,
         setBoardView,
+        sortColumn,
+        sortDir,
+        setSortColumn,
+        setSortDir,
       }}
     >
       {children}

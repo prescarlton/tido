@@ -6,6 +6,8 @@ import { Task } from "shared/types/tasks"
 import useBoardContext from "@/contexts/BoardContext"
 
 import BoardViewFilters from "./BoardViewFilters"
+import BoardViewOnlyMe from "./BoardViewOnlyMe"
+import BoardViewSort from "./BoardViewSort"
 import BoardViewSwitcher from "./BoardViewSwitcher"
 import CreateTaskButton from "./CreateTaskButton"
 
@@ -27,17 +29,21 @@ const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
         }}
       >
         <Group position="apart" align="center" p="sm">
-          <Group spacing="sm">
+          <Group spacing="xs">
             <BoardViewSwitcher tab={boardView} setTab={setBoardView} />
+            <BoardViewFilters />
+            <BoardViewSort />
+          </Group>
+          <Group spacing="xs">
+            <BoardViewOnlyMe />
             <TextInput
               value={taskSearchValue}
               onChange={(e) => setTaskSearchValue(e.target.value)}
               placeholder="Search for tasks"
               icon={<IconSearch />}
             />
-            <BoardViewFilters />
+            <CreateTaskButton />
           </Group>
-          <CreateTaskButton />
         </Group>
         {tasks.length === 0 ? (
           <Title sx={{ alignSelf: "center" }} size="h3" mt="sm" c="dimmed">
