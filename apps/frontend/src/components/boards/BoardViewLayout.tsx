@@ -1,4 +1,4 @@
-import { Box, Group, Text, TextInput, Title } from "@mantine/core"
+import { Box, Group, TextInput, Title } from "@mantine/core"
 import { IconSearch } from "@tabler/icons-react"
 import { ReactNode } from "react"
 import { Task } from "shared/types/tasks"
@@ -8,17 +8,18 @@ import useBoardContext from "@/contexts/BoardContext"
 import BoardViewFilters from "./BoardViewFilters"
 import BoardViewOnlyMe from "./BoardViewOnlyMe"
 import BoardViewSort from "./BoardViewSort"
-import BoardViewSwitcher from "./BoardViewSwitcher"
 import CreateTaskButton from "./CreateTaskButton"
 
 interface IBoardViewLayout {
   tasks: Task[]
   children: ReactNode
 }
+export interface IBoardView {
+  tasks: Task[]
+}
 
 const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
-  const { taskSearchValue, setTaskSearchValue, boardView, setBoardView } =
-    useBoardContext()
+  const { taskSearchValue, setTaskSearchValue } = useBoardContext()
   return (
     <>
       <Box
@@ -30,7 +31,6 @@ const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
       >
         <Group position="apart" align="center" p="sm">
           <Group spacing="xs">
-            <BoardViewSwitcher tab={boardView} setTab={setBoardView} />
             <BoardViewFilters />
             <BoardViewSort />
           </Group>

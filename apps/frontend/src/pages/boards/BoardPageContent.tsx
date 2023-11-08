@@ -33,7 +33,7 @@ const BoardPageContent = ({ boardId, projectId, tab }: IBoardPageContent) => {
   ) : tab === BoardView.Group ? (
     <BoardGroupView />
   ) : (
-    <BoardKanbanView />
+    <BoardKanbanView tasks={tasks || []} />
   )
 }
 

@@ -1,15 +1,11 @@
 import { Divider, Stack } from "@mantine/core"
-import { Task } from "shared/types/tasks"
 
+import BoardViewLayout, {
+  IBoardView,
+} from "@/components/boards/BoardViewLayout"
 import TaskCard from "@/components/boards/views/ListView/TaskCard"
 
-import BoardViewLayout from "../../BoardViewLayout"
-
-interface IBoardListView {
-  tasks: Task[]
-}
-
-const BoardListView = ({ tasks }: IBoardListView) => {
+const BoardListView = ({ tasks }: IBoardView) => {
   const completeTasks = tasks.filter((task) => task.complete)
   const incompleteTasks = tasks.filter((task) => !task.complete)
   return (
