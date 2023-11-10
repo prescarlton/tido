@@ -1,4 +1,5 @@
 import {
+  Box,
   createStyles,
   getStylesRef,
   Navbar,
@@ -20,8 +21,9 @@ const useStyles = createStyles((theme) => ({
     marginBottom: theme.spacing.md,
     padding: `calc(${theme.spacing.md} - ${rem(6)})`,
     paddingBottom: theme.spacing.md,
-    borderBottom: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
-      }`,
+    borderBottom: `${rem(1)} solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[3]
+    }`,
   },
 
   mainLink: {
@@ -32,6 +34,7 @@ const useStyles = createStyles((theme) => ({
     padding: `${rem(8)} ${theme.spacing.xs}`,
     borderRadius: theme.radius.sm,
     fontWeight: 600,
+    flexWrap: "nowrap",
     color:
       theme.colorScheme === "dark"
         ? theme.colors.dark[0]
@@ -115,7 +118,15 @@ const MainLinks = () => {
               className={classes.mainLinkIcon}
               strokeWidth={2.5}
             />
-            <span>{link.label}</span>
+            <Box
+              component="span"
+              sx={{
+                overflowX: "hidden",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {link.label}
+            </Box>
           </div>
         </UnstyledButton>
       ))}

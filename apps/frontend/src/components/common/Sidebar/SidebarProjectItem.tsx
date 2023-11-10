@@ -32,20 +32,22 @@ const SidebarProjectItem = ({ project }: ISidebarProjectItem) => {
           backgroundColor: active
             ? ""
             : theme.colorScheme === "dark"
-              ? theme.colors.dark[6]
-              : theme.colors.gray[0],
+            ? theme.colors.dark[6]
+            : theme.colors.gray[0],
         },
 
         backgroundColor: active
           ? theme.fn.variant({
-            variant: "light",
-            color: theme.primaryColor,
-          }).background
+              variant: "light",
+              color: theme.primaryColor,
+            }).background
           : "transparent",
         color: active
           ? theme.fn.variant({ variant: "light", color: theme.primaryColor })
-            .color
+              .color
           : "",
+        overflowX: "hidden",
+        whiteSpace: "nowrap",
       })}
     >
       {project.name}

@@ -1,4 +1,4 @@
-import { createStyles, Navbar, rem, TextInput } from "@mantine/core"
+import { createStyles, Navbar, rem } from "@mantine/core"
 
 import MainLinks from "@/components/common/Sidebar/MainLinks"
 import SidebarProjects from "@/components/common/Sidebar/SidebarProjects"
@@ -29,8 +29,9 @@ export const useStyles = createStyles((theme) => ({
       theme.colorScheme === "dark"
         ? theme.colors.dark[7]
         : theme.colors.gray[0],
-    border: `${rem(1)} solid ${theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
-      }`,
+    border: `${rem(1)} solid ${
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[2]
+    }`,
   },
 }))
 

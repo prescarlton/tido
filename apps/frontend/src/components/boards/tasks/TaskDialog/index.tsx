@@ -60,7 +60,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     await updateMutation.mutateAsync(data)
     onClose()
   }
-  const toggleEditTitle = () => { }
+  const toggleEditTitle = () => {}
   const handleUpdateTitle = async (e: FocusEvent<HTMLHeadingElement>) => {
     if (e.target.innerHTML)
       await updateMutation.mutateAsync({ name: e.target.innerHTML })
@@ -86,7 +86,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
       size="lg"
     >
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-        <Modal.Header px={0} pt="xs">
+        <Modal.Header px={0} pt={0}>
           <Modal.Title>
             {task ? (
               <Group spacing="sm">

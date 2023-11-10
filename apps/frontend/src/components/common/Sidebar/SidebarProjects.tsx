@@ -32,6 +32,7 @@ const SidebarProjects = () => {
           paddingLeft: `calc(${theme.spacing.md} + ${rem(2)})`,
           paddingRight: theme.spacing.md,
           marginBottom: rem(5),
+          flexWrap: "nowrap",
         })}
       >
         <Text size="xs" c="dimmed" weight={500}>
