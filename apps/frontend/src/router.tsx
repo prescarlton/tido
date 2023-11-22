@@ -1,6 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 
-import useAuthContext from "@/contexts/AuthContext"
 import AppLayout from "@/layouts/AppLayout"
 import ProjectsLayout from "@/layouts/ProjectLayout"
 import NotFoundPage from "@/pages/404"
@@ -17,33 +16,27 @@ import SettingsPage from "@/pages/Settings"
 import SignupPage from "@/pages/Signup"
 
 const AppRouter = () => {
-  const { auth } = useAuthContext()
-
   return (
     <Routes>
-      {auth ? (
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Navigate to="/dashboard" />} />
-          <Route path="dashboard" element={<HomePage />} />
-          <Route path="p" element={<ProjectsLayout />}>
-            <Route index element={<ProjectListPage />} />
-            <Route path=":projectId">
-              <Route index element={<OverviewPage />} />
-              <Route path="announcements" element={<AnnouncementsPage />} />
-              <Route path="resources" element={<ResourcesPage />} />
-              <Route path="settings" element={<ProjectSettingsPage />} />
-              <Route path="b">
-                <Route path=":boardId" element={<BoardPage />} />
-              </Route>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Navigate to="/dashboard" />} />
+        <Route path="dashboard" element={<HomePage />} />
+        <Route path="p" element={<ProjectsLayout />}>
+          <Route index element={<ProjectListPage />} />
+          <Route path=":projectId">
+            <Route index element={<OverviewPage />} />
+            <Route path="announcements" element={<AnnouncementsPage />} />
+            <Route path="resources" element={<ResourcesPage />} />
+            <Route path="settings" element={<ProjectSettingsPage />} />
+            <Route path="b">
+              <Route path=":boardId" element={<BoardPage />} />
             </Route>
           </Route>
-          <Route path="my-tasks" element={<MyTasksPage />} />
-          <Route path="settings" element={<SettingsPage />} />
-          <Route path="*" element={<NotFoundPage />} />
         </Route>
-      ) : (
-        <Route index element={<LoginPage />} />
-      )}
+        <Route path="my-tasks" element={<MyTasksPage />} />
+        <Route path="settings" element={<SettingsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="signup" element={<SignupPage />} />
 

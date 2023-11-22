@@ -6,10 +6,7 @@ const listUsers = async (request: Request, response: Response) => {
   const users = await prisma.user.findMany({
     select: {
       id: true,
-      email: true,
-      username: true,
-      firstName: true,
-      lastName: true,
+      clerkId: true,
     },
   })
   return response.json(users)

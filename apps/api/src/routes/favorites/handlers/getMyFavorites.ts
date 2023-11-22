@@ -1,4 +1,3 @@
-import { User } from "@prisma/client"
 import { Request, Response } from "express"
 import { GetMyFavoritesResponse } from "shared/types/favorites"
 
@@ -6,14 +5,16 @@ import prisma from "@/utils/db"
 import { projectSelect } from "@/utils/selects/projects"
 
 const getMyFavorites = async (
-  req: Request,
+  _req: Request,
   res: Response<GetMyFavoritesResponse>
 ) => {
-  const user = req.user as User
+  const userClerkId = res.locals.userClerkId
 
   const projects = await prisma.userFavoriteProject.findMany({
     where: {
-      userId: user.id,
+      user: {
+        clerkId: userClerkId,
+      },
     },
     select: {
       project: {

@@ -1,5 +1,4 @@
-import { Prisma, Task, User } from "@prisma/client"
-import { Request } from "express"
+import { Prisma, Task } from "@prisma/client"
 
 import prisma from "@/utils/db"
 
@@ -7,10 +6,14 @@ import prisma from "@/utils/db"
 const createTaskActivity = async (
   task: Task,
   body: Partial<Task>,
-  req: Request<any, never, any>
+  userClerkId?: string
 ) => {
-  const user = req.user as User
-
+  const user = await prisma.user.findUnique({
+    where: {
+      clerkId: userClerkId,
+    },
+  })
+  if (!user) throw new Error("User not found")
   const fields = Object.keys(body)
 
   const updates: Prisma.TaskActivityCreateManyInput[] = []

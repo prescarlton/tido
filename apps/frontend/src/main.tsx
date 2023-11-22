@@ -1,5 +1,6 @@
 import "./styles/main.css"
 
+import { ClerkProvider } from "@clerk/clerk-react"
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -47,30 +48,34 @@ const App = () => {
   }, [preferredColorScheme])
   return (
     <React.StrictMode>
-      <ColorSchemeProvider
-        colorScheme={colorScheme}
-        toggleColorScheme={toggleColorScheme}
+      <ClerkProvider
+        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
       >
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-          theme={{ ...theme, colorScheme }}
+        <ColorSchemeProvider
+          colorScheme={colorScheme}
+          toggleColorScheme={toggleColorScheme}
         >
-          <BrowserRouter>
-            <QueryClientProvider client={queryClient}>
-              <AuthProvider>
-                <SpotlightProvider>
-                  <ProjectProvider>
-                    <AppRouter />
-                  </ProjectProvider>
-                </SpotlightProvider>
-              </AuthProvider>
-              <Notifications zIndex={100000} />
-              <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
-          </BrowserRouter>
-        </MantineProvider>
-      </ColorSchemeProvider>
+          <MantineProvider
+            withGlobalStyles
+            withNormalizeCSS
+            theme={{ ...theme, colorScheme }}
+          >
+            <BrowserRouter>
+              <QueryClientProvider client={queryClient}>
+                <AuthProvider>
+                  <SpotlightProvider>
+                    <ProjectProvider>
+                      <AppRouter />
+                    </ProjectProvider>
+                  </SpotlightProvider>
+                </AuthProvider>
+                <Notifications zIndex={100000} />
+                <ReactQueryDevtools initialIsOpen={false} />
+              </QueryClientProvider>
+            </BrowserRouter>
+          </MantineProvider>
+        </ColorSchemeProvider>
+      </ClerkProvider>
     </React.StrictMode>
   )
 }

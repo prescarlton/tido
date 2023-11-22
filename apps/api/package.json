@@ -4,9 +4,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
-    "prisma:migrate": "pnpm prisma migrate dev",
-    "prisma:reset": "pnpm prisma migrate reset",
-    "prisma:generate": "pnpm prisma generate"
+    "db:migrate": "pnpm prisma migrate dev",
+    "db:reset": "pnpm prisma migrate reset",
+    "db:generate": "pnpm prisma generate",
+    "db:push": "pnpm prisma db push"
   },
   "nodemonConfig": {
     "watch": [

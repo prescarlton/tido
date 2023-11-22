@@ -36,16 +36,16 @@ const listTasks = async (
       ],
       ...(tags?.length
         ? {
-          AND: [
-            ...tags.map((tag) => ({
-              tags: {
-                some: {
-                  id: tag,
+            AND: [
+              ...tags.map((tag) => ({
+                tags: {
+                  some: {
+                    id: tag,
+                  },
                 },
-              },
-            })),
-          ],
-        }
+              })),
+            ],
+          }
         : {}),
     },
     orderBy: [

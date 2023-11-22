@@ -1,3 +1,4 @@
+import { useAuth } from "@clerk/clerk-react"
 import {
   Avatar,
   Group,
@@ -10,15 +11,13 @@ import {
 } from "@mantine/core"
 import { IconMoon, IconSun } from "@tabler/icons-react"
 
-import useAuthContext from "@/contexts/AuthContext"
-
 const UserMenu = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
-  const { logout } = useAuthContext()
+  const { signOut } = useAuth()
 
-  const handleLogout = () => {
-    logout()
+  const handleLogout = async () => {
+    await signOut()
   }
 
   return (

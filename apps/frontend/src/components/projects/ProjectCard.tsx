@@ -1,4 +1,5 @@
 import { Box, Card, Text, Title, UnstyledButton } from "@mantine/core"
+import dayjs from "dayjs"
 import { useNavigate } from "react-router-dom"
 import { Project } from "shared/types/projects"
 
@@ -44,7 +45,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <Title size="h3" lineClamp={1}>
             {project.name}
           </Title>
-          <Text color="dimmed">Last updated 2 days ago</Text>
+          <Text color="dimmed">
+            Last updated {dayjs(project.updated).fromNow()}
+          </Text>
         </Box>
 
         <ProjectMembers />

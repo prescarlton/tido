@@ -48,7 +48,11 @@ const updateTask = async (
   })
 
   // once we've updated the task, update the activity log
-  await createTaskActivity(task, { ...req.body, textDescription }, req)
+  await createTaskActivity(
+    task,
+    { ...req.body, textDescription },
+    res.locals.userClerkId
+  )
 
   return res.json({ message: "success", data: updTask })
 }

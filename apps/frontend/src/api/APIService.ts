@@ -1,43 +1,73 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios"
-import { DefaultResponse } from "shared/types/shared"
 
-const ApiBaseUrl = `${import.meta.env.VITE_API_ENDPOINT}`
+import getCookie from "@/util/getCookie"
+
+enum StatusCode {
+  Unauthenticated = 401,
+  Unauthorized = 403,
+  Forbidden = 403,
+  TooManyRequests = 429,
+  InternalServerError = 500,
+}
+
+export interface DefaultResponseData {
+  message?: string
+  data?: object
+}
+
+export interface DefaultError {
+  data?: {
+    error?: string
+  }
+}
+
+const ApiBaseUrl = import.meta.env.VITE_API_ENDPOINT
 
 const instance = axios.create({
   baseURL: ApiBaseUrl,
   withCredentials: true,
+  headers: {
+    "Bypass-Tunnel-Reminder": "true",
+  },
 })
+instance.interceptors.request.use(
+  (config) => {
+    // middleware to add the bearer token to request
+    const token = getCookie("__session")
+    if (config.headers) config.headers.Authorization = token ?? undefined
+    return config
+  },
+  (err) => {
+    return Promise.reject(err)
+  }
+)
 
 instance.interceptors.response.use(
-  (response) => response,
-  (error) => {
+  (response: AxiosResponse) => response,
+  (error: AxiosError) => {
     console.error(error)
     return handleError(error)
   }
 )
 
-// Handle global app errors
-// We can handle generic app errors depending on the status code
 function handleError(error: AxiosError) {
   const { response } = error
 
   switch (response?.status) {
-    case 500: {
+    case StatusCode.InternalServerError: {
       // Handle InternalServerError
       break
     }
-    case 403: {
+    case StatusCode.Forbidden: {
       // Handle Forbidden
       break
     }
-    case 401: {
-      // Handle Unauthorized
-      window.location.href = "/login"
-      localStorage.removeItem("auth")
+    case StatusCode.Unauthenticated: {
+      // Handle Unauth
+      window.location.replace("/login")
       break
     }
-
-    case 429: {
+    case StatusCode.TooManyRequests: {
       // Handle TooManyRequests
       break
     }
@@ -46,47 +76,48 @@ function handleError(error: AxiosError) {
   return Promise.reject(error)
 }
 
-interface ApiServiceProps {
+interface IApiServiceFactory {
   baseURL?: string
-  interceptResponse?: () => AxiosResponse
-  interceptRequest?: () => AxiosRequestConfig
+}
+
+interface ApiService {
+  get: typeof instance.get
+  post: typeof instance.post
+  put: typeof instance.put
+  delete: typeof instance.delete
+  request: typeof instance.request
 }
 
 export function CreateApiService({
   baseURL = "",
-  interceptResponse,
-  interceptRequest,
-}: ApiServiceProps) {
-  if (interceptRequest) {
-    instance.interceptors.request.use(interceptRequest)
-  }
-  if (interceptResponse) {
-    instance.interceptors.response.use(interceptResponse)
-  }
-
+}: IApiServiceFactory): ApiService {
   const buildURL = (url: string) => `${baseURL}${url}`
   return {
-    get: <T = DefaultResponse, R = AxiosResponse<T>>(
+    get: <T = DefaultResponseData, R = AxiosResponse<T>>(
       url: string,
-      config?: AxiosRequestConfig
-    ): Promise<R> => instance.get(buildURL(url), config),
-    post: <T = DefaultResponse, R = AxiosResponse<T>, D = object>(
-      url: string,
-      data?: D,
-      config?: AxiosRequestConfig
-    ): Promise<R> => instance.post(buildURL(url), data, config),
-    put: <T = DefaultResponse, R = AxiosResponse<T>, D = object>(
+      config: AxiosRequestConfig
+    ): Promise<R> => instance.get<T, R>(buildURL(url), config),
+    post: <T = DefaultResponseData, R = AxiosResponse<T>, D = object>(
       url: string,
       data: D,
-      config?: AxiosRequestConfig
-    ): Promise<R> => instance.put(buildURL(url), data, config),
-    delete: <T = DefaultResponse, R = AxiosResponse<T>>(
-      url: string,
-      config?: AxiosRequestConfig
-    ): Promise<R> => instance.delete(buildURL(url), config),
-    request: <T = DefaultResponse, R = AxiosResponse<T>>(
       config: AxiosRequestConfig
-    ): Promise<R> => instance.request(config),
+    ): Promise<R> => instance.post<T, R>(buildURL(url), data, config),
+    put: <T = DefaultResponseData, R = AxiosResponse<T>, D = object>(
+      url: string,
+      data: D,
+      config: AxiosRequestConfig
+    ): Promise<R> => instance.put<T, R>(buildURL(url), data, config),
+    delete: <T = DefaultResponseData, R = AxiosResponse<T>>(
+      url: string,
+      config: AxiosRequestConfig
+    ): Promise<R> => instance.delete<T, R>(buildURL(url), config),
+    request: <T = DefaultResponseData, R = AxiosResponse<T>>(
+      config: AxiosRequestConfig
+    ): Promise<R> =>
+      instance.request<T, R>({
+        url: buildURL(config?.url || ""),
+        ...config,
+      }),
   }
 }
 
