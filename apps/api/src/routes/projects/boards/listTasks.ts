@@ -36,7 +36,7 @@ const listTasks = async (
       ],
       ...(tags?.length
         ? {
-            AND: [
+            OR: [
               ...tags.map((tag) => ({
                 tags: {
                   some: {

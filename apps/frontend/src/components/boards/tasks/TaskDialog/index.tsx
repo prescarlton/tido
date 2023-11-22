@@ -60,7 +60,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     await updateMutation.mutateAsync(data)
     onClose()
   }
-  const toggleEditTitle = () => {}
+  const toggleEditTitle = () => { }
   const handleUpdateTitle = async (e: FocusEvent<HTMLHeadingElement>) => {
     if (e.target.innerHTML)
       await updateMutation.mutateAsync({ name: e.target.innerHTML })
@@ -82,6 +82,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
       styles={{
         overlay: { zIndex: 10000 },
         inner: { zIndex: 10001 },
+        content: { overflow: "visible !important" },
       }}
       size="lg"
     >
