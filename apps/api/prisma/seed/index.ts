@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client"
 
-import projectSeed from './projects'
-import UserSeed from './users'
+import projectSeed from "./projects"
+import UserSeed from "./users"
 
 const prisma = new PrismaClient()
 const seeds: Promise<void>[] = []

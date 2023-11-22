@@ -18,6 +18,7 @@ model User {
   createdTasks     Task[]
   taskActivity     TaskActivity[]
   favoriteProjects UserFavoriteProject[]
+  projectActivity  ProjectActivity[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -45,8 +46,8 @@ model ProjectMember {
   userId    String      @map("user_id")
   role      ProjectRole @default(MEMBER)
 
-  project Project @relation(fields: [projectId], references: [id])
-  user    User    @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -55,13 +56,14 @@ model ProjectMember {
 }
 
 model Project {
-  id          String @id @default(nanoid(8))
+  id          String @id @default(nanoid(12))
   name        String
   description String @default("")
 
   boards        Board[]
   members       ProjectMember[]
   userFavorites UserFavoriteProject[]
+  activity      ProjectActivity[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -70,7 +72,7 @@ model Project {
 }
 
 model Board {
-  id        String @id @default(nanoid(8))
+  id        String @id @default(nanoid(16))
   name      String
   projectId String @map("project_id")
   color     String @default("#03a9f4")
@@ -86,15 +88,6 @@ model Board {
   @@map("boards")
 }
 
-model BoardSettings {
-  id String @id @default(nanoid(24))
-
-  doneStatus   TaskStatus @relation(fields: [taskStatusId], references: [id])
-  taskStatusId String
-
-  @@map("board_settings")
-}
-
 model Task {
   id              String  @id @default(nanoid(24))
   code            Int
@@ -105,7 +98,7 @@ model Task {
   textDescription String? @map("text_description") @db.VarChar(500)
   archived        Boolean @default(false)
   boardId         String  @map("board_id")
-  taskStatusId    String? @map("task_status_id")
+  taskStatusId    Int?    @map("task_status_id")
   createdByUserId String  @map("created_by_user_id")
 
   createdBy    User           @relation(fields: [createdByUserId], references: [id])
@@ -122,10 +115,10 @@ model Task {
 }
 
 model TaskTag {
-  id      String @id @default(nanoid(32))
+  id      Int    @id @default(autoincrement())
   name    String
   color   String
-  boardId String
+  boardId String @map("board_id")
 
   board Board  @relation(fields: [boardId], references: [id])
   tasks Task[]
@@ -134,19 +127,18 @@ model TaskTag {
 }
 
 model TaskStatus {
-  id      String @id @default(nanoid(24))
+  id      Int    @id @default(autoincrement())
   name    String
-  boardId String
+  boardId String @map("board_id")
 
-  board         Board           @relation(fields: [boardId], references: [id])
-  tasks         Task[]
-  BoardSettings BoardSettings[]
+  board Board  @relation(fields: [boardId], references: [id])
+  tasks Task[]
 
   @@map("task_statuses")
 }
 
 model TaskActivity {
-  id String @id @default(nanoid(36))
+  id Int @id @default(autoincrement())
 
   taskId  String  @map("task_id")
   userId  String  @map("user_id")
@@ -163,8 +155,24 @@ model TaskActivity {
   @@map("task_activity")
 }
 
+model ProjectActivity {
+  id Int @id @default(autoincrement())
+
+  projectId String  @map("project_id")
+  userId    String? @map("user_id")
+  message   String
+
+  user    User?   @relation(fields: [userId], references: [id])
+  project Project @relation(fields: [projectId], references: [id])
+
+  created DateTime @default(now())
+  updated DateTime @updatedAt
+
+  @@map("project_activity")
+}
+
 model UserFavoriteProject {
-  id String @id @default(nanoid(48))
+  id Int @id @default(autoincrement())
 
   userId    String @map("user_id")
   projectId String @map("project_id")

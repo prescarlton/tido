@@ -47,7 +47,7 @@ export const RenameBoardSchema = {
 }
 export const UpdateTagSchema = {
   params: CreateTagSchema.params.extend({
-    tagId: z.string().nonempty({ message: "Tag ID is required" }),
+    tagId: z.number({ required_error: "Tag ID is required" }),
   }),
   body: CreateTagSchema.body,
 }

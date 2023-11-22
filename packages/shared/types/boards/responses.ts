@@ -1,5 +1,5 @@
-import { DefaultListResponse, DefaultResponse } from "../shared"
 import { Board, BoardList } from "../boards"
+import { DefaultListResponse, DefaultResponse } from "../shared"
 import { TaskTag } from "../tasks"
 
 export interface BoardListResponse extends DefaultListResponse {

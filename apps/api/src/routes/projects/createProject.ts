@@ -12,7 +12,7 @@ const createProject = async (req: Request, res: Response) => {
       clerkId: res.locals.userClerkId,
     },
   })
-  if (!user) return res.status(400).json({ message: "User not found" })
+  if (!user) return res.status(401).json({ message: "User not found" })
   try {
     const project = await prisma.project.create({
       data: {
@@ -21,6 +21,11 @@ const createProject = async (req: Request, res: Response) => {
           create: {
             userId: user.id,
             role: "ADMIN",
+          },
+        },
+        activity: {
+          create: {
+            message: "Project created",
           },
         },
       },

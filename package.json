@@ -11,7 +11,8 @@
     "db:reset": "pnpm -C apps/api db:reset",
     "db:migrate": "pnpm -C apps/api db:migrate",
     "db:generate": "pnpm -C apps/api db:generate",
-    "db:push": "pnpm -C apps/api db:push"
+    "db:push": "pnpm -C apps/api db:push",
+    "db:seed": "pnpm -C apps/api db:seed"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",

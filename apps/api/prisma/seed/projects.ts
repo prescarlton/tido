@@ -10,10 +10,10 @@ const projectData = [
 ]
 
 const projectSeed = async () => {
-  console.log("Project seed started")
+  console.info("Project seed started")
   const user = await prisma.user.findUnique({
     where: {
-      username: "preston",
+      clerkId: "user_2XxzWEEZr5wbTTOysNMG86gHICf",
     },
   })
   if (!user) {
@@ -31,11 +31,16 @@ const projectSeed = async () => {
             role: "ADMIN",
           },
         },
+        activity: {
+          create: {
+            message: "Project created",
+          },
+        },
       },
     })
-    console.log(`Created project with id: ${project.id}`)
+    console.info(`Created project with id: ${project.id}`)
   }
-  console.log("Project seed finished")
+  console.info("Project seed finished")
 }
 
 export default projectSeed

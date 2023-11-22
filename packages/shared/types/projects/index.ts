@@ -1,3 +1,10 @@
+import { ShortUser } from "../users"
+export interface ProjectMember {
+  id: number
+  role: string
+  user: ShortUser
+}
+
 export interface Project {
   id: string
   name: string
@@ -5,6 +12,15 @@ export interface Project {
   created: Date
   updated: Date
   favorited: boolean
+  members?: ProjectMember[]
+}
+
+export interface ProjectWithActivity extends Project {
+  activity: {
+    id: number
+    message: string
+    created: Date
+  }[]
 }
 
 export interface GeneralProjectSettings {

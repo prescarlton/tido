@@ -11,7 +11,7 @@ const getProjectById = async (req: Request, res: Response) => {
         clerkId: res.locals.userClerkId,
       },
     })
-    if (!user) return res.status(400).json({ message: "User not found" })
+    if (!user) return res.status(401).json({ message: "User not found" })
     const project = await prisma.project.findUnique({
       where: {
         id: projectId,

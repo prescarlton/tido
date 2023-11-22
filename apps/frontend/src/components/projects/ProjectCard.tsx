@@ -1,11 +1,11 @@
 import { Box, Card, Text, Title, UnstyledButton } from "@mantine/core"
 import dayjs from "dayjs"
 import { useNavigate } from "react-router-dom"
-import { Project } from "shared/types/projects"
+import { ProjectWithActivity } from "shared/types/projects"
 
 import ProjectMembers from "./ProjectMembers"
 
-const ProjectCard = ({ project }: { project: Project }) => {
+const ProjectCard = ({ project }: { project: ProjectWithActivity }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
@@ -46,11 +46,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
             {project.name}
           </Title>
           <Text color="dimmed">
-            Last updated {dayjs(project.updated).fromNow()}
+            Last updated {dayjs(project.activity[0].created).fromNow()}
           </Text>
         </Box>
 
-        <ProjectMembers />
+        <ProjectMembers members={project.members} />
       </UnstyledButton>
     </Card>
   )

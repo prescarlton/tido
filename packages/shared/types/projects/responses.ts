@@ -1,8 +1,8 @@
-import { GeneralProjectSettings, Project } from "."
 import { DefaultListResponse, DefaultResponse } from "../shared"
+import { GeneralProjectSettings, Project, ProjectWithActivity } from "."
 
 export interface ProjectListResponse extends DefaultListResponse {
-  data: Project[]
+  data: ProjectWithActivity[]
 }
 
 export interface GetProjectResponse extends DefaultResponse {

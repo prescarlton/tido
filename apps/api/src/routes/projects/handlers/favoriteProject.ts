@@ -12,7 +12,7 @@ const favoriteProject = async (req: FavoriteProjectRequest, res: Response) => {
       clerkId: userClerkId,
     },
   })
-  if (!user) return res.status(400).json({ message: "User not found" })
+  if (!user) return res.status(401).json({ message: "User not found" })
   const userId = user.id
   // make sure project exists first and that the user is a member of it
   const project = await prisma.project.findFirst({

@@ -7,7 +7,8 @@
     "db:migrate": "pnpm prisma migrate dev",
     "db:reset": "pnpm prisma migrate reset",
     "db:generate": "pnpm prisma generate",
-    "db:push": "pnpm prisma db push"
+    "db:push": "pnpm prisma db push",
+    "db:seed": "pnpm prisma db seed"
   },
   "nodemonConfig": {
     "watch": [

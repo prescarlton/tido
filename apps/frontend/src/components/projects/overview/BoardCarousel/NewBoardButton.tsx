@@ -32,6 +32,7 @@ const NewBoardButton = () => {
       }}
       closeOnItemClick={false}
       width={300}
+      position="bottom-start"
     >
       <Menu.Target>
         <Card

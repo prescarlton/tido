@@ -39,9 +39,10 @@ const createTaskActivity = async (
         newVal = body["textDescription"] || ""
         break
       case "taskStatusId":
+        // TODO: update this with the actual task status words
         message = "Updated this task's status"
-        oldVal = task.taskStatusId
-        newVal = task.taskStatusId
+        oldVal = task.taskStatusId?.toString() || null
+        newVal = task.taskStatusId?.toString() || null
         break
       default:
         continue

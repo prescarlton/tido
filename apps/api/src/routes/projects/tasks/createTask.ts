@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import { CreateTaskBody, CreateTaskParams } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
+import createProjectActivity from "@/utils/projects/createProjectActivity"
 
 const createTask = async (
   req: Request<CreateTaskParams, never, CreateTaskBody>,
@@ -9,7 +10,7 @@ const createTask = async (
 ) => {
   const { boardId } = req.params
   const { name } = req.body
-  const userClerkId = res.locals.userClerkId
+  const userClerkId = res.locals.userClerkId as string
 
   // find out what the highest task code is in this project
   const project = await prisma.project.findFirst({
@@ -41,7 +42,7 @@ const createTask = async (
       clerkId: userClerkId,
     },
   })
-  if (!user) return res.status(400).json({ message: "User not found" })
+  if (!user) return res.status(401).json({ message: "User not found" })
   const task = await prisma.task.create({
     data: {
       boardId,
@@ -50,7 +51,12 @@ const createTask = async (
       code: code + 1,
     },
   })
-
+  // once the task has been created, update the project
+  await createProjectActivity(
+    project.id,
+    userClerkId,
+    `Created a task: ${task.name}`
+  )
   return res.json({ message: "Task created successfully", data: task })
 }
 

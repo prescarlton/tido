@@ -53,7 +53,7 @@ export const UpdateTaskRequestSchema = {
 export const UpdateTaskTagsSchema = {
   params: GetTaskRequestSchema.params,
   body: z.object({
-    tags: z.array(z.string()),
+    tags: z.array(z.number()),
   }),
 }
 

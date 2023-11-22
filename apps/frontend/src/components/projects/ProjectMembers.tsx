@@ -1,26 +1,19 @@
 import { Avatar } from "@mantine/core"
+import { Project } from "shared/types/projects"
 
-const ProjectMembers = () => {
-  const members = [
-    {
-      name: "John Doe",
-      avatar: "https://i.pravatar.cc/64?img=13",
-    },
-    {
-      name: "Jane Doe",
-      avatar: "https://i.pravatar.cc/64?img=2",
-    },
-    {
-      name: "John Smith",
-      avatar: "https://i.pravatar.cc/64?img=65",
-    },
-  ]
+interface IProjectMembers {
+  members: Project["members"]
+}
+
+const ProjectMembers = ({ members }: IProjectMembers) => {
   return (
     <Avatar.Group spacing="sm">
-      {members.map((member) => (
-        <Avatar key={member.name} src={member.avatar} radius="xl" />
+      {members?.map((member) => (
+        <Avatar key={member.id} radius="xl">
+          {member.user.firstName[0]}
+          {member.user.lastName[0]}
+        </Avatar>
       ))}
-      <Avatar radius="xl">+5</Avatar>
     </Avatar.Group>
   )
 }
