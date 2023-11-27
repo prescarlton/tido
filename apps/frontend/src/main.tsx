@@ -5,15 +5,16 @@ import {
   ColorSchemeProvider,
   MantineProvider,
 } from "@mantine/core"
-import { useColorScheme } from "@mantine/hooks"
+import { useColorScheme, useLocalStorage } from "@mantine/hooks"
 import { Notifications } from "@mantine/notifications"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
+import { ColorSchemeScript } from '@mantine/core'
 
 import theme from "@/theme"
 
@@ -36,8 +37,11 @@ dayjs.extend(relativeTime)
 
 const App = () => {
   const preferredColorScheme = useColorScheme()
-  const [colorScheme, setColorScheme] =
-    useState<ColorScheme>(preferredColorScheme)
+
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: "color-scheme",
+    defaultValue: preferredColorScheme,
+  })
 
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
@@ -49,6 +53,7 @@ const App = () => {
 
   return (
     <React.StrictMode>
+      <ColorSchemeScript />
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
@@ -71,7 +76,7 @@ const App = () => {
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
           </BrowserRouter>
-        </MantineProvider>
+        </Colo>
       </ColorSchemeProvider>
     </React.StrictMode>
   )
