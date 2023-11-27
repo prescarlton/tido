@@ -14,7 +14,6 @@ import relativeTime from "dayjs/plugin/relativeTime"
 import React, { useEffect } from "react"
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import { ColorSchemeScript } from '@mantine/core'
 
 import theme from "@/theme"
 
@@ -53,7 +52,6 @@ const App = () => {
 
   return (
     <React.StrictMode>
-      <ColorSchemeScript />
       <ColorSchemeProvider
         colorScheme={colorScheme}
         toggleColorScheme={toggleColorScheme}
@@ -76,7 +74,7 @@ const App = () => {
               <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
           </BrowserRouter>
-        </Colo>
+        </MantineProvider>
       </ColorSchemeProvider>
     </React.StrictMode>
   )
