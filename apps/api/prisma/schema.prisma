@@ -8,10 +8,13 @@ datasource db {
 }
 
 model User {
-  id        String @id @default(nanoid(16))
-  clerkId   String @unique() @default("") @map("clerk_id")
-  firstName String @default("") @map("first_name")
-  lastName  String @default("") @map("last_name")
+  id String @id @default(nanoid(16))
+
+  username  String  @unique
+  email     String? @unique
+  firstName String? @map("first_name")
+  lastName  String? @map("last_name")
+  password  String? @default("")
 
   projects         ProjectMember[]
   tasks            UserTask[]
@@ -24,6 +27,16 @@ model User {
   updated DateTime @updatedAt
 
   @@map("users")
+}
+
+model Session {
+  id String @id
+
+  sid       String   @unique
+  data      String   @db.Text
+  expiresAt DateTime @map("expires_at")
+
+  @@map("sessions")
 }
 
 model UserTask {

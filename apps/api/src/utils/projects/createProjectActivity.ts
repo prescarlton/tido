@@ -2,13 +2,13 @@ import prisma from "../db"
 
 const createProjectActivity = async (
   projectId: string,
-  userClerkId: string,
+  userId: string,
   message: string
 ) => {
   // make sure the user exists first
   const user = await prisma.user.findUnique({
     where: {
-      clerkId: userClerkId,
+      id: userId,
     },
   })
   if (!user) throw new Error("User not found")

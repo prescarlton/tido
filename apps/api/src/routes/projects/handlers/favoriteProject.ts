@@ -1,3 +1,4 @@
+import { User } from "@prisma/client"
 import { Response } from "express"
 import { FavoriteProjectRequest } from "shared/types/favorites"
 
@@ -6,12 +7,7 @@ import prisma from "@/utils/db"
 const favoriteProject = async (req: FavoriteProjectRequest, res: Response) => {
   const { projectId } = req.params
   const { favorite } = req.body
-  const userClerkId = res.locals.userClerkId
-  const user = await prisma.user.findUnique({
-    where: {
-      clerkId: userClerkId,
-    },
-  })
+  const user = req.user as User
   if (!user) return res.status(401).json({ message: "User not found" })
   const userId = user.id
   // make sure project exists first and that the user is a member of it

@@ -1,3 +1,4 @@
+import { User } from "@prisma/client"
 import { Request, Response } from "express"
 import {
   GetTaskByIdResponse,
@@ -17,6 +18,8 @@ const updateTask = async (
 ) => {
   const { taskId } = req.params
   const { name, rawDescription } = req.body
+  const user = req.user as User
+  const userId = user.id
 
   const task = await prisma.task.findUnique({
     where: {
@@ -48,11 +51,7 @@ const updateTask = async (
   })
 
   // once we've updated the task, update the activity log
-  await createTaskActivity(
-    task,
-    { ...req.body, textDescription },
-    res.locals.userClerkId
-  )
+  await createTaskActivity(task, { ...req.body, textDescription }, userId)
 
   return res.json({ message: "success", data: updTask })
 }

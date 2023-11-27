@@ -1,4 +1,3 @@
-import { useAuth } from "@clerk/clerk-react"
 import {
   Avatar,
   Group,
@@ -10,14 +9,22 @@ import {
   useMantineTheme,
 } from "@mantine/core"
 import { IconMoon, IconSun } from "@tabler/icons-react"
+import { useNavigate } from "react-router-dom"
+
+import useAuthContext from "@/contexts/AuthContext"
+import useGetMe from "@/hooks/api/auth/useGetMe"
 
 const UserMenu = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const theme = useMantineTheme()
-  const { signOut } = useAuth()
+  const { logoutMutation } = useAuthContext()
+  const navigate = useNavigate()
+  const { data: me } = useGetMe()
 
   const handleLogout = async () => {
-    await signOut()
+    await logoutMutation.mutateAsync({}).finally(() => {
+      navigate("/login")
+    })
   }
 
   return (
@@ -42,9 +49,13 @@ const UserMenu = () => {
           <Group spacing="sm" dir="row">
             <Avatar radius="sm" size="md" color="primary" />
             <Stack spacing={0}>
-              <Text size="xs">Preston Carlton</Text>
+              {me?.firstName && (
+                <Text size="xs">
+                  {me.firstName} {me.lastName}
+                </Text>
+              )}
               <Text size="xs" c="dimmed">
-                preston
+                {me?.username}
               </Text>
             </Stack>
           </Group>

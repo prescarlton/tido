@@ -38,14 +38,14 @@ const listTasks = async (
       ],
       ...(tags?.length
         ? {
-            tags: {
-              some: {
-                id: {
-                  in: tags,
-                },
+          tags: {
+            some: {
+              id: {
+                in: tags,
               },
             },
-          }
+          },
+        }
         : {}),
     },
     orderBy: [

@@ -1,6 +1,5 @@
 import "./styles/main.css"
 
-import { ClerkProvider } from "@clerk/clerk-react"
 import {
   ColorScheme,
   ColorSchemeProvider,
@@ -39,6 +38,7 @@ const App = () => {
   const preferredColorScheme = useColorScheme()
   const [colorScheme, setColorScheme] =
     useState<ColorScheme>(preferredColorScheme)
+
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"))
 
@@ -46,36 +46,33 @@ const App = () => {
   useEffect(() => {
     setColorScheme(preferredColorScheme)
   }, [preferredColorScheme])
+
   return (
     <React.StrictMode>
-      <ClerkProvider
-        publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
+      <ColorSchemeProvider
+        colorScheme={colorScheme}
+        toggleColorScheme={toggleColorScheme}
       >
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ ...theme, colorScheme }}
         >
-          <MantineProvider
-            withGlobalStyles
-            withNormalizeCSS
-            theme={{ ...theme, colorScheme }}
-          >
-            <BrowserRouter>
-              <QueryClientProvider client={queryClient}>
-                <AuthProvider>
-                  <SpotlightProvider>
-                    <ProjectProvider>
-                      <AppRouter />
-                    </ProjectProvider>
-                  </SpotlightProvider>
-                </AuthProvider>
-                <Notifications zIndex={100000} />
-                <ReactQueryDevtools initialIsOpen={false} />
-              </QueryClientProvider>
-            </BrowserRouter>
-          </MantineProvider>
-        </ColorSchemeProvider>
-      </ClerkProvider>
+          <BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+              <AuthProvider>
+                <SpotlightProvider>
+                  <ProjectProvider>
+                    <AppRouter />
+                  </ProjectProvider>
+                </SpotlightProvider>
+              </AuthProvider>
+              <Notifications zIndex={100000} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+          </BrowserRouter>
+        </MantineProvider>
+      </ColorSchemeProvider>
     </React.StrictMode>
   )
 }

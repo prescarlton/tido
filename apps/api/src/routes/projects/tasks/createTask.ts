@@ -1,3 +1,4 @@
+import { User } from "@prisma/client"
 import { Request, Response } from "express"
 import { CreateTaskBody, CreateTaskParams } from "shared/types/tasks"
 
@@ -10,7 +11,7 @@ const createTask = async (
 ) => {
   const { boardId } = req.params
   const { name } = req.body
-  const userClerkId = res.locals.userClerkId as string
+  const user = req.user as User
 
   // find out what the highest task code is in this project
   const project = await prisma.project.findFirst({
@@ -37,12 +38,6 @@ const createTask = async (
 
   // if no task was found, this is the first task. code can be 1
   const code = highestTask?.code || 0
-  const user = await prisma.user.findUnique({
-    where: {
-      clerkId: userClerkId,
-    },
-  })
-  if (!user) return res.status(401).json({ message: "User not found" })
   const task = await prisma.task.create({
     data: {
       boardId,
@@ -54,7 +49,7 @@ const createTask = async (
   // once the task has been created, update the project
   await createProjectActivity(
     project.id,
-    userClerkId,
+    user.id,
     `Created a task: ${task.name}`
   )
   return res.json({ message: "Task created successfully", data: task })

@@ -13,7 +13,7 @@ const projectSeed = async () => {
   console.info("Project seed started")
   const user = await prisma.user.findUnique({
     where: {
-      clerkId: "user_2XxzWEEZr5wbTTOysNMG86gHICf",
+      username: "preston",
     },
   })
   if (!user) {

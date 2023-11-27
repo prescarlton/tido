@@ -6,11 +6,11 @@ import prisma from "@/utils/db"
 const createTaskActivity = async (
   task: Task,
   body: Partial<Task>,
-  userClerkId?: string
+  userId: string
 ) => {
   const user = await prisma.user.findUnique({
     where: {
-      clerkId: userClerkId,
+      id: userId,
     },
   })
   if (!user) throw new Error("User not found")

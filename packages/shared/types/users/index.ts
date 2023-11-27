@@ -1,6 +1,6 @@
 export interface ShortUser {
   id: string
-  firstName: string
-  lastName: string
-  clerkId: string
+  firstName: string | null
+  lastName: string | null
+  username: string
 }

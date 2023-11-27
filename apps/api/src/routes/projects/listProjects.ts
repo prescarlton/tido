@@ -1,12 +1,13 @@
+import { User } from "@prisma/client"
 import { Request, Response } from "express"
 
 import prisma from "@/utils/db"
 import errorHandler from "@/utils/errorHandler"
 import { userSelect } from "@/utils/selects/users"
 
-const listProjects = async (_req: Request, res: Response) => {
+const listProjects = async (req: Request, res: Response) => {
   try {
-    const userClerkId = res.locals.userClerkId
+    const user = req.user as User
     const projects = await prisma.project.findMany({
       include: {
         members: {
@@ -26,9 +27,7 @@ const listProjects = async (_req: Request, res: Response) => {
       where: {
         members: {
           some: {
-            user: {
-              clerkId: userClerkId,
-            },
+            userId: user.id,
           },
         },
       },

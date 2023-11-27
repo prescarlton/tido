@@ -1,3 +1,4 @@
+import { User } from "@prisma/client"
 import { Request, Response } from "express"
 
 import prisma from "@/utils/db"
@@ -6,12 +7,7 @@ import errorHandler from "@/utils/errorHandler"
 const getProjectById = async (req: Request, res: Response) => {
   try {
     const { projectId } = req.params as { projectId: string }
-    const user = await prisma.user.findUnique({
-      where: {
-        clerkId: res.locals.userClerkId,
-      },
-    })
-    if (!user) return res.status(401).json({ message: "User not found" })
+    const user = req.user as User
     const project = await prisma.project.findUnique({
       where: {
         id: projectId,

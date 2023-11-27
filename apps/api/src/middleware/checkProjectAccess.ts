@@ -1,3 +1,4 @@
+import { User } from "@prisma/client"
 import { NextFunction, Request, Response } from "express"
 
 import prisma from "@/utils/db"
@@ -10,7 +11,7 @@ const checkProjectAccess = async (
 ) => {
   try {
     const { projectId } = req.params as { projectId: string }
-    const userClerkId = res.locals.userClerkId
+    const user = req.user as User
 
     const project = await prisma.project.findUnique({
       where: {
@@ -19,12 +20,7 @@ const checkProjectAccess = async (
       select: {
         members: {
           select: {
-            user: {
-              select: {
-                clerkId: true,
-              },
-            },
-            projectId: true,
+            userId: true,
           },
         },
       },
@@ -37,12 +33,10 @@ const checkProjectAccess = async (
     }
 
     // Check if user is a member of the project, if not, return 403
-    const isMember = project.members.some(
-      (member) => member.user.clerkId === userClerkId
-    )
+    const isMember = project.members.some((member) => member.userId === user.id)
     if (!isMember) {
-      return res.status(403).json({
-        message: "You do not have access to this project",
+      return res.status(404).json({
+        message: "Project not found",
       })
     }
 
