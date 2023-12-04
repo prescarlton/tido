@@ -71,7 +71,10 @@ const App = () => {
                 </SpotlightProvider>
               </AuthProvider>
               <Notifications zIndex={100000} />
-              <ReactQueryDevtools initialIsOpen={false} />
+              <ReactQueryDevtools
+                initialIsOpen={false}
+                position="bottom-right"
+              />
             </QueryClientProvider>
           </BrowserRouter>
         </MantineProvider>

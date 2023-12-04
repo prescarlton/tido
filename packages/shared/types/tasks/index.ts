@@ -8,6 +8,13 @@ export interface Task {
   createdBy: ShortUser
   code: number
   tags: TaskTag[]
+  status: TaskStatus
+}
+
+export interface TaskStatus {
+  id: number
+  name: string
+  color: string
 }
 
 export interface TaskTag {

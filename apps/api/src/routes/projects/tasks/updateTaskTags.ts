@@ -6,7 +6,7 @@ import {
 } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
-import { taskTagSelect } from "@/utils/selects/tasks"
+import { taskInclude, taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
 
 const updateTaskTags = async (
@@ -34,14 +34,7 @@ const updateTaskTags = async (
         set: tags.map((tag) => ({ id: tag })),
       },
     },
-    include: {
-      tags: {
-        select: taskTagSelect,
-      },
-      createdBy: {
-        select: userSelect,
-      },
-    },
+    include: taskInclude,
   })
 
   return res.json({ message: "success", data: updTask })

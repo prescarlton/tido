@@ -23,7 +23,7 @@ interface IListTags {
 
 const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
   const [taskTags, setTaskTags] = useDebouncedState<string[]>(
-    startingTags.map((tag) => tag.id),
+    startingTags.map((tag) => tag.id.toString()),
     750
   )
   const { boardId, projectId } = useParams() as {
@@ -43,7 +43,7 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
   }
 
   useDidUpdate(() => {
-    updateMutation.mutate({ tags: taskTags })
+    updateMutation.mutate({ tags: taskTags.map((tag) => Number(tag)) })
   }, [taskTags])
 
   return (
@@ -53,7 +53,7 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
           {tags?.map((tag) => (
             <Checkbox
               key={tag.id}
-              value={tag.id}
+              value={tag.id.toString()}
               label={
                 <Tooltip label={tag.name}>
                   <Flex align="center" gap="xxs">
@@ -72,6 +72,9 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
                 },
                 label: {
                   paddingLeft: theme.spacing.xxs,
+                },
+                input: {
+                  cursor: "pointer",
                 },
               })}
             />

@@ -60,9 +60,18 @@ const SidebarFavorites = () => {
             paddingBottom: theme.spacing.md,
           })}
         >
-          {favorites?.projects.map((project) => (
-            <SidebarProjectItem key={project.id} project={project as Project} />
-          ))}
+          {favorites?.projects.length ? (
+            favorites.projects.map((project) => (
+              <SidebarProjectItem
+                key={project.id}
+                project={project as Project}
+              />
+            ))
+          ) : (
+            <Text size="xs" sx={{ alignSelf: "center" }}>
+              You have no favorites.
+            </Text>
+          )}
         </Flex>
       </Collapse>
     </Navbar.Section>

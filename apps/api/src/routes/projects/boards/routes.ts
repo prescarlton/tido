@@ -19,6 +19,7 @@ import createBoard from "./createBoard"
 import deleteBoard from "./deleteBoard"
 import getBoardById from "./getBoardById"
 import listBoards from "./listBoards"
+import listTaskStatuses from "./listTaskStatuses"
 
 const BoardRouter: Router = Router({ mergeParams: true })
 
@@ -31,6 +32,11 @@ BoardRouter.get(
   "/:id/tags",
   processRequest(GetBoardByIdRequestSchema),
   listTags
+)
+BoardRouter.get(
+  "/:id/statuses",
+  processRequest(GetBoardByIdRequestSchema),
+  listTaskStatuses
 )
 
 // post

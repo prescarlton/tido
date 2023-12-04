@@ -21,24 +21,11 @@ const BoardPage = () => {
           display: "flex",
           flexDirection: "column",
           flex: 1,
+          overflow: "hidden",
         }}
       >
         <BoardPageHeader tab={tab} setTab={setTab} />
-        <Box
-          sx={(theme) => ({
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            minHeight: 0,
-            overflow: "auto",
-            backgroundColor:
-              theme.colorScheme === "dark"
-                ? theme.colors.dark[6]
-                : theme.colors.gray[0],
-          })}
-        >
-          <BoardPageContent projectId={projectId} boardId={boardId} tab={tab} />
-        </Box>
+        <BoardPageContent projectId={projectId} boardId={boardId} tab={tab} />
       </Box>
     </BoardProvider>
   )

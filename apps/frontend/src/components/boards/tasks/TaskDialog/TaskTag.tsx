@@ -3,10 +3,11 @@ import { TaskTag as TaskTagType } from "shared/types/tasks"
 
 interface ITaskTag {
   tag: TaskTagType
+  compact?: boolean
   grow?: boolean
 }
 
-const TaskTag = ({ tag, grow = false }: ITaskTag) => {
+const TaskTag = ({ tag, grow = false, compact = false }: ITaskTag) => {
   return (
     <Box
       className="taskTag"
@@ -16,7 +17,7 @@ const TaskTag = ({ tag, grow = false }: ITaskTag) => {
           color: tag.color,
         }).background,
         borderRadius: theme.radius.sm,
-        height: 32,
+        height: compact ? 20 : 32,
         display: "flex",
         alignItems: "center",
         ...(grow && { flex: 1 }),

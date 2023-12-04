@@ -13,7 +13,6 @@ import { FocusEvent, useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import {
   Task,
-  TaskDetails,
   UpdateTaskBody,
   UpdateTaskRequestSchema,
 } from "shared/types/tasks"
@@ -36,10 +35,11 @@ interface ITaskDialog {
 
 const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
   const { projectId, boardId } = useProjectContext()
-  const formMethods = useForm<TaskDetails>({
+  const formMethods = useForm<UpdateTaskBody>({
     defaultValues: {
       name: task.name,
       rawDescription: "",
+      status: task.status.id,
     },
     resolver: zodResolver(UpdateTaskRequestSchema.body),
   })
@@ -60,7 +60,6 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     await updateMutation.mutateAsync(data)
     onClose()
   }
-  const toggleEditTitle = () => { }
   const handleUpdateTitle = async (e: FocusEvent<HTMLHeadingElement>) => {
     if (e.target.innerHTML)
       await updateMutation.mutateAsync({ name: e.target.innerHTML })
@@ -70,7 +69,8 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     if (taskDetails)
       reset({
         name: taskDetails.name,
-        rawDescription: taskDetails.rawDescription,
+        rawDescription: taskDetails.rawDescription || "",
+        status: task.status.id,
       })
   }, [taskDetails])
 
@@ -98,7 +98,6 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
                   size="h2"
                   contentEditable
                   suppressContentEditableWarning
-                  onClick={toggleEditTitle}
                   onBlur={handleUpdateTitle}
                 >
                   {task.name}
@@ -114,17 +113,11 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
           <Flex direction="column" gap="xl">
             <Stack spacing="md">
               <TaskMembers />
-              <TaskStatus task={task} />
+              <TaskStatus status={task?.status} />
               <TaskTags task={taskDetails} />
               <TaskCreator creator={task?.createdBy} />
             </Stack>
             <AdditionalTaskTabs taskId={task.id} />
-            {/*
-            <Stack spacing="md">
-              <TaskDescription onSubmit={onSubmit} />
-              <TaskActivity taskId={task.id} />
-            </Stack>
-              */}
           </Flex>
         </FormProvider>
 

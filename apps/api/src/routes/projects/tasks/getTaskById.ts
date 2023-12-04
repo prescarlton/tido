@@ -3,8 +3,7 @@ import { GetByIdParams } from "shared/types/shared"
 import { GetTaskByIdResponse } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
-import { taskTagSelect } from "@/utils/selects/tasks"
-import { userSelect } from "@/utils/selects/users"
+import { taskDetailsInclude } from "@/utils/selects/tasks"
 
 const getTaskById = async (
   req: Request<GetByIdParams>,
@@ -15,15 +14,7 @@ const getTaskById = async (
     where: {
       id,
     },
-    include: {
-      createdBy: {
-        select: userSelect,
-      },
-      tags: {
-        select: taskTagSelect,
-      },
-      taskActivity: true,
-    },
+    include: taskDetailsInclude,
   })
   if (!task) return res.status(404).json({ message: "Task not found" })
 

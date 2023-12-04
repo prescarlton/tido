@@ -32,7 +32,7 @@ const BoardViewSort = () => {
           </Button>
         </Tooltip>
       </Popover.Target>
-      <Popover.Dropdown>
+      <Popover.Dropdown styles={{ zIndex: 100000000 }}>
         <Group>
           <Select
             label="Sort By"

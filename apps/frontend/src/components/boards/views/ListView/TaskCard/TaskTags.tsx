@@ -5,9 +5,10 @@ import TaskTag from "@/components/boards/tasks/TaskDialog/TaskTag"
 
 interface ITaskTags {
   task: Task
+  compact?: boolean
 }
 
-const TaskTags = ({ task }: ITaskTags) => {
+const TaskTags = ({ task, compact = false }: ITaskTags) => {
   // if there's no tags, just return nothing
   if (!task.tags.length) return null
   // only want to display the first two tags and truncate the rest to (+X)
@@ -16,7 +17,7 @@ const TaskTags = ({ task }: ITaskTags) => {
   return (
     <Group spacing="xs" sx={{ flexWrap: "nowrap" }}>
       {firstTwo.map((tag) => (
-        <TaskTag key={tag.id} tag={tag} />
+        <TaskTag key={tag.id} tag={tag} compact={compact} />
       ))}
       {task.tags.length > 2 && (
         <Tooltip

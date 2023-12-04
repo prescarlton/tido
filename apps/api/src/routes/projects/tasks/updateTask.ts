@@ -7,8 +7,7 @@ import {
 } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
-import { taskTagSelect } from "@/utils/selects/tasks"
-import { userSelect } from "@/utils/selects/users"
+import { taskInclude } from "@/utils/selects/tasks"
 import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"
 import createTaskActivity from "@/utils/tasks/createTaskActivity"
 
@@ -40,14 +39,7 @@ const updateTask = async (
       rawDescription,
       textDescription,
     },
-    include: {
-      createdBy: {
-        select: userSelect,
-      },
-      tags: {
-        select: taskTagSelect,
-      },
-    },
+    include: taskInclude,
   })
 
   // once we've updated the task, update the activity log

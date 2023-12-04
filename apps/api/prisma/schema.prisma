@@ -111,15 +111,15 @@ model Task {
   textDescription String? @map("text_description") @db.VarChar(500)
   archived        Boolean @default(false)
   boardId         String  @map("board_id")
-  taskStatusId    Int?    @map("task_status_id")
+  taskStatusId    Int     @map("task_status_id")
   createdByUserId String  @map("created_by_user_id")
 
-  createdBy    User           @relation(fields: [createdByUserId], references: [id])
-  board        Board          @relation(fields: [boardId], references: [id])
-  users        UserTask[]
-  status       TaskStatus?    @relation(fields: [taskStatusId], references: [id])
-  tags         TaskTag[]
-  taskActivity TaskActivity[]
+  createdBy User           @relation(fields: [createdByUserId], references: [id])
+  board     Board          @relation(fields: [boardId], references: [id])
+  users     UserTask[]
+  status    TaskStatus     @relation(fields: [taskStatusId], references: [id])
+  tags      TaskTag[]
+  activity  TaskActivity[]
 
   updated DateTime @updatedAt
   created DateTime @default(now())
@@ -142,7 +142,9 @@ model TaskTag {
 model TaskStatus {
   id      Int    @id @default(autoincrement())
   name    String
+  color   String
   boardId String @map("board_id")
+  order   Int    @default(1)
 
   board Board  @relation(fields: [boardId], references: [id])
   tasks Task[]

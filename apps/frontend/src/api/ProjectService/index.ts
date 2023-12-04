@@ -1,4 +1,8 @@
 import {
+  GetBoardByIdParams,
+  ListTaskStatusesResponse,
+} from "shared/types/boards"
+import {
   FavoriteProjectRequestBody,
   FavoriteProjectRequestParms,
 } from "shared/types/favorites"
@@ -17,5 +21,10 @@ export const createProject = (data: CreateProjectRequest) =>
 export const favoriteProject = (
   data: FavoriteProjectRequestBody & FavoriteProjectRequestParms
 ) => ProjectService.put(`/${data.projectId}/favorite`, data)
+
+export const listTaskStatuses = (data: GetBoardByIdParams) =>
+  ProjectService.get<ListTaskStatusesResponse>(
+    `/${data.projectId}/boards/${data.id}/statuses`
+  )
 
 export * from "./constants"

@@ -35,6 +35,21 @@ const createTask = async (
       code: "desc",
     },
   })
+  // find what the status of the task should be
+  const defaultStatus = await prisma.taskStatus.findFirst({
+    where: {
+      boardId,
+    },
+    select: { id: true },
+    orderBy: {
+      order: "asc",
+    },
+    take: 1,
+  })
+  if (!defaultStatus)
+    return res
+      .status(400)
+      .json({ message: "Your board does not have any valid statuses" })
 
   // if no task was found, this is the first task. code can be 1
   const code = highestTask?.code || 0
@@ -44,6 +59,7 @@ const createTask = async (
       name,
       createdByUserId: user.id,
       code: code + 1,
+      taskStatusId: defaultStatus.id,
     },
   })
   // once the task has been created, update the project

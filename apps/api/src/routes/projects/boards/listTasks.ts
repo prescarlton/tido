@@ -6,8 +6,7 @@ import {
 } from "shared/types/tasks/index"
 
 import prisma from "@/utils/db"
-import { taskTagSelect } from "@/utils/selects/tasks"
-import { userSelect } from "@/utils/selects/users"
+import { taskInclude } from "@/utils/selects/tasks"
 
 const listTasks = async (
   req: Request<ListTasksParams, never, never, ListTasksQuery>,
@@ -38,14 +37,14 @@ const listTasks = async (
       ],
       ...(tags?.length
         ? {
-          tags: {
-            some: {
-              id: {
-                in: tags,
+            tags: {
+              some: {
+                id: {
+                  in: tags,
+                },
               },
             },
-          },
-        }
+          }
         : {}),
     },
     orderBy: [
@@ -56,14 +55,7 @@ const listTasks = async (
         [sortColumn || "updated"]: sortDir || "desc",
       },
     ],
-    include: {
-      createdBy: {
-        select: userSelect,
-      },
-      tags: {
-        select: taskTagSelect,
-      },
-    },
+    include: taskInclude,
   })
 
   return res.json({ data: tasks })

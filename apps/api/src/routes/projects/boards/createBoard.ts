@@ -3,6 +3,7 @@ import { CreateBoardBody, CreateBoardParams } from "shared/types/boards"
 
 import prisma from "@/utils/db"
 import errorHandler from "@/utils/errorHandler"
+import { defaultTaskStatuses } from "@/utils/tasks/defaultTaskStatuses"
 
 const createBoard = async (
   req: Request<CreateBoardParams, never, CreateBoardBody, never>,
@@ -35,6 +36,15 @@ const createBoard = async (
         id: true,
         name: true,
       },
+    })
+    // once board is created, give it some default statuses as well
+    await prisma.taskStatus.createMany({
+      data: defaultTaskStatuses.map((stat) => ({
+        name: stat.name,
+        color: stat.color,
+        order: stat.order,
+        boardId: board.id,
+      })),
     })
 
     return res.json({
