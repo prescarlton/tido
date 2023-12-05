@@ -1,7 +1,7 @@
 import { MantineThemeOverride } from "@mantine/core"
 
 const theme: MantineThemeOverride = {
-  primaryColor: "yellow",
+  primaryColor: "indigo",
   // fontFamily: "Greycliff CF, sans-serif",
   headings: {},
   spacing: {

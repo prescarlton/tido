@@ -8,6 +8,7 @@ const AddTaskButton = () => {
         paddingLeft: theme.spacing.xs,
         height: 32,
         minHeight: 32,
+        width: 250,
         fontWeight: 600,
         transition: ".1s all ease-in-out",
         "&:hover": {

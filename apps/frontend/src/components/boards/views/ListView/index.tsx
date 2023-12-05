@@ -10,7 +10,7 @@ const BoardListView = ({ tasks }: IBoardView) => {
   const incompleteTasks = tasks.filter((task) => !task.complete)
   return (
     <BoardViewLayout tasks={tasks}>
-      <Stack spacing="md" p="sm">
+      <Stack spacing="md" p="sm" sx={{ overflowY: "auto" }}>
         <Stack spacing="xs">
           {incompleteTasks.map((task) => (
             <TaskCard key={task.id} task={task} />

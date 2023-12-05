@@ -181,6 +181,12 @@ importers:
       '@dnd-kit/core':
         specifier: ^6.1.0
         version: 6.1.0(react-dom@18.2.0)(react@18.2.0)
+      '@dnd-kit/sortable':
+        specifier: ^8.0.0
+        version: 8.0.0(@dnd-kit/core@6.1.0)(react@18.2.0)
+      '@dnd-kit/utilities':
+        specifier: ^3.2.2
+        version: 3.2.2(react@18.2.0)
       '@emotion/react':
         specifier: ^11.10.5
         version: 11.10.5(@babel/core@7.22.11)(@types/react@18.0.24)(react@18.2.0)
@@ -1014,6 +1020,18 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@dnd-kit/sortable@8.0.0(@dnd-kit/core@6.1.0)(react@18.2.0):
+    resolution: {integrity: sha512-U3jk5ebVXe1Lr7c2wU7SBZjcWdQP+j7peHJfCspnA81enlu88Mgd7CC8Q+pub9ubP7eKVETzJW+IBAhsqbSu/g==}
+    peerDependencies:
+      '@dnd-kit/core': ^6.1.0
+      react: '>=16.8.0'
+    dependencies:
+      '@dnd-kit/core': 6.1.0(react-dom@18.2.0)(react@18.2.0)
+      '@dnd-kit/utilities': 3.2.2(react@18.2.0)
+      react: 18.2.0
+      tslib: 2.6.2
+    dev: false
+
   /@dnd-kit/utilities@3.2.2(react@18.2.0):
     resolution: {integrity: sha512-+MKAJEOfaBe5SmV6t34p80MMKhjvUz0vRrvVJbPT0WElzaOJ/1xs+D+KDv+tD/NE5ujfrChEcshd4fLn0wpiqg==}
     peerDependencies:
@@ -1576,7 +1594,7 @@ packages:
       '@radix-ui/react-scroll-area': 1.0.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      react-remove-scroll: 2.5.6(react@18.2.0)
+      react-remove-scroll: 2.5.6(@types/react@18.0.24)(react@18.2.0)
       react-textarea-autosize: 8.3.4(@types/react@18.0.24)(react@18.2.0)
     transitivePeerDependencies:
       - '@emotion/react'
@@ -6397,24 +6415,6 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.0.24
-      react: 18.2.0
-      react-remove-scroll-bar: 2.3.4(@types/react@18.0.24)(react@18.2.0)
-      react-style-singleton: 2.2.1(@types/react@18.0.24)(react@18.2.0)
-      tslib: 2.4.1
-      use-callback-ref: 1.3.0(@types/react@18.0.24)(react@18.2.0)
-      use-sidecar: 1.1.2(@types/react@18.0.24)(react@18.2.0)
-    dev: false
-
-  /react-remove-scroll@2.5.6(react@18.2.0):
-    resolution: {integrity: sha512-bO856ad1uDYLefgArk559IzUNeQ6SWH4QnrevIUjH+GczV56giDfl3h0Idptf2oIKxQmd1p9BN25jleKodTALg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-    dependencies:
       react: 18.2.0
       react-remove-scroll-bar: 2.3.4(@types/react@18.0.24)(react@18.2.0)
       react-style-singleton: 2.2.1(@types/react@18.0.24)(react@18.2.0)

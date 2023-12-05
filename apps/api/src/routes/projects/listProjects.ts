@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { Prisma, User } from "@prisma/client"
 import { Request, Response } from "express"
 
 import prisma from "@/utils/db"
@@ -30,6 +30,9 @@ const listProjects = async (req: Request, res: Response) => {
             userId: user.id,
           },
         },
+      },
+      orderBy: {
+        name: "asc",
       },
     })
     return res.json({ data: projects })

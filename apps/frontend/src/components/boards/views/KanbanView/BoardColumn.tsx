@@ -1,4 +1,7 @@
-import { Box, Group, Stack, Title } from "@mantine/core"
+import { useDroppable } from "@dnd-kit/core"
+import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
+import { Box, Card, Group, Title } from "@mantine/core"
+import { useEffect } from "react"
 import { Task } from "shared/types/tasks"
 
 import AddTaskButton from "./AddTaskButton"
@@ -10,24 +13,23 @@ interface IBoardColumn {
 }
 
 const BoardColumn = ({ title, tasks }: IBoardColumn) => {
+  const { setNodeRef, over, isOver } = useDroppable({ id: title })
   return (
-    <Stack
-      spacing="sm"
+    <Card
+      withBorder
       sx={(theme) => ({
-        width: 250,
+        display: "flex",
+        flexDirection: "column",
         flexShrink: 0,
         flexGrow: 0,
-        borderRadius: theme.radius.sm,
         backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[9]
-            : theme.colors.gray[2],
+          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         maxHeight: "100%",
-        boxShadow: theme.shadows.sm,
         gap: 12,
       })}
       p={8}
       pt={12}
+      ref={setNodeRef}
     >
       <Group spacing={"sm"}>
         <Title size="h6">{title}</Title>
@@ -35,21 +37,23 @@ const BoardColumn = ({ title, tasks }: IBoardColumn) => {
           {tasks.length}
         </Title>
       </Group>
-      <Box
-        sx={(theme) => ({
-          display: "flex",
-          flexDirection: "column",
-          gap: theme.spacing.xs,
-          flex: 1,
-          overflowY: "auto",
-        })}
-      >
-        {tasks.map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </Box>
+      <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+        <Box
+          sx={(theme) => ({
+            display: "flex",
+            flexDirection: "column",
+            gap: theme.spacing.xs,
+            overflowY: "auto",
+            overflowX: "hidden",
+          })}
+        >
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </Box>
+      </SortableContext>
       <AddTaskButton />
-    </Stack>
+    </Card>
   )
 }
 export default BoardColumn
