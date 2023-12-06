@@ -1,19 +1,18 @@
 import { useDroppable } from "@dnd-kit/core"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import { Box, Card, Group, Title } from "@mantine/core"
-import { useEffect } from "react"
-import { Task } from "shared/types/tasks"
+import { Task, TaskStatus } from "shared/types/tasks"
 
 import AddTaskButton from "./AddTaskButton"
 import TaskCard from "./TaskCard"
 
 interface IBoardColumn {
-  title: string
+  status: TaskStatus
   tasks: Task[]
 }
 
-const BoardColumn = ({ title, tasks }: IBoardColumn) => {
-  const { setNodeRef, over, isOver } = useDroppable({ id: title })
+const BoardColumn = ({ status, tasks }: IBoardColumn) => {
+  const { setNodeRef } = useDroppable({ id: status.name })
   return (
     <Card
       withBorder
@@ -32,12 +31,16 @@ const BoardColumn = ({ title, tasks }: IBoardColumn) => {
       ref={setNodeRef}
     >
       <Group spacing={"sm"}>
-        <Title size="h6">{title}</Title>
+        <Title size="h6">{status.name}</Title>
         <Title size="h6" c="dimmed">
           {tasks.length}
         </Title>
       </Group>
-      <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+      <SortableContext
+        items={tasks}
+        strategy={verticalListSortingStrategy}
+        id={status.name}
+      >
         <Box
           sx={(theme) => ({
             display: "flex",

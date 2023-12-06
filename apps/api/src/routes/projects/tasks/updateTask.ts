@@ -7,7 +7,7 @@ import {
 } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
-import { taskInclude } from "@/utils/selects/tasks"
+import { taskDetailsInclude, taskInclude } from "@/utils/selects/tasks"
 import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"
 import createTaskActivity from "@/utils/tasks/createTaskActivity"
 
@@ -15,8 +15,8 @@ const updateTask = async (
   req: Request<GetTaskParams, never, UpdateTaskBody>,
   res: Response<GetTaskByIdResponse>
 ) => {
-  const { taskId } = req.params
-  const { name, rawDescription } = req.body
+  const { taskId, boardId } = req.params
+  const { name, rawDescription, status } = req.body
   const user = req.user as User
   const userId = user.id
 
@@ -30,7 +30,7 @@ const updateTask = async (
   // convert that raw description to text
   const textDescription = convertRawFromJSON(rawDescription)
 
-  const updTask = await prisma.task.update({
+  await prisma.task.update({
     where: {
       id: taskId,
     },
@@ -41,6 +41,32 @@ const updateTask = async (
     },
     include: taskInclude,
   })
+  // if we've provided status and its a string, lets find the status we're tryna update to
+  if (status && typeof status === "string") {
+    await prisma.task.update({
+      where: {
+        id: taskId,
+      },
+      data: {
+        status: {
+          connect: {
+            boardId_name: {
+              boardId,
+              name: status,
+            },
+          },
+        },
+      },
+    })
+  }
+
+  const updTask = await prisma.task.findUnique({
+    where: {
+      id: taskId,
+    },
+    include: taskDetailsInclude,
+  })
+  if (!updTask) return res.status(404).json({ message: "Task not found." })
 
   // once we've updated the task, update the activity log
   await createTaskActivity(task, { ...req.body, textDescription }, userId)

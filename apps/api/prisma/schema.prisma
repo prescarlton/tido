@@ -149,6 +149,7 @@ model TaskStatus {
   board Board  @relation(fields: [boardId], references: [id])
   tasks Task[]
 
+  @@unique([boardId, name])
   @@map("task_statuses")
 }
 

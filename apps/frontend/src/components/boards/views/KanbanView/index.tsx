@@ -20,6 +20,8 @@ import BoardViewLayout, {
 } from "@/components/boards/BoardViewLayout"
 import useProjectContext from "@/contexts/ProjectContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
+import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
+import useUpdateTaskStatus from "@/hooks/api/tasks/useUpdateTaskStatus"
 
 import BoardColumn from "./BoardColumn"
 import TaskCard from "./TaskCard"
@@ -33,6 +35,8 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
     id: boardId as string,
     projectId,
   })
+  const updateTask = useUpdateTaskStatus()
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -44,14 +48,21 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
     })
   )
 
-  const handleDragEnd = (event: DragEndEvent) => {
+  const handleDragEnd = async (event: DragEndEvent) => {
+    const { active } = event
+    await updateTask.mutateAsync({
+      status: active.data.current?.sortable.containerId,
+      projectId,
+      boardId: boardId as string,
+      taskId: active.id as string,
+    })
     setDraggedId(null)
   }
   const handleDragStart = (event: DragStartEvent) => {
     setDraggedId(event.active.id as string)
   }
   const handleDragOver = (event: DragOverEvent) => {
-    if (!columns) return
+    if (!columns || !statuses) return
     const { active, over } = event
     const { id: activeId } = active as { id: string }
     const overId = over?.id
@@ -103,10 +114,9 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
   useEffect(() => {
     if (tasks && statuses) {
       const columnMap: Record<string, Task[]> = {}
-      statuses.forEach((stat) => (columnMap[stat.name] = []))
-      tasks.forEach(
-        (task) =>
-          columnMap[task.status.name] && columnMap[task.status.name].push(task)
+      statuses.forEach(
+        (stat) =>
+          (columnMap[stat.name] = tasks.filter((t) => t.status.id === stat.id))
       )
       setColumns(columnMap)
     }
@@ -132,7 +142,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
           {statuses?.map((status) => (
             <BoardColumn
               key={status.id}
-              title={status.name}
+              status={status}
               tasks={columns?.[status.name] || []}
             />
           ))}
