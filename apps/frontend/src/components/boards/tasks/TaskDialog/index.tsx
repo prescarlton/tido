@@ -113,7 +113,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
           <Flex direction="column" gap="xl">
             <Stack spacing="md">
               <TaskMembers />
-              <TaskStatus status={task?.status} />
+              <TaskStatus />
               <TaskTags task={taskDetails} />
               <TaskCreator creator={task?.createdBy} />
             </Stack>

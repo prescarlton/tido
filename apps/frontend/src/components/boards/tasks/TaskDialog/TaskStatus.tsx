@@ -1,16 +1,11 @@
-import { Group, Text } from "@mantine/core"
+import { Group, SelectProps, Skeleton, Text } from "@mantine/core"
 import { useFormContext } from "react-hook-form"
-import { TaskStatus as TaskStatusType } from "shared/types/tasks"
 
 import ControlledSelect from "@/components/fields/ControlledSelect"
 import useProjectContext from "@/contexts/ProjectContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
 
-interface ITaskStatus {
-  status: TaskStatusType
-}
-
-const TaskStatus = ({ status }: ITaskStatus) => {
+const TaskStatus = () => {
   const { boardId, projectId } = useProjectContext()
   const { data: statuses } = useListTaskStatuses({
     id: boardId as string,
@@ -19,14 +14,21 @@ const TaskStatus = ({ status }: ITaskStatus) => {
   const { control } = useFormContext()
 
   return (
-    statuses && (
-      <Group spacing="xl">
-        <Text color="dimmed" w={100}>
-          Status
-        </Text>
-        <ControlledSelect control={control} name="status" options={statuses} />
-      </Group>
-    )
+    <Group spacing="xl">
+      <Text color="dimmed" w={100}>
+        Status
+      </Text>
+      {statuses ? (
+        <ControlledSelect
+          control={control}
+          name="status"
+          options={statuses}
+          SelectProps={{ sx: { width: 200 } } as SelectProps}
+        />
+      ) : (
+        <Skeleton width={200} />
+      )}
+    </Group>
   )
 }
 

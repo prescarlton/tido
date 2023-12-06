@@ -58,6 +58,19 @@ const updateTask = async (
         },
       },
     })
+  } else if (typeof status === "number") {
+    await prisma.task.update({
+      where: {
+        id: taskId,
+      },
+      data: {
+        status: {
+          connect: {
+            id: status,
+          },
+        },
+      },
+    })
   }
 
   const updTask = await prisma.task.findUnique({

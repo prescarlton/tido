@@ -23,6 +23,7 @@ const useUpdateTask = (params: GetTaskParams) => {
         color: "green",
       })
       queryClient.setQueryData(TASKS_QUERY_KEY.detail(params.taskId), res.data)
+      queryClient.refetchQueries(TASKS_QUERY_KEY.all)
     },
     onError: () => {
       notifications.show({

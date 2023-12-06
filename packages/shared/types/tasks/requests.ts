@@ -46,7 +46,7 @@ export const UpdateTaskRequestSchema = {
   body: z.object({
     rawDescription: z.string().optional(),
     name: z.string().optional(),
-    status: z.string().optional(),
+    status: z.union([z.string(), z.number()]).optional(),
   }),
 }
 
