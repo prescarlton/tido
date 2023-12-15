@@ -1,17 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import {
-  Box,
-  Button,
-  Flex,
-  Group,
-  Modal,
-  Skeleton,
-  Stack,
-  Title,
-} from "@mantine/core"
+import { Box, Button, Flex, Group, Modal, Stack, Title } from "@mantine/core"
 import { FocusEvent, useEffect } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import {
+  CreateTaskBody,
   Task,
   UpdateTaskBody,
   UpdateTaskRequestSchema,
@@ -21,14 +13,16 @@ import TaskCreator from "@/components/boards/tasks/TaskDialog/TaskCreator"
 import TaskMembers from "@/components/boards/tasks/TaskDialog/TaskMembers"
 import TaskStatus from "@/components/boards/tasks/TaskDialog/TaskStatus"
 import TaskTags from "@/components/boards/tasks/TaskDialog/TaskTags"
+import ControlledTextField from "@/components/fields/ControlledTextField"
 import useProjectContext from "@/contexts/ProjectContext"
+import useCreateTask from "@/hooks/api/tasks/useCreateTask"
 import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
 import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
 
 import AdditionalTaskTabs from "./AdditionalTaskTabs"
 
 interface ITaskDialog {
-  task: Task
+  task?: Task
   opened: boolean
   onClose: () => void
 }
@@ -37,27 +31,33 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
   const { projectId, boardId } = useProjectContext()
   const formMethods = useForm<UpdateTaskBody>({
     defaultValues: {
-      name: task.name,
+      name: task?.name || "",
       rawDescription: "",
-      status: task.status.id,
+      status: task?.status.id || "",
     },
     resolver: zodResolver(UpdateTaskRequestSchema.body),
   })
-  const { handleSubmit, reset } = formMethods
+  const { handleSubmit, reset, control } = formMethods
 
   const { data: taskDetails } = useGetTaskById({
-    taskId: task.id,
+    taskId: task?.id,
     projectId,
     boardId: boardId as string,
   })
   const updateMutation = useUpdateTask({
-    taskId: task.id,
+    taskId: task?.id,
+    projectId,
+    boardId: boardId as string,
+  })
+  const createMutation = useCreateTask({
     projectId,
     boardId: boardId as string,
   })
 
-  const onSubmit = async (data: UpdateTaskBody) => {
-    await updateMutation.mutateAsync(data)
+  const onSubmit = async (data: UpdateTaskBody | CreateTaskBody) => {
+    task
+      ? await updateMutation.mutateAsync(data)
+      : await createMutation.mutateAsync(data as CreateTaskBody)
     onClose()
   }
   const handleUpdateTitle = async (e: FocusEvent<HTMLHeadingElement>) => {
@@ -70,7 +70,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
       reset({
         name: taskDetails.name,
         rawDescription: taskDetails.rawDescription || "",
-        status: task.status.id,
+        status: task?.status.id,
       })
   }, [taskDetails])
 
@@ -104,7 +104,12 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
                 </Title>
               </Group>
             ) : (
-              <Skeleton height={24} />
+              <Group spacing="sm">
+                <Title size="h4" c="dimmed">
+                  [ ]
+                </Title>
+                <ControlledTextField control={control} name="name" />
+              </Group>
             )}
           </Modal.Title>
           <Modal.CloseButton />
@@ -117,7 +122,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
               <TaskTags task={taskDetails} />
               <TaskCreator creator={task?.createdBy} />
             </Stack>
-            <AdditionalTaskTabs taskId={task.id} />
+            <AdditionalTaskTabs taskId={task?.id} />
           </Flex>
         </FormProvider>
 

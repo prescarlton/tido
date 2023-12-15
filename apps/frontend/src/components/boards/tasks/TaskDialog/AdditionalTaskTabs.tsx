@@ -4,7 +4,7 @@ import TaskActivity from "./TaskActivity"
 import TaskDescription from "./TaskDescription"
 
 interface IAdditionalTaskTabs {
-  taskId: string
+  taskId?: string
 }
 
 const AdditionalTaskTabs = ({ taskId }: IAdditionalTaskTabs) => {

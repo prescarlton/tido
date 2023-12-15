@@ -5,7 +5,7 @@ import useProjectContext from "@/contexts/ProjectContext"
 import useGetTaskActivity from "@/hooks/api/tasks/useGetTaskActivity"
 
 interface ITaskActivity {
-  taskId: string
+  taskId?: string
 }
 
 const TaskActivity = ({ taskId }: ITaskActivity) => {

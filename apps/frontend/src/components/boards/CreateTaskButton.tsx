@@ -1,54 +1,29 @@
 import { ActionIcon, Button, Menu, TextInput } from "@mantine/core"
-import { getHotkeyHandler } from "@mantine/hooks"
+import { getHotkeyHandler, useDisclosure } from "@mantine/hooks"
 import { IconChevronRight, IconPlus } from "@tabler/icons-react"
 import { useState } from "react"
-import { useParams } from "react-router-dom"
 
-import useCreateTask from "@/hooks/api/tasks/useCreateTask"
+import TaskDialog from "./tasks/TaskDialog"
 
 const CreateTaskButton = () => {
-  const { projectId, boardId } = useParams() as {
-    projectId: string
-    boardId: string
-  }
-  const [opened, setOpened] = useState(false)
-  const [taskName, setTaskName] = useState("")
+  const [opened, { close, open }] = useDisclosure()
 
-  const createMutation = useCreateTask({ projectId, boardId })
-
-  const onClickSubmit = async () => {
-    await createMutation.mutateAsync({ name: taskName })
-    setTaskName("")
-    setOpened(false)
+  const onClick = () => {
+    open()
   }
 
   return (
-    <Menu position="right" opened={opened} onChange={setOpened}>
-      <Menu.Target>
-        <Button
-          variant="filled"
-          leftIcon={<IconPlus />}
-          sx={{ alignSelf: "flex-start" }}
-        >
-          Create Task
-        </Button>
-      </Menu.Target>
-      <Menu.Dropdown>
-        <TextInput
-          id="createTaskField"
-          value={taskName}
-          onChange={({ target }) => setTaskName(target.value)}
-          placeholder="Task Name"
-          autoComplete="off"
-          rightSection={
-            <ActionIcon onClick={onClickSubmit}>
-              <IconChevronRight />
-            </ActionIcon>
-          }
-          onKeyDown={getHotkeyHandler([["Enter", onClickSubmit]])}
-        />
-      </Menu.Dropdown>
-    </Menu>
+    <>
+      <Button
+        variant="filled"
+        leftIcon={<IconPlus />}
+        sx={{ alignSelf: "flex-start" }}
+        onClick={onClick}
+      >
+        Create Task
+      </Button>
+      {opened && <TaskDialog onClose={close} opened={opened} />}
+    </>
   )
 }
 
