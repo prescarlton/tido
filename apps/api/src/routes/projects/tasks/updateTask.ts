@@ -15,7 +15,7 @@ const updateTask = async (
   req: Request<GetTaskParams, never, UpdateTaskBody>,
   res: Response<GetTaskByIdResponse>
 ) => {
-  const { taskId, boardId } = req.params
+  const { taskId, projectId } = req.params
   const { name, rawDescription, status } = req.body
   const user = req.user as User
   const userId = user.id
@@ -50,8 +50,8 @@ const updateTask = async (
       data: {
         status: {
           connect: {
-            boardId_name: {
-              boardId,
+            projectId_name: {
+              projectId,
               name: status,
             },
           },

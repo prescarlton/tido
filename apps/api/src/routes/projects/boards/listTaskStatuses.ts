@@ -1,22 +1,20 @@
 import { Request, Response } from "express"
-import {
-  GetBoardByIdParams,
-  ListTaskStatusesResponse,
-} from "shared/types/boards"
+import { ListTaskStatusesResponse } from "shared/types/boards"
+import { GetProjectParams } from "shared/types/projects"
 
 import prisma from "@/utils/db"
 import errorHandler from "@/utils/errorHandler"
 
 const listTaskStatuses = async (
-  req: Request<GetBoardByIdParams, never, never, never>,
+  req: Request<GetProjectParams, never, never, never>,
   res: Response<ListTaskStatusesResponse>
 ) => {
-  const { id } = req.params
+  const { projectId } = req.params
 
   try {
     const taskStatuses = await prisma.taskStatus.findMany({
       where: {
-        boardId: id,
+        projectId,
       },
       orderBy: {
         order: "asc",

@@ -77,6 +77,7 @@ model Project {
   members       ProjectMember[]
   userFavorites UserFavoriteProject[]
   activity      ProjectActivity[]
+  taskStatuses  TaskStatus[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -90,10 +91,9 @@ model Board {
   projectId String @map("project_id")
   color     String @default("#03a9f4")
 
-  project      Project      @relation(fields: [projectId], references: [id])
-  tasks        Task[]
-  taskStatuses TaskStatus[]
-  taskTags     TaskTag[]
+  project  Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tasks    Task[]
+  taskTags TaskTag[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -110,12 +110,12 @@ model Task {
   rawDescription  String? @map("raw_description") @db.LongText
   textDescription String? @map("text_description") @db.VarChar(500)
   archived        Boolean @default(false)
-  boardId         String  @map("board_id")
+  boardId         String? @map("board_id")
   taskStatusId    Int     @map("task_status_id")
   createdByUserId String  @map("created_by_user_id")
 
   createdBy User           @relation(fields: [createdByUserId], references: [id])
-  board     Board          @relation(fields: [boardId], references: [id])
+  board     Board?         @relation(fields: [boardId], references: [id])
   users     UserTask[]
   status    TaskStatus     @relation(fields: [taskStatusId], references: [id])
   tags      TaskTag[]
@@ -133,23 +133,23 @@ model TaskTag {
   color   String
   boardId String @map("board_id")
 
-  board Board  @relation(fields: [boardId], references: [id])
+  board Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
   tasks Task[]
 
   @@map("task_tags")
 }
 
 model TaskStatus {
-  id      Int    @id @default(autoincrement())
-  name    String
-  color   String
-  boardId String @map("board_id")
-  order   Int    @default(1)
+  id        Int    @id @default(autoincrement())
+  name      String
+  color     String
+  projectId String @map("project_id")
+  order     Int    @default(1)
 
-  board Board  @relation(fields: [boardId], references: [id])
-  tasks Task[]
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  tasks   Task[]
 
-  @@unique([boardId, name])
+  @@unique([projectId, name])
   @@map("task_statuses")
 }
 

@@ -15,6 +15,7 @@ import TaskStatus from "@/components/boards/tasks/TaskDialog/TaskStatus"
 import TaskTags from "@/components/boards/tasks/TaskDialog/TaskTags"
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import useProjectContext from "@/contexts/ProjectContext"
+import useGetMe from "@/hooks/api/auth/useGetMe"
 import useCreateTask from "@/hooks/api/tasks/useCreateTask"
 import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
 import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
@@ -24,16 +25,17 @@ import AdditionalTaskTabs from "./AdditionalTaskTabs"
 interface ITaskDialog {
   task?: Task
   opened: boolean
+  statusId: number
   onClose: () => void
 }
 
-const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
+const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
   const { projectId, boardId } = useProjectContext()
   const formMethods = useForm<UpdateTaskBody>({
     defaultValues: {
       name: task?.name || "",
       rawDescription: "",
-      status: task?.status.id || "",
+      status: task?.status.id || statusId || "",
     },
     resolver: zodResolver(UpdateTaskRequestSchema.body),
   })
@@ -53,6 +55,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
     projectId,
     boardId: boardId as string,
   })
+  const { data: me } = useGetMe()
 
   const onSubmit = async (data: UpdateTaskBody | CreateTaskBody) => {
     task
@@ -105,9 +108,6 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
               </Group>
             ) : (
               <Group spacing="sm">
-                <Title size="h4" c="dimmed">
-                  [ ]
-                </Title>
                 <ControlledTextField control={control} name="name" />
               </Group>
             )}
@@ -120,7 +120,7 @@ const TaskDialog = ({ task, opened, onClose }: ITaskDialog) => {
               <TaskMembers />
               <TaskStatus />
               <TaskTags task={taskDetails} />
-              <TaskCreator creator={task?.createdBy} />
+              <TaskCreator creator={task?.createdBy || me} />
             </Stack>
             <AdditionalTaskTabs taskId={task?.id} />
           </Flex>

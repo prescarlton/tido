@@ -1,7 +1,8 @@
 export interface Me {
-  firstName: string
-  lastName: string
-  email: string
+  id: string
+  firstName: string | null
+  lastName: string | null
+  email: string | null
   username: string
 }
 

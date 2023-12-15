@@ -1,16 +1,11 @@
-import { ActionIcon, Button, Menu, TextInput } from "@mantine/core"
-import { getHotkeyHandler, useDisclosure } from "@mantine/hooks"
-import { IconChevronRight, IconPlus } from "@tabler/icons-react"
-import { useState } from "react"
+import { Button } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
+import { IconPlus } from "@tabler/icons-react"
 
 import TaskDialog from "./tasks/TaskDialog"
 
 const CreateTaskButton = () => {
   const [opened, { close, open }] = useDisclosure()
-
-  const onClick = () => {
-    open()
-  }
 
   return (
     <>
@@ -18,7 +13,7 @@ const CreateTaskButton = () => {
         variant="filled"
         leftIcon={<IconPlus />}
         sx={{ alignSelf: "flex-start" }}
-        onClick={onClick}
+        onClick={open}
       >
         Create Task
       </Button>

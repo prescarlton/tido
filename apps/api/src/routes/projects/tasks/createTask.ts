@@ -4,13 +4,14 @@ import { CreateTaskBody, CreateTaskParams } from "shared/types/tasks"
 
 import prisma from "@/utils/db"
 import createProjectActivity from "@/utils/projects/createProjectActivity"
+import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"
 
 const createTask = async (
   req: Request<CreateTaskParams, never, CreateTaskBody>,
   res: Response
 ) => {
   const { boardId } = req.params
-  const { name } = req.body
+  const { name, status, rawDescription } = req.body
   const user = req.user as User
 
   // find out what the highest task code is in this project
@@ -38,7 +39,7 @@ const createTask = async (
   // find what the status of the task should be
   const defaultStatus = await prisma.taskStatus.findFirst({
     where: {
-      boardId,
+      projectId: project.id,
     },
     select: { id: true },
     orderBy: {
@@ -51,6 +52,7 @@ const createTask = async (
       .status(400)
       .json({ message: "Your board does not have any valid statuses" })
 
+  const textDescription = convertRawFromJSON(rawDescription)
   // if no task was found, this is the first task. code can be 1
   const code = highestTask?.code || 0
   const task = await prisma.task.create({
@@ -59,7 +61,9 @@ const createTask = async (
       name,
       createdByUserId: user.id,
       code: code + 1,
-      taskStatusId: defaultStatus.id,
+      taskStatusId: Number(status) || defaultStatus.id,
+      textDescription,
+      rawDescription,
     },
   })
   // once the task has been created, update the project

@@ -1,11 +1,9 @@
-import {
-  GetBoardByIdParams,
-  ListTaskStatusesResponse,
-} from "shared/types/boards"
+import { ListTaskStatusesResponse } from "shared/types/boards"
 import {
   FavoriteProjectRequestBody,
   FavoriteProjectRequestParms,
 } from "shared/types/favorites"
+import { GetProjectParams } from "shared/types/projects"
 
 import { CreateApiService } from "../APIService"
 import { CreateProjectRequest } from "./requests/createProject"
@@ -22,9 +20,7 @@ export const favoriteProject = (
   data: FavoriteProjectRequestBody & FavoriteProjectRequestParms
 ) => ProjectService.put(`/${data.projectId}/favorite`, data)
 
-export const listTaskStatuses = (data: GetBoardByIdParams) =>
-  ProjectService.get<ListTaskStatusesResponse>(
-    `/${data.projectId}/boards/${data.id}/statuses`
-  )
+export const listTaskStatuses = (data: GetProjectParams) =>
+  ProjectService.get<ListTaskStatusesResponse>(`/${data.projectId}/statuses`)
 
 export * from "./constants"

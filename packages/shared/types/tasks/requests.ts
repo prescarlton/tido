@@ -20,6 +20,8 @@ export const CreateTaskRequestSchema = {
   }),
   body: z.object({
     name: z.string({ required_error: "Task name is required" }),
+    rawDescription: z.string().optional(),
+    status: z.union([z.string(), z.number()]).optional(),
   }),
 }
 

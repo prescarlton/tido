@@ -20,5 +20,14 @@ const createProjectActivity = async (
       message,
     },
   })
+  // also update the project's updated field
+  await prisma.project.update({
+    where: {
+      id: projectId,
+    },
+    data: {
+      updated: new Date(),
+    },
+  })
 }
 export default createProjectActivity

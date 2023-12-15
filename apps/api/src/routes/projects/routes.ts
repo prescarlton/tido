@@ -3,6 +3,7 @@ import { Router } from "express"
 import checkProjectAccess from "@/middleware/checkProjectAccess"
 import projectSettingsRouter from "@/routes/projects/settings/routes"
 
+import listTaskStatuses from "./boards/listTaskStatuses"
 import BoardRouter from "./boards/routes"
 import createProject from "./createProject"
 import getProjectById from "./getProjectById"
@@ -14,6 +15,7 @@ const ProjectRouter: Router = Router()
 // get
 ProjectRouter.get("/", listProjects)
 ProjectRouter.get("/:projectId", getProjectById)
+ProjectRouter.get("/:projectId/statuses", checkProjectAccess, listTaskStatuses)
 
 // post
 ProjectRouter.post("/", createProject)

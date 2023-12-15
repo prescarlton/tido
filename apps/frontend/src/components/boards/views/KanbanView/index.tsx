@@ -20,7 +20,6 @@ import BoardViewLayout, {
 } from "@/components/boards/BoardViewLayout"
 import useProjectContext from "@/contexts/ProjectContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
-import useUpdateTask from "@/hooks/api/tasks/useUpdateTask"
 import useUpdateTaskStatus from "@/hooks/api/tasks/useUpdateTaskStatus"
 
 import BoardColumn from "./BoardColumn"
@@ -32,7 +31,6 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
   const [columns, setColumns] = useState<Record<string, Task[]> | undefined>()
   const { boardId, projectId } = useProjectContext()
   const { data: statuses } = useListTaskStatuses({
-    id: boardId as string,
     projectId,
   })
   const updateTask = useUpdateTaskStatus()
@@ -137,6 +135,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
             alignItems: "start",
             gap: theme.spacing.md,
             padding: theme.spacing.sm,
+            flex: 1,
           })}
         >
           {statuses?.map((status) => (

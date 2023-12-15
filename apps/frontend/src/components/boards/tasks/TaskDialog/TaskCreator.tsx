@@ -1,7 +1,7 @@
 import { Group, Skeleton, Text } from "@mantine/core"
+import { Task } from "shared/types/tasks"
 
 import UserChip from "@/components/boards/tasks/TaskDialog/TaskMembers/UserChip"
-import { Task } from "shared/types/tasks"
 
 interface ITaskCreator {
   creator?: Task["createdBy"]

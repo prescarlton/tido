@@ -55,7 +55,7 @@ const BoardColumn = ({ status, tasks }: IBoardColumn) => {
           ))}
         </Box>
       </SortableContext>
-      <AddTaskButton />
+      <AddTaskButton statusId={status.id} />
     </Card>
   )
 }

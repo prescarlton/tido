@@ -3,7 +3,7 @@ import { ShortUser } from "../users"
 export interface Task {
   id: string
   name: string
-  boardId: string
+  boardId: string | null
   complete: boolean
   createdBy: ShortUser
   code: number
