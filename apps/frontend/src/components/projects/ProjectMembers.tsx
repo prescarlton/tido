@@ -10,8 +10,8 @@ const ProjectMembers = ({ members }: IProjectMembers) => {
     <Avatar.Group spacing="sm">
       {members?.map((member) => (
         <Avatar key={member.id} radius="xl">
-          {member.user.firstName[0]}
-          {member.user.lastName[0]}
+          {member.user.firstName?.[0]}
+          {member.user.lastName?.[0]}
         </Avatar>
       ))}
     </Avatar.Group>

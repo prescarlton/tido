@@ -1,0 +1,41 @@
+name: PR Build Check - User Site
+
+on:
+  pull_request:
+    branches:
+      - 'dev'
+      - 'sprint-**' # sprint branches
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 8
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Project
+        env:
+          VITE_PUBLIC_API_ENDPOINT: https://api.pollen-app.dev
+          VITE_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+          VITE_PUBLIC_CLERK_SIGN_IN_URL: '/sign-in'
+          VITE_PUBLIC_CLERK_SIGN_UP_URL: '/sign-up'
+          VITE_PUBLIC_CLERK_AFTER_SIGN_IN_URL: '/'
+          VITE_PUBLIC_CLERK_AFTER_SIGN_UP_URL: '/'
+          VITE_PUBLIC_UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          VITE_PUBLIC_CLOUDINARY_CLOUD: ${{ secrets.VITE_PUBLIC_CLOUDINARY_CLOUD }}
+          VITE_PUBLIC_CLOUDINARY_URL: ${{ secrets.VITE_PUBLIC_CLOUDINARY_URL }}
+        run: pnpm build --filter user-site

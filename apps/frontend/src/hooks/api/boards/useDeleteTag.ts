@@ -15,7 +15,7 @@ const deleteTag = (data: UpdateTagParams) =>
     `/${data.projectId}/boards/${data.boardId}/tags/${data.tagId}`
   ).then((res) => res.data.data)
 
-const useDeleteTag = ({ tagId }: { tagId: string }) => {
+const useDeleteTag = ({ tagId }: { tagId: number }) => {
   const { projectId, boardId } = useProjectContext()
   if (!boardId) throw new Error("Unable to delete a tag in this context")
   const queryClient = useQueryClient()

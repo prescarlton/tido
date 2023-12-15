@@ -1,0 +1,67 @@
+name: PR Build Check - API (Build Docker Image)
+
+on:
+  pull_request:
+    branches:
+      - 'dev'
+      - 'sprint-**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Build Docker Image for API
+        env:
+          PORT: ${{ secrets.PORT }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+          CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+          CLERK_PEM_PUBLIC_KEY: ${{ secrets.CLERK_PEM_PUBLIC_KEY }}
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_DEFAULT_PHONE_NUMBER: ${{ secrets.TWILIO_DEFAULT_PHONE_NUMBER }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          SENDGRID_DEFAULT_EMAIL: ${{ secrets.SENDGRID_DEFAULT_EMAIL }}
+          CONSTANT_CONTACT_CLIENT_ID: ${{secrets.CONSTANT_CONTACT_CLIENT_ID }}
+          FACEBOOK_OAUTH_CLIENT_ID: ${{ secrets.FACEBOOK_OAUTH_CLIENT_ID }}
+          FACEBOOK_OAUTH_CLIENT_SECRET: ${{ secrets.FACEBOOK_OAUTH_CLIENT_SECRET}}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          LINKEDIN_API_KEY: ${{ secrets.LINKEDIN_API_KEY }}
+          LINKEDIN_API_SECRET: ${{ secrets.LINKEDIN_API_SECRET }}
+          TIKTOK_CLIENT_KEY: ${{ secrets.TIKTOK_CLIENT_KEY }}
+          TIKTOK_CLIENT_SECRET: ${{ secrets.TIKTOK_CLIENT_SECRET }}
+          OAUTH_CODE_CHALLENGE: ${{ secrets.OAUTH_CODE_CHALLENGE }}
+          OAUTH_CODE_VERIFIER: ${{ secrets.OAUTH_CODE_VERIFIER }}
+        run: |
+          docker build \
+          -t my-api-image \
+          --build-arg "PORT=$PORT" \
+          --build-arg "CLERK_SECRET_KEY=$CLERK_SECRET_KEY" \
+          --build-arg "CLERK_PUBLISHABLE_KEY=$CLERK_PUBLISHABLE_KEY" \
+          --build-arg "CLERK_PEM_PUBLIC_KEY=$CLERK_PEM_PUBLIC_KEY" \
+          --build-arg "TWITTER_API_KEY=$TWITTER_API_KEY" \
+          --build-arg "TWITTER_API_SECRET=$TWITTER_API_SECRET" \
+          --build-arg "DATABASE_URL=$DATABASE_URL" \
+          --build-arg "TWILIO_ACCOUNT_SID=$TWILIO_ACCOUNT_SID" \
+          --build-arg "TWILIO_AUTH_TOKEN=$TWILIO_AUTH_TOKEN" \
+          --build-arg "TWILIO_DEFAULT_PHONE_NUMBER=$TWILIO_DEFAULT_PHONE_NUMBER" \
+          --build-arg "SENDGRID_API_KEY=$SENDGRID_API_KEY" \
+          --build-arg "SENDGRID_DEFAULT_EMAIL=$SENDGRID_DEFAULT_EMAIL" \
+          --build-arg "CONSTANT_CONTACT_CLIENT_ID=$CONSTANT_CONTACT_CLIENT_ID" \
+          --build-arg "FACEBOOK_OAUTH_CLIENT_ID=$FACEBOOK_OAUTH_CLIENT_ID" \
+          --build-arg "FACEBOOK_OAUTH_CLIENT_SECRET=$FACEBOOK_OAUTH_CLIENT_SECRET" \
+          --build-arg "GOOGLE_CLIENT_ID=$GOOGLE_CLIENT_ID" \
+          --build-arg "GOOGLE_CLIENT_SECRET=$GOOGLE_CLIENT_SECRET" \
+          --build-arg "LINKEDIN_API_KEY=$LINKEDIN_API_KEY" \
+          --build-arg "LINKEDIN_API_SECRET=$LINKEDIN_API_SECRET" \
+          --build-arg "TIKTOK_CLIENT_KEY=$TIKTOK_CLIENT_KEY" \
+          --build-arg "TIKTOK_CLIENT_SECRET=$TIKTOK_CLIENT_SECRET" \
+          --build-arg "OAUTH_CODE_CHALLENGE=$OAUTH_CODE_CHALLENGE" \
+          --build-arg "OAUTH_CODE_VERIFIER=$OAUTH_CODE_VERIFIER" \
+          -f apps/api/Dockerfile .

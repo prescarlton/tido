@@ -7,7 +7,8 @@ interface IUserChip {
 
 const UserChip = ({ user }: IUserChip) => {
   const theme = useMantineTheme()
-  const initials = user.firstName[0] + user.lastName[0]
+  const initials =
+    user.firstName && user.lastName ? user.firstName[0] + user.lastName[0] : ""
   return (
     <Paper
       radius="xl"

@@ -15,33 +15,34 @@
     "db:seed": "pnpm -C apps/api db:seed"
   },
   "devDependencies": {
-    "@faker-js/faker": "^8.0.2",
-    "@types/lodash": "^4.14.197",
+    "@faker-js/faker": "^8.3.1",
+    "@types/lodash": "^4.14.202",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.48.0",
+    "eslint": "^8.55.0",
     "eslint-config-custom": "^0.0.0",
     "prettier": "^2.8.8",
     "tsconfig-paths": "^4.2.0",
-    "turbo": "^1.10.13",
-    "typescript": "^5.2.2"
+    "turbo": "^1.11.2",
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">=14.0.0"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
-    "@mantine/core": "^6.0.19",
-    "@mantine/dates": "^6.0.19",
-    "@mantine/dropzone": "^6.0.19",
-    "@mantine/form": "^6.0.19",
-    "@mantine/hooks": "^6.0.19",
-    "@mantine/modals": "^6.0.19",
-    "@mantine/notifications": "^6.0.19",
-    "@mantine/prism": "^6.0.19",
-    "@mantine/spotlight": "^6.0.19",
-    "dayjs": "^1.11.9",
+    "@mantine/core": "^6.0.21",
+    "@mantine/dates": "^6.0.21",
+    "@mantine/dropzone": "^6.0.21",
+    "@mantine/form": "^6.0.21",
+    "@mantine/hooks": "^6.0.21",
+    "@mantine/modals": "^6.0.21",
+    "@mantine/notifications": "^6.0.21",
+    "@mantine/prism": "^6.0.21",
+    "@mantine/spotlight": "^6.0.21",
+    "dayjs": "^1.11.10",
     "lodash": "^4.17.21",
-    "zod": "^3.22.2"
+    "tsup": "^8.0.1",
+    "zod": "^3.22.4"
   }
 }

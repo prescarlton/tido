@@ -1,6 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Box, Button, Flex, Group, Stack } from "@mantine/core"
-import { ButtonGroup } from "@mantine/core/lib/Button/ButtonGroup/ButtonGroup"
+import { Box, Button, Flex, Stack } from "@mantine/core"
 import { useForm } from "react-hook-form"
 import { CreateTagSchema } from "shared/types/boards"
 import { TaskTag } from "shared/types/tasks"
@@ -27,9 +26,9 @@ const TagForm = ({ switchStep, tag }: IEditTags) => {
   const createMutation = useCreateTag()
 
   const updateMutation = useUpdateTag({
-    tagId: tag?.id || "",
+    tagId: tag?.id || 0,
   })
-  const deleteMutation = useDeleteTag({ tagId: tag?.id || "" })
+  const deleteMutation = useDeleteTag({ tagId: tag?.id || 0 })
 
   // we have to get a little goofy since we're
   // already inside of a form here; can't nest forms

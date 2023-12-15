@@ -25,7 +25,7 @@ import AdditionalTaskTabs from "./AdditionalTaskTabs"
 interface ITaskDialog {
   task?: Task
   opened: boolean
-  statusId: number
+  statusId?: number
   onClose: () => void
 }
 

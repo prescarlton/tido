@@ -19,7 +19,7 @@ const TaskCard = ({ task }: ITaskCard) => {
   const { project } = useProjectContext()
   const completeMutation = useCompleteTask({
     projectId: project?.id as string,
-    boardId: task.boardId,
+    boardId: task.boardId as string,
     taskId: task.id,
   })
 

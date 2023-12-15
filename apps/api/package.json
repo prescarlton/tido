@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "build": "tsup ./src/index.ts --format cjs",
     "dev": "nodemon ./src/index.ts",
     "db:migrate": "pnpm prisma migrate dev",
     "db:reset": "pnpm prisma migrate reset",

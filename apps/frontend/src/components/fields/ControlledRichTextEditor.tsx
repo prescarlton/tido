@@ -23,6 +23,7 @@ function ControlledRichTextEditor<FieldValueProps extends FieldValues>({
 
   // NOTE: not sure if this is the best way to do this. should research performance impacts
   const editor = useEditor({
+    // @ts-ignore this is broken. will fix when we replace tiptap
     extensions: [StarterKit, Link],
   })
 

@@ -15,7 +15,7 @@ const updateTag = (params: UpdateTagParams, body: UpdateTagBody) =>
     body
   ).then((res) => res.data.data)
 
-const useUpdateTag = ({ tagId }: { tagId: string }) => {
+const useUpdateTag = ({ tagId }: { tagId: number }) => {
   const { projectId, boardId } = useProjectContext()
   if (!boardId) throw new Error("Unable to update a tag in this context")
   const queryClient = useQueryClient()

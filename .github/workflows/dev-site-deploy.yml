@@ -1,0 +1,69 @@
+name: Deploy Dev User Site
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    environment: dev
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: 'YY.MM.DD.HH.mm'
+
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: 8
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build Project
+        env:
+          VITE_PUBLIC_API_ENDPOINT: https://api.pollen-app.dev
+          VITE_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+          VITE_PUBLIC_CLERK_SIGN_IN_URL: '/sign-in'
+          VITE_PUBLIC_CLERK_SIGN_UP_URL: '/sign-up'
+          VITE_PUBLIC_CLERK_AFTER_SIGN_IN_URL: '/'
+          VITE_PUBLIC_CLERK_AFTER_SIGN_UP_URL: '/'
+          VITE_STRIPE_EMBEDED_PK: ${{ secrets.STRIPE_EMBEDED_PK }}
+          VITE_PUBLIC_UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          VITE_PUBLIC_CLOUDINARY_CLOUD: ${{ secrets.VITE_PUBLIC_CLOUDINARY_CLOUD }}
+          VITE_PUBLIC_CLOUDINARY_URL: ${{ secrets.VITE_PUBLIC_CLOUDINARY_URL }}
+          VITE_VERSION: ${{ steps.current-time.outputs.formattedTime }}
+          VITE_CONSTANT_CONTACT_VERIFIER: ${{ secrets.VITE_CONSTANT_CONTACT_VERIFIER }}
+          VITE_CONSTANT_CONTACT_CHALLENGE: ${{ secrets.VITE_CONSTANT_CONTACT_CHALLENGE }}
+          VITE_CONSTANT_CONTACT_CLIENT_ID: ${{ secrets.CONSTANT_CONTACT_CLIENT_ID }}
+        run: pnpm build --filter user-site
+      - name: Deploy user site
+        run: aws s3 sync ./apps/user-site/dist s3://pollen-app.dev
+
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        env:
+          DISTRIBUTION: ${{ secrets.CLOUDFRONT_DISTRIBUTION }}
+          PATHS: '/*'
+          AWS_REGION: 'us-east-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

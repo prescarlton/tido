@@ -9,7 +9,10 @@ interface IUserProfilePicture {
 const UserProfilePicture = ({ user, enableTooltip }: IUserProfilePicture) => {
   const theme = useMantineTheme()
 
-  const userInitials = user.firstName[0] + user.lastName[0]
+  const userInitials =
+    user.firstName && user.lastName
+      ? user.firstName[0] + user.lastName[0]
+      : user.username[0]
 
   return (
     <Tooltip

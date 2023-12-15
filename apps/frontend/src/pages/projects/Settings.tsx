@@ -1,9 +1,10 @@
+import { Box, Tabs } from "@mantine/core"
+
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 import DangerZone from "@/components/projects/settings/DangerZone"
 import FeatureToggles from "@/components/projects/settings/FeatureToggles"
 import GeneralProjectSettings from "@/components/projects/settings/GeneralSettings"
 import TeamSettings from "@/components/projects/settings/TeamSettings"
-import { Box, Tabs } from "@mantine/core"
 
 const ProjectSettingsPage = () => {
   return (

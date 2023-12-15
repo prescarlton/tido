@@ -6,9 +6,8 @@ import useProjectContext from "@/contexts/ProjectContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
 
 const TaskStatus = () => {
-  const { boardId, projectId } = useProjectContext()
+  const { projectId } = useProjectContext()
   const { data: statuses } = useListTaskStatuses({
-    id: boardId as string,
     projectId,
   })
   const { control } = useFormContext()
