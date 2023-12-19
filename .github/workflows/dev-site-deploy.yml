@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    environment: dev
+    environment: development
     runs-on: ubuntu-latest
 
     steps:
@@ -44,7 +44,7 @@ jobs:
           VITE_API_ENDPOINT: ${{ secrets.VITE_API_ENDPOINT }}
         run: pnpm build --filter frontend
       - name: Deploy user site
-        run: aws s3 sync ./apps/frontend/dist s3://${{ secrets.S3_BUCKET }}
+        run: aws s3 sync ./apps/frontend/dist ${{ secrets.S3_BUCKET }}
 
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
