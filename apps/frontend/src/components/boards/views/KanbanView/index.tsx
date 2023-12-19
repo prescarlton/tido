@@ -129,7 +129,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
         onDragOver={handleDragOver}
       >
         <Box
-          sx={(theme) => ({
+          style={(theme) => ({
             display: "flex",
             overflowX: "auto",
             alignItems: "start",

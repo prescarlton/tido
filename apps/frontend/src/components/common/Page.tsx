@@ -8,7 +8,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
   return (
     <Box
       role="alert"
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

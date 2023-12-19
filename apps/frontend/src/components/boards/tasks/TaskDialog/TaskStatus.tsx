@@ -13,8 +13,8 @@ const TaskStatus = () => {
   const { control } = useFormContext()
 
   return (
-    <Group spacing="xl">
-      <Text color="dimmed" w={100}>
+    <Group gap="xl">
+      <Text c="dimmed" w={100}>
         Status
       </Text>
       {statuses ? (

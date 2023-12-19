@@ -11,7 +11,7 @@ const ResourcesPage = () => {
       showBack
     >
       <Box
-        sx={{
+        style={{
           flex: 1,
           display: "flex",
           flexWrap: "wrap",

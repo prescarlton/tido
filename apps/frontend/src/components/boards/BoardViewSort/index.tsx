@@ -1,12 +1,5 @@
-import {
-  ActionIcon,
-  Button,
-  Group,
-  Popover,
-  Select,
-  Tooltip,
-} from "@mantine/core"
-import { IconArrowsSort, IconChevronDown } from "@tabler/icons-react"
+import { Button, Group, Popover, Select, Tooltip } from "@mantine/core"
+import { IconChevronDown } from "@tabler/icons-react"
 
 import useBoardContext from "@/contexts/BoardContext"
 
@@ -26,13 +19,13 @@ const BoardViewSort = () => {
             color="gray"
             px="xs"
             variant="subtle"
-            rightIcon={<IconChevronDown />}
+            rightSection={<IconChevronDown />}
           >
             Sort
           </Button>
         </Tooltip>
       </Popover.Target>
-      <Popover.Dropdown styles={{ zIndex: 100000000 }}>
+      <Popover.Dropdown>
         <Group>
           <Select
             label="Sort By"
@@ -43,7 +36,7 @@ const BoardViewSort = () => {
               { value: "created", label: "Created" },
               { value: "name", label: "Name" },
             ]}
-            sx={{ flex: 1 }}
+            style={{ flex: 1 }}
           />
           <Select
             label="Sort Direction"

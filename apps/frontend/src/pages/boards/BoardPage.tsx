@@ -17,7 +17,7 @@ const BoardPage = () => {
   return (
     <BoardProvider>
       <Box
-        sx={{
+        style={{
           display: "flex",
           flexDirection: "column",
           flex: 1,

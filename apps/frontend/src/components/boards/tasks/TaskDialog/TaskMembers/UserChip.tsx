@@ -1,4 +1,5 @@
 import { Avatar, Paper, Text, useMantineTheme } from "@mantine/core"
+import { useColorScheme } from "@mantine/hooks"
 import { ShortUser } from "shared/types/users"
 
 interface IUserChip {
@@ -7,21 +8,20 @@ interface IUserChip {
 
 const UserChip = ({ user }: IUserChip) => {
   const theme = useMantineTheme()
+  const colorScheme = useColorScheme()
   const initials =
     user.firstName && user.lastName ? user.firstName[0] + user.lastName[0] : ""
   return (
     <Paper
       radius="xl"
-      sx={(theme) => ({
+      style={(theme) => ({
         display: "flex",
         alignItems: "center",
         padding: theme.spacing.xxs,
         height: 32,
         gap: theme.spacing.xxs,
         backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.gray[9]
-            : theme.colors.gray[0],
+          colorScheme === "dark" ? theme.colors.gray[9] : theme.colors.gray[0],
       })}
     >
       <Avatar radius="xl" color={theme.primaryColor} size="sm">

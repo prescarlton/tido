@@ -1,4 +1,4 @@
-import { Box, Text } from "@mantine/core"
+import { Badge } from "@mantine/core"
 import { TaskTag as TaskTagType } from "shared/types/tasks"
 
 interface ITaskTag {
@@ -9,25 +9,14 @@ interface ITaskTag {
 
 const TaskTag = ({ tag, grow = false, compact = false }: ITaskTag) => {
   return (
-    <Box
-      className="taskTag"
-      sx={(theme) => ({
-        backgroundColor: theme.fn.variant({
-          variant: "light",
-          color: tag.color,
-        }).background,
-        borderRadius: theme.radius.sm,
-        height: compact ? 20 : 32,
-        display: "flex",
-        alignItems: "center",
-        ...(grow && { flex: 1 }),
-      })}
-      px="xs"
+    <Badge
+      variant="light"
+      color={tag.color}
+      radius="sm"
+      style={{ height: compact ? 20 : 32, ...(grow && { flex: 1 }) }}
     >
-      <Text color={tag.color} size="xs" weight="bold" truncate>
-        {tag.name}
-      </Text>
-    </Box>
+      {tag.name}
+    </Badge>
   )
 }
 

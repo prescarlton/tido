@@ -30,11 +30,14 @@ const EditBoardButton = () => {
           </ActionIcon>
         </Menu.Target>
         <Menu.Dropdown>
-          <Menu.Item icon={<IconSettings />} onClick={handleClickSettings}>
+          <Menu.Item
+            leftSection={<IconSettings />}
+            onClick={handleClickSettings}
+          >
             Board Settings
           </Menu.Item>
           <Menu.Item
-            icon={<IconTrash />}
+            leftSection={<IconTrash />}
             onClick={handleClickDelete}
             color="red.6"
           >

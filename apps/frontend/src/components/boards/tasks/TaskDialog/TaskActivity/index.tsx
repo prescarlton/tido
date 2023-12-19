@@ -17,7 +17,7 @@ const TaskActivity = ({ taskId }: ITaskActivity) => {
   })
 
   return (
-    <Stack spacing="sm">
+    <Stack gap="sm">
       {/*
       <Title size="h6">Activity</Title>
       */}
@@ -27,7 +27,7 @@ const TaskActivity = ({ taskId }: ITaskActivity) => {
           up here.
         </Text>
       ) : (
-        <Stack spacing="sm">
+        <Stack gap="sm">
           {taskActivity?.map((act) => (
             <ActivityItem key={act.id} activity={act} />
           ))}

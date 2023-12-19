@@ -33,22 +33,22 @@ const UserMenu = () => {
         <Avatar
           radius="sm"
           size={"sm"}
-          sx={{ cursor: "pointer" }}
+          style={{ cursor: "pointer" }}
           color="primary"
         />
       </Menu.Target>
       <Menu.Dropdown>
         <Menu.Item
-          sx={(theme) => ({
+          style={(theme) => ({
             "&[data-hovered]": {
               backgroundColor: "transparent",
               cursor: "default",
             },
           })}
         >
-          <Group spacing="sm" dir="row">
+          <Group gap="sm" dir="row">
             <Avatar radius="sm" size="md" color="primary" />
-            <Stack spacing={0}>
+            <Stack gap={0}>
               {me?.firstName && (
                 <Text size="xs">
                   {me.firstName} {me.lastName}

@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Group, Header, Title } from "@mantine/core"
+import { ActionIcon, Box, Group, Title } from "@mantine/core"
 import { IconChevronLeft } from "@tabler/icons-react"
 import { Dispatch, FocusEvent, SetStateAction } from "react"
 import { useNavigate } from "react-router-dom"
@@ -38,9 +38,8 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
   }
 
   return (
-    <Header
-      height={64}
-      sx={(theme) => ({
+    <Box
+      style={(theme) => ({
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
@@ -50,21 +49,21 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
       })}
     >
       <Box
-        sx={{
+        style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           flex: 1,
         }}
       >
-        <Group spacing="sm" sx={{ alignItems: "center" }}>
-          <Group spacing="xxs">
+        <Group gap="sm" style={{ alignItems: "center" }}>
+          <Group gap="xxs">
             <ActionIcon onClick={onClickBack}>
               <IconChevronLeft />
             </ActionIcon>
             <Title
               size="h4"
-              sx={(theme) => ({
+              style={(theme) => ({
                 fontWeight: "bold",
                 borderRadius: theme.radius.sm,
               })}
@@ -76,15 +75,15 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
               {board?.name}
             </Title>
           </Group>
-          <Group spacing="xxs">
+          <Group gap="xxs">
             <BoardViewSwitcher tab={tab} setTab={setTab} />
           </Group>
         </Group>
-        <Group spacing="sm" sx={{ alignItems: "center" }}>
+        <Group gap="sm" style={{ alignItems: "center" }}>
           <EditBoardButton />
         </Group>
       </Box>
-    </Header>
+    </Box>
   )
 }
 

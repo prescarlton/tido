@@ -35,7 +35,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
     defaultValues: {
       name: task?.name || "",
       rawDescription: "",
-      status: task?.status.id || statusId || "",
+      status: task?.status.id.toString() || statusId || "",
     },
     resolver: zodResolver(UpdateTaskRequestSchema.body),
   })
@@ -73,7 +73,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
       reset({
         name: taskDetails.name,
         rawDescription: taskDetails.rawDescription || "",
-        status: task?.status.id,
+        status: task?.status.id.toString(),
       })
   }, [taskDetails])
 
@@ -93,7 +93,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
         <Modal.Header px={0} pt={0}>
           <Modal.Title>
             {task ? (
-              <Group spacing="sm">
+              <Group gap="sm">
                 <Title size="h4" c="dimmed">
                   [{task.code}]
                 </Title>
@@ -107,7 +107,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
                 </Title>
               </Group>
             ) : (
-              <Group spacing="sm">
+              <Group gap="sm">
                 <ControlledTextField control={control} name="name" />
               </Group>
             )}
@@ -116,7 +116,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
         </Modal.Header>
         <FormProvider {...formMethods}>
           <Flex direction="column" gap="xl">
-            <Stack spacing="md">
+            <Stack gap="md">
               <TaskMembers />
               <TaskStatus />
               <TaskTags task={taskDetails} />
@@ -126,7 +126,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
           </Flex>
         </FormProvider>
 
-        <Group mt="md" position="right">
+        <Group mt="md" justify="flex-end">
           <Button type="submit" loading={updateMutation.isLoading}>
             Save
           </Button>

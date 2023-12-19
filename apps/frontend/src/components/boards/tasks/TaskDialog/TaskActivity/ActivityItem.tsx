@@ -11,8 +11,8 @@ interface IActivityItem {
 
 const ActivityItem = ({ activity }: IActivityItem) => {
   return (
-    <Stack spacing={0}>
-      <Group position="apart" align="center">
+    <Stack gap={0}>
+      <Group justify="space-between" align="center">
         <Flex gap="sm" align="center">
           <UserProfilePicture user={activity.user} enableTooltip />
           <Text size="sm">{activity.message}</Text>
@@ -25,7 +25,7 @@ const ActivityItem = ({ activity }: IActivityItem) => {
           </Text>
         </Tooltip>
       </Group>
-      <Group spacing="xs" noWrap>
+      <Group gap="xs" wrap="nowrap">
         <Text size="xs" lineClamp={1}>
           {activity.oldVal}
         </Text>

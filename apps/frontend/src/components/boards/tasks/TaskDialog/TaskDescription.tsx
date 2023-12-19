@@ -7,7 +7,7 @@ const TaskDescription = () => {
   const { control } = useFormContext()
 
   return (
-    <Stack spacing="xs" sx={{ position: "relative" }}>
+    <Stack gap="xs" style={{ position: "relative" }}>
       {/* <Title size="h6">Description</Title>*/}
       <ControlledRichTextEditor control={control} name="rawDescription" />
     </Stack>

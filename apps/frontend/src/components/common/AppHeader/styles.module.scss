@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: var(--mantine-spacing-sm);
+  padding-right: var(--mantine-spacing-sm);
+
+  .logo {
+    color: var(--mantine-primary-color-filled);
+  }
+}

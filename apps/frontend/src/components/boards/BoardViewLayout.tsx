@@ -1,4 +1,5 @@
 import { Box, Group, TextInput, Title } from "@mantine/core"
+import { useColorScheme } from "@mantine/hooks"
 import { IconSearch } from "@tabler/icons-react"
 import { ReactNode } from "react"
 import { Task } from "shared/types/tasks"
@@ -20,37 +21,37 @@ export interface IBoardView {
 
 const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
   const { taskSearchValue, setTaskSearchValue } = useBoardContext()
+  const scheme = useColorScheme()
   return (
     <Box
-      sx={(theme) => ({
+      style={(theme) => ({
+        height: "100%",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
         flex: 1,
         backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[6]
-            : theme.colors.gray[0],
+          scheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
       })}
     >
-      <Group position="apart" align="center" p="sm">
-        <Group spacing="xs">
+      <Group justify="space-between" align="center" p="sm">
+        <Group gap="xs">
           <BoardViewFilters />
           <BoardViewSort />
         </Group>
-        <Group spacing="xs">
+        <Group gap="xs">
           <BoardViewOnlyMe />
           <TextInput
             value={taskSearchValue}
             onChange={(e) => setTaskSearchValue(e.target.value)}
             placeholder="Search for tasks"
-            icon={<IconSearch />}
+            leftSection={<IconSearch />}
           />
           <CreateTaskButton />
         </Group>
       </Group>
       {tasks.length === 0 ? (
-        <Title sx={{ alignSelf: "center" }} size="h3" mt="sm" c="dimmed">
+        <Title style={{ alignSelf: "center" }} size="h3" mt="sm" c="dimmed">
           No tasks found.
         </Title>
       ) : (

@@ -5,7 +5,7 @@ const NoteCard = () => {
   const content = faker.lorem.paragraph({ min: 1, max: 6 })
   return (
     <Card
-      sx={{
+      style={{
         width: "12rem",
         maxHeight: "12rem",
         px: 1,
@@ -13,7 +13,7 @@ const NoteCard = () => {
       }}
     >
       <Box
-        sx={{
+        style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

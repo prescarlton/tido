@@ -23,7 +23,7 @@ const ProjectTabContent = ({
 
   return (
     <Box
-      sx={{
+      style={{
         display: "flex",
         flex: 1,
         flexDirection: "column",
@@ -33,7 +33,7 @@ const ProjectTabContent = ({
     >
       {title && (
         <Box
-          sx={{
+          style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -42,7 +42,7 @@ const ProjectTabContent = ({
           }}
         >
           <Box
-            sx={{
+            style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -54,7 +54,7 @@ const ProjectTabContent = ({
                 <IconChevronLeft />
               </ActionIcon>
             )}
-            <Title size="h3" sx={{ fontWeight: "normal" }}>
+            <Title size="h3" style={{ fontWeight: "normal" }}>
               {title}
             </Title>
           </Box>
@@ -62,7 +62,7 @@ const ProjectTabContent = ({
         </Box>
       )}
       <Box
-        sx={{
+        style={{
           flex: 1,
           display: "flex",
           flexDirection: "column",

@@ -1,22 +1,12 @@
-import {
-  Divider,
-  Group,
-  Header,
-  TextInput,
-  Title,
-  UnstyledButton,
-  useMantineTheme,
-} from "@mantine/core"
-import { IconSearch } from "@tabler/icons-react"
+import { AppShell, Divider, Group, Title, UnstyledButton } from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 
 import UserMenu from "@/components/common/AppHeader/UserMenu"
 
 import HeaderLinks from "./HeaderLinks"
+import styles from "./styles.module.scss"
 
 const AppHeader = () => {
-  const theme = useMantineTheme()
-
   const navigate = useNavigate()
 
   const onClickLogo = () => {
@@ -24,27 +14,18 @@ const AppHeader = () => {
   }
 
   return (
-    <Header
-      height={48}
-      sx={(theme) => ({
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1rem",
-      })}
-    >
-      <Group spacing="sm">
+    <AppShell.Header className={styles.container}>
+      <Group gap="sm">
         <UnstyledButton onClick={onClickLogo}>
-          <Title size="h3" color={theme.primaryColor}>
+          <Title size="h3" className={styles.logo}>
             tido
           </Title>
         </UnstyledButton>
         <Divider orientation="vertical" />
         <HeaderLinks />
       </Group>
-      <TextInput icon={<IconSearch />} placeholder="Search" w={400} />
       <UserMenu />
-    </Header>
+    </AppShell.Header>
   )
 }
 

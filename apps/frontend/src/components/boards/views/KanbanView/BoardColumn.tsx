@@ -1,6 +1,7 @@
 import { useDroppable } from "@dnd-kit/core"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
 import { Box, Card, Group, Title } from "@mantine/core"
+import { useColorScheme } from "@mantine/hooks"
 import { Task, TaskStatus } from "shared/types/tasks"
 
 import AddTaskButton from "./AddTaskButton"
@@ -13,16 +14,17 @@ interface IBoardColumn {
 
 const BoardColumn = ({ status, tasks }: IBoardColumn) => {
   const { setNodeRef } = useDroppable({ id: status.name })
+  const colorScheme = useColorScheme()
   return (
     <Card
       withBorder
-      sx={(theme) => ({
+      style={(theme) => ({
         display: "flex",
         flexDirection: "column",
         flexShrink: 0,
         flexGrow: 0,
         backgroundColor:
-          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+          colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
         maxHeight: "100%",
         gap: 12,
       })}
@@ -30,7 +32,7 @@ const BoardColumn = ({ status, tasks }: IBoardColumn) => {
       pt={12}
       ref={setNodeRef}
     >
-      <Group spacing={"sm"}>
+      <Group gap={"sm"}>
         <Title size="h6">{status.name}</Title>
         <Title size="h6" c="dimmed">
           {tasks.length}
@@ -42,7 +44,7 @@ const BoardColumn = ({ status, tasks }: IBoardColumn) => {
         id={status.name}
       >
         <Box
-          sx={(theme) => ({
+          style={(theme) => ({
             display: "flex",
             flexDirection: "column",
             gap: theme.spacing.xs,

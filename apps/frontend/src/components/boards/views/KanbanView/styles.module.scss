@@ -1,0 +1,24 @@
+.taskCard {
+  width: rem(250);
+
+  & .taskCardInner {
+    display: flex;
+    min-height: rem(75);
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: var(--mantine-radius-md);
+    padding: var(--mantine-spacing-xs);
+
+    @include light {
+      background-color: var(--mantine-color-gray-0);
+    }
+
+    @include dark {
+      background-color: var(--mantine-color-dark-6);
+    }
+
+    &:hover {
+      border-color: var(--mantine-primary-color-filled);
+    }
+  }
+}

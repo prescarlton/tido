@@ -7,6 +7,7 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core"
+import { useColorScheme } from "@mantine/hooks"
 import { ReactElement } from "react"
 import { Controller, FieldValues, UseControllerProps } from "react-hook-form"
 
@@ -22,8 +23,8 @@ const ControlledColorPicker = <FieldValueProps extends FieldValues>({
   label,
 }: IControlledColorPicker<FieldValueProps>) => {
   const theme = useMantineTheme()
+  const scheme = useColorScheme()
 
-  const scheme = theme.colorScheme
   // @ts-expect-error primaryShade always returns an object with
   // 'light' and 'dark' as keys, and colorScheme is always 'light' or 'dark'
   const shade = theme.primaryShade[scheme]
@@ -33,11 +34,11 @@ const ControlledColorPicker = <FieldValueProps extends FieldValues>({
       control={control}
       name={name}
       render={({ fieldState: { error }, field: { onChange, value } }) => (
-        <Stack spacing="xs">
+        <Stack gap="xs">
           <Text variant="xs">{label}</Text>
 
           <Box
-            sx={(theme) => ({
+            style={(theme) => ({
               display: "flex",
               gap: theme.spacing.sm,
               flexWrap: "wrap",

@@ -11,8 +11,8 @@ const CreateTaskButton = () => {
     <>
       <Button
         variant="filled"
-        leftIcon={<IconPlus />}
-        sx={{ alignSelf: "flex-start" }}
+        leftSection={<IconPlus />}
+        style={{ alignSelf: "flex-start" }}
         onClick={open}
       >
         Create Task

@@ -10,7 +10,7 @@ const ProjectSettingsPage = () => {
   return (
     <ProjectTabContent title="Settings">
       <Box
-        sx={{
+        style={{
           display: "flex",
           mt: 4,
           gap: 2,

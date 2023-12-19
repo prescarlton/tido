@@ -15,7 +15,7 @@ const TaskTags = ({ task, compact = false }: ITaskTags) => {
   const firstTwo = task.tags.slice(0, 2)
 
   return (
-    <Group spacing="xs" sx={{ flexWrap: "nowrap" }}>
+    <Group gap="xs" style={{ flexWrap: "nowrap" }}>
       {firstTwo.map((tag) => (
         <TaskTag key={tag.id} tag={tag} compact={compact} />
       ))}
@@ -27,7 +27,7 @@ const TaskTags = ({ task, compact = false }: ITaskTags) => {
             .join(", ")}
         >
           <Paper
-            sx={(theme) => ({
+            style={(theme) => ({
               display: "flex",
               alignItems: "center",
               height: 32,

@@ -1,9 +1,9 @@
+import { Box } from "@mantine/core"
 import { useFormContext } from "react-hook-form"
 
+import ControlledTextArea from "@/components/fields/ControlledTextArea"
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import { ISetting, SettingType } from "@/types/components/Settings"
-import ControlledTextArea from "@/components/fields/ControlledTextArea"
-import { Box } from "@mantine/core"
 
 const SettingValue = ({ name, dataType }: ISetting) => {
   const { control } = useFormContext()
@@ -14,7 +14,7 @@ const SettingValue = ({ name, dataType }: ISetting) => {
           name={name}
           control={control}
           TextInputProps={{
-            sx: {
+            style: {
               width: 300,
             },
           }}
@@ -24,7 +24,7 @@ const SettingValue = ({ name, dataType }: ISetting) => {
       return (
         <ControlledTextArea
           TextAreaProps={{
-            sx: {
+            style: {
               width: 300,
             },
           }}

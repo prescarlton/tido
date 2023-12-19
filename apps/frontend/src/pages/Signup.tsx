@@ -6,6 +6,7 @@ import {
   Button,
   Checkbox,
   Container,
+  getGradient,
   Group,
   Paper,
   Stack,
@@ -63,8 +64,8 @@ const SignupPage = () => {
 
   return (
     <Box
-      sx={(theme) => ({
-        background: theme.fn.gradient(),
+      style={(theme) => ({
+        background: getGradient(undefined, theme),
         height: "100%",
         display: "flex",
         flexDirection: "column",
@@ -74,8 +75,8 @@ const SignupPage = () => {
     >
       <Container>
         <Stack
-          spacing={0}
-          sx={(theme) => ({
+          gap={0}
+          style={(theme) => ({
             position: "absolute",
             top: theme.spacing.lg,
             left: 0,
@@ -85,8 +86,8 @@ const SignupPage = () => {
         >
           <Title
             size="h1"
-            align="center"
-            sx={(theme) => ({
+            ta="center"
+            style={(theme) => ({
               fontWeight: 900,
               color: theme.white,
               fontSize: "4rem",
@@ -95,9 +96,9 @@ const SignupPage = () => {
             tido
           </Title>
           <Title
-            align="center"
+            ta="center"
             size="h2"
-            sx={(theme) => ({
+            style={(theme) => ({
               fontWeight: 400,
               color: theme.white,
               opacity: 0.6,
@@ -137,7 +138,7 @@ const SignupPage = () => {
               ),
             }}
           />
-          <Group position="apart" mt="lg">
+          <Group justify="space-between" mt="lg">
             <Checkbox label="Remember me" />
             <Anchor component="button" size="sm">
               Forgot password?
@@ -146,7 +147,7 @@ const SignupPage = () => {
           <Button fullWidth mt="xl" type="submit">
             Sign Up
           </Button>
-          <Text color="dimmed" size="sm" align="center" mt="sm">
+          <Text c="dimmed" size="sm" ta="center" mt="sm">
             Already running successful projects?{" "}
             <Button variant="subtle" onClick={onClickLogin}>
               Log In

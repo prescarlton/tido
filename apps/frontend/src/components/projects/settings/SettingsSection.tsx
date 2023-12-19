@@ -14,7 +14,7 @@ const SettingsSection = ({
 
   return (
     <Box
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         gap: 2,
@@ -25,7 +25,7 @@ const SettingsSection = ({
     >
       <Title size="h3">{sectionName}</Title>
       <Box
-        sx={{
+        style={{
           border: 1,
           borderColor,
           borderRadius: 4,
@@ -35,17 +35,17 @@ const SettingsSection = ({
           gap: 3,
         }}
       >
-        <Stack spacing={2}>
+        <Stack gap={2}>
           {settings.map((setting) => (
             <Box
-              sx={{
+              style={{
                 display: "flex",
                 justifyContent: "space-between",
               }}
               key={setting.name}
             >
               <Box>
-                <Text sx={{ fontWeight: 700 }}>{setting.label}</Text>
+                <Text style={{ fontWeight: 700 }}>{setting.label}</Text>
                 <Text variant="caption">{setting.description}</Text>
               </Box>
               <Box>
@@ -54,7 +54,11 @@ const SettingsSection = ({
             </Box>
           ))}
         </Stack>
-        <Button variant="filled" type="submit" sx={{ alignSelf: "flex-end" }}>
+        <Button
+          variant="filled"
+          type="submit"
+          style={{ alignSelf: "flex-end" }}
+        >
           Save Changes
         </Button>
       </Box>

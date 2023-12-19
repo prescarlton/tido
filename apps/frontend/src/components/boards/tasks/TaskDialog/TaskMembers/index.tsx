@@ -4,11 +4,11 @@ import UserChip from "@/components/boards/tasks/TaskDialog/TaskMembers/UserChip"
 
 const TaskMembers = () => {
   return (
-    <Group spacing="xl">
+    <Group gap="xl">
       <Text color="dimmed" w={100}>
         Assigned To
       </Text>
-      <Group spacing="xs">
+      <Group gap="xs">
         {/* <UserChip />
         <UserChip />
         <UserChip /> */}

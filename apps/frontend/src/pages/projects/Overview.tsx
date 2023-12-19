@@ -6,6 +6,8 @@ import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabCon
 import useProjectContext from "@/contexts/ProjectContext"
 import useFavoriteProject from "@/hooks/api/projects/useFavoriteProjects"
 
+import styles from "./styles.module.scss"
+
 const OverviewPage = () => {
   const { projectId, project } = useProjectContext()
 
@@ -20,24 +22,12 @@ const OverviewPage = () => {
 
   return (
     <ProjectTabContent>
-      <Box
-        sx={(theme) => ({
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "start",
-          gap: theme.spacing.md,
-          paddingTop: theme.spacing.sm,
-        })}
-      >
-        <Group position="apart" align="center">
-          <Group spacing="sm" align="center">
-            <Title size="h1">{project?.name}</Title>
-          </Group>
-          <Group spacing="sm">
-            <ActionIcon onClick={handleToggleFavorite}>
-              {project?.favorited ? <IconStarFilled /> : <IconStar />}
-            </ActionIcon>
-          </Group>
+      <Box className={styles.container}>
+        <Group justify="space-between" align="center" gap="sm">
+          <Title size="h1">{project?.name}</Title>
+          <ActionIcon onClick={handleToggleFavorite} variant="subtle">
+            {project?.favorited ? <IconStarFilled /> : <IconStar />}
+          </ActionIcon>
         </Group>
         <BoardCarousel projectId={projectId} />
       </Box>

@@ -6,6 +6,7 @@ import {
   Button,
   Checkbox,
   Container,
+  getGradient,
   Group,
   Paper,
   Stack,
@@ -65,8 +66,8 @@ const LoginPage = () => {
 
   return (
     <Box
-      sx={(theme) => ({
-        background: theme.fn.gradient(),
+      style={(theme) => ({
+        background: getGradient(undefined, theme),
         height: "100%",
         display: "flex",
         flexDirection: "column",
@@ -76,7 +77,7 @@ const LoginPage = () => {
     >
       <Title
         size="h3"
-        sx={(theme) => ({
+        style={(theme) => ({
           fontWeight: 900,
           color: theme.white,
           fontSize: "4rem",
@@ -90,18 +91,18 @@ const LoginPage = () => {
       </Title>
       <Container>
         <Stack
-          spacing={0}
-          sx={(theme) => ({
+          gap={0}
+          style={(theme) => ({
             width: "100%",
           })}
         >
           <Title
-            align="center"
             size="h2"
-            sx={(theme) => ({
+            style={(theme) => ({
               fontWeight: 400,
               color: theme.white,
               opacity: 0.6,
+              textAlign: "center",
             })}
           >
             Welcome back.
@@ -139,7 +140,7 @@ const LoginPage = () => {
               ),
             }}
           />
-          <Group position="apart" mt="lg">
+          <Group justify="space-between" mt="lg">
             <Checkbox label="Remember me" />
             <Anchor component="button" size="sm">
               Forgot password?
@@ -148,7 +149,7 @@ const LoginPage = () => {
           <Button fullWidth mt="xl" type="submit">
             Sign in
           </Button>
-          <Text color="dimmed" size="sm" align="center" mt="sm">
+          <Text c="dimmed" size="sm" ta="center" mt="sm">
             New around here?{" "}
             <Button variant="subtle" onClick={onClickSignup}>
               Sign Up

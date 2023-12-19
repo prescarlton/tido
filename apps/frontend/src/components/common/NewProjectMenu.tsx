@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Menu } from "@mantine/core"
+import { Box, Button, Menu, Popover } from "@mantine/core"
 import { ReactNode } from "react"
 import { useForm } from "react-hook-form"
 import { CreateProjectBody, CreateProjectSchema } from "shared/types/projects"
@@ -25,23 +25,12 @@ const NewProjectMenu = ({ children }: INewProjectMenu) => {
   }
 
   return (
-    <Menu
-      styles={{
-        item: {
-          "&[data-hovered]": {
-            backgroundColor: "transparent",
-            cursor: "default",
-          },
-        },
-      }}
-      closeOnItemClick={false}
-      width={300}
-    >
-      <Menu.Target>{children}</Menu.Target>
-      <Menu.Dropdown>
+    <Popover width={300}>
+      <Popover.Target>{children}</Popover.Target>
+      <Popover.Dropdown>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Menu.Item>Create Project</Menu.Item>
-          <Menu.Item>
+          <Box>Create Project</Box>
+          <Box>
             <ControlledTextField
               control={control}
               name="name"
@@ -50,13 +39,13 @@ const NewProjectMenu = ({ children }: INewProjectMenu) => {
                 autoComplete: "off",
               }}
             />
-          </Menu.Item>
-          <Menu.Item>
+          </Box>
+          <Box>
             <Button type="submit">Create</Button>
-          </Menu.Item>
+          </Box>
         </form>
-      </Menu.Dropdown>
-    </Menu>
+      </Popover.Dropdown>
+    </Popover>
   )
 }
 

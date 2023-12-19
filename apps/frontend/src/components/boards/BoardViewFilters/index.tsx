@@ -46,7 +46,7 @@ const BoardViewFilters = () => {
           */}
           <Button
             variant="subtle"
-            rightIcon={<IconChevronDown />}
+            rightSection={<IconChevronDown />}
             px="xs"
             color="gray"
           >
@@ -60,7 +60,7 @@ const BoardViewFilters = () => {
           value={taskFilterValue.tags || []}
           onChange={onChangeTags}
         >
-          <Stack spacing="xs">
+          <Stack gap="xs">
             {tags?.map((tag) => (
               <Checkbox
                 key={tag.id}

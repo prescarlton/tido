@@ -1,51 +1,46 @@
-import { Box, Loader } from "@mantine/core"
-import { useHotkeys } from "@mantine/hooks"
-import { useState } from "react"
+import { AppShell, Box, Loader } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 import { Outlet } from "react-router-dom"
 
 import AppHeader from "@/components/common/AppHeader"
-import Page from "@/components/common/Page"
 import Sidebar from "@/components/common/Sidebar"
 import useGetMe from "@/hooks/api/auth/useGetMe"
 
 const AppLayout = () => {
-  const [showSidebar, setShowSidebar] = useState(true)
-
-  const toggleSidebar = () => setShowSidebar((prev) => !prev)
-
-  useHotkeys([["mod+m", toggleSidebar]])
+  const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
+  const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true)
   const { isLoading } = useGetMe()
 
   if (isLoading)
     return (
       <Box
-        sx={{
+        style={{
           display: "flex",
           flexDirection: "column",
-          height: "100%",
           alignItems: "center",
           justifyContent: "center",
+          flex: 1,
+          height: "100%",
         }}
       >
         <Loader />
       </Box>
     )
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%",
+    <AppShell
+      header={{ height: 48 }}
+      navbar={{
+        width: 300,
+        breakpoint: "sm",
+        collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
       }}
     >
       <AppHeader />
-      <Box sx={{ display: "flex", overflow: "hidden", flex: 1 }}>
-        <Sidebar showSidebar={showSidebar} />
-        <Page>
-          <Outlet />
-        </Page>
-      </Box>
-    </Box>
+      <Sidebar />
+      <AppShell.Main style={{ display: "flex", flexDirection: "column" }}>
+        <Outlet />
+      </AppShell.Main>
+    </AppShell>
   )
 }
 export default AppLayout

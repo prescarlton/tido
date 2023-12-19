@@ -1,18 +1,11 @@
-import {
-  ActionIcon,
-  Collapse,
-  Flex,
-  Group,
-  Navbar,
-  rem,
-  Text,
-} from "@mantine/core"
+import { ActionIcon, AppShell, Box, Collapse, Group, Text } from "@mantine/core"
 import { IconChevronDown, IconChevronUp } from "@tabler/icons-react"
 import { useState } from "react"
 import { Project } from "shared/types/projects"
 
 import useGetMyFavorites from "@/hooks/api/favorites/useGetMyFavorites"
 
+import styles from "./sidebar.module.scss"
 import SidebarProjectItem from "./SidebarProjectItem"
 
 const SidebarFavorites = () => {
@@ -23,29 +16,9 @@ const SidebarFavorites = () => {
   const { data: favorites } = useGetMyFavorites()
 
   return (
-    <Navbar.Section
-      sx={(theme) => ({
-        marginLeft: `calc(${theme.spacing.md} * -1)`,
-        marginRight: `calc(${theme.spacing.md} * -1)`,
-        marginBottom: theme.spacing.md,
-        paddingBottom: theme.spacing.md,
-        borderBottom: `${rem(1)} solid ${
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[4]
-            : theme.colors.gray[3]
-        }`,
-      })}
-    >
-      <Group
-        position="apart"
-        sx={(theme) => ({
-          paddingLeft: `calc(${theme.spacing.md} + ${rem(2)})`,
-          paddingRight: theme.spacing.md,
-          marginBottom: rem(5),
-          flexWrap: "nowrap",
-        })}
-      >
-        <Text size="xs" c="dimmed" weight={500}>
+    <AppShell.Section className={styles.section}>
+      <Group className={styles.sectionHeader}>
+        <Text size="sm" c="dimmed">
           Favorites
         </Text>
         <ActionIcon onClick={toggleCollapse} size="xs">
@@ -53,13 +26,7 @@ const SidebarFavorites = () => {
         </ActionIcon>
       </Group>
       <Collapse in={open}>
-        <Flex
-          direction="column"
-          sx={(theme) => ({
-            padding: `calc(${theme.spacing.md} - ${rem(6)})`,
-            paddingBottom: theme.spacing.md,
-          })}
-        >
+        <Box className={styles.sectionItemList}>
           {favorites?.projects.length ? (
             favorites.projects.map((project) => (
               <SidebarProjectItem
@@ -68,13 +35,11 @@ const SidebarFavorites = () => {
               />
             ))
           ) : (
-            <Text size="xs" sx={{ alignSelf: "center" }}>
-              You have no favorites.
-            </Text>
+            <Text size="xs">You have no favorites.</Text>
           )}
-        </Flex>
+        </Box>
       </Collapse>
-    </Navbar.Section>
+    </AppShell.Section>
   )
 }
 

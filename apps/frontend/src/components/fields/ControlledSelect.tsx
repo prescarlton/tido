@@ -31,6 +31,7 @@ function ControlledSelect<FieldValueProps extends FieldValues>({
           label={label}
           error={(!disableError && error?.message) ?? ""}
           {...SelectProps}
+          comboboxProps={{ withinPortal: false }}
           data={parseSelectOptions(options)}
         />
       )}

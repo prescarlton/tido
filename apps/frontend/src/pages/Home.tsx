@@ -9,7 +9,7 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <Box
-        sx={{
+        style={{
           py: 2,
           px: 3,
           display: "flex",
@@ -17,11 +17,11 @@ const HomePage = () => {
           gap: 32,
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <Box style={{ display: "flex", flexDirection: "column" }}>
           <Title size="h4">
             Welcome back, {me?.firstName || me?.username}.
           </Title>
-          <Text sx={{ opacity: 0.6 }}>{"Let's get stuff done today."}</Text>
+          <Text style={{ opacity: 0.6 }}>{"Let's get stuff done today."}</Text>
         </Box>
         <ProjectList />
         {/* <MyTasks /> */}

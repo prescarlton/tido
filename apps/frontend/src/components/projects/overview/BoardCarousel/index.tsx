@@ -6,6 +6,7 @@ import BoardCarouselCard from "@/components/projects/overview/BoardCarousel/Boar
 import NewBoardButton from "@/components/projects/overview/BoardCarousel/NewBoardButton"
 import useListBoards from "@/hooks/api/boards/useListBoards"
 
+import styles from "./styles.module.scss"
 interface IBoardCarousel {
   projectId: string
 }
@@ -20,18 +21,18 @@ const BoardCarousel = ({ projectId }: IBoardCarousel) => {
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 12 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: 16 }}>
+    <Box className={styles.container}>
+      <Box className={styles.titleContainer}>
         <Title size="h4">Boards</Title>
         <Button
           variant="subtle"
-          rightIcon={<IconChevronRight />}
+          rightSection={<IconChevronRight />}
           onClick={onClickAllBoards}
         >
           All Boards
         </Button>
       </Box>
-      <Group sx={{ alignItems: "center" }} spacing={16}>
+      <Group align="center" gap={"md"}>
         {boards?.map((board) => (
           <BoardCarouselCard key={board.id} board={board} />
         ))}

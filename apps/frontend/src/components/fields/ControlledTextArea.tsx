@@ -28,7 +28,7 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
         field: { onChange, onBlur, value, ref },
       }) => (
         <Box
-          sx={{
+          style={{
             position: "relative",
           }}
         >
@@ -48,7 +48,7 @@ function ControlledTextArea<FieldValueProps extends FieldValues>({
           />
           {tooltip && (
             <Box
-              sx={(theme) => ({
+              style={(theme) => ({
                 opacity: opened ? 1 : 0,
                 position: "absolute",
                 bottom: 0,

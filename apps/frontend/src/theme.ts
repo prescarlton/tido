@@ -8,8 +8,14 @@ const theme: MantineThemeOverride = {
     xxs: ".25rem",
   },
   components: {
+    ActionIcon: {
+      defaultProps: {
+        variant: "subtle",
+        color: "gray",
+      },
+    },
     Modal: {
-      defaultProps: (theme) => ({
+      defaultProps: (theme: any) => ({
         styles: {},
         overlayProps: {
           color:

@@ -1,3 +1,5 @@
+import "@mantine/tiptap/styles.css"
+
 import { Box, Text, TextareaProps } from "@mantine/core"
 import { Link, RichTextEditor } from "@mantine/tiptap"
 import { BubbleMenu, EditorOptions, useEditor } from "@tiptap/react"
@@ -53,7 +55,7 @@ function ControlledRichTextEditor<FieldValueProps extends FieldValues>({
 
         return (
           <Box
-            sx={{
+            style={{
               position: "relative",
             }}
           >
@@ -72,7 +74,7 @@ function ControlledRichTextEditor<FieldValueProps extends FieldValues>({
             </RichTextEditor>
             {tooltip && (
               <Box
-                sx={(theme) => ({
+                style={(theme) => ({
                   opacity: opened ? 1 : 0,
                   position: "absolute",
                   bottom: 0,

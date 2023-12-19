@@ -10,14 +10,14 @@ const ProjectList = () => {
 
   return (
     <Box
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         gap: ".5rem",
       }}
     >
       <Title size="h3">Projects</Title>
-      <Group spacing="md">
+      <Group gap="md">
         {projects?.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}

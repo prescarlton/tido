@@ -11,6 +11,7 @@ interface ITaskCard {
   task: Task
   isDragOverlay?: boolean
 }
+import styles from "./styles.module.scss"
 
 const TaskCard = ({ task, isDragOverlay = false }: ITaskCard) => {
   const [opened, { close, open }] = useDisclosure()
@@ -33,7 +34,8 @@ const TaskCard = ({ task, isDragOverlay = false }: ITaskCard) => {
       <UnstyledButton
         onClick={onClickCard}
         p={0}
-        sx={{
+        className={styles.taskCard}
+        style={{
           opacity: isDragging ? 0.3 : 1,
           transform: CSS.Transform.toString(transform),
           rotate: isDragOverlay ? "-4deg" : "0",
@@ -44,24 +46,7 @@ const TaskCard = ({ task, isDragOverlay = false }: ITaskCard) => {
         {...listeners}
         ref={setNodeRef}
       >
-        <Card
-          withBorder
-          sx={(theme) => ({
-            display: "flex",
-            minHeight: 75,
-            flexDirection: "column",
-            alignItems: "stretch",
-            borderRadius: theme.radius.md,
-            "&:hover": {
-              borderColor: theme.fn.primaryColor(),
-            },
-            backgroundColor:
-              theme.colorScheme === "dark"
-                ? theme.colors.dark[6]
-                : theme.colors.gray[0],
-          })}
-          p="xs"
-        >
+        <Card withBorder className={styles.taskCardInner}>
           <TaskTags task={task} compact />
           <Text size="sm">{task.name}</Text>
         </Card>

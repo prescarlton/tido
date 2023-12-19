@@ -1,11 +1,20 @@
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Button, Card, Menu, Title, UnstyledButton } from "@mantine/core"
+import {
+  Box,
+  Button,
+  Card,
+  Popover,
+  Title,
+  UnstyledButton,
+} from "@mantine/core"
 import { FormProvider, useForm } from "react-hook-form"
 import { CreateBoardBody, CreateBoardSchema } from "shared/types/boards"
 
 import ControlledColorPicker from "@/components/fields/ControlledColorPicker"
 import ControlledTextField from "@/components/fields/ControlledTextField"
 import useCreateBoard from "@/hooks/api/boards/useCreateBoard"
+
+import styles from "./styles.module.scss"
 
 const NewBoardButton = () => {
   const createMutation = useCreateBoard()
@@ -21,53 +30,27 @@ const NewBoardButton = () => {
   }
 
   return (
-    <Menu
-      styles={{
-        item: {
-          "&[data-hovered]": {
-            backgroundColor: "transparent",
-            cursor: "default",
-          },
-        },
-      }}
-      closeOnItemClick={false}
-      width={300}
-      position="bottom-start"
-    >
-      <Menu.Target>
-        <Card
-          sx={(theme) => ({
-            width: 200,
-            height: 85,
-            position: "relative",
-            transition: ".2s all ease-in-out",
-            "&:hover": {
-              boxShadow: theme.shadows.sm,
-            },
-            display: "flex",
-            flexDirection: "column",
-          })}
-          withBorder
-          p={0}
-        >
-          <UnstyledButton p="sm" sx={{ flex: 1, display: "flex" }}>
-            <Title size="h5" sx={{ fontWeight: "bold" }}>
+    <Popover width={300} position="bottom-start">
+      <Popover.Target>
+        <Card className={styles.newBoardButton} withBorder p={0}>
+          <UnstyledButton p="sm" style={{ flex: 1 }}>
+            <Title size="h5" style={{ fontWeight: "bold" }}>
               Create new Board
             </Title>
           </UnstyledButton>
         </Card>
-      </Menu.Target>
-      <Menu.Dropdown>
+      </Popover.Target>
+      <Popover.Dropdown>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Menu.Item>Create Board</Menu.Item>
-          <Menu.Item>
+          <Box>Create Board</Box>
+          <Box>
             <ControlledTextField
               control={control}
               name="name"
               label="Board Name"
             />
-          </Menu.Item>
-          <Menu.Item>
+          </Box>
+          <Box>
             <FormProvider {...formMethods}>
               <ControlledColorPicker
                 name="color"
@@ -75,13 +58,13 @@ const NewBoardButton = () => {
                 label="Board Color"
               />
             </FormProvider>
-          </Menu.Item>
-          <Menu.Item>
+          </Box>
+          <Box>
             <Button type="submit">Create</Button>
-          </Menu.Item>
+          </Box>
         </form>
-      </Menu.Dropdown>
-    </Menu>
+      </Popover.Dropdown>
+    </Popover>
   )
 }
 

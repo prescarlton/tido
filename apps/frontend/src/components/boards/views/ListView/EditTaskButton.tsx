@@ -24,17 +24,21 @@ const EditTaskButton = ({ task }: IEditTaskButton) => {
       <Menu.Target>
         <ActionIcon
           onClick={(e) => e.stopPropagation()}
-          sx={{ height: "100%", width: "3.25rem" }}
+          style={{ height: "100%", width: "3.25rem" }}
         >
           <IconDots />
         </ActionIcon>
       </Menu.Target>
       <Menu.Dropdown>
-        <Menu.Item icon={<IconEdit />}>Edit Task</Menu.Item>
-        <Menu.Item icon={<IconCopy />} onClick={onClickDuplicate}>
+        <Menu.Item leftSection={<IconEdit />}>Edit Task</Menu.Item>
+        <Menu.Item leftSection={<IconCopy />} onClick={onClickDuplicate}>
           Duplicate Task
         </Menu.Item>
-        <Menu.Item color="red" icon={<IconArchive />} onClick={onClickDelete}>
+        <Menu.Item
+          color="red"
+          leftSection={<IconArchive />}
+          onClick={onClickDelete}
+        >
           Archive Task
         </Menu.Item>
       </Menu.Dropdown>

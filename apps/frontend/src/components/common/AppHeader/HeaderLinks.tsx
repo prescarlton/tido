@@ -4,7 +4,7 @@ import FavoritesMenu from "./FavoritesMenu"
 
 const HeaderLinks = () => {
   return (
-    <Group spacing="md">
+    <Group gap="md">
       <UnstyledButton>Workspaces</UnstyledButton>
       <UnstyledButton>Projects</UnstyledButton>
       <FavoritesMenu />

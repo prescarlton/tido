@@ -8,7 +8,7 @@ const ProjectListPage = () => {
 
   return (
     <Box
-      sx={(theme) => ({
+      style={(theme) => ({
         display: "flex",
         flexDirection: "column",
         padding: theme.spacing.sm,
@@ -19,7 +19,7 @@ const ProjectListPage = () => {
     >
       <Title size="h1">Projects</Title>
       <Box
-        sx={(theme) => ({
+        style={(theme) => ({
           display: "flex",
           flexWrap: "wrap",
           gap: theme.spacing.sm,

@@ -10,8 +10,8 @@ interface ITaskTags {
 
 const TaskTags = ({ task }: ITaskTags) => {
   return (
-    <Group spacing="xl" noWrap align="flex-start">
-      <Text color="dimmed" w={100}>
+    <Group gap="xl" wrap="nowrap" align="flex-start">
+      <Text c="dimmed" w={100}>
         Tags
       </Text>
       <Flex gap="xs" wrap="wrap" align="center">

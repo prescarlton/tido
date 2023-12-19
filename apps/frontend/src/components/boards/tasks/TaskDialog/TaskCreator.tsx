@@ -9,7 +9,7 @@ interface ITaskCreator {
 
 const TaskCreator = ({ creator }: ITaskCreator) => {
   return (
-    <Group spacing="xl">
+    <Group gap="xl">
       <Text color="dimmed" w={100}>
         Created By
       </Text>

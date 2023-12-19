@@ -4,7 +4,7 @@ import { ReactNode } from "react"
 const PageWrapper = ({ children }: { children: ReactNode }) => {
   return (
     <Box
-      sx={(theme) => ({
+      style={(theme) => ({
         display: "flex",
         flexDirection: "column",
         flex: 1,

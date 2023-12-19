@@ -47,9 +47,9 @@ const TagList = ({ switchStep, taskId, startingTags }: IListTags) => {
   }, [taskTags])
 
   return (
-    <Stack spacing="xs">
+    <Stack gap="xs">
       <Checkbox.Group defaultValue={taskTags} onChange={setTaskTags}>
-        <Stack spacing="xxs">
+        <Stack gap="xxs">
           {tags?.map((tag) => (
             <Checkbox
               key={tag.id}

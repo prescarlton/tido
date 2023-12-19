@@ -1,7 +1,15 @@
-import { Card, Text, Title, UnstyledButton } from "@mantine/core"
+import {
+  Card,
+  getThemeColor,
+  Text,
+  Title,
+  UnstyledButton,
+  useMantineTheme,
+} from "@mantine/core"
 import { useNavigate } from "react-router-dom"
 import { BoardList } from "shared/types/boards"
 
+import styles from "./styles.module.scss"
 interface IBoardCarouselCard {
   board: BoardList
 }
@@ -10,39 +18,20 @@ const BoardCarouselCard = ({
   board: { name, tasks, id, color },
 }: IBoardCarouselCard) => {
   const navigate = useNavigate()
+  const theme = useMantineTheme()
 
   const onClick = () => navigate(`b/${id}`)
-
+  const backgroundColor = getThemeColor(color, theme)
   return (
-    <Card
-      sx={(theme) => ({
-        width: 200,
-        height: 85,
-        overflow: "hidden",
-        position: "relative",
-        transition: ".2s all ease-in-out",
-        backgroundColor: theme.colors[color][theme.fn.primaryShade()],
-        padding: "0px !important",
-        "&:hover": {
-          boxShadow: theme.shadows.sm,
-        },
-      })}
-      withBorder
-    >
+    <Card className={styles.boardCard} withBorder>
       <UnstyledButton
-        sx={(theme) => ({
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-          padding: ".5rem",
-          color: theme.white,
-        })}
+        className={styles.boardCardButton}
         onClick={onClick}
+        style={{
+          backgroundColor,
+        }}
       >
-        <Title size="h5" sx={{ fontWeight: "bold" }}>
+        <Title size="h5" style={{ fontWeight: "bold" }}>
           {name}
         </Title>
         <Text size="xs">{tasks?.length} tasks</Text>

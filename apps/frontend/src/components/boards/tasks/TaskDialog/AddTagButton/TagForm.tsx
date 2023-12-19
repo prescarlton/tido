@@ -47,7 +47,7 @@ const TagForm = ({ switchStep, tag }: IEditTags) => {
 
   return (
     <Box>
-      <Stack spacing="xs">
+      <Stack gap="xs">
         <ControlledTextField
           control={control}
           name="name"
@@ -63,7 +63,7 @@ const TagForm = ({ switchStep, tag }: IEditTags) => {
               variant="subtle"
               onClick={onDeleteClick}
               size="xs"
-              sx={{ flex: 1 }}
+              style={{ flex: 1 }}
               color="red"
             >
               Delete Tag
@@ -73,7 +73,7 @@ const TagForm = ({ switchStep, tag }: IEditTags) => {
             variant="filled"
             onClick={onClickCreate}
             size="xs"
-            sx={{ flex: 1 }}
+            style={{ flex: 1 }}
           >
             {tag ? "Update Tag" : "Create Tag"}
           </Button>

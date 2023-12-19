@@ -1,0 +1,32 @@
+.taskCard {
+  display: flex;
+  transition: 0.2s all ease-in-out;
+  height: 3.25rem;
+  overflow: visible;
+  flex-direction: row;
+
+  &[data-complete] {
+    opacity: 0.6;
+  }
+
+  &:hover {
+    box-shadow: var(--mantine-shadows-sm);
+  }
+
+  @include light {
+    background-color: var(--mantine-color-white);
+  }
+
+  @include dark {
+    background-color: var(--mantine-color-dark-7);
+  }
+
+  & .taskCardButton {
+    flex: 1;
+    padding: var(--mantine-spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--mantine-spacing-sm);
+    height: 100%;
+  }
+}

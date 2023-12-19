@@ -10,6 +10,8 @@ import TaskTags from "@/components/boards/views/ListView/TaskCard/TaskTags"
 import useProjectContext from "@/contexts/ProjectContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
 
+import styles from "./styles.module.scss"
+
 interface ITaskCard {
   task: Task
 }
@@ -41,36 +43,9 @@ const TaskCard = ({ task }: ITaskCard) => {
   }
 
   return (
-    <Card
-      withBorder
-      sx={(theme) => ({
-        display: "flex",
-        alignItems: "center",
-        opacity: task.complete ? 0.6 : 1,
-        transition: ".2s all ease-in-out",
-        "&:hover": {
-          boxShadow: theme.shadows.sm,
-        },
-        height: "3.25rem",
-        overflow: "visible",
-        backgroundColor:
-          theme.colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
-      })}
-      className={task.complete ? "task--completed" : ""}
-      p={0}
-    >
-      <UnstyledButton
-        onClick={onClickCard}
-        sx={(theme) => ({
-          flex: 1,
-          padding: theme.spacing.sm,
-          display: "flex",
-          alignItems: "center",
-          gap: theme.spacing.sm,
-          height: "100%",
-        })}
-      >
-        <Group spacing="xs" sx={{ flex: 1, flexWrap: "nowrap" }}>
+    <Card withBorder className={styles.taskCard} p={0}>
+      <UnstyledButton onClick={onClickCard} className={styles.taskCardButton}>
+        <Group gap="xs" style={{ flex: 1, flexWrap: "nowrap" }}>
           <Checkbox
             checked={task.complete}
             onChange={onChange}
@@ -83,7 +58,7 @@ const TaskCard = ({ task }: ITaskCard) => {
           />
           <Text
             variant="h5"
-            sx={{
+            style={{
               fontWeight: "bold",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -94,7 +69,7 @@ const TaskCard = ({ task }: ITaskCard) => {
             {task.name}
           </Text>
         </Group>
-        <Group spacing="sm" align="center" noWrap>
+        <Group gap="sm" align="center" wrap="nowrap">
           <TaskTags task={task} />
           <TaskStatus task={task} />
         </Group>

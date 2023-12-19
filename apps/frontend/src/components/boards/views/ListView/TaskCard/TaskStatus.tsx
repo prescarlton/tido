@@ -1,4 +1,4 @@
-import { Box, Text } from "@mantine/core"
+import { Badge } from "@mantine/core"
 import { Task } from "shared/types/tasks"
 
 interface ITaskStatus {
@@ -7,20 +7,9 @@ interface ITaskStatus {
 
 const TaskStatus = ({ task }: ITaskStatus) => {
   return (
-    <Box
-      sx={(theme) => ({
-        backgroundColor: theme.fn.variant({
-          variant: "light",
-          color: task.status.color,
-        }).background,
-        borderRadius: theme.radius.sm,
-      })}
-      px="xs"
-    >
-      <Text color={task.status.color} size="xs" weight="bold">
-        {task.status.name}
-      </Text>
-    </Box>
+    <Badge variant="light" color={task.status.color} radius="sm">
+      {task.status.name}
+    </Badge>
   )
 }
 

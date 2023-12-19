@@ -8,7 +8,7 @@ const AddTaskButton = ({ statusId }: { statusId: number }) => {
   return (
     <>
       <UnstyledButton
-        sx={(theme) => ({
+        style={(theme) => ({
           borderRadius: theme.radius.md,
           paddingLeft: theme.spacing.xs,
           height: 32,

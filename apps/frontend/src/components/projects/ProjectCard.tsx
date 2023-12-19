@@ -14,7 +14,7 @@ const ProjectCard = ({ project }: { project: ProjectWithActivity }) => {
 
   return (
     <Card
-      sx={(theme) => ({
+      style={(theme) => ({
         width: 250,
         height: 150,
         display: "flex",
@@ -31,7 +31,7 @@ const ProjectCard = ({ project }: { project: ProjectWithActivity }) => {
     >
       <UnstyledButton
         onClick={handleClick}
-        sx={{
+        style={{
           flex: 1,
           display: "flex",
           flexDirection: "column",

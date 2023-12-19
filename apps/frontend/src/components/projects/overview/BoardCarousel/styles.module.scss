@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: rem(12);
+
+  .titleContainer {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+  }
+}
+
+.boardCard {
+  width: rem(200);
+  height: rem(85);
+  position: relative;
+  transition: 0.2s all ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 0px !important;
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-sm);
+  }
+
+  & .boardCardButton {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0.5rem;
+    color: var(--mantine-color-white);
+  }
+}
+
+.newBoardButton {
+  width: rem(200);
+  height: rem(85);
+  position: relative;
+  transition: 0.2s all ease-in-out;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    box-shadow: var(--mantine-shadow-sm);
+  }
+}
