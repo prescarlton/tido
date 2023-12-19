@@ -6,6 +6,9 @@
       "outputs": ["dist/**", ".next/**"],
       "env": ["PORT"]
     },
+    "db:generate": {
+      "cache": false
+    },
     "lint": {
       "outputs": []
     },
