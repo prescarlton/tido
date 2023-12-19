@@ -1,0 +1,40 @@
+{
+  "name": "database",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "source": "./src/index.ts",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup ./src/index.ts --format cjs",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed dev",
+    "db:reset": "prisma migrate reset",
+    "db:migrate": "prisma migrate dev",
+    "db:migrate:deploy": "prisma migrate deploy",
+    "dev": "tsup --watch",
+    "studio": "prisma studio",
+    "prebuild": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.14.0",
+    "config": "workspace:*",
+    "tsconfig": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.1.0",
+    "eslint": "8.47.0",
+    "prisma": "^4.14.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.2",
+    "@types/prettier": "^3.0.0",
+    "prettier": "^3.0.0"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed/index.ts"
+  }
+}

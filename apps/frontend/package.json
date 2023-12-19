@@ -35,7 +35,8 @@
     "react-hook-form": "^7.39.4",
     "react-router-dom": "^6.4.3",
     "react-use": "^17.4.0",
-    "shared": "workspace:*"
+    "shared": "workspace:*",
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.22",
@@ -45,10 +46,8 @@
     "postcss": "^8.4.32",
     "postcss-preset-mantine": "^1.11.1",
     "postcss-simple-vars": "^7.0.1",
-    "prettier": "^2.8.4",
     "sass": "^1.69.5",
     "tsconfig": "workspace:*",
-    "typescript": "^5.1.6",
     "vite": "^3.2.0"
   }
 }
