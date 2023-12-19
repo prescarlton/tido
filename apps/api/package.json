@@ -6,6 +6,7 @@
     "build": "tsup ./src/index.ts --format cjs",
     "dev": "nodemon ./src/index.ts",
     "db:migrate": "pnpm prisma migrate dev",
+    "db:migrate:deploy": "pnpm prisma migrate deploy",
     "db:reset": "pnpm prisma migrate reset",
     "db:generate": "pnpm prisma generate",
     "db:push": "pnpm prisma db push",
