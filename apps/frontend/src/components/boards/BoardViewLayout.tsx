@@ -1,4 +1,10 @@
-import { Box, Group, TextInput, Title } from "@mantine/core"
+import {
+  Box,
+  Group,
+  TextInput,
+  Title,
+  useMantineColorScheme,
+} from "@mantine/core"
 import { useColorScheme } from "@mantine/hooks"
 import { IconSearch } from "@tabler/icons-react"
 import { ReactNode } from "react"
@@ -10,7 +16,7 @@ import BoardViewFilters from "./BoardViewFilters"
 import BoardViewOnlyMe from "./BoardViewOnlyMe"
 import BoardViewSort from "./BoardViewSort"
 import CreateTaskButton from "./CreateTaskButton"
-
+import styles from "./styles.module.scss"
 interface IBoardViewLayout {
   tasks: Task[]
   children: ReactNode
@@ -21,19 +27,8 @@ export interface IBoardView {
 
 const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
   const { taskSearchValue, setTaskSearchValue } = useBoardContext()
-  const scheme = useColorScheme()
   return (
-    <Box
-      style={(theme) => ({
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        overflow: "hidden",
-        flex: 1,
-        backgroundColor:
-          scheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[0],
-      })}
-    >
+    <Box className={styles.container}>
       <Group justify="space-between" align="center" p="sm">
         <Group gap="xs">
           <BoardViewFilters />
