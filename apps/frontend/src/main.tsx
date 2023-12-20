@@ -1,4 +1,5 @@
 import "@mantine/core/styles.css"
+import "@mantine/notifications/styles.css"
 import "./styles/globals.scss"
 
 import { MantineProvider } from "@mantine/core"
