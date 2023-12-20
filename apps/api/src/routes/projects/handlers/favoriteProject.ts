@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { User } from "database"
 import { Response } from "express"
 import { FavoriteProjectRequest } from "shared/types/favorites"
 

@@ -1,5 +1,5 @@
-import { User } from "@prisma/client"
 import bcrypt from "bcrypt"
+import { User } from "database"
 import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
 
@@ -26,8 +26,8 @@ passport.use(
 
       // if we made it this far, the user is good to go
       return done(null, user)
-    }
-  )
+    },
+  ),
 )
 
 passport.serializeUser((user, done) => {

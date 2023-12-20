@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { User } from "database"
 import { NextFunction, Request, Response } from "express"
 
 import prisma from "@/utils/db"
@@ -7,7 +7,7 @@ import errorHandler from "@/utils/errorHandler"
 const checkProjectAccess = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const { projectId } = req.params as { projectId: string }

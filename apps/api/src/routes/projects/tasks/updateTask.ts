@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { User } from "database"
 import { Request, Response } from "express"
 import { isNaN } from "lodash"
 import {
@@ -15,7 +15,7 @@ import createTaskActivity from "@/utils/tasks/createTaskActivity"
 
 const updateTask = async (
   req: Request<GetTaskParams, never, UpdateTaskBody>,
-  res: Response<GetTaskByIdResponse>
+  res: Response<GetTaskByIdResponse>,
 ) => {
   try {
     const { taskId, projectId } = req.params

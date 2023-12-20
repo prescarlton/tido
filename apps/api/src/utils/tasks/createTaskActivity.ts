@@ -1,4 +1,4 @@
-import { Prisma, Task } from "@prisma/client"
+import { Prisma, Task } from "database"
 
 import prisma from "@/utils/db"
 
@@ -6,7 +6,7 @@ import prisma from "@/utils/db"
 const createTaskActivity = async (
   task: Task,
   body: Partial<Task>,
-  userId: string
+  userId: string,
 ) => {
   const user = await prisma.user.findUnique({
     where: {

@@ -1,6 +1,6 @@
 import "../auth"
 
-import { PrismaClient } from "@prisma/client"
+import { PrismaClient } from "database"
 import { PrismaSessionStore } from "@quixo3/prisma-session-store"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
@@ -28,13 +28,13 @@ const setupMiddleware = (app: Application) => {
         dbRecordIdIsSessionId: true,
         dbRecordIdFunction: undefined,
       }),
-    })
+    }),
   )
   app.use(
     cors({
       origin: ["http://localhost:3000"],
       credentials: true,
-    })
+    }),
   )
 
   // app.use(helmet())

@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { User } from "database"
 import { Request, Response } from "express"
 import { GetMyFavoritesResponse } from "shared/types/favorites"
 
@@ -7,7 +7,7 @@ import { projectSelect } from "@/utils/selects/projects"
 
 const getMyFavorites = async (
   req: Request,
-  res: Response<GetMyFavoritesResponse>
+  res: Response<GetMyFavoritesResponse>,
 ) => {
   const user = req.user as User
 

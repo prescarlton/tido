@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import { User } from "database"
 import { Request, Response } from "express"
 
 import prisma from "@/utils/db"
