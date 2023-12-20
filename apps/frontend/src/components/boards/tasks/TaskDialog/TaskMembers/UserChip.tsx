@@ -1,5 +1,10 @@
-import { Avatar, Paper, Text, useMantineTheme } from "@mantine/core"
-import { useColorScheme } from "@mantine/hooks"
+import {
+  Avatar,
+  Paper,
+  Text,
+  useMantineColorScheme,
+  useMantineTheme,
+} from "@mantine/core"
 import { ShortUser } from "shared/types/users"
 
 interface IUserChip {
@@ -8,7 +13,7 @@ interface IUserChip {
 
 const UserChip = ({ user }: IUserChip) => {
   const theme = useMantineTheme()
-  const colorScheme = useColorScheme()
+  const { colorScheme } = useMantineColorScheme()
   const initials =
     user.firstName && user.lastName ? user.firstName[0] + user.lastName[0] : ""
   return (

@@ -1,7 +1,6 @@
 import { useDroppable } from "@dnd-kit/core"
 import { SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable"
-import { Box, Card, Group, Title } from "@mantine/core"
-import { useColorScheme } from "@mantine/hooks"
+import { Box, Card, Group, Title, useMantineColorScheme } from "@mantine/core"
 import { Task, TaskStatus } from "shared/types/tasks"
 
 import AddTaskButton from "./AddTaskButton"
@@ -14,7 +13,7 @@ interface IBoardColumn {
 
 const BoardColumn = ({ status, tasks }: IBoardColumn) => {
   const { setNodeRef } = useDroppable({ id: status.name })
-  const colorScheme = useColorScheme()
+  const { colorScheme } = useMantineColorScheme()
   return (
     <Card
       withBorder

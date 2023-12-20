@@ -1,11 +1,4 @@
-import {
-  Box,
-  Group,
-  TextInput,
-  Title,
-  useMantineColorScheme,
-} from "@mantine/core"
-import { useColorScheme } from "@mantine/hooks"
+import { Box, Group, TextInput, Title } from "@mantine/core"
 import { IconSearch } from "@tabler/icons-react"
 import { ReactNode } from "react"
 import { Task } from "shared/types/tasks"
