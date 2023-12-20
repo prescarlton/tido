@@ -8,7 +8,7 @@ import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"
 
 const createTask = async (
   req: Request<CreateTaskParams, never, CreateTaskBody>,
-  res: Response,
+  res: Response
 ) => {
   const { boardId } = req.params
   const { name, status, rawDescription } = req.body
@@ -50,7 +50,7 @@ const createTask = async (
   if (!defaultStatus)
     return res
       .status(400)
-      .json({ message: "Your board does not have any valid statuses" })
+      .json({ message: "Your project does not have any valid statuses" })
 
   const textDescription = convertRawFromJSON(rawDescription)
   // if no task was found, this is the first task. code can be 1
@@ -70,7 +70,7 @@ const createTask = async (
   await createProjectActivity(
     project.id,
     user.id,
-    `Created a task: ${task.name}`,
+    `Created a task: ${task.name}`
   )
   return res.json({ message: "Task created successfully", data: task })
 }

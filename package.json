@@ -8,11 +8,11 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "preinstall": "npx only-allow pnpm",
-    "db:reset": "pnpm -C apps/api db:reset",
-    "db:migrate": "pnpm -C apps/api db:migrate",
+    "db:reset": "pnpm -C packages/database db:reset",
+    "db:migrate": "pnpm -C packages/database db:migrate",
     "db:generate": "turbo run db:generate",
-    "db:push": "pnpm -C apps/api db:push",
-    "db:seed": "pnpm -C apps/api db:seed"
+    "db:push": "pnpm -C packages/database db:push",
+    "db:seed": "pnpm -C packages/database db:seed"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
