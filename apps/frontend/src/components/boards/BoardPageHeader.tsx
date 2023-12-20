@@ -45,7 +45,7 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
         justifyContent: "space-between",
         gap: 16,
         padding: ".25rem 1rem",
-        zIndex: 100,
+        height: 48,
       })}
     >
       <Box

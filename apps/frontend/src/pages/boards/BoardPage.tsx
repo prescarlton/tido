@@ -7,6 +7,8 @@ import BoardPageHeader from "@/components/boards/BoardPageHeader"
 import { BoardProvider } from "@/contexts/BoardContext"
 import BoardPageContent from "@/pages/boards/BoardPageContent"
 
+import styles from "./styles.module.scss"
+
 const BoardPage = () => {
   const [tab, setTab] = useState<BoardView>(BoardView.List)
   const { projectId, boardId } = useParams() as {
@@ -16,14 +18,7 @@ const BoardPage = () => {
 
   return (
     <BoardProvider>
-      <Box
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-          overflow: "hidden",
-        }}
-      >
+      <Box className={styles.container}>
         <BoardPageHeader tab={tab} setTab={setTab} />
         <BoardPageContent projectId={projectId} boardId={boardId} tab={tab} />
       </Box>
