@@ -2,11 +2,11 @@ import { Group, SelectProps, Skeleton, Text } from "@mantine/core"
 import { useFormContext } from "react-hook-form"
 
 import ControlledSelect from "@/components/fields/ControlledSelect"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
 
 const TaskStatus = () => {
-  const { projectId } = useProjectContext()
+  const { projectId } = useAppContext()
   const { data: statuses } = useListTaskStatuses({
     projectId,
   })

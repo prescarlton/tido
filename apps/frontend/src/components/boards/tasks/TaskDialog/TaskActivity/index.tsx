@@ -1,7 +1,7 @@
 import { Stack, Text } from "@mantine/core"
 
 import ActivityItem from "@/components/boards/tasks/TaskDialog/TaskActivity/ActivityItem"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useGetTaskActivity from "@/hooks/api/tasks/useGetTaskActivity"
 
 interface ITaskActivity {
@@ -9,7 +9,7 @@ interface ITaskActivity {
 }
 
 const TaskActivity = ({ taskId }: ITaskActivity) => {
-  const { projectId, boardId } = useProjectContext()
+  const { projectId, boardId } = useAppContext()
   const { data: taskActivity } = useGetTaskActivity({
     taskId,
     projectId,

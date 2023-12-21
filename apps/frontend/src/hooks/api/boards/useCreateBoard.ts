@@ -7,15 +7,15 @@ import ProjectService, {
   BOARDS_QUERY_KEY,
   CREATE_BOARD_QUERY_KEY,
 } from "@/api/ProjectService"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 
 const createBoard = (data: CreateBoardBody, projectId: string) =>
   ProjectService.post<CreateBoardResponse>(`/${projectId}/boards`, data).then(
-    (res) => res.data.data
+    (res) => res.data.data,
   )
 
 const useCreateBoard = () => {
-  const { projectId } = useProjectContext()
+  const { projectId } = useAppContext()
 
   const queryClient = useQueryClient()
   const navigate = useNavigate()
@@ -32,7 +32,7 @@ const useCreateBoard = () => {
         queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
         navigate(`/p/${data.projectId}/b/${data.id}`)
       },
-    }
+    },
   )
 }
 

@@ -4,8 +4,8 @@ import { Dispatch, FocusEvent, SetStateAction } from "react"
 import { useNavigate } from "react-router-dom"
 import { BoardView } from "shared/types/boards"
 
+import useAppContext from "@/contexts/AppContext"
 import useBoardContext from "@/contexts/BoardContext"
-import useProjectContext from "@/contexts/ProjectContext"
 import useRenameBoard from "@/hooks/api/boards/useRenameBoard"
 
 import BoardViewSwitcher from "./BoardViewSwitcher"
@@ -17,7 +17,7 @@ interface IBoardPageHeader {
 }
 
 const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
-  const { project } = useProjectContext()
+  const { project } = useAppContext()
   const navigate = useNavigate()
   const { boardId, board, taskSearchValue, setTaskSearchValue } =
     useBoardContext()

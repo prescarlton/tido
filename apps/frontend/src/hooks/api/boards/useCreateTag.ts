@@ -11,16 +11,16 @@ import ProjectService, {
   CREATE_TAG_QUERY_KEY,
   TAGS_QUERY_KEY,
 } from "@/api/ProjectService"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 
 const createTag = (params: CreateTagParams, body: CreateTagBody) =>
   ProjectService.post(
     `/${params.projectId}/boards/${params.boardId}/tags`,
-    body
+    body,
   ).then((res) => res.data.data)
 
 const useCreateTag = () => {
-  const { projectId, boardId } = useProjectContext()
+  const { projectId, boardId } = useAppContext()
   const queryClient = useQueryClient()
   if (!boardId) throw new Error("Unable to create a tag in this context.")
 
@@ -35,10 +35,10 @@ const useCreateTag = () => {
         })
         queryClient.setQueryData<TaskTag[]>(
           TAGS_QUERY_KEY.list({ projectId, boardId }),
-          (old) => [...(old as TaskTag[]), data]
+          (old) => [...(old as TaskTag[]), data],
         )
       },
-    }
+    },
   )
 }
 

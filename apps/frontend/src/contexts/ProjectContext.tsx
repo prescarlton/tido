@@ -24,7 +24,7 @@ type ProjectContextType = {
 }
 
 const ProjectContext = createContext<ProjectContextType>(
-  {} as ProjectContextType
+  {} as ProjectContextType,
 )
 
 export const ProjectProvider = ({ children }: { children: ReactNode }) => {

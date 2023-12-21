@@ -7,7 +7,7 @@ import TaskDialog from "@/components/boards/tasks/TaskDialog"
 import EditTaskButton from "@/components/boards/views/ListView/EditTaskButton"
 import TaskStatus from "@/components/boards/views/ListView/TaskCard/TaskStatus"
 import TaskTags from "@/components/boards/views/ListView/TaskCard/TaskTags"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useCompleteTask from "@/hooks/api/tasks/useCompleteTask"
 
 import styles from "./styles.module.scss"
@@ -18,7 +18,7 @@ interface ITaskCard {
 
 const TaskCard = ({ task }: ITaskCard) => {
   const [opened, { close, open }] = useDisclosure()
-  const { project } = useProjectContext()
+  const { project } = useAppContext()
   const completeMutation = useCompleteTask({
     projectId: project?.id as string,
     boardId: task.boardId as string,

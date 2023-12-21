@@ -15,14 +15,14 @@ import {
 } from "@tabler/icons-react"
 import { flatMap } from "lodash"
 
+import useAppContext from "@/contexts/AppContext"
 import useBoardContext from "@/contexts/BoardContext"
-import useProjectContext from "@/contexts/ProjectContext"
 import useListBoardTags from "@/hooks/api/boards/useListBoardTags"
 
 import TaskTag from "../tasks/TaskDialog/TaskTag"
 
 const BoardViewFilters = () => {
-  const { boardId, projectId } = useProjectContext() as {
+  const { boardId, projectId } = useAppContext() as {
     boardId: string
     projectId: string
   }

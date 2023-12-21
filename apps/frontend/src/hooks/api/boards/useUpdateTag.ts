@@ -7,16 +7,16 @@ import ProjectService, {
   TAGS_QUERY_KEY,
   UPDATE_TAG_QUERY_KEY,
 } from "@/api/ProjectService"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 
 const updateTag = (params: UpdateTagParams, body: UpdateTagBody) =>
   ProjectService.put(
     `/${params.projectId}/boards/${params.boardId}/tags/${params.tagId}`,
-    body
+    body,
   ).then((res) => res.data.data)
 
 const useUpdateTag = ({ tagId }: { tagId: number }) => {
-  const { projectId, boardId } = useProjectContext()
+  const { projectId, boardId } = useAppContext()
   if (!boardId) throw new Error("Unable to update a tag in this context")
   const queryClient = useQueryClient()
   return useMutation(
@@ -34,10 +34,10 @@ const useUpdateTag = ({ tagId }: { tagId: number }) => {
           (old) => [
             ...(old as TaskTag[]).filter((tag) => tag.id != data.id),
             data,
-          ]
+          ],
         )
       },
-    }
+    },
   )
 }
 export default useUpdateTag

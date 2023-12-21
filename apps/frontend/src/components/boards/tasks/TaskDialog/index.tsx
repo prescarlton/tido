@@ -14,7 +14,7 @@ import TaskMembers from "@/components/boards/tasks/TaskDialog/TaskMembers"
 import TaskStatus from "@/components/boards/tasks/TaskDialog/TaskStatus"
 import TaskTags from "@/components/boards/tasks/TaskDialog/TaskTags"
 import ControlledTextField from "@/components/fields/ControlledTextField"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useGetMe from "@/hooks/api/auth/useGetMe"
 import useCreateTask from "@/hooks/api/tasks/useCreateTask"
 import useGetTaskById from "@/hooks/api/tasks/useGetTaskById"
@@ -30,7 +30,7 @@ interface ITaskDialog {
 }
 
 const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
-  const { projectId, boardId } = useProjectContext()
+  const { projectId, boardId } = useAppContext()
   const formMethods = useForm<UpdateTaskBody>({
     defaultValues: {
       name: task?.name || "",

@@ -1,5 +1,6 @@
 import "@mantine/core/styles.css"
 import "@mantine/notifications/styles.css"
+import "@mantine/spotlight/styles.css"
 import "./styles/globals.scss"
 
 import { MantineProvider } from "@mantine/core"
@@ -14,8 +15,8 @@ import { BrowserRouter } from "react-router-dom"
 
 import theme from "@/theme"
 
+import { AppProvider } from "./contexts/AppContext"
 import { AuthProvider } from "./contexts/AuthContext"
-import { ProjectProvider } from "./contexts/ProjectContext"
 import AppRouter from "./router"
 
 const queryClient = new QueryClient({
@@ -37,9 +38,7 @@ const App = () => {
         <BrowserRouter>
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
-              <ProjectProvider>
-                <AppRouter />
-              </ProjectProvider>
+              <AppRouter />
             </AuthProvider>
             <Notifications zIndex={100000} />
             <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />

@@ -3,13 +3,13 @@ import { IconStar, IconStarFilled } from "@tabler/icons-react"
 
 import BoardCarousel from "@/components/projects/overview/BoardCarousel"
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useFavoriteProject from "@/hooks/api/projects/useFavoriteProjects"
 
 import styles from "./styles.module.scss"
 
 const OverviewPage = () => {
-  const { projectId, project } = useProjectContext()
+  const { projectId, project } = useAppContext()
 
   const favoriteMutation = useFavoriteProject()
 

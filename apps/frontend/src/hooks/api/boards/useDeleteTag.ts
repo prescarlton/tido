@@ -8,15 +8,15 @@ import ProjectService, {
   TASKS_QUERY_KEY,
   UPDATE_TAG_QUERY_KEY,
 } from "@/api/ProjectService"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 
 const deleteTag = (data: UpdateTagParams) =>
   ProjectService.delete(
-    `/${data.projectId}/boards/${data.boardId}/tags/${data.tagId}`
+    `/${data.projectId}/boards/${data.boardId}/tags/${data.tagId}`,
   ).then((res) => res.data.data)
 
 const useDeleteTag = ({ tagId }: { tagId: number }) => {
-  const { projectId, boardId } = useProjectContext()
+  const { projectId, boardId } = useAppContext()
   if (!boardId) throw new Error("Unable to delete a tag in this context")
   const queryClient = useQueryClient()
 
@@ -30,11 +30,11 @@ const useDeleteTag = ({ tagId }: { tagId: number }) => {
           color: "green",
         })
         queryClient.invalidateQueries(
-          TASKS_QUERY_KEY.list({ projectId, boardId })
+          TASKS_QUERY_KEY.list({ projectId, boardId }),
         )
         queryClient.setQueryData<TaskTag[]>(
           TAGS_QUERY_KEY.list({ projectId, boardId }),
-          (old) => old?.filter((tag) => tag.id != tagId)
+          (old) => old?.filter((tag) => tag.id != tagId),
         )
       },
       onError: () => {
@@ -43,7 +43,7 @@ const useDeleteTag = ({ tagId }: { tagId: number }) => {
           color: "red",
         })
       },
-    }
+    },
   )
 }
 

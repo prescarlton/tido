@@ -18,7 +18,7 @@ import { Task } from "shared/types/tasks"
 import BoardViewLayout, {
   IBoardView,
 } from "@/components/boards/BoardViewLayout"
-import useProjectContext from "@/contexts/ProjectContext"
+import useAppContext from "@/contexts/AppContext"
 import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
 import useUpdateTaskStatus from "@/hooks/api/tasks/useUpdateTaskStatus"
 
@@ -29,7 +29,7 @@ import { findColumnByItemId } from "./utils"
 const BoardKanbanView = ({ tasks }: IBoardView) => {
   const [draggedId, setDraggedId] = useState<string | null>(null)
   const [columns, setColumns] = useState<Record<string, Task[]> | undefined>()
-  const { boardId, projectId } = useProjectContext()
+  const { boardId, projectId } = useAppContext()
   const { data: statuses } = useListTaskStatuses({
     projectId,
   })
@@ -43,7 +43,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   )
 
   const handleDragEnd = async (event: DragEndEvent) => {
@@ -96,7 +96,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
       return {
         ...prev,
         [activeColumn]: prev[activeColumn].filter(
-          (item) => item.id !== activeId
+          (item) => item.id !== activeId,
         ),
         [overColumn]: [
           ...prev[overColumn].slice(0, newIndex),
@@ -114,7 +114,7 @@ const BoardKanbanView = ({ tasks }: IBoardView) => {
       const columnMap: Record<string, Task[]> = {}
       statuses.forEach(
         (stat) =>
-          (columnMap[stat.name] = tasks.filter((t) => t.status.id === stat.id))
+          (columnMap[stat.name] = tasks.filter((t) => t.status.id === stat.id)),
       )
       setColumns(columnMap)
     }
