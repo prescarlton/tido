@@ -47,7 +47,7 @@ const TaskCard = ({ task, isDragOverlay = false }: ITaskCard) => {
         ref={setNodeRef}
       >
         <Card withBorder className={styles.taskCardInner}>
-          <TaskTags task={task} compact />
+          <TaskTags task={task} compact showAll />
           <Text size="sm">{task.name}</Text>
         </Card>
       </UnstyledButton>

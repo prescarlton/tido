@@ -85,9 +85,10 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
       styles={{
         overlay: { zIndex: 10000 },
         inner: { zIndex: 10001 },
-        content: { overflow: "visible !important" },
+        content: { overflow: "visible" },
       }}
       size="lg"
+      centered
     >
       <Box component="form" onSubmit={handleSubmit(onSubmit)}>
         <Modal.Header px={0} pt={0}>

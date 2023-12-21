@@ -29,7 +29,12 @@ const AddTagButton = ({ taskId, startingTags }: IAddTagButton) => {
   }
 
   return (
-    <Popover onClose={onClose} width={250} position="bottom-start">
+    <Popover
+      onClose={onClose}
+      width={250}
+      position="bottom-start"
+      withinPortal={false}
+    >
       <Popover.Target>
         <ActionIcon size="md">
           <IconPlus />
