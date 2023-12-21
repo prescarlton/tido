@@ -8,7 +8,7 @@ import useListTaskStatuses from "@/hooks/api/boards/useListTaskStatuses"
 const TaskStatus = () => {
   const { projectId } = useAppContext()
   const { data: statuses } = useListTaskStatuses({
-    projectId,
+    projectId: projectId as string,
   })
   const { control } = useFormContext()
 

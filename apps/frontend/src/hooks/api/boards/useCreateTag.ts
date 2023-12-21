@@ -1,10 +1,6 @@
 import { notifications } from "@mantine/notifications"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import {
-  CreateTagBody,
-  CreateTagParams,
-  CreateTagResponse,
-} from "shared/types/boards"
+import { CreateTagBody, CreateTagParams } from "shared/types/boards"
 import { TaskTag } from "shared/types/tasks"
 
 import ProjectService, {
@@ -22,7 +18,8 @@ const createTag = (params: CreateTagParams, body: CreateTagBody) =>
 const useCreateTag = () => {
   const { projectId, boardId } = useAppContext()
   const queryClient = useQueryClient()
-  if (!boardId) throw new Error("Unable to create a tag in this context.")
+  if (!boardId || !projectId)
+    throw new Error("Unable to create a tag in this context.")
 
   return useMutation(
     CREATE_TAG_QUERY_KEY,

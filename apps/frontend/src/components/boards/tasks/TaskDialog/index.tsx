@@ -52,7 +52,7 @@ const TaskDialog = ({ task, opened, onClose, statusId }: ITaskDialog) => {
     boardId: boardId as string,
   })
   const createMutation = useCreateTask({
-    projectId,
+    projectId: projectId as string,
     boardId: boardId as string,
   })
   const { data: me } = useGetMe()

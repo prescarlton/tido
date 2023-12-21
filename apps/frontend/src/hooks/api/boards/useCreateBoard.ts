@@ -20,6 +20,9 @@ const useCreateBoard = () => {
   const queryClient = useQueryClient()
   const navigate = useNavigate()
 
+  if (!projectId)
+    throw new Error("useCreateBoard cannot be used in this context.")
+
   return useMutation(
     CREATE_BOARD_QUERY_KEY,
     (data: CreateBoardBody) => createBoard(data, projectId),

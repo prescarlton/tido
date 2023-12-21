@@ -1,7 +1,7 @@
 import { useMantineColorScheme } from "@mantine/core"
 import { SpotlightActionData } from "@mantine/spotlight"
 import { IconMoon, IconSun } from "@tabler/icons-react"
-import { some, uniq, uniqBy } from "lodash"
+import { uniqBy } from "lodash"
 import {
   createContext,
   ReactNode,
@@ -45,11 +45,13 @@ export const AppProvider = ({ children, actions }: IAppProvider) => {
   // const [showSideNav, setShowSideNav] = useState(true)
 
   const { projectId, boardId } = useParams() as {
-    projectId: string
+    projectId?: string
     boardId?: string
   }
 
-  const { data: project } = useGetProjectById({ projectId })
+  const { data: project } = useGetProjectById({
+    projectId: projectId as string,
+  })
 
   useEffect(() => {
     // if we have a valid projectId, lets add some project-based actions

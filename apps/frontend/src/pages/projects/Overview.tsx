@@ -1,5 +1,6 @@
 import { ActionIcon, Box, Group, Title } from "@mantine/core"
 import { IconStar, IconStarFilled } from "@tabler/icons-react"
+import { Navigate } from "react-router-dom"
 
 import BoardCarousel from "@/components/projects/overview/BoardCarousel"
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
@@ -12,6 +13,11 @@ const OverviewPage = () => {
   const { projectId, project } = useAppContext()
 
   const favoriteMutation = useFavoriteProject()
+
+  // this should never happen, but just incase it does, we're covered 😉
+  if (!projectId) {
+    return <Navigate to="/" />
+  }
 
   const handleToggleFavorite = async () => {
     await favoriteMutation.mutateAsync({

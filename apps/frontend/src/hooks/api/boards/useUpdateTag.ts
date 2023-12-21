@@ -17,7 +17,8 @@ const updateTag = (params: UpdateTagParams, body: UpdateTagBody) =>
 
 const useUpdateTag = ({ tagId }: { tagId: number }) => {
   const { projectId, boardId } = useAppContext()
-  if (!boardId) throw new Error("Unable to update a tag in this context")
+  if (!boardId || !projectId)
+    throw new Error("Unable to update a tag in this context")
   const queryClient = useQueryClient()
   return useMutation(
     UPDATE_TAG_QUERY_KEY,

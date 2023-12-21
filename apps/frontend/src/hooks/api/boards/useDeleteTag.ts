@@ -17,7 +17,8 @@ const deleteTag = (data: UpdateTagParams) =>
 
 const useDeleteTag = ({ tagId }: { tagId: number }) => {
   const { projectId, boardId } = useAppContext()
-  if (!boardId) throw new Error("Unable to delete a tag in this context")
+  if (!boardId || !projectId)
+    throw new Error("Unable to delete a tag in this context")
   const queryClient = useQueryClient()
 
   return useMutation(
