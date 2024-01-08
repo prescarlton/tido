@@ -4,6 +4,7 @@ import {
   IconHome,
   IconSettings,
   IconStack,
+  IconUsers,
 } from "@tabler/icons-react"
 import { NavLink } from "react-router-dom"
 
@@ -25,6 +26,11 @@ const MainLinks = () => {
       label: "My tasks",
       icon: IconCheckbox,
       path: "/my-tasks",
+    },
+    {
+      label: "Members",
+      icon: IconUsers,
+      path: "/members",
     },
     {
       label: "Settings",

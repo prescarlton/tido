@@ -1,7 +1,7 @@
 import { User } from "database"
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const getMe = async (req: Request, res: Response) => {
   const id = (req.user as User)?.id

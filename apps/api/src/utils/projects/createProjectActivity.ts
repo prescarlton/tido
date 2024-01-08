@@ -1,9 +1,8 @@
-import prisma from "../db"
-
+import { prisma } from "@/prismaConnection"
 const createProjectActivity = async (
   projectId: string,
   userId: string,
-  message: string
+  message: string,
 ) => {
   // make sure the user exists first
   const user = await prisma.user.findUnique({

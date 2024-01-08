@@ -6,7 +6,6 @@ import "./styles/globals.scss"
 import { MantineProvider } from "@mantine/core"
 import { Notifications } from "@mantine/notifications"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import dayjs from "dayjs"
 import relativeTime from "dayjs/plugin/relativeTime"
 import React from "react"
@@ -15,7 +14,6 @@ import { BrowserRouter } from "react-router-dom"
 
 import theme from "@/theme"
 
-import { AppProvider } from "./contexts/AppContext"
 import { AuthProvider } from "./contexts/AuthContext"
 import AppRouter from "./router"
 
@@ -41,7 +39,6 @@ const App = () => {
               <AppRouter />
             </AuthProvider>
             <Notifications zIndex={100000} />
-            <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
           </QueryClientProvider>
         </BrowserRouter>
       </MantineProvider>

@@ -5,13 +5,13 @@ import {
   UpdateTaskTagsParams,
 } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import { taskInclude, taskTagSelect } from "@/utils/selects/tasks"
 import { userSelect } from "@/utils/selects/users"
 
 const updateTaskTags = async (
   req: Request<UpdateTaskTagsParams, never, UpdateTaskTagsBody, never, never>,
-  res: Response<GetTaskByIdResponse>
+  res: Response<GetTaskByIdResponse>,
 ) => {
   const { tags } = req.body
   const { taskId } = req.params

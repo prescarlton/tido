@@ -1,12 +1,12 @@
 import { Request, Response } from "express"
 import { RenameBoardBody, RenameBoardParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const renameBoard = async (
   req: Request<RenameBoardParams, never, RenameBoardBody>,
-  res: Response
+  res: Response,
 ) => {
   const { name } = req.body
   const { boardId } = req.params

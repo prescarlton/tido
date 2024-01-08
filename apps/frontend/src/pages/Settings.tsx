@@ -6,7 +6,7 @@ const SettingsPage = () => {
   return (
     <PageWrapper>
       <Title size="h1">Settings</Title>
-      <Text color="dimmed">
+      <Text c="dimmed">
         {`There's nothing here yet, but eventually there will be. I promise.`}
       </Text>
     </PageWrapper>

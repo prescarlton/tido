@@ -4,11 +4,11 @@ import {
   GetProjectParams,
 } from "shared/types/projects"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const getGeneralSettings = async (
   req: Request<GetProjectParams>,
-  res: Response<GetGenProjSettingsResponse>
+  res: Response<GetGenProjSettingsResponse>,
 ) => {
   const { projectId } = req.params
 

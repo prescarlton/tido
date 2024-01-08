@@ -3,7 +3,7 @@ import { User } from "database"
 import passport from "passport"
 import { Strategy as LocalStrategy } from "passport-local"
 
-import prisma from "@/utils/db"
+import { prisma } from "./prismaConnection"
 
 passport.use(
   new LocalStrategy(

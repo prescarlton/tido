@@ -36,27 +36,45 @@ const defaultTaskStatuses = [
     order: 5,
   },
 ]
+const workspaceNames = ["Tido Workspace", "Code/+/Trust", "Other Workspace"]
 
 const projectSeed = async () => {
   console.info("Project seed started")
-  const user = await prisma.user.findUnique({
-    where: {
-      username: "preston",
-    },
+  const users = await prisma.user.findMany({})
+  // gotta make a workspace first
+  await prisma.workspace.createMany({
+    data: workspaceNames.map((name) => ({
+      name,
+    })),
   })
-  if (!user) {
-    console.error("Could not find preston's account")
-    return
+  const workspaces = await prisma.workspace.findMany()
+  const tidoWorkspace = workspaces.find((w) => w.name === "Tido Workspace")
+  if (!tidoWorkspace) {
+    throw new Error("u messed up somehow idk bro")
+  }
+
+  for (const w of workspaces) {
+    await prisma.workspaceUser.createMany({
+      data: users.map((user) => ({
+        userId: user.id,
+        workspaceId: w.id,
+      })),
+    })
   }
 
   for (const p of projectData) {
     const project = await prisma.project.create({
       data: {
         ...p,
-        members: {
-          create: {
+        users: {
+          create: users.map((user) => ({
             userId: user.id,
-            role: "ADMIN",
+            role: user.username === "preston" ? "ADMIN" : "MEMBER",
+          })),
+        },
+        workspace: {
+          connect: {
+            id: tidoWorkspace.id,
           },
         },
         activity: {

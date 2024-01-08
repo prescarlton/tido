@@ -4,11 +4,11 @@ import {
   UpdateGenProjSettingsParams,
 } from "shared/types/projects"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const updateGeneralSettings = async (
   req: Request<UpdateGenProjSettingsParams, never, UpdateGenProjSettingsBody>,
-  res: Response
+  res: Response,
 ) => {
   const { projectId } = req.params
   const { name, description } = req.body

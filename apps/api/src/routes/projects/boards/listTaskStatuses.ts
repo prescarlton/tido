@@ -2,12 +2,12 @@ import { Request, Response } from "express"
 import { ListTaskStatusesResponse } from "shared/types/boards"
 import { GetProjectParams } from "shared/types/projects"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const listTaskStatuses = async (
   req: Request<GetProjectParams, never, never, never>,
-  res: Response<ListTaskStatusesResponse>
+  res: Response<ListTaskStatusesResponse>,
 ) => {
   const { projectId } = req.params
 

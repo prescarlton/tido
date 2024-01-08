@@ -7,13 +7,14 @@ import { favoriteProject, PROJECTS_QUERY_KEY } from "@/api/ProjectService"
 const useFavoriteProject = () => {
   const queryClient = useQueryClient()
 
-  return useMutation(favoriteProject, {
+  return useMutation({
+    mutationFn: favoriteProject,
     onSuccess: () => {
       notifications.show({
         message: "Favorited Project",
         color: "green",
       })
-      queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
+      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY.all })
     },
     onError: (error: AxiosError) => {
       notifications.show({

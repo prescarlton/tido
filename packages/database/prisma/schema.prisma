@@ -10,18 +10,21 @@ datasource db {
 model User {
   id String @id @default(nanoid(16))
 
-  username  String  @unique
-  email     String? @unique
-  firstName String? @map("first_name")
-  lastName  String? @map("last_name")
-  password  String? @default("")
+  username          String  @unique
+  email             String? @unique
+  firstName         String? @map("first_name")
+  lastName          String? @map("last_name")
+  password          String? @default("")
+  activeWorkspaceId String? @map("active_workspace_id")
 
-  projects         ProjectMember[]
+  activeWorkspace  Workspace?            @relation(fields: [activeWorkspaceId], references: [id])
+  projects         ProjectUser[]
   tasks            UserTask[]
   createdTasks     Task[]
   taskActivity     TaskActivity[]
   favoriteProjects UserFavoriteProject[]
   projectActivity  ProjectActivity[]
+  workspaces       WorkspaceUser[]
 
   created DateTime @default(now())
   updated DateTime @updatedAt
@@ -53,7 +56,7 @@ model UserTask {
   @@map("user_tasks")
 }
 
-model ProjectMember {
+model ProjectUser {
   id        String      @id @default(nanoid(24))
   projectId String      @map("project_id")
   userId    String      @map("user_id")
@@ -65,16 +68,44 @@ model ProjectMember {
   created DateTime @default(now())
   updated DateTime @updatedAt
 
-  @@map("project_members")
+  @@map("project_users")
+}
+
+model Workspace {
+  id            String          @id @default(nanoid(12))
+  name          String          @default("My Workspace")
+  description   String          @default("")
+  workspaceUser WorkspaceUser[]
+  projects      Project[]
+
+  // this is users that have this set as their 'active' workspace
+  user User[]
+
+  @@map("workspaces")
+}
+
+model WorkspaceUser {
+  id Int @id @default(autoincrement())
+
+  userId      String @map("user_id")
+  workspaceId String @map("workspace_id")
+
+  user      User      @relation(fields: [userId], references: [id])
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@map("workspace_users")
 }
 
 model Project {
-  id          String @id @default(nanoid(12))
+  id          String  @id @default(nanoid(16))
   name        String
-  description String @default("")
+  description String  @default("")
+  workspaceId String? @map("workspace_id")
+
+  workspace Workspace? @relation(fields: [workspaceId], references: [id])
 
   boards        Board[]
-  members       ProjectMember[]
+  users         ProjectUser[]
   userFavorites UserFavoriteProject[]
   activity      ProjectActivity[]
   taskStatuses  TaskStatus[]

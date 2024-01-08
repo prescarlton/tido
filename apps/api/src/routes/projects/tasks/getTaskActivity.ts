@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { GetTaskParams } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import { userSelect } from "@/utils/selects/users"
 
 const getTaskActivity = async (req: Request<GetTaskParams>, res: Response) => {

@@ -30,7 +30,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     navigate("/")
   }
 
-  const loginMutation = useMutation(LOGIN_QUERY_KEY, login, {
+  const loginMutation = useMutation({
+    mutationKey: LOGIN_QUERY_KEY,
+    mutationFn: login,
     onSuccess: () => {
       onAuth()
     },

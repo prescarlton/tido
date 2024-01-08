@@ -1,7 +1,7 @@
 import { User } from "database"
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 import { defaultTaskStatuses } from "@/utils/tasks/defaultTaskStatuses"
 
@@ -14,7 +14,7 @@ const createProject = async (req: Request, res: Response) => {
     const project = await prisma.project.create({
       data: {
         name,
-        members: {
+        users: {
           create: {
             userId: user.id,
             role: "ADMIN",

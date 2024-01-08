@@ -8,6 +8,7 @@ import BoardRouter from "./boards/routes"
 import createProject from "./createProject"
 import getProjectById from "./getProjectById"
 import favoriteProject from "./handlers/favoriteProject"
+import listProjectMembers from "./listProjectMembers"
 import listProjects from "./listProjects"
 
 const ProjectRouter: Router = Router()
@@ -16,6 +17,7 @@ const ProjectRouter: Router = Router()
 ProjectRouter.get("/", listProjects)
 ProjectRouter.get("/:projectId", getProjectById)
 ProjectRouter.get("/:projectId/statuses", checkProjectAccess, listTaskStatuses)
+ProjectRouter.get("/:projectId/members", checkProjectAccess, listProjectMembers)
 
 // post
 ProjectRouter.post("/", createProject)
@@ -30,7 +32,7 @@ ProjectRouter.use("/:projectId/boards", checkProjectAccess, BoardRouter)
 ProjectRouter.use(
   "/:projectId/settings",
   checkProjectAccess,
-  projectSettingsRouter
+  projectSettingsRouter,
 )
 
 export default ProjectRouter

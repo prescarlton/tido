@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { CompleteTaskBody, CompleteTaskParams } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const completeTask = async (
   req: Request<CompleteTaskParams, never, CompleteTaskBody>,
-  res: Response
+  res: Response,
 ) => {
   const { taskId } = req.params
   const { complete } = req.body

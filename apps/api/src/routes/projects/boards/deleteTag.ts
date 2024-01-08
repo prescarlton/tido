@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { UpdateTagParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const deleteTag = async (
   req: Request<UpdateTagParams, never, never, never, never>,
-  res: Response
+  res: Response,
 ) => {
   const { tagId } = req.params
   // make sure tag exists first

@@ -4,4 +4,16 @@
   align-items: start;
   gap: var(--mantine-spacing-md);
   padding-top: var(--mantine-spacing-md);
+
+  .innerContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--mantine-spacing-md);
+    }
+  }
 }

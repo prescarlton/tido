@@ -59,7 +59,7 @@ importers:
     dependencies:
       '@quixo3/prisma-session-store':
         specifier: ^3.1.10
-        version: 3.1.10(@prisma/client@4.11.0)(express-session@1.17.3)
+        version: 3.1.10(@prisma/client@4.14.0)(express-session@1.17.3)
       '@tiptap/core':
         specifier: ^2.0.4
         version: 2.0.4(@tiptap/pm@2.1.13)
@@ -165,7 +165,7 @@ importers:
         version: 2.9.10(react-hook-form@7.39.4)
       '@lukemorales/query-key-factory':
         specifier: ^1.3.2
-        version: 1.3.2(@tanstack/query-core@5.14.2)(@tanstack/react-query@4.16.1)
+        version: 1.3.2(@tanstack/query-core@5.14.2)(@tanstack/react-query@5.4.3)
       '@mantine/core':
         specifier: ^7.3.2
         version: 7.3.2(@mantine/hooks@7.3.2)(@types/react@18.0.24)(react-dom@18.2.0)(react@18.2.0)
@@ -185,11 +185,11 @@ importers:
         specifier: ^2.32.0
         version: 2.32.0(react@18.2.0)
       '@tanstack/react-query':
-        specifier: ^4.16.1
-        version: 4.16.1(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^5.4.3
+        version: 5.4.3(react-dom@18.2.0)(react@18.2.0)
       '@tanstack/react-query-devtools':
         specifier: ^4.29.23
-        version: 4.29.23(@tanstack/react-query@4.16.1)(react-dom@18.2.0)(react@18.2.0)
+        version: 4.29.23(@tanstack/react-query@5.4.3)(react-dom@18.2.0)(react@18.2.0)
       '@tiptap/extension-link':
         specifier: ^2.1.13
         version: 2.1.13(@tiptap/core@2.1.13)(@tiptap/pm@2.0.4)
@@ -1651,7 +1651,7 @@ packages:
       - supports-color
     dev: false
 
-  /@lukemorales/query-key-factory@1.3.2(@tanstack/query-core@5.14.2)(@tanstack/react-query@4.16.1):
+  /@lukemorales/query-key-factory@1.3.2(@tanstack/query-core@5.14.2)(@tanstack/react-query@5.4.3):
     resolution: {integrity: sha512-SFOWcB5ec+RhlKjLjZxTAbOPF2uXNED6lqXiMu3TUt2twKzxE/QLhnYkdbxOBMK5Wwc2Ia+WP3yqCPRKWywnwQ==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -1659,7 +1659,7 @@ packages:
       '@tanstack/react-query': '>= 4.0.0'
     dependencies:
       '@tanstack/query-core': 5.14.2
-      '@tanstack/react-query': 4.16.1(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-query': 5.4.3(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@mantine/core@7.3.2(@mantine/hooks@7.3.2)(@types/react@18.0.24)(react-dom@18.2.0)(react@18.2.0):
@@ -1796,19 +1796,6 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
-  /@prisma/client@4.11.0:
-    resolution: {integrity: sha512-0INHYkQIqgAjrt7NzhYpeDQi8x3Nvylc2uDngKyFDDj1tTRQ4uV1HnVmd1sQEraeVAN63SOK0dgCKQHlvjL0KA==}
-    engines: {node: '>=14.17'}
-    requiresBuild: true
-    peerDependencies:
-      prisma: '*'
-    peerDependenciesMeta:
-      prisma:
-        optional: true
-    dependencies:
-      '@prisma/engines-version': 4.11.0-57.8fde8fef4033376662cad983758335009d522acb
-    dev: false
-
   /@prisma/client@4.14.0(prisma@4.14.0):
     resolution: {integrity: sha512-MK/XaA2sFdfaOa7I9MjNKz6dxeIEdeZlnpNRoF2w3JuRLlFJLkpp6cD3yaqw2nUUhbrn3Iqe3ZpVV+VuGGil7Q==}
     engines: {node: '>=14.17'}
@@ -1823,10 +1810,6 @@ packages:
       prisma: 4.14.0
     dev: false
 
-  /@prisma/engines-version@4.11.0-57.8fde8fef4033376662cad983758335009d522acb:
-    resolution: {integrity: sha512-3Vd8Qq06d5xD8Ch5WauWcUUrsVPdMC6Ge8ILji8RFfyhUpqon6qSyGM0apvr1O8n8qH8cKkEFqRPsYjuz5r83g==}
-    dev: false
-
   /@prisma/engines-version@4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c:
     resolution: {integrity: sha512-3jum8/YSudeSN0zGW5qkpz+wAN2V/NYCQ+BPjvHYDfWatLWlQkqy99toX0GysDeaUoBIJg1vaz2yKqiA3CFcQw==}
     dev: false
@@ -1835,14 +1818,14 @@ packages:
     resolution: {integrity: sha512-PDNlhP/1vyTgmNyiucGqGCdXIp7HIkkvKO50si3y3PcceeHvqtiKPaH1iJdz63jCWMVMbj2MElSxXPOeBvEVIQ==}
     requiresBuild: true
 
-  /@quixo3/prisma-session-store@3.1.10(@prisma/client@4.11.0)(express-session@1.17.3):
+  /@quixo3/prisma-session-store@3.1.10(@prisma/client@4.14.0)(express-session@1.17.3):
     resolution: {integrity: sha512-PRb6woSz5jC/IvRZ+fxDnBcbBikEG2DN+scysjgD3PBveXMjVZEak5ortz8NjkCjCE280UEGssVsOL2HKOyGfA==}
     engines: {node: '>=12.0'}
     peerDependencies:
       '@prisma/client': '>=2.16.1'
       express-session: '>=1.17.1'
     dependencies:
-      '@prisma/client': 4.11.0
+      '@prisma/client': 4.14.0(prisma@4.14.0)
       cuid: 2.1.8
       express-session: 1.17.3
       ts-dedent: 2.2.0
@@ -2043,15 +2026,15 @@ packages:
       remove-accents: 0.4.2
     dev: false
 
-  /@tanstack/query-core@4.15.1:
-    resolution: {integrity: sha512-+UfqJsNbPIVo0a9ANW0ZxtjiMfGLaaoIaL9vZeVycvmBuWywJGtSi7fgPVMCPdZQFOzMsaXaOsDtSKQD5xLRVQ==}
-    dev: false
-
   /@tanstack/query-core@5.14.2:
     resolution: {integrity: sha512-QmoJvC72sSWs3hgGis8JdmlDvqLfYGWUK4UG6OR9Q6t28JMN9m2FDwKPqoSJ9YVocELCSjMt/FGjEiLfk8000Q==}
     dev: false
 
-  /@tanstack/react-query-devtools@4.29.23(@tanstack/react-query@4.16.1)(react-dom@18.2.0)(react@18.2.0):
+  /@tanstack/query-core@5.4.3:
+    resolution: {integrity: sha512-fnI9ORjcuLGm1sNrKatKIosRQUpuqcD4SV7RqRSVmj8JSicX2aoMyKryHEBpVQvf6N4PaBVgBxQomjsbsGPssQ==}
+    dev: false
+
+  /@tanstack/react-query-devtools@4.29.23(@tanstack/react-query@5.4.3)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ufPxjlk5LCmSk0Pmm9RjEB19dJ3OxmRQptXQLoYxJXmWG+LZc5IpEtQmaEdBXGtwI+1l2wWDkxWRoHpK++dKcw==}
     peerDependencies:
       '@tanstack/react-query': 4.29.23
@@ -2059,18 +2042,18 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@tanstack/match-sorter-utils': 8.8.4
-      '@tanstack/react-query': 4.16.1(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-query': 5.4.3(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       superjson: 1.12.4
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/react-query@4.16.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-PDE9u49wSDykPazlCoLFevUpceLjQ0Mm8i6038HgtTEKb/aoVnUZdlUP7C392ds3Cd75+EGlHU7qpEX06R7d9Q==}
+  /@tanstack/react-query@5.4.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-4aSOrRNa6yEmf7mws5QPTVMn8Lp7L38tFoTZ0c1ZmhIvbr8GIA0WT7X5N3yz/nuK8hUtjw9cAzBr4BPDZZ+tzA==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^18.0.0
+      react-dom: ^18.0.0
       react-native: '*'
     peerDependenciesMeta:
       react-dom:
@@ -2078,10 +2061,9 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 4.15.1
+      '@tanstack/query-core': 5.4.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
   /@tiptap/core@2.0.4(@tiptap/pm@2.0.4):

@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt"
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const createUser = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, username } = req.body

@@ -14,12 +14,13 @@ const setupMiddleware = (app: Application) => {
   app.use(
     session({
       secret: process.env.SESSION_SECRET as string,
-      resave: false,
-      saveUninitialized: true,
+      resave: true,
+      saveUninitialized: false,
       cookie: {
         secure: false,
         sameSite: false,
         httpOnly: true,
+        maxAge: 604800000,
       },
       store: new PrismaSessionStore(new PrismaClient(), {
         checkPeriod: 2 * 60 * 1000, // ms

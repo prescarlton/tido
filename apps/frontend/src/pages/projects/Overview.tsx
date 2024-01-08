@@ -3,6 +3,8 @@ import { IconStar, IconStarFilled } from "@tabler/icons-react"
 import { Navigate } from "react-router-dom"
 
 import BoardCarousel from "@/components/projects/overview/BoardCarousel"
+import MembersCard from "@/components/projects/overview/MembersCard"
+import ProjectActivityCard from "@/components/projects/overview/ProjectActivityCard"
 import ProjectTabContent from "@/components/projects/overview/ProjectTabs/TabContent"
 import useAppContext from "@/contexts/AppContext"
 import useFavoriteProject from "@/hooks/api/projects/useFavoriteProjects"
@@ -35,7 +37,13 @@ const OverviewPage = () => {
             {project?.favorited ? <IconStarFilled /> : <IconStar />}
           </ActionIcon>
         </Group>
-        <BoardCarousel projectId={projectId} />
+        <Box className={styles.innerContainer}>
+          <BoardCarousel projectId={projectId} />
+          <Box className={styles.sidebar}>
+            <ProjectActivityCard />
+            <MembersCard />
+          </Box>
+        </Box>
       </Box>
     </ProjectTabContent>
   )

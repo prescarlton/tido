@@ -1,0 +1,13 @@
+.membersCard {
+  display: flex;
+  flex-direction: column;
+  width: rem(300);
+  gap: var(--mantine-spacing-sm);
+
+  .innerContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--mantine-spacing-xs);
+  }
+}

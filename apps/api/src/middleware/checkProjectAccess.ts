@@ -1,7 +1,7 @@
 import { User } from "database"
 import { NextFunction, Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const checkProjectAccess = async (
@@ -18,7 +18,7 @@ const checkProjectAccess = async (
         id: projectId,
       },
       select: {
-        members: {
+        users: {
           select: {
             userId: true,
           },
@@ -33,7 +33,7 @@ const checkProjectAccess = async (
     }
 
     // Check if user is a member of the project, if not, return 403
-    const isMember = project.members.some((member) => member.userId === user.id)
+    const isMember = project.users.some((member) => member.userId === user.id)
     if (!isMember) {
       return res.status(404).json({
         message: "Project not found",

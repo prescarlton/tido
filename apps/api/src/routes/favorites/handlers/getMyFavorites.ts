@@ -2,7 +2,7 @@ import { User } from "database"
 import { Request, Response } from "express"
 import { GetMyFavoritesResponse } from "shared/types/favorites"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import { projectSelect } from "@/utils/selects/projects"
 
 const getMyFavorites = async (

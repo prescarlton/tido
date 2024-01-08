@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const getBoardById = async (req: Request, res: Response) => {

@@ -5,12 +5,12 @@ import {
   ListTasksResponse,
 } from "shared/types/tasks/index"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import { taskInclude } from "@/utils/selects/tasks"
 
 const listTasks = async (
   req: Request<ListTasksParams, never, never, ListTasksQuery>,
-  res: Response<ListTasksResponse>
+  res: Response<ListTasksResponse>,
 ) => {
   const { boardId } = req.params
   const { search, tags: rawTags, sortColumn, sortDir } = req.query

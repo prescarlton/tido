@@ -1,7 +1,7 @@
 import { User } from "database"
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 import { userSelect } from "@/utils/selects/users"
 
@@ -10,7 +10,7 @@ const listProjects = async (req: Request, res: Response) => {
     const user = req.user as User
     const projects = await prisma.project.findMany({
       include: {
-        members: {
+        users: {
           include: {
             user: {
               select: userSelect,
@@ -25,7 +25,7 @@ const listProjects = async (req: Request, res: Response) => {
         },
       },
       where: {
-        members: {
+        users: {
           some: {
             userId: user.id,
           },

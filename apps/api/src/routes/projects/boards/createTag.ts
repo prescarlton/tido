@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { CreateTagBody, CreateTagParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const createTag = async (
   req: Request<CreateTagParams, never, CreateTagBody, never>,
-  res: Response
+  res: Response,
 ) => {
   const body = req.body
   const { boardId } = req.params

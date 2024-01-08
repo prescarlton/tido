@@ -29,5 +29,9 @@ export interface GeneralProjectSettings {
   description: string
 }
 
+export interface ProjectMember {
+  user: ShortUser
+}
+
 export * from "./responses"
 export * from "./requests"

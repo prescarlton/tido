@@ -1,11 +1,11 @@
-import { Request, Response } from 'express'
-import { DeleteProjectParams } from 'shared/types/projects'
+import { Request, Response } from "express"
+import { DeleteProjectParams } from "shared/types/projects"
 
-import prisma from '@/utils/db'
+import { prisma } from "@/prismaConnection"
 
 const deleteProject = async (
   req: Request<DeleteProjectParams>,
-  res: Response
+  res: Response,
 ) => {
   const { id } = req.params
 
@@ -16,7 +16,7 @@ const deleteProject = async (
     },
   })
 
-  res.json({ message: 'success', data: project })
+  res.json({ message: "success", data: project })
 }
 
 export default deleteProject

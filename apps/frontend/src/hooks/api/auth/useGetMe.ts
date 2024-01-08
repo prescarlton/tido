@@ -8,6 +8,6 @@ export const ME_QUERY_KEY = ["getMe"]
 const getMe = () =>
   AuthService.get<GetMeResponse>("/me").then((res) => res.data.data)
 
-const useGetMe = () => useQuery(ME_QUERY_KEY, getMe)
+const useGetMe = () => useQuery({ queryKey: ME_QUERY_KEY, queryFn: getMe })
 
 export default useGetMe

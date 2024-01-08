@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { GetBoardByIdParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const deleteBoard = async (req: Request<GetBoardByIdParams>, res: Response) => {

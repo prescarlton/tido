@@ -7,7 +7,7 @@ import {
   UpdateTaskBody,
 } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 import { taskDetailsInclude, taskInclude } from "@/utils/selects/tasks"
 import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"

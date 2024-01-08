@@ -5,6 +5,7 @@ import UserMenu from "@/components/common/AppHeader/UserMenu"
 
 import HeaderLinks from "./HeaderLinks"
 import styles from "./styles.module.scss"
+import WorkspaceSwitcher from "./WorkspaceSwitcher"
 
 const AppHeader = () => {
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const AppHeader = () => {
           </Title>
         </UnstyledButton>
         <Divider orientation="vertical" />
+        <WorkspaceSwitcher />
         <HeaderLinks />
       </Group>
       <UserMenu />

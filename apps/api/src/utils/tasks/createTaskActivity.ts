@@ -1,6 +1,6 @@
 import { Prisma, Task } from "database"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 // should check which fields were edited and create an entry with the user that made the request
 const createTaskActivity = async (

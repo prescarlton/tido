@@ -2,13 +2,13 @@ import { User } from "database"
 import { Request, Response } from "express"
 import { CreateTaskBody, CreateTaskParams } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import createProjectActivity from "@/utils/projects/createProjectActivity"
 import convertRawFromJSON from "@/utils/tasks/convertRawFromJSON"
 
 const createTask = async (
   req: Request<CreateTaskParams, never, CreateTaskBody>,
-  res: Response
+  res: Response,
 ) => {
   const { boardId } = req.params
   const { name, status, rawDescription } = req.body
@@ -70,7 +70,7 @@ const createTask = async (
   await createProjectActivity(
     project.id,
     user.id,
-    `Created a task: ${task.name}`
+    `Created a task: ${task.name}`,
   )
   return res.json({ message: "Task created successfully", data: task })
 }

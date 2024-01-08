@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { UpdateTagBody, UpdateTagParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const updateTag = async (
   req: Request<UpdateTagParams, never, UpdateTagBody, never, never>,
-  res: Response
+  res: Response,
 ) => {
   const body = req.body
   const { tagId } = req.params

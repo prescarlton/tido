@@ -15,6 +15,8 @@ import ProjectSettingsPage from "@/pages/projects/Settings"
 import SettingsPage from "@/pages/Settings"
 import SignupPage from "@/pages/Signup"
 
+import MembersPage from "./pages/projects/Members"
+
 const AppRouter = () => {
   return (
     <Routes>
@@ -34,6 +36,7 @@ const AppRouter = () => {
           </Route>
         </Route>
         <Route path="my-tasks" element={<MyTasksPage />} />
+        <Route path="members" element={<MembersPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

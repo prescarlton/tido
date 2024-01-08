@@ -2,12 +2,12 @@ import { Request, Response } from "express"
 import { GetByIdParams } from "shared/types/shared"
 import { GetTaskByIdResponse } from "shared/types/tasks"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import { taskDetailsInclude } from "@/utils/selects/tasks"
 
 const getTaskById = async (
   req: Request<GetByIdParams>,
-  res: Response<GetTaskByIdResponse>
+  res: Response<GetTaskByIdResponse>,
 ) => {
   const { id } = req.params
   const task = await prisma.task.findUnique({

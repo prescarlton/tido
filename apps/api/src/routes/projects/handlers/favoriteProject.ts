@@ -2,7 +2,7 @@ import { User } from "database"
 import { Response } from "express"
 import { FavoriteProjectRequest } from "shared/types/favorites"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const favoriteProject = async (req: FavoriteProjectRequest, res: Response) => {
   const { projectId } = req.params
@@ -14,7 +14,7 @@ const favoriteProject = async (req: FavoriteProjectRequest, res: Response) => {
   const project = await prisma.project.findFirst({
     where: {
       id: projectId,
-      members: {
+      users: {
         some: {
           userId,
         },

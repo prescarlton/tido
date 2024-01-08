@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
 import { GetBoardByIdParams, ListTagsResponse } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 
 const listTags = async (
   req: Request<GetBoardByIdParams, never, never, never>,
-  res: Response<ListTagsResponse>
+  res: Response<ListTagsResponse>,
 ) => {
   const { id } = req.params
 

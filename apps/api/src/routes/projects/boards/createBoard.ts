@@ -1,12 +1,12 @@
 import { Request, Response } from "express"
 import { CreateBoardBody, CreateBoardParams } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const createBoard = async (
   req: Request<CreateBoardParams, never, CreateBoardBody, never>,
-  res: Response
+  res: Response,
 ) => {
   const { projectId } = req.params as { projectId: string }
   const { name, color } = req.body

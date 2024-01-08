@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { BoardListResponse } from "shared/types/boards"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const listBoards = async (req: Request, res: Response<BoardListResponse>) => {

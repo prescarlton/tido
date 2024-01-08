@@ -1,7 +1,7 @@
 import { User } from "database"
 import { Request, Response } from "express"
 
-import prisma from "@/utils/db"
+import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
 
 const getProjectById = async (req: Request, res: Response) => {
