@@ -7,7 +7,7 @@ import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 
 const deleteTask = (params: CompleteTaskParams) =>
   ProjectService.delete(
-    `/${params.projectId}/boards/${params.boardId}/tasks/${params.taskId}`
+    `/${params.projectId}/boards/${params.boardId}/tasks/${params.taskId}`,
   ).then((res) => res.data.data)
 
 const useDeleteTask = (taskId: string) => {
@@ -19,12 +19,12 @@ const useDeleteTask = (taskId: string) => {
   return useMutation({
     mutationFn: () => deleteTask({ boardId, projectId, taskId }),
     onSuccess: () => {
-      queryClient.invalidateQueries(
-        TASKS_QUERY_KEY.list({
+      queryClient.invalidateQueries({
+        queryKey: TASKS_QUERY_KEY.list({
           projectId,
           boardId,
-        })
-      )
+        }),
+      })
       notifications.show({
         message: "Archived task",
         color: "green",

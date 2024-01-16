@@ -11,12 +11,13 @@ import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 const updateTask = (params: Partial<GetTaskParams>, body: UpdateTaskBody) =>
   ProjectService.put(
     `/${params.projectId}/boards/${params.boardId}/tasks/${params.taskId}`,
-    body
+    body,
   ).then((res) => res.data)
 
 const useUpdateTask = (params: Partial<GetTaskParams>) => {
   const queryClient = useQueryClient()
-  return useMutation((body: UpdateTaskBody) => updateTask(params, body), {
+  return useMutation({
+    mutationFn: (body: UpdateTaskBody) => updateTask(params, body),
     onSuccess: (res: GetTaskByIdResponse) => {
       notifications.show({
         message: "Successfully updated task",
@@ -24,9 +25,9 @@ const useUpdateTask = (params: Partial<GetTaskParams>) => {
       })
       queryClient.setQueryData(
         TASKS_QUERY_KEY.detail(params.taskId || ""),
-        res.data
+        res.data,
       )
-      queryClient.refetchQueries(TASKS_QUERY_KEY.all)
+      queryClient.refetchQueries({ queryKey: TASKS_QUERY_KEY.all })
     },
     onError: () => {
       notifications.show({

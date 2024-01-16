@@ -2,7 +2,7 @@ import {
   Avatar,
   Paper,
   Text,
-  useMantineColorScheme,
+  useComputedColorScheme,
   useMantineTheme,
 } from "@mantine/core"
 import { ShortUser } from "shared/types/users"
@@ -13,7 +13,7 @@ interface IUserChip {
 
 const UserChip = ({ user }: IUserChip) => {
   const theme = useMantineTheme()
-  const { colorScheme } = useMantineColorScheme()
+  const colorScheme = useComputedColorScheme("light")
   const initials =
     user.firstName && user.lastName ? user.firstName[0] + user.lastName[0] : ""
   return (
@@ -26,7 +26,7 @@ const UserChip = ({ user }: IUserChip) => {
         height: 32,
         gap: theme.spacing.xxs,
         backgroundColor:
-          colorScheme === "dark" ? theme.colors.gray[9] : theme.colors.gray[0],
+          colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
       })}
     >
       <Avatar radius="xl" color={theme.primaryColor} size="sm">

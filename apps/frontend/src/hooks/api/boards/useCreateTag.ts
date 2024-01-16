@@ -21,22 +21,21 @@ const useCreateTag = () => {
   if (!boardId || !projectId)
     throw new Error("Unable to create a tag in this context.")
 
-  return useMutation(
-    CREATE_TAG_QUERY_KEY,
-    (body: CreateTagBody) => createTag({ projectId, boardId }, body),
-    {
-      onSuccess: (data: TaskTag) => {
-        notifications.show({
-          message: "Tag created successfully",
-          color: "green",
-        })
-        queryClient.setQueryData<TaskTag[]>(
-          TAGS_QUERY_KEY.list({ projectId, boardId }),
-          (old) => [...(old as TaskTag[]), data],
-        )
-      },
+  return useMutation({
+    mutationKey: CREATE_TAG_QUERY_KEY,
+    mutationFn: (body: CreateTagBody) =>
+      createTag({ projectId, boardId }, body),
+    onSuccess: (data: TaskTag) => {
+      notifications.show({
+        message: "Tag created successfully",
+        color: "green",
+      })
+      queryClient.setQueryData<TaskTag[]>(
+        TAGS_QUERY_KEY.list({ projectId, boardId }),
+        (old) => [...(old as TaskTag[]), data],
+      )
     },
-  )
+  })
 }
 
 export default useCreateTag

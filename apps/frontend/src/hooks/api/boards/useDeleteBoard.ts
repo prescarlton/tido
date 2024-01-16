@@ -7,7 +7,7 @@ import ProjectService, { BOARDS_QUERY_KEY } from "@/api/ProjectService"
 
 const deleteBoard = (params: GetBoardByIdParams) =>
   ProjectService.delete(`/${params.projectId}/boards/${params.id}`).then(
-    (res) => res.data.data
+    (res) => res.data.data,
   )
 
 const useDeleteBoard = (params: GetBoardByIdParams) => {
@@ -20,7 +20,7 @@ const useDeleteBoard = (params: GetBoardByIdParams) => {
         message: "Successfully deleted board",
         color: "green",
       })
-      queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
+      queryClient.invalidateQueries({ queryKey: BOARDS_QUERY_KEY.all })
       navigate(`/p/${params.projectId}/b`)
     },
     onError: () => {

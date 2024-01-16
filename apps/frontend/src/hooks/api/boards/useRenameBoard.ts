@@ -18,7 +18,7 @@ const useRenameBoard = () => {
         message: "Board renamed successfully",
         color: "green",
       })
-      queryClient.invalidateQueries(BOARDS_QUERY_KEY.all)
+      queryClient.invalidateQueries({ queryKey: BOARDS_QUERY_KEY.all })
     },
     onError: () => {
       notifications.show({

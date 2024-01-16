@@ -7,7 +7,7 @@ import ProjectService, { TASKS_QUERY_KEY } from "@/api/ProjectService"
 const createTask = async (params: CreateTaskParams, body: CreateTaskBody) =>
   ProjectService.post(
     `/${params.projectId}/boards/${params.boardId}/tasks`,
-    body
+    body,
   ).then((res) => res.data.data)
 
 const useCreateTask = (params: CreateTaskParams) => {
@@ -19,7 +19,7 @@ const useCreateTask = (params: CreateTaskParams) => {
         message: "Task Created",
         color: "green",
       })
-      queryClient.invalidateQueries(TASKS_QUERY_KEY.list(params))
+      queryClient.invalidateQueries({ queryKey: TASKS_QUERY_KEY.list(params) })
     },
     onError: () => {
       notifications.show({

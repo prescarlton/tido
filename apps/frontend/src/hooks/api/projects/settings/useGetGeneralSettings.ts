@@ -8,15 +8,16 @@ import ProjectService, {
 
 const getGenProjSettings = (id: string) =>
   ProjectService.get<GetGenProjSettingsResponse>(
-    `/${id}/settings/general`
+    `/${id}/settings/general`,
   ).then((res) => res.data.data)
 
 const useGetGenProjSettings = () => {
   const { projectId } = useParams()
   if (!projectId) throw new Error("Project ID not found")
-  return useQuery(PROJECT_GEN_SETTINGS_QUERY_KEY.detail(projectId), () =>
-    getGenProjSettings(projectId)
-  )
+  return useQuery({
+    queryKey: PROJECT_GEN_SETTINGS_QUERY_KEY.detail(projectId),
+    queryFn: () => getGenProjSettings(projectId),
+  })
 }
 
 export default useGetGenProjSettings

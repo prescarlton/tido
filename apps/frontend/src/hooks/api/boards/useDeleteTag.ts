@@ -21,31 +21,29 @@ const useDeleteTag = ({ tagId }: { tagId: number }) => {
     throw new Error("Unable to delete a tag in this context")
   const queryClient = useQueryClient()
 
-  return useMutation(
-    UPDATE_TAG_QUERY_KEY,
-    () => deleteTag({ projectId, boardId, tagId }),
-    {
-      onSuccess: () => {
-        notifications.show({
-          message: "Tag successfully deleted",
-          color: "green",
-        })
-        queryClient.invalidateQueries(
-          TASKS_QUERY_KEY.list({ projectId, boardId }),
-        )
-        queryClient.setQueryData<TaskTag[]>(
-          TAGS_QUERY_KEY.list({ projectId, boardId }),
-          (old) => old?.filter((tag) => tag.id != tagId),
-        )
-      },
-      onError: () => {
-        notifications.show({
-          message: "Unable to delete tag",
-          color: "red",
-        })
-      },
+  return useMutation({
+    mutationKey: UPDATE_TAG_QUERY_KEY,
+    mutationFn: () => deleteTag({ projectId, boardId, tagId }),
+    onSuccess: () => {
+      notifications.show({
+        message: "Tag successfully deleted",
+        color: "green",
+      })
+      queryClient.invalidateQueries({
+        queryKey: TASKS_QUERY_KEY.list({ projectId, boardId }),
+      })
+      queryClient.setQueryData<TaskTag[]>(
+        TAGS_QUERY_KEY.list({ projectId, boardId }),
+        (old) => old?.filter((tag) => tag.id != tagId),
+      )
     },
-  )
+    onError: () => {
+      notifications.show({
+        message: "Unable to delete tag",
+        color: "red",
+      })
+    },
+  })
 }
 
 export default useDeleteTag

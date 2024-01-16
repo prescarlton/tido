@@ -11,16 +11,19 @@ import querify from "@/util/querify"
 
 const listTasks = async (params: ListTasksParams, query: ListTasksQuery) =>
   ProjectService.get<ListTasksResponse>(
-    `/${params.projectId}/boards/${params.boardId}/tasks${querify(query)}`
+    `/${params.projectId}/boards/${params.boardId}/tasks${querify(query)}`,
   ).then((res) => res.data.data)
 
 const useListTasks = (params: ListTasksParams, query: ListTasksQuery) => {
   const [debounceSearch] = useDebouncedValue(query.search, 300)
-  return useQuery(
-    TASKS_QUERY_KEY.list({ ...params, ...query, search: debounceSearch }),
-    () => listTasks(params, { ...query, search: debounceSearch }),
-    { keepPreviousData: true }
-  )
+  return useQuery({
+    queryKey: TASKS_QUERY_KEY.list({
+      ...params,
+      ...query,
+      search: debounceSearch,
+    }),
+    queryFn: () => listTasks(params, { ...query, search: debounceSearch }),
+  })
 }
 
 export default useListTasks

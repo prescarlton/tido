@@ -20,25 +20,24 @@ const useUpdateTag = ({ tagId }: { tagId: number }) => {
   if (!boardId || !projectId)
     throw new Error("Unable to update a tag in this context")
   const queryClient = useQueryClient()
-  return useMutation(
-    UPDATE_TAG_QUERY_KEY,
-    (body: UpdateTagBody) => updateTag({ projectId, boardId, tagId }, body),
-    {
-      onSuccess: (data: TaskTag) => {
-        notifications.show({
-          message: "Tag successfully updated",
-          color: "green",
-        })
-        // update the tag list to include the updated tag
-        queryClient.setQueryData<TaskTag[]>(
-          TAGS_QUERY_KEY.list({ projectId, boardId }),
-          (old) => [
-            ...(old as TaskTag[]).filter((tag) => tag.id != data.id),
-            data,
-          ],
-        )
-      },
+  return useMutation({
+    mutationKey: UPDATE_TAG_QUERY_KEY,
+    mutationFn: (body: UpdateTagBody) =>
+      updateTag({ projectId, boardId, tagId }, body),
+    onSuccess: (data: TaskTag) => {
+      notifications.show({
+        message: "Tag successfully updated",
+        color: "green",
+      })
+      // update the tag list to include the updated tag
+      queryClient.setQueryData<TaskTag[]>(
+        TAGS_QUERY_KEY.list({ projectId, boardId }),
+        (old) => [
+          ...(old as TaskTag[]).filter((tag) => tag.id != data.id),
+          data,
+        ],
+      )
     },
-  )
+  })
 }
 export default useUpdateTag

@@ -21,7 +21,7 @@ const useCreateProject = () => {
       })
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(PROJECTS_QUERY_KEY.all)
+      queryClient.invalidateQueries({ queryKey: PROJECTS_QUERY_KEY.all })
       notifications.show({
         message: "Project created successfully",
         color: "green",
