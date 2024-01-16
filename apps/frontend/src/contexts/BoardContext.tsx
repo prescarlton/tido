@@ -33,8 +33,8 @@ const BoardContext = createContext<IBoardContext>({} as IBoardContext)
 export const BoardProvider = ({ children }: { children: ReactNode }) => {
   const [taskSearchValue, setTaskSearchValue] = useState("")
   const [taskFilterValue, setTaskFilterValue] = useState<TaskListFilters>({})
-  const [sortColumn, setSortColumn] = useState("updated")
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc")
+  const [sortColumn, setSortColumn] = useState("status")
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc")
   const [boardView, setBoardView] = useState<BoardView>(BoardView.List)
   const { boardId, projectId } = useParams() as {
     boardId: string

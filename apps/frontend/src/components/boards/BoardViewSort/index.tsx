@@ -30,8 +30,9 @@ const BoardViewSort = () => {
           <Select
             label="Sort By"
             value={sortColumn}
-            onChange={(val) => setSortColumn(val || "updated")}
+            onChange={(val) => setSortColumn(val || "status")}
             data={[
+              { value: "status", label: "Status" },
               { value: "updated", label: "Updated" },
               { value: "created", label: "Created" },
               { value: "name", label: "Name" },
