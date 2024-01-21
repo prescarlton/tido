@@ -3,11 +3,14 @@ import { Request, Response } from "express"
 
 import { prisma } from "@/prismaConnection"
 import errorHandler from "@/utils/errorHandler"
+import getUserActiveWorkspace from "@/utils/getUserActiveWorkspace"
 import { userSelect } from "@/utils/selects/users"
 
 const listProjects = async (req: Request, res: Response) => {
   try {
     const user = req.user as User
+    // only get the projects in the workspace the user has as "active"
+    const activeWorkspace = await getUserActiveWorkspace(user.id)
     const projects = await prisma.project.findMany({
       include: {
         users: {
@@ -25,6 +28,7 @@ const listProjects = async (req: Request, res: Response) => {
         },
       },
       where: {
+        workspaceId: activeWorkspace?.id,
         users: {
           some: {
             userId: user.id,
