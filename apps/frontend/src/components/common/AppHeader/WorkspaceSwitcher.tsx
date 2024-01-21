@@ -1,27 +1,38 @@
-import { Box, Select, Skeleton } from "@mantine/core"
+import { Select, Skeleton } from "@mantine/core"
 
+import useGetActiveWorkspace from "@/hooks/api/workspaces/useGetActiveWorkspace"
 import useListMyWorkspaces from "@/hooks/api/workspaces/useListMyWorkspaces"
+import useSetActiveWorkspace from "@/hooks/api/workspaces/useSetActiveWorkspace"
 
 const WorkspaceSwitcher = () => {
   const { data: workspaces } = useListMyWorkspaces()
-  if (!workspaces) return <Skeleton />
+  const { data: activeWorkspace, refetch } = useGetActiveWorkspace()
+  const setActiveWorkspace = useSetActiveWorkspace()
 
-  // TODO: make this jawn do somethin
-  // TODO: make types
+  if (!workspaces || !activeWorkspace)
+    return <Skeleton height={32} width={180} />
+
+  const onChange = async (value: string | null) => {
+    if (value)
+      await setActiveWorkspace
+        .mutateAsync({ workspaceId: value })
+        .then(() => refetch())
+  }
 
   // make the list into a prettier list for selectability
   const options = workspaces.map((workspace) => ({
     value: workspace.id,
     label: workspace.name,
   }))
+
   return (
-    <Box>
-      <Select
-        data={options}
-        defaultValue={options[0].value}
-        variant="unstyled"
-      />
-    </Box>
+    <Select
+      data={options}
+      value={activeWorkspace.id}
+      variant="unstyled"
+      style={{ width: 180 }}
+      onChange={onChange}
+    />
   )
 }
 export default WorkspaceSwitcher
