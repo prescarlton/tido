@@ -2,6 +2,7 @@ import { createQueryKeys } from "@lukemorales/query-key-factory"
 import {
   GetMyActiveWorkspaceResponse,
   ListMyWorkspacesResponse,
+  ListWorkspaceUsersResponse,
   SetMyActiveWorkspaceParams,
 } from "shared/types/workspaces"
 
@@ -15,6 +16,8 @@ export const listMyWorkspaces = () =>
   WorkspaceService.get<ListMyWorkspacesResponse>("/")
 export const getMyActiveWorkspace = () =>
   WorkspaceService.get<GetMyActiveWorkspaceResponse>("/active")
+export const listWorkspaceUsers = () =>
+  WorkspaceService.get<ListWorkspaceUsersResponse>("/users")
 export const setMyActiveWorkspace = (data: SetMyActiveWorkspaceParams) =>
   WorkspaceService.put(`/active/${data.workspaceId}`)
 
@@ -27,5 +30,9 @@ export const workspaceQueryKeys = createQueryKeys("workspaces", {
   active: {
     queryKey: ["active"],
     queryFn: getMyActiveWorkspace,
+  },
+  users: {
+    queryKey: ["users"],
+    queryFn: listWorkspaceUsers,
   },
 })

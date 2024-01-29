@@ -1,22 +1,18 @@
 import { Select, Skeleton } from "@mantine/core"
 
-import useGetActiveWorkspace from "@/hooks/api/workspaces/useGetActiveWorkspace"
+import useAppContext from "@/contexts/AppContext"
 import useListMyWorkspaces from "@/hooks/api/workspaces/useListMyWorkspaces"
 import useSetActiveWorkspace from "@/hooks/api/workspaces/useSetActiveWorkspace"
 
 const WorkspaceSwitcher = () => {
   const { data: workspaces } = useListMyWorkspaces()
-  const { data: activeWorkspace, refetch } = useGetActiveWorkspace()
+  const { activeWorkspaceId } = useAppContext()
   const setActiveWorkspace = useSetActiveWorkspace()
 
-  if (!workspaces || !activeWorkspace)
-    return <Skeleton height={32} width={180} />
+  if (!workspaces) return <Skeleton height={32} width={180} />
 
   const onChange = async (value: string | null) => {
-    if (value)
-      await setActiveWorkspace
-        .mutateAsync({ workspaceId: value })
-        .then(() => refetch())
+    if (value) await setActiveWorkspace.mutateAsync({ workspaceId: value })
   }
 
   // make the list into a prettier list for selectability
@@ -28,10 +24,11 @@ const WorkspaceSwitcher = () => {
   return (
     <Select
       data={options}
-      value={activeWorkspace.id}
+      value={activeWorkspaceId}
       variant="unstyled"
       style={{ width: 180 }}
       onChange={onChange}
+      allowDeselect={false}
     />
   )
 }

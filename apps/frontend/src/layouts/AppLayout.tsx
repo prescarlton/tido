@@ -11,7 +11,7 @@ import useGetMe from "@/hooks/api/auth/useGetMe"
 const AppLayout = () => {
   const [mobileOpened, { toggle: toggleMobile }] = useDisclosure()
   const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true)
-  const { isLoading } = useGetMe()
+  const { isLoading: isMeLoading } = useGetMe()
   useHotkeys([
     ["mod+J", () => toggleDesktop()],
     ["ctrl+J", () => toggleDesktop()],
@@ -26,7 +26,7 @@ const AppLayout = () => {
     },
   ]
 
-  if (isLoading)
+  if (isMeLoading)
     return (
       <Box
         style={{

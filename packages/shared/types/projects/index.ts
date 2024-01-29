@@ -1,5 +1,5 @@
 import { ShortUser } from "../users"
-export interface ProjectMember {
+export interface ProjectUser {
   id: number
   role: string
   user: ShortUser
@@ -12,7 +12,7 @@ export interface Project {
   created: Date
   updated: Date
   favorited: boolean
-  members?: ProjectMember[]
+  users?: ProjectUser[]
 }
 
 export interface ProjectWithActivity extends Project {

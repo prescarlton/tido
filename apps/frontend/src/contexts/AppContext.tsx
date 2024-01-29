@@ -1,4 +1,4 @@
-import { useMantineColorScheme } from "@mantine/core"
+import { LoadingOverlay, useMantineColorScheme } from "@mantine/core"
 import { SpotlightActionData } from "@mantine/spotlight"
 import { IconMoon, IconSun } from "@tabler/icons-react"
 import { uniqBy } from "lodash"
@@ -14,11 +14,13 @@ import { Project } from "shared/types/projects"
 
 import AppSpotlight from "@/components/common/Spotlight"
 import useGetProjectById from "@/hooks/api/projects/useGetProject"
+import useGetActiveWorkspace from "@/hooks/api/workspaces/useGetActiveWorkspace"
 
 interface IAppContext {
   project?: Project
   projectId?: string
   boardId?: string
+  activeWorkspaceId: string
 }
 interface IAppProvider {
   children: ReactNode
@@ -52,6 +54,8 @@ export const AppProvider = ({ children, actions }: IAppProvider) => {
   const { data: project } = useGetProjectById({
     projectId: projectId as string,
   })
+
+  const { data: activeWorkspace } = useGetActiveWorkspace()
 
   useEffect(() => {
     // if we have a valid projectId, lets add some project-based actions
@@ -95,12 +99,17 @@ export const AppProvider = ({ children, actions }: IAppProvider) => {
     }
   }, [boardId])
 
+  if (!activeWorkspace) {
+    return <LoadingOverlay />
+  }
+
   return (
     <AppContext.Provider
       value={{
         project,
         projectId,
         boardId,
+        activeWorkspaceId: activeWorkspace.id,
       }}
     >
       {children}

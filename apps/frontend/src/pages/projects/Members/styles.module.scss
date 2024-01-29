@@ -1,0 +1,51 @@
+.userListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+
+  .userListHeader {
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+    background-color: var(--mantine-color-default);
+    padding: rem(8) rem(12);
+    border-top-left-radius: var(--mantine-radius-md);
+    border-top-right-radius: var(--mantine-radius-md);
+    border: 1px solid var(--mantine-color-default-border);
+  }
+
+  .userListInner {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .userListItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--mantine-color-default-border);
+    border-top-width: 0px;
+    padding: rem(8) rem(12);
+
+    &:last-of-type {
+      border-bottom-left-radius: var(--mantine-radius-md);
+      border-bottom-right-radius: var(--mantine-radius-md);
+    }
+
+    .userProfile {
+      display: flex;
+      align-items: center;
+      gap: rem(12);
+
+      .userName {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

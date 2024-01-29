@@ -3,7 +3,7 @@ import dayjs from "dayjs"
 import { useNavigate } from "react-router-dom"
 import { ProjectWithActivity } from "shared/types/projects"
 
-import ProjectMembers from "./ProjectMembers"
+import ProjectUsers from "./ProjectMembers"
 
 const ProjectCard = ({ project }: { project: ProjectWithActivity }) => {
   const navigate = useNavigate()
@@ -45,12 +45,12 @@ const ProjectCard = ({ project }: { project: ProjectWithActivity }) => {
           <Title size="h3" lineClamp={1}>
             {project.name}
           </Title>
-          <Text color="dimmed">
+          <Text c="dimmed">
             Last updated {dayjs(project.activity[0].created).fromNow()}
           </Text>
         </Box>
 
-        <ProjectMembers members={project.members} />
+        <ProjectUsers users={project.users} />
       </UnstyledButton>
     </Card>
   )

@@ -7,7 +7,13 @@ const MyProjectsLoading = () => {
       <Title size="h3">Projects</Title>
       <Group gap="md">
         {range(0, 5).map((i) => (
-          <Skeleton key={i} variant="rectangular" width={225} height={75} />
+          <Skeleton
+            key={i}
+            variant="rectangular"
+            width={250}
+            height={150}
+            style={(theme) => ({ borderRadius: theme.radius.md })}
+          />
         ))}
       </Group>
     </Stack>

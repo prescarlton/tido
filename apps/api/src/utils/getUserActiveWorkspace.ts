@@ -1,3 +1,5 @@
+import { Workspace } from "database"
+
 import { prisma } from "@/prismaConnection"
 
 const getUserActiveWorkspace = async (userId: string) => {
@@ -48,6 +50,8 @@ const getUserActiveWorkspace = async (userId: string) => {
   })
   // should never happen, but just in case
   if (!user) throw new Error("User not found")
-  return user.activeWorkspace
+  // look -- its ok to typecast here since we literally just made
+  // sure that they're in a workspace
+  return user.activeWorkspace as Workspace
 }
 export default getUserActiveWorkspace

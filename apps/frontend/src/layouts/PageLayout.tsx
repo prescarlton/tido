@@ -9,7 +9,7 @@ const PageWrapper = ({ children }: { children: ReactNode }) => {
         flexDirection: "column",
         flex: 1,
         position: "relative",
-        padding: theme.spacing.sm,
+        padding: theme.spacing.md,
       })}
     >
       {children}

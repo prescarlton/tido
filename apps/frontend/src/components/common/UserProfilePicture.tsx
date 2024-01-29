@@ -4,9 +4,14 @@ import { ShortUser } from "shared/types/users"
 interface IUserProfilePicture {
   user: ShortUser
   enableTooltip?: boolean
+  size?: "sm" | "md" | "lg" | "xl"
 }
 
-const UserProfilePicture = ({ user, enableTooltip }: IUserProfilePicture) => {
+const UserProfilePicture = ({
+  user,
+  enableTooltip,
+  size = "sm",
+}: IUserProfilePicture) => {
   const theme = useMantineTheme()
 
   const userInitials =
@@ -19,7 +24,7 @@ const UserProfilePicture = ({ user, enableTooltip }: IUserProfilePicture) => {
       disabled={!enableTooltip}
       label={`${user.firstName} ${user.lastName}`}
     >
-      <Avatar radius="xl" color={theme.primaryColor} size="sm">
+      <Avatar radius="xl" color={theme.primaryColor} size={size}>
         {userInitials}
       </Avatar>
     </Tooltip>

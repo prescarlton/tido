@@ -9,13 +9,12 @@ import LoginPage from "@/pages/Login"
 import MyTasksPage from "@/pages/MyTasks"
 import ProjectListPage from "@/pages/ProjectList"
 import AnnouncementsPage from "@/pages/projects/Announcements"
+import MembersPage from "@/pages/projects/Members"
 import OverviewPage from "@/pages/projects/Overview"
 import ResourcesPage from "@/pages/projects/Resources"
 import ProjectSettingsPage from "@/pages/projects/Settings"
 import SettingsPage from "@/pages/Settings"
 import SignupPage from "@/pages/Signup"
-
-import MembersPage from "./pages/projects/Members"
 
 const AppRouter = () => {
   return (
