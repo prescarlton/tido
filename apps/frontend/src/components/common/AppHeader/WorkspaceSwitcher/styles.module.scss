@@ -1,0 +1,16 @@
+.workspaceSelect {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .workspaceLogo {
+    width: rem(24);
+    height: rem(24);
+    border-radius: var(--mantine-radius-sm);
+    background-color: var(--mantine-primary-color-filled);
+  }
+
+  .workspaceName {
+    font-weight: bold;
+  }
+}

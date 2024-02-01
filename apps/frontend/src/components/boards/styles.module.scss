@@ -5,11 +5,11 @@
   overflow: hidden;
   flex: 1;
 
-  @include dark {
-    background-color: var(--mantine-color-dark-6);
-  }
-
-  @include light {
-    background-color: var(--mantine-color-gray-0);
-  }
+  // @include dark {
+  //   background-color: var(--mantine-color-dark-6);
+  // }
+  //
+  // @include light {
+  //   background-color: var(--mantine-color-gray-0);
+  // }
 }

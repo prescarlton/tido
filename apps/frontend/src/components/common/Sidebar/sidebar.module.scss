@@ -1,16 +1,15 @@
 .navbar {
-  width: rem(300px);
   padding: var(--mantine-spacing-md);
-  padding-top: 0;
+  padding-top: var(--mantine-spacing-lg);
   display: flex;
   flex-direction: column;
 
-  @include light {
-    background-color: var(--mantine-color-body);
+  @include dark {
+    background-color: var(--mantine-color-dark-6);
   }
 
-  @include dark {
-    background-color: var(--mantine-color-dark-8);
+  @include light {
+    background-color: var(--mantine-color-gray-0);
   }
 }
 
@@ -28,7 +27,7 @@
   padding-left: calc(var(--mantine-spacing-md) - var(--mantine-spacing-xs));
   padding-right: calc(var(--mantine-spacing-md) - var(--mantine-spacing-xs));
   padding-bottom: var(--mantine-spacing-md);
-  margin-top: var(--mantine-spacing-sm);
+  margin-top: var(--mantine-spacing-lg);
 }
 
 .mainLink {
