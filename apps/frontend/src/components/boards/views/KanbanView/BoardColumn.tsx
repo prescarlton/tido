@@ -23,15 +23,16 @@ const BoardColumn = ({ status, tasks }: IBoardColumn) => {
         flexShrink: 0,
         flexGrow: 0,
         backgroundColor:
-          colorScheme === "dark" ? theme.colors.dark[7] : theme.white,
+          colorScheme === "dark" ? theme.colors.dark[7] : theme.colors.gray[0],
         maxHeight: "100%",
-        gap: 12,
+        gap: 8,
+        borderRadius: theme.radius.md,
       })}
       p={8}
       pt={12}
       ref={setNodeRef}
     >
-      <Group gap={"sm"}>
+      <Group gap={"sm"} pl={"xs"}>
         <Title size="h6">{status.name}</Title>
         <Title size="h6" c="dimmed">
           {tasks.length}

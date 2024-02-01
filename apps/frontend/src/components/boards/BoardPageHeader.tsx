@@ -1,7 +1,16 @@
-import { ActionIcon, Box, Group, Title } from "@mantine/core"
+import {
+  ActionIcon,
+  Box,
+  Breadcrumbs,
+  Button,
+  Group,
+  Stack,
+  Title,
+  UnstyledButton,
+} from "@mantine/core"
 import { IconChevronLeft } from "@tabler/icons-react"
 import { Dispatch, FocusEvent, SetStateAction } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { BoardView } from "shared/types/boards"
 
 import useAppContext from "@/contexts/AppContext"
@@ -38,52 +47,41 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
   }
 
   return (
-    <Box
-      style={(theme) => ({
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 16,
-        padding: ".25rem 1rem",
-        height: 48,
-      })}
+    <Stack
+      gap={0}
+      style={{
+        padding: " 1rem",
+      }}
     >
+      <Breadcrumbs separator="/">
+        <UnstyledButton c="dimmed">{project?.name}</UnstyledButton>
+        <UnstyledButton c="dimmed">Boards</UnstyledButton>
+      </Breadcrumbs>
       <Box
-        style={{
+        style={(theme) => ({
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
-          flex: 1,
-        }}
+          justifyContent: "space-between",
+          gap: 16,
+        })}
       >
-        <Group gap="sm" style={{ alignItems: "center" }}>
-          <Group gap="xxs">
-            <ActionIcon onClick={onClickBack}>
-              <IconChevronLeft />
-            </ActionIcon>
-            <Title
-              size="h4"
-              style={(theme) => ({
-                fontWeight: "bold",
-                borderRadius: theme.radius.sm,
-              })}
-              contentEditable
-              suppressContentEditableWarning
-              onBlur={submit}
-              px="xs"
-            >
-              {board?.name}
-            </Title>
-          </Group>
-          <Group gap="xxs">
-            <BoardViewSwitcher tab={tab} setTab={setTab} />
-          </Group>
-        </Group>
-        <Group gap="sm" style={{ alignItems: "center" }}>
+        <Title
+          size="h3"
+          style={(theme) => ({
+            fontWeight: "bold",
+          })}
+          contentEditable
+          suppressContentEditableWarning
+          onBlur={submit}
+        >
+          {board?.name}
+        </Title>
+        <Group gap="xs">
+          <BoardViewSwitcher tab={tab} setTab={setTab} />
           <EditBoardButton />
         </Group>
       </Box>
-    </Box>
+    </Stack>
   )
 }
 
