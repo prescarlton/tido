@@ -1,8 +1,10 @@
 import { Box, Button, Checkbox, Group, Input, Title } from "@mantine/core"
-import styles from "./styles.module.scss"
+import { IconUserPlus } from "@tabler/icons-react"
+
 import useListWorkspaceUsers from "@/hooks/api/workspaces/useListWorkspaceUsers"
 import PageWrapper from "@/layouts/PageLayout"
-import { IconUserPlus } from "@tabler/icons-react"
+
+import styles from "./styles.module.scss"
 import UserListItem from "./UserListItem"
 
 const MembersPage = () => {

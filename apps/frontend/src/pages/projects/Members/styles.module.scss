@@ -31,6 +31,7 @@
     border: 1px solid var(--mantine-color-default-border);
     border-top-width: 0px;
     padding: rem(8) rem(12);
+    height: 3rem;
 
     &:last-of-type {
       border-bottom-left-radius: var(--mantine-radius-md);
@@ -41,6 +42,7 @@
       display: flex;
       align-items: center;
       gap: rem(12);
+      flex: 0.35;
 
       .userName {
         display: flex;

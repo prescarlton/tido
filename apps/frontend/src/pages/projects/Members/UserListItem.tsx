@@ -14,14 +14,18 @@ const UserListItem = ({ user }: UserListItemProps) => {
     <Box className={styles.userListItem}>
       <Box className={styles.userProfile}>
         <Checkbox />
-        <UserProfilePicture user={user.user} size="md" />
+        <UserProfilePicture user={user.user} size="sm" />
         <Box className={styles.userName}>
           <Text fw="bold">
             {user.user.firstName} {user.user.lastName}
           </Text>
-          <Text c="dimmed">{user.user.username}</Text>
         </Box>
       </Box>
+      {/*
+      <Text c="dimmed" style={{ flex: 1 }}>
+        {user.user.username}
+      </Text>
+      */}
       <Group gap="lg">
         <Text>Member</Text>
         <Text>3 Projects</Text>
