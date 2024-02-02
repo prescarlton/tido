@@ -33,10 +33,6 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
 
   const renameMutation = useRenameBoard()
 
-  const onClickBack = () => {
-    navigate(-1)
-  }
-
   const submit = async (e: FocusEvent<HTMLHeadingElement>) => {
     if (e.target.innerHTML)
       await renameMutation.mutateAsync({
@@ -48,9 +44,9 @@ const BoardPageHeader = ({ tab, setTab }: IBoardPageHeader) => {
 
   return (
     <Stack
-      gap={0}
+      gap={4}
       style={{
-        padding: " 1rem",
+        padding: "1rem 1rem 0 1rem",
       }}
     >
       <Breadcrumbs separator="/">

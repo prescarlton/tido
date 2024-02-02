@@ -22,7 +22,7 @@ const BoardViewLayout = ({ children, tasks }: IBoardViewLayout) => {
   const { taskSearchValue, setTaskSearchValue } = useBoardContext()
   return (
     <Box className={styles.container}>
-      <Group justify="space-between" align="center" p="sm">
+      <Group justify="space-between" align="center" p="sm" pt={0}>
         <Group gap="xs">
           <BoardViewFilters />
           <BoardViewSort />

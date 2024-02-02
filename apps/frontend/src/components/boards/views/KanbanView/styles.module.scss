@@ -6,7 +6,7 @@
     min-height: rem(75);
     flex-direction: column;
     align-items: stretch;
-    border-radius: var(--mantine-radius-md);
+    border-radius: var(--mantine-radius-sm);
     padding: var(--mantine-spacing-xs);
 
     @include light {
@@ -14,7 +14,7 @@
     }
 
     @include dark {
-      background-color: var(--mantine-color-dark-6);
+      background-color: var(--mantine-color-dark-7);
     }
 
     &:hover {
