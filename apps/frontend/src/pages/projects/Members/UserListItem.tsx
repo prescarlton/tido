@@ -26,10 +26,12 @@ const UserListItem = ({ user }: UserListItemProps) => {
         {user.user.username}
       </Text>
       */}
-      <Group gap="lg">
+      <Group gap="lg" c="dimmed">
+        <Text c="red"> Inactive</Text>
+        <Text c="green"> Active</Text>
         <Text>Member</Text>
         <Text>3 Projects</Text>
-        <ActionIcon c="dimmed">
+        <ActionIcon>
           <IconDots />
         </ActionIcon>
       </Group>

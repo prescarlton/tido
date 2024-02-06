@@ -14,13 +14,15 @@ const MembersPage = () => {
     <PageWrapper>
       <Group justify="space-between" align="center" gap="sm" mb="md">
         <Title size="h1">Members</Title>
-        <Button leftSection={<IconUserPlus />}>Invite User</Button>
+        <Group gap="sm">
+          <Input placeholder="Search" variant="default" />
+          <Button leftSection={<IconUserPlus />}>Invite User</Button>
+        </Group>
       </Group>
       <Box className={styles.userList}>
         <Box className={styles.userListHeader}>
           <Group align="center" gap="md">
             <Checkbox />
-            <Input placeholder="Search" variant="filled" />
           </Group>
         </Box>
         <Box className={styles.userListInner}>

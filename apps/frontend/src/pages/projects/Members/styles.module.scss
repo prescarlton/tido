@@ -7,16 +7,15 @@
 .userList {
   display: flex;
   flex-direction: column;
+  gap: rem(8);
 
   .userListHeader {
     display: flex;
     align-items: center;
     gap: rem(8);
-    background-color: var(--mantine-color-default);
+    background-color: var(--mantine-color-default-hover);
     padding: rem(8) rem(12);
-    border-top-left-radius: var(--mantine-radius-md);
-    border-top-right-radius: var(--mantine-radius-md);
-    border: 1px solid var(--mantine-color-default-border);
+    border-radius: var(--mantine-radius-md);
   }
 
   .userListInner {
@@ -28,7 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--mantine-color-default-border);
+    // border: 1px solid var(--mantine-color-default-border);
     border-top-width: 0px;
     padding: rem(8) rem(12);
     height: 3rem;
