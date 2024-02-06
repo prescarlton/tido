@@ -13,9 +13,16 @@
     display: flex;
     align-items: center;
     gap: rem(8);
-    background-color: var(--mantine-color-default-hover);
-    padding: rem(8) rem(12);
+    padding: rem(12);
     border-radius: var(--mantine-radius-md);
+
+    @include dark {
+      background-color: var(--mantine-color-dark-6);
+    }
+
+    @include light {
+      background-color: var(--mantine-color-gray-1);
+    }
   }
 
   .userListInner {
@@ -26,11 +33,16 @@
   .userListItem {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     // border: 1px solid var(--mantine-color-default-border);
     border-top-width: 0px;
-    padding: rem(8) rem(12);
+    padding: rem(12);
     height: 3rem;
+
+    &:hover {
+      background-color: var(--mantine-color-default-hover);
+      cursor: pointer;
+    }
 
     &:last-of-type {
       border-bottom-left-radius: var(--mantine-radius-md);
@@ -41,7 +53,7 @@
       display: flex;
       align-items: center;
       gap: rem(12);
-      flex: 0.35;
+      flex: 2;
 
       .userName {
         display: flex;

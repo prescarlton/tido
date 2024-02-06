@@ -13,7 +13,6 @@ const UserListItem = ({ user }: UserListItemProps) => {
   return (
     <Box className={styles.userListItem}>
       <Box className={styles.userProfile}>
-        <Checkbox />
         <UserProfilePicture user={user.user} size="sm" />
         <Box className={styles.userName}>
           <Text fw="bold">
@@ -26,15 +25,20 @@ const UserListItem = ({ user }: UserListItemProps) => {
         {user.user.username}
       </Text>
       */}
-      <Group gap="lg" c="dimmed">
-        <Text c="red"> Inactive</Text>
-        <Text c="green"> Active</Text>
-        <Text>Member</Text>
-        <Text>3 Projects</Text>
+      <Text style={{ flex: 1.5 }} size="sm">
+        Member
+      </Text>
+      <Text style={{ flex: 1 }} size="sm">
+        3 Projects
+      </Text>
+      <Text c="red" size="sm" style={{ flex: 1 }}>
+        Inactive
+      </Text>
+      <Box style={{ flex: 0.25 }}>
         <ActionIcon>
           <IconDots />
         </ActionIcon>
-      </Group>
+      </Box>
     </Box>
   )
 }
