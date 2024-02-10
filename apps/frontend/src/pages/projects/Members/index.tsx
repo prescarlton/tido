@@ -1,13 +1,19 @@
 import { Box, Button, Group, Input, Text, Title } from "@mantine/core"
+import { useDisclosure } from "@mantine/hooks"
 import { IconUserPlus } from "@tabler/icons-react"
 
 import useListWorkspaceUsers from "@/hooks/api/workspaces/useListWorkspaceUsers"
 import PageWrapper from "@/layouts/PageLayout"
 
+import InviteMemberDialog from "./InviteUserDialog"
 import styles from "./styles.module.scss"
 import UserListItem from "./UserListItem"
 
 const MembersPage = () => {
+  const [
+    inviteDialogOpened,
+    { open: openInviteDialog, close: closeInviteDialog },
+  ] = useDisclosure(false)
   const { data: users } = useListWorkspaceUsers()
 
   return (
@@ -16,7 +22,9 @@ const MembersPage = () => {
         <Title size="h1">Members</Title>
         <Group gap="sm">
           <Input placeholder="Search" variant="default" />
-          <Button leftSection={<IconUserPlus />}>Invite User</Button>
+          <Button onClick={openInviteDialog} leftSection={<IconUserPlus />}>
+            Invite User
+          </Button>
         </Group>
       </Group>
       <Box className={styles.userList}>
@@ -41,6 +49,10 @@ const MembersPage = () => {
           ))}
         </Box>
       </Box>
+      <InviteMemberDialog
+        opened={inviteDialogOpened}
+        onClose={closeInviteDialog}
+      />
     </PageWrapper>
   )
 }

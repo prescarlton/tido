@@ -9,3 +9,14 @@ export const SetMyActiveWorkspaceSchema = {
 export type SetMyActiveWorkspaceParams = z.infer<
   typeof SetMyActiveWorkspaceSchema.params
 >
+
+export const InviteUserToWorkspaceSchema = {
+  body: z.object({
+    email: z
+      .string({ required_error: "Email is required" })
+      .email({ message: "Invalid email" }),
+  }),
+}
+export type InviteUserToWorkspaceBody = z.infer<
+  typeof InviteUserToWorkspaceSchema.body
+>

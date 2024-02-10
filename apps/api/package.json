@@ -27,6 +27,7 @@
     "jsonwebtoken": "^8.5.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
+    "resend": "^3.1.0",
     "uuid": "^9.0.0",
     "zod-express-middleware": "^1.4.0"
   },

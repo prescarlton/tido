@@ -20,6 +20,8 @@ export const listWorkspaceUsers = () =>
   WorkspaceService.get<ListWorkspaceUsersResponse>("/users")
 export const setMyActiveWorkspace = (data: SetMyActiveWorkspaceParams) =>
   WorkspaceService.put(`/active/${data.workspaceId}`)
+export const inviteUserToWorkspace = (data) =>
+  WorkspaceService.post("/invite", data)
 
 export const workspaceQueryKeys = createQueryKeys("workspaces", {
   all: null,

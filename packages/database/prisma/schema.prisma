@@ -79,7 +79,8 @@ model Workspace {
   projects      Project[]
 
   // this is users that have this set as their 'active' workspace
-  user User[]
+  userActiveWorkspace User[]
+  invites             WorkspaceInvite[]
 
   @@map("workspaces")
 }
@@ -229,6 +230,18 @@ model UserFavoriteProject {
 
   @@unique([userId, projectId])
   @@map("user_favorite_projects")
+}
+
+model WorkspaceInvite {
+  id Int @id @default(autoincrement())
+
+  workspaceId String @map("workspace_id")
+  email       String
+  code        String @unique
+
+  workspace Workspace @relation(fields: [workspaceId], references: [id])
+
+  @@map("workspace_invites")
 }
 
 enum ProjectRole {
