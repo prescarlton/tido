@@ -16,6 +16,8 @@ import ProjectSettingsPage from "@/pages/projects/Settings"
 import SettingsPage from "@/pages/Settings"
 import SignupPage from "@/pages/Signup"
 
+import AcceptInvitePage from "./pages/AcceptInvite"
+
 const AppRouter = () => {
   return (
     <Routes>
@@ -41,6 +43,7 @@ const AppRouter = () => {
       </Route>
       <Route path="login" element={<LoginPage />} />
       <Route path="signup" element={<SignupPage />} />
+      <Route path="accept-invite" element={<AcceptInvitePage />} />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

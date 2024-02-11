@@ -1,4 +1,5 @@
 import { resend } from "."
+import { workspaceInviteTemplate } from "./templates/workspaceInvite"
 
 const sendEmail = async (to: string, subject: string, html: string) => {
   return resend.emails.send({
@@ -9,10 +10,13 @@ const sendEmail = async (to: string, subject: string, html: string) => {
   })
 }
 
-export const sendInviteEmail = async (to: string, workspaceName: string) => {
+export const sendInviteEmail = async (
+  to: string,
+  workspaceName: string,
+  code: string,
+) => {
   const subject = `Tido - You have been invited to join ${workspaceName}`
-  const html = `
-<h1>welcome to tido.</h1>
-<p>You have been invited to join ${workspaceName}</p>`
-  return sendEmail(to, subject, html)
+  const link = `${process.env.APP_URL}/accept-invite?code=${code}`
+  const html = workspaceInviteTemplate({ workspaceName, link })
+  await sendEmail(to, subject, html)
 }

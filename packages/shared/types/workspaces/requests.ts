@@ -20,3 +20,12 @@ export const InviteUserToWorkspaceSchema = {
 export type InviteUserToWorkspaceBody = z.infer<
   typeof InviteUserToWorkspaceSchema.body
 >
+
+export const GetInviteDetailsByCodeSchema = {
+  params: z.object({
+    code: z.string({ required_error: "Code is required" }),
+  }),
+}
+export type GetInviteDetailsByCodeParams = z.infer<
+  typeof GetInviteDetailsByCodeSchema.params
+>

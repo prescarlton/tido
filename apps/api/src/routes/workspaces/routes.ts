@@ -1,6 +1,7 @@
 import { Router } from "express"
 
 import getActiveWorkspace from "./handlers/getActiveWorkspace"
+import getInviteDetailsByCode from "./handlers/getInviteDetailsByCode"
 import inviteUserToWorkspace from "./handlers/inviteUserToWorkspace"
 import listMyWorkspaces from "./handlers/listMyWorkspaces"
 import listWorkspaceUsers from "./handlers/listWorkspaceUsers"
@@ -11,6 +12,7 @@ const WorkspaceRouter: Router = Router()
 WorkspaceRouter.get("/", listMyWorkspaces)
 WorkspaceRouter.get("/active", getActiveWorkspace)
 WorkspaceRouter.get("/users", listWorkspaceUsers)
+WorkspaceRouter.get("/invite/:code", getInviteDetailsByCode)
 
 // PUT
 WorkspaceRouter.put("/active/:workspaceId", setActiveWorkspace)

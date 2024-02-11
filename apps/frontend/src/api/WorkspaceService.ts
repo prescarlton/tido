@@ -1,6 +1,7 @@
 import { createQueryKeys } from "@lukemorales/query-key-factory"
 import {
   GetMyActiveWorkspaceResponse,
+  InviteUserToWorkspaceBody,
   ListMyWorkspacesResponse,
   ListWorkspaceUsersResponse,
   SetMyActiveWorkspaceParams,
@@ -20,7 +21,7 @@ export const listWorkspaceUsers = () =>
   WorkspaceService.get<ListWorkspaceUsersResponse>("/users")
 export const setMyActiveWorkspace = (data: SetMyActiveWorkspaceParams) =>
   WorkspaceService.put(`/active/${data.workspaceId}`)
-export const inviteUserToWorkspace = (data) =>
+export const inviteUserToWorkspace = (data: InviteUserToWorkspaceBody) =>
   WorkspaceService.post("/invite", data)
 
 export const workspaceQueryKeys = createQueryKeys("workspaces", {
