@@ -12,7 +12,6 @@ const WorkspaceRouter: Router = Router()
 WorkspaceRouter.get("/", listMyWorkspaces)
 WorkspaceRouter.get("/active", getActiveWorkspace)
 WorkspaceRouter.get("/users", listWorkspaceUsers)
-WorkspaceRouter.get("/invite/:code", getInviteDetailsByCode)
 
 // PUT
 WorkspaceRouter.put("/active/:workspaceId", setActiveWorkspace)
